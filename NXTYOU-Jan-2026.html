@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        const originalConsole = window.console;
+        window.console = {
+          log: (...args) => {
+            originalConsole.log(...args);
+            window.parent.postMessage({ type: 'console', message: args.join(' ') }, '*');
+          },
+          error: (...args) => {
+            originalConsole.error(...args);
+            window.parent.postMessage({ type: 'console', message: 'Error: ' + args.join(' ') }, '*');
+          },
+          warn: (...args) => {
+            originalConsole.warn(...args);
+            window.parent.postMessage({ type: 'console', message: 'Warning: ' + args.join(' ') }, '*');
+          }
+        };
+
+        let requestId = 0;
+        let callbacksMap = new Map();
+        let streamControllers = new Map();
+        
+        window.claude = {
+          complete: (prompt) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'claudeComplete', id, prompt }, '*');
+            });
+          }
+        };
+
+        window.storage = {
+          get: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageGet', id, key, shared }, '*');
+            });
+          },
+          set: (key, value, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageSet', id, key, value, shared }, '*');
+            });
+          },
+          delete: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageDelete', id, key, shared }, '*');
+            });
+          },
+          list: (prefix, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageList', id, prefix, shared }, '*');
+            });
+          }
+        };
+
+        let pendingBlobs = new Map();
+        URL.createObjectURL = (blob) => {
+          // Store the blob and create an ID and URL for it
+          const blobId = `blob-${Date.now()}-${Math.random()}`;
+          pendingBlobs.set(blobId, blob);
+          return `blob-request://${blobId}`;
+        };
+
+        URL.revokeObjectURL = (url) => {
+          // Remove the blob from our store
+          const blobId = url.replace("blob-request://", "");
+          pendingBlobs.delete(blobId);
+        };
+
+        const getBlobFromURL = (url) => {
+          const blobId = url.replace("blob-request://", "");
+          return pendingBlobs.get(blobId);
+        };
+
+        // Override global fetch with streaming support
+        window.fetch = (url, init = {}) => {
+          return new Promise((resolve, reject) => {
+            const id = requestId++;
+            const channelId = `fetch-${id}-${Date.now()}`;
+            
+            callbacksMap.set(id, { 
+              resolve: (response) => {
+                // Create a ReadableStream for the response body
+                const stream = new ReadableStream({
+                  start(controller) {
+                    streamControllers.set(channelId, controller);
+                  },
+                  cancel() {
+                    streamControllers.delete(channelId);
+                  }
+                });
+                
+                // Create and return the Response with the stream
+                resolve(new Response(stream, {
+                  status: response.status,
+                  statusText: response.statusText,
+                  headers: response.headers
+                }));
+              },
+              reject,
+              channelId
+            });
+            
+            window.parent.postMessage({
+              type: 'proxyFetch',
+              id,
+              url,
+              init,
+              channelId
+            }, '*');
+          });
+        };
+
+        window.addEventListener('message', async (event) => {
+          if (event.data.type === 'takeScreenshot') {
+            const rootElement = document.getElementById('artifacts-component-root-html');
+            if (!rootElement) {
+              window.parent.postMessage({
+                type: 'screenshotError',
+                error: new Error('Root element not found'),
+              }, '*');
+            }
+            const screenshot = await htmlToImage.toPng(rootElement, {
+              imagePlaceholder:
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjePDgwX8ACOQDoNsk0PMAAAAASUVORK5CYII=",
+            });
+            window.parent.postMessage({
+              type: 'screenshotData',
+              data: screenshot,
+            }, '*');
+          } else if (event.data.type === 'claudeComplete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.completion);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'proxyFetchResponse') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+              callbacksMap.delete(event.data.id);
+            } else {
+              // Initial response with headers, status, etc.
+              callback.resolve({
+                status: event.data.status,
+                statusText: event.data.statusText,
+                headers: event.data.headers
+              });
+              // Don't delete the callback yet if streaming
+              if (!event.data.body) {
+                callbacksMap.delete(event.data.id);
+              }
+            }
+          } else if (event.data.type === 'proxyFetchStream') {
+            // Handle streaming data chunks
+            const controller = streamControllers.get(event.data.channelId);
+            if (controller) {
+              if (event.data.error) {
+                controller.error(new Error(event.data.error));
+                streamControllers.delete(event.data.channelId);
+              } else if (event.data.done) {
+                controller.close();
+                streamControllers.delete(event.data.channelId);
+                // Clean up the callback
+                const callback = Array.from(callbacksMap.entries()).find(
+                  ([_, value]) => value.channelId === event.data.channelId
+                );
+                if (callback) {
+                  callbacksMap.delete(callback[0]);
+                }
+              } else if (event.data.chunk) {
+                controller.enqueue(new Uint8Array(event.data.chunk));
+              }
+            }
+          } else if (event.data.type === 'storageGet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageSet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageDelete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageList') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          }
+        });
+
+        window.addEventListener('click', (event) => {
+          const isEl = event.target instanceof HTMLElement;
+          if (!isEl) return;
+    
+          // find ancestor links
+          const linkEl = event.target.closest("a");
+          if (!linkEl || !linkEl.href) return;
+    
+          event.preventDefault();
+          event.stopImmediatePropagation();
+    
+          if (linkEl.href.startsWith("blob-request:")) {
+            const blob = getBlobFromURL(linkEl.href);
+            if (!blob) return;
+            void blob.arrayBuffer().then((data) => {
+              window.parent.postMessage({
+                type: "downloadFile",
+                filename: linkEl.download,
+                data,
+                mimeType: blob.type || "application/octet-stream",
+              });
+            });
+          } else if (linkEl.href.startsWith("data:")) {
+            const [header, base64Data] = linkEl.href.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "application/octet-stream";
+            const binaryString = atob(base64Data);
+            const data = Uint8Array.from(binaryString, (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            window.parent.postMessage({
+              type: "downloadFile",
+              filename: linkEl.download,
+              data,
+              mimeType,
+            });
+          } else {
+            let linkUrl;
+            try {
+              linkUrl = new URL(linkEl.href);
+            } catch (error) {
+              return;
+            }
+    
+            if (linkUrl.hostname === window.location.hostname) return;
+      
+            window.parent.postMessage({
+              type: 'openExternal',
+              href: linkEl.href,
+            }, '*');
+          }
+      });
+
+        const originalOpen = window.open;
+        window.open = function (url) {
+          window.parent.postMessage({
+            type: "openExternal",
+            href: url,
+          }, "*");
+        };
+
+        window.addEventListener('error', (event) => {
+          window.parent.postMessage({ type: 'console', message: 'Uncaught Error: ' + event.message }, '*');
+        });
+      })();
+    </script>
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — NXT YOU Januar 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:image" content="https://reports.skael.de/www.skael.de-favicon-large.ico">
+<meta property="og:title" content="Skael Report — NXT YOU Januar 2026">
+<meta property="og:description" content="Google Ads Performance Report">
+<meta property="og:url" content="https://reports.skael.de/NXTYOU-Jan-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Instrument+Serif:ital@0;1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#fbfcfd;
+  --white:#ffffff;
+  --border:#e4e6ec;
+  --border2:#d0d3de;
+  --navy:#0f1b2d;
+  --blue:#3a6ef4;
+  --blue-bg:#eef2ff;
+  --blue-mid:#c7d4fd;
+  --muted:#6b7280;
+  --sub:#9ca3af;
+  --body:#374151;
+  --green:#16a34a;--green-bg:#dcfce7;--green-dot:#22c55e;
+  --yellow:#b45309;--yellow-bg:#fef3c7;--yellow-dot:#f59e0b;
+  --red:#dc2626;--red-bg:#fee2e2;--red-dot:#ef4444;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;height:58px;background:rgba(251,252,253,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 48px;gap:0;opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);white-space:nowrap;}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;letter-spacing:-0.01em;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+/* HERO */
+section.hero{padding:72px 48px;max-width:1280px;margin:0 auto;scroll-margin-top:58px;}
+.google-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px 7px 10px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.google-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+h1.h-hero{font-family:'Poppins',sans-serif;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1.08;color:var(--navy);margin-top:24px;opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+h1.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.hero-meta{display:flex;gap:32px;margin-top:28px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+.hero-meta-item{}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);display:block;}
+.hero-meta-value{font-size:13px;color:var(--navy);font-weight:500;letter-spacing:-0.01em;}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform 0.2s ease,box-shadow 0.2s ease;cursor:default;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,0.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}
+.sl.y{color:var(--yellow);}
+.sl.r{color:var(--red);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+/* INSIGHT CARD */
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 26px;margin-top:14px;}
+.insight-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:8px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.65;}
+
+/* SECTIONS */
+section.section,section.section-gray{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+.section-inner{max-width:1280px;margin:0 auto;padding:0 48px;}
+h2.h-section{font-family:'Poppins',sans-serif;font-size:42px;font-weight:500;letter-spacing:-0.035em;color:var(--navy);margin-bottom:32px;}
+h2.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.section-divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* FUNNEL */
+.funnel-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;}
+.funnel-card,.side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px;}
+.card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:16px;display:block;}
+.funnel-row{display:grid;grid-template-columns:170px 1fr auto;align-items:center;gap:14px;margin-bottom:12px;}
+.funnel-lbl{font-size:13px;color:var(--navy);font-weight:500;}
+.funnel-track{height:38px;background:#f3f0e9;border-radius:6px;overflow:hidden;}
+.funnel-fill{height:100%;border-radius:6px;width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.funnel-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:100px;}
+.funnel-val{font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
+.tag{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+.einordnung-lbl{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:6px;}
+.einordnung-text{font-size:13px;color:var(--muted);line-height:1.6;}
+.side-panel{display:flex;flex-direction:column;gap:12px;}
+.side-rows{display:flex;flex-direction:column;gap:8px;}
+.side-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.side-row:last-child{border-bottom:none;}
+.side-row-lbl{font-size:12px;color:var(--muted);}
+.side-row-val{font-size:12px;font-weight:500;color:var(--navy);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;}
+.hint-box p{font-size:12.5px;color:var(--body);line-height:1.6;}
+
+/* CHARTS */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;}
+.chart-wrap{position:relative;height:240px;}
+
+/* TABLE */
+.table-wrap{margin-top:16px;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+tbody td{padding:11px 14px;color:var(--body);border-bottom:1px solid var(--border);}
+tbody tr:hover td{background:#f0f4ff;}
+tbody tr.highlight td{background:#f0f4ff;}
+tbody tr:last-child td{border-bottom:none;}
+.dot-status{display:flex;align-items:center;gap:6px;}
+
+/* AUCTION */
+.auction-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;}
+.auction-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px;}
+.auction-metrics{display:flex;flex-direction:column;gap:20px;}
+.auction-metric{}
+.auction-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.auction-name{font-size:13px;font-weight:500;color:var(--navy);}
+.auction-vals{display:flex;align-items:center;gap:10px;}
+.auction-val{font-size:11.5px;color:var(--muted);}
+.auction-val span{font-weight:500;color:var(--navy);}
+.abar-group{display:flex;flex-direction:column;gap:6px;}
+.abar-row{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:8px;}
+.abar-row-lbl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:var(--sub);}
+.abar-track{height:8px;background:#e9ecf0;border-radius:3px;overflow:hidden;}
+.abar-jan{height:100%;background:#94a3b8;border-radius:3px;width:0;transition:width 0.9s cubic-bezier(.4,0,.2,1);}
+.abar-fill{height:100%;border-radius:3px;width:0;transition:width 0.9s cubic-bezier(.4,0,.2,1) 0.15s;}
+.abar-fill.g{background:var(--green-dot);}
+.abar-fill.y{background:var(--yellow-dot);}
+.abar-fill.r{background:var(--red-dot);}
+.insight-items{display:flex;flex-direction:column;}
+.ii{padding:14px 0;border-bottom:1px solid var(--border);}
+.ii:last-child{border-bottom:none;}
+.ii-header{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.ii-arrow{color:var(--blue);font-size:14px;font-weight:700;}
+.ii-name{font-size:13px;font-weight:500;color:var(--navy);}
+.ii-desc{font-size:12.5px;color:var(--muted);line-height:1.6;padding-left:20px;}
+
+/* EMPFEHLUNGEN */
+.prio-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.prio-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.prio-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.prio-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:10px;}
+.prio-num{font-family:'Poppins',sans-serif;font-size:28px;font-weight:500;color:var(--blue);line-height:1;min-width:36px;}
+.prio-title-text{font-size:14px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.prio-desc{font-size:13px;color:var(--body);line-height:1.65;}
+
+/* FAZIT */
+.fazit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:28px 30px;margin-top:16px;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:22px;font-weight:500;letter-spacing:-0.025em;color:var(--navy);margin:8px 0 14px;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-text{font-size:14px;color:var(--body);line-height:1.7;}
+
+/* LEAD TABLE */
+.lead-table-wrap{margin-top:16px;overflow-x:auto;}
+.lead-table{width:100%;border-collapse:collapse;font-size:13px;}
+.lead-table thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+.lead-table tbody td{padding:11px 14px;color:var(--body);border-bottom:1px solid var(--border);}
+.lead-table tbody tr:hover td{background:#f0f4ff;}
+.lead-table tbody tr:last-child td{border-bottom:none;}
+.status-pill{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.status-pill.lead{background:#f3e8ff;color:#7c3aed;}
+.status-pill.termin{background:var(--blue-bg);color:var(--blue);}
+.status-pill.won{background:var(--green-bg);color:var(--green);}
+.status-pill.verhandlung{background:var(--yellow-bg);color:var(--yellow);}
+
+/* FOOTER */
+.footer{text-align:center;padding:40px 48px;border-top:1px solid var(--border);background:var(--bg);}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);margin-left:16px;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* KPI stagger */
+.kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.65s forwards;}
+.kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.73s forwards;}
+.kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.81s forwards;}
+.kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.89s forwards;}
+.kpi-grid-2 .kpi-card:nth-child(1){animation-delay:0.97s;}
+.kpi-grid-2 .kpi-card:nth-child(2){animation-delay:1.05s;}
+.kpi-grid-2 .kpi-card:nth-child(3){animation-delay:1.13s;}
+.kpi-grid-2 .kpi-card:nth-child(4){animation-delay:1.21s;}
+
+/* EDIT BAR */
+.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:400;letter-spacing:-0.01em;white-space:nowrap;}
+.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;letter-spacing:-0.01em;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue);color:#fff;}
+.eb-save{background:#fff;color:var(--navy);display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
+body.editing [contenteditable="true"]:hover{outline-color:rgba(58,110,244,0.75);}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);border-radius:3px;}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:0 16px;}
+  section.hero{padding:48px 16px;}
+  .section-inner{padding:0 16px;}
+  section.section,section.section-gray{padding:48px 0;}
+  h1.h-hero{font-size:36px;}
+  h2.h-section{font-size:30px;}
+  .kpi-grid,.kpi-grid-2{grid-template-columns:repeat(2,1fr);}
+  .funnel-grid,.auction-grid,.chart-row,.prio-grid{grid-template-columns:1fr;}
+  .funnel-row{grid-template-columns:120px 1fr auto;}
+}
+</style>
+</head>
+<body id="artifacts-component-root-html" class="">
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#funnel">Funnel</a>
+    <a class="nav-tab" href="#vergleich">Vergleich</a>
+    <a class="nav-tab" href="#auction">Auction</a>
+    <a class="nav-tab" href="#leads">Leads</a>
+    <a class="nav-tab active" href="#empfehlungen">Empfehlungen</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill" contenteditable="false">Januar 2026</span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="uebersicht">
+  <div class="google-badge">
+    <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></svg>
+    <span contenteditable="false">Google Ads · Search</span>
+  </div>
+
+  <h1 class="h-hero" contenteditable="false">NXT YOU Funnel<br><em contenteditable="false">January Performance Report</em><br></h1>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" contenteditable="false">Zeitraum</span>
+      <span class="hero-meta-value" contenteditable="false">1. – 31. Januar 2026</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" contenteditable="false">Kampagnen</span>
+      <span class="hero-meta-value" contenteditable="false">Whitelabel-DE-Exact + Prospecting</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" contenteditable="false">Tagesbudget</span>
+      <span class="hero-meta-value" contenteditable="false">€480,00 (€180 + €300)</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" contenteditable="false">Erstellt</span>
+      <span class="hero-meta-value" contenteditable="false">März 2026</span>
+    </div>
+  </div>
+
+  <!-- KPI Grid 1 -->
+  <div class="kpi-grid" style="margin-top:36px;">
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">Impressionen</span>
+        <div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Gut</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">18.210</div>
+      <div class="kpi-sub" contenteditable="false">Okt: 16.251 · <strong>+12,1%</strong></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">Klicks</span>
+        <div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Sehr gut</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">791</div>
+      <div class="kpi-sub" contenteditable="false">Okt: 567 · <strong>+39,5%</strong></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">CTR</span>
+        <div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Sehr gut</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">4,34%</div>
+      <div class="kpi-sub" contenteditable="false">Okt: 3,49% · <strong>+24,4%</strong></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">Ausgaben</span>
+        <div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Im Budget</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">€5.642,96</div>
+      <div class="kpi-sub" contenteditable="false">Okt: €4.007,82 · <strong>+40,8%</strong></div>
+    </div>
+  </div>
+
+  <!-- KPI Grid 2 -->
+  <div class="kpi-grid kpi-grid-2" style="margin-top:14px;">
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">Conversions</span>
+        <div class="sw"><div class="sd y"></div><span class="sl y" contenteditable="false">Ausbaufähig</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">16</div>
+      <div class="kpi-sub" contenteditable="false">Okt: 14 · <strong>+14,3%</strong></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">Conv. Rate</span>
+        <div class="sw"><div class="sd y"></div><span class="sl y" contenteditable="false">Ausbaufähig</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">2,02%</div>
+      <div class="kpi-sub" contenteditable="false">Okt: 2,47% · <strong>-18,2%</strong></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">Ø CPC</span>
+        <div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Gut</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">€7,13</div>
+      <div class="kpi-sub" contenteditable="false">Okt: €7,07 · <strong>+0,8%</strong></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header">
+        <span class="kpi-label" contenteditable="false">CPL</span>
+        <div class="sw"><div class="sd r"></div><span class="sl r" contenteditable="false">Schlecht</span></div>
+      </div>
+      <div class="kpi-value" contenteditable="false">€352,69</div>
+      <div class="kpi-sub" contenteditable="false">Okt: €286,27 · <strong>+23,2%</strong></div>
+    </div>
+  </div>
+
+  <!-- Insight Card -->
+  <div class="insight-card reveal visible" style="margin-top:14px;">
+    <div class="insight-label">Einordnung der Zahlen</div>
+    <p class="insight-text" contenteditable="false">Die CTR von 4,34% ist sehr gut und liegt deutlich über dem B2B-Branchendurchschnitt (2–3%). Die Anzeigen performen gut und ziehen qualifizierten Traffic an. Der CPC von €7,13 ist stabil und liegt in unserem Durchschnitt. Wir haben mehr Leads generiert als im Oktober (16 vs. 14) bei höherem Budget – der CPL ist mit €352,69 akzeptabel für den App-Entwicklungsmarkt.</p>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- FUNNEL SECTION -->
+<section class="section-gray" id="funnel">
+  <div class="section-inner">
+    <h2 class="h-section reveal visible" contenteditable="false">Funnel <em contenteditable="false">Conversion</em></h2>
+    <div class="funnel-grid reveal visible">
+      <!-- Funnel Card -->
+      <div class="funnel-card" id="funnelCard">
+        <span class="card-label" contenteditable="false">Funnel-Analyse · Januar 2026</span>
+
+        <div class="funnel-row">
+          <div class="funnel-lbl" contenteditable="false">Impressionen</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(15, 27, 45), rgb(30, 58, 110)); width: 100%;" data-width="100%"></div></div>
+          <div class="funnel-right"><span class="funnel-val" contenteditable="false">18.210</span><span class="tag g" contenteditable="false">Gut</span></div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-lbl" contenteditable="false">Klicks → LP</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(30, 58, 110), rgb(58, 110, 244)); width: 4.34%;" data-width="4.34%"></div></div>
+          <div class="funnel-right"><span class="funnel-val" contenteditable="false">791 Clicks</span><span class="tag g" contenteditable="false">Sehr gut</span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--sub);">4,34% CTR</span></div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-lbl" contenteditable="false">LP → Funnel</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(58, 110, 244), rgb(147, 197, 253)); width: 6.32%;" data-width="6.32%"></div></div>
+          <div class="funnel-right"><span class="funnel-val" contenteditable="false">50<span style="letter-spacing: -0.21px;">&nbsp;Clicks</span></span><span class="tag r" contenteditable="false">Schlecht</span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--sub);">6,32%</span></div>
+        </div>
+
+        <div class="funnel-row">
+          <div class="funnel-lbl" contenteditable="false">Funnel → Lead</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(34, 197, 94), rgb(22, 163, 74)); width: 32%;" data-width="32%"></div></div>
+          <div class="funnel-right"><span class="funnel-val" contenteditable="false">16 Clicks</span><span class="tag g" contenteditable="false">Sehr gut</span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--sub);">32,00%</span></div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin-top:8px;padding-top:16px;">
+          <div class="einordnung-lbl" contenteditable="false">Einordnung</div>
+          <p class="einordnung-text" contenteditable="false">Die Zahlen sind insgesamt gut – mit einer Ausnahme: Die Conversion von der Landing Page zur Kontaktseite (6,32%) ist deutlich schlechter als im Oktober (14,64%). Das bedeutet: Viele Leute sehen unseren Funnel, aber es sind nicht die richtigen. Positiv: Die Leute, die tatsächlich qualifiziert sind und den Funnel starten, konvertieren deutlich besser (32,00% vs. 16,87% im Oktober).</p>
+        </div>
+
+        <div style="border-top:1px solid var(--border);margin-top:16px;padding-top:16px;">
+          <div class="einordnung-lbl" contenteditable="false">Kampagnen-Analyse</div>
+          <p class="einordnung-text" contenteditable="false">Die Prospecting-Kampagne liefert deutlich mehr Conversions (13 vs. 3) bei niedrigerem CPC (€5,87 vs. €10,92). Die Exact-Kampagne hat zwar eine höhere CTR (7,50%), aber die Prospecting-Kampagne ist effizienter bei der Lead-Generierung. <strong>Empfehlung:</strong> Budget-Shift Richtung Prospecting prüfen.</p>
+        </div>
+      </div>
+
+      <!-- Side Panel -->
+      <div class="side-panel">
+        <div class="side-card">
+          <span class="card-label" contenteditable="false">Kampagnen-Vergleich</span>
+          <div class="side-rows">
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Whitelabel-DE-Exact</span><span class="side-row-val" contenteditable="false"></span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Cost</span><span class="side-row-val" contenteditable="false">€2.161,80</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Klicks / CTR</span><span class="side-row-val" contenteditable="false">198 / 7,50%</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">CPC / Conv.</span><span class="side-row-val" contenteditable="false">€10,92 / 3</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Whitelabel-DE-Prospecting</span><span class="side-row-val" contenteditable="false"></span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Cost</span><span class="side-row-val" contenteditable="false">€3.481,16</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Klicks / CTR</span><span class="side-row-val" contenteditable="false">593 / 3,81%</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">CPC / Conv.</span><span class="side-row-val" contenteditable="false">€5,87 / 13</span></div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <span class="card-label" contenteditable="false">Kosten-Analyse</span>
+          <div class="side-rows">
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">CPC</span><span class="side-row-val" contenteditable="false">€7,13</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">CPL</span><span class="side-row-val" contenteditable="false">€352,69</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">Ges. Conv. Rate</span><span class="side-row-val" contenteditable="false">2,02%</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">CPA (1 Kunde)</span><span class="side-row-val" contenteditable="false">€5.642,96</span></div>
+            <div class="side-row"><span class="side-row-lbl" contenteditable="false">ROAS (gewonnener Deal)</span><span class="side-row-val" contenteditable="false">1,33x</span></div>
+          </div>
+        </div>
+
+        <div class="hint-box">
+          <span class="card-label" style="color:var(--blue);margin-bottom:8px;display:block;" contenteditable="false">ROI-Einordnung</span>
+          <p contenteditable="false">Mit einem gewonnenen Kunden (€7.500) und zwei in Verhandlung (€7.500 + €48.000) liegt der aktuelle ROAS bei 1,33x. Bei Abschluss der Verhandlungen würde der ROAS auf bis zu 11,17x steigen.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- VERGLEICH SECTION -->
+<section class="section" id="vergleich">
+  <div class="section-inner">
+    <h2 class="h-section reveal visible" contenteditable="false">Monats<em contenteditable="false">vergleich</em></h2>
+
+    <div class="chart-row reveal visible">
+      <div class="chart-card">
+        <span class="card-label" contenteditable="false">CTR &amp; CPC — Entwicklung</span>
+        <div class="chart-wrap"><canvas id="chartCtrCpc" width="1014" height="480" style="display: block; box-sizing: border-box; height: 240px; width: 507px;"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <span class="card-label" contenteditable="false">Conversions &amp; CPL — Entwicklung</span>
+        <div class="chart-wrap"><canvas id="chartConvCpl" width="1014" height="480" style="display: block; box-sizing: border-box; height: 240px; width: 507px;"></canvas></div>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal visible" style="margin-top:16px;">
+      <table>
+        <thead>
+          <tr>
+            <th contenteditable="false">Monat</th>
+            <th contenteditable="false">Impressionen</th>
+            <th contenteditable="false">Klicks</th>
+            <th contenteditable="false">CTR</th>
+            <th contenteditable="false">CPC</th>
+            <th contenteditable="false">Conversions</th>
+            <th contenteditable="false">CPL</th>
+            <th contenteditable="false">Ausgaben</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="false">Oktober 2025</td>
+            <td contenteditable="false">16.251</td>
+            <td contenteditable="false">567</td>
+            <td contenteditable="false">3,49%</td>
+            <td contenteditable="false">€7,07</td>
+            <td contenteditable="false">14</td>
+            <td contenteditable="false">€286,27</td>
+            <td contenteditable="false">€4.007,82</td>
+          </tr>
+          <tr>
+            <td contenteditable="false">November 2025</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+          </tr>
+          <tr>
+            <td contenteditable="false">Dezember 2025</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+            <td contenteditable="false">—</td>
+          </tr>
+          <tr class="highlight">
+            <td contenteditable="false"><strong>Januar 2026</strong></td>
+            <td contenteditable="false"><strong>18.210</strong></td>
+            <td contenteditable="false"><strong>791</strong></td>
+            <td contenteditable="false"><strong>4,34%</strong></td>
+            <td contenteditable="false"><strong>€7,13</strong></td>
+            <td contenteditable="false"><strong>16</strong></td>
+            <td contenteditable="false"><strong>€352,69</strong></td>
+            <td contenteditable="false"><strong>€5.642,96</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- AUCTION SECTION -->
+<section class="section-gray" id="auction">
+  <div class="section-inner">
+    <h2 class="h-section reveal visible" contenteditable="false">Auction <em contenteditable="false">Insights</em></h2>
+    <div class="auction-grid reveal visible">
+      <div class="auction-card" id="auctionCard">
+        <span class="card-label" contenteditable="false">Impression Share — Okt vs. Jan</span>
+        <div class="auction-metrics">
+
+          <!-- Exact: Search Impr. Share -->
+          <div class="auction-metric">
+            <div class="auction-hdr">
+              <span class="auction-name" contenteditable="false">Exact · Search Impr. Share</span>
+              <div class="auction-vals">
+                <span class="auction-val" contenteditable="false">Okt <span>44,61%</span></span>
+                <span class="auction-val" contenteditable="false">Jan <span>46,40%</span></span>
+                <span class="tag g" contenteditable="false">+4,0%</span>
+              </div>
+            </div>
+            <div class="abar-group">
+              <div class="abar-row"><span class="abar-row-lbl">Okt</span><div class="abar-track"><div class="abar-jan" data-width="44.61%" style="width: 44.61%;"></div></div></div>
+              <div class="abar-row"><span class="abar-row-lbl">Jan</span><div class="abar-track"><div class="abar-fill g" data-width="46.40%" style="width: 46.4%;"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Exact: Top Impr. % -->
+          <div class="auction-metric">
+            <div class="auction-hdr">
+              <span class="auction-name" contenteditable="false">Exact · Top Impr. %</span>
+              <div class="auction-vals">
+                <span class="auction-val" contenteditable="false">Okt <span>65,20%</span></span>
+                <span class="auction-val" contenteditable="false">Jan <span>75,88%</span></span>
+                <span class="tag g" contenteditable="false">+16,4%</span>
+              </div>
+            </div>
+            <div class="abar-group">
+              <div class="abar-row"><span class="abar-row-lbl">Okt</span><div class="abar-track"><div class="abar-jan" data-width="65.20%" style="width: 65.2%;"></div></div></div>
+              <div class="abar-row"><span class="abar-row-lbl">Jan</span><div class="abar-track"><div class="abar-fill g" data-width="75.88%" style="width: 75.88%;"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Exact: Abs. Top Impr. % -->
+          <div class="auction-metric">
+            <div class="auction-hdr">
+              <span class="auction-name" contenteditable="false">Exact · Abs. Top Impr. %</span>
+              <div class="auction-vals">
+                <span class="auction-val" contenteditable="false">Okt <span>10,64%</span></span>
+                <span class="auction-val" contenteditable="false">Jan <span>11,87%</span></span>
+                <span class="tag g" contenteditable="false">+11,6%</span>
+              </div>
+            </div>
+            <div class="abar-group">
+              <div class="abar-row"><span class="abar-row-lbl">Okt</span><div class="abar-track"><div class="abar-jan" data-width="10.64%" style="width: 10.64%;"></div></div></div>
+              <div class="abar-row"><span class="abar-row-lbl">Jan</span><div class="abar-track"><div class="abar-fill g" data-width="11.87%" style="width: 11.87%;"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Prospecting: Search Impr. Share -->
+          <div class="auction-metric">
+            <div class="auction-hdr">
+              <span class="auction-name" contenteditable="false">Prospecting · Search Impr. Share</span>
+              <div class="auction-vals">
+                <span class="auction-val" contenteditable="false">Okt <span>12,68%</span></span>
+                <span class="auction-val" contenteditable="false">Jan <span>9,99%</span></span>
+                <span class="tag r" contenteditable="false">-21,2%</span>
+              </div>
+            </div>
+            <div class="abar-group">
+              <div class="abar-row"><span class="abar-row-lbl">Okt</span><div class="abar-track"><div class="abar-jan" data-width="12.68%" style="width: 12.68%;"></div></div></div>
+              <div class="abar-row"><span class="abar-row-lbl">Jan</span><div class="abar-track"><div class="abar-fill r" data-width="9.99%" style="width: 9.99%;"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Prospecting: Top Impr. % -->
+          <div class="auction-metric">
+            <div class="auction-hdr">
+              <span class="auction-name" contenteditable="false">Prospecting · Top Impr. %</span>
+              <div class="auction-vals">
+                <span class="auction-val" contenteditable="false">Okt <span>62,50%</span></span>
+                <span class="auction-val" contenteditable="false">Jan <span>64,71%</span></span>
+                <span class="tag g" contenteditable="false">+3,5%</span>
+              </div>
+            </div>
+            <div class="abar-group">
+              <div class="abar-row"><span class="abar-row-lbl">Okt</span><div class="abar-track"><div class="abar-jan" data-width="62.50%" style="width: 62.5%;"></div></div></div>
+              <div class="abar-row"><span class="abar-row-lbl">Jan</span><div class="abar-track"><div class="abar-fill g" data-width="64.71%" style="width: 64.71%;"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Prospecting: Abs. Top Impr. % -->
+          <div class="auction-metric">
+            <div class="auction-hdr">
+              <span class="auction-name" contenteditable="false">Prospecting · Abs. Top Impr. %</span>
+              <div class="auction-vals">
+                <span class="auction-val" contenteditable="false">Okt <span>15,90%</span></span>
+                <span class="auction-val" contenteditable="false">Jan <span>15,02%</span></span>
+                <span class="tag y" contenteditable="false">-5,5%</span>
+              </div>
+            </div>
+            <div class="abar-group">
+              <div class="abar-row"><span class="abar-row-lbl">Okt</span><div class="abar-track"><div class="abar-jan" data-width="15.90%" style="width: 15.9%;"></div></div></div>
+              <div class="abar-row"><span class="abar-row-lbl">Jan</span><div class="abar-track"><div class="abar-fill y" data-width="15.02%" style="width: 15.02%;"></div></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Side Panel Auction -->
+      <div class="side-card">
+        <span class="card-label" contenteditable="false">Impression Share Insights</span>
+        <div class="insight-items">
+          <div class="ii">
+            <div class="ii-header"><span class="ii-arrow">›</span><span class="ii-name" contenteditable="false">Exact-Kampagne verbessert</span><span class="tag g" style="margin-left:4px;" contenteditable="false">+4,0%</span></div>
+            <p class="ii-desc" contenteditable="false">Die Exact-Kampagne hat sich auf ganzer Linie verbessert: Search Impr. Share +4%, Top Impr. +16,4%, Abs. Top Impr. +11,6%.</p>
+          </div>
+          <div class="ii">
+            <div class="ii-header"><span class="ii-arrow">›</span><span class="ii-name" contenteditable="false">Prospecting: Mehr Wettbewerb</span><span class="tag r" style="margin-left:4px;" contenteditable="false">-21,2%</span></div>
+            <p class="ii-desc" contenteditable="false">Bei der Prospecting-Kampagne ist der Search Impression Share leicht gesunken – das könnte auf mehr Wettbewerb hindeuten. Top-Positionen sind aber stabil und gut.</p>
+          </div>
+          <div class="ii">
+            <div class="ii-header"><span class="ii-arrow">›</span><span class="ii-name" contenteditable="false">Gesamtbewertung</span><span class="tag g" style="margin-left:4px;" contenteditable="false">Positiv</span></div>
+            <p class="ii-desc" contenteditable="false">Wir performen insgesamt besser als im Oktober. Die Exact-Kampagne zeigt starke Verbesserungen in allen Metriken.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- LEADS SECTION -->
+<section class="section" id="leads">
+  <div class="section-inner">
+    <h2 class="h-section reveal visible" contenteditable="false">Lead-<em contenteditable="false">Übersicht</em></h2>
+    <div class="insight-card reveal visible">
+      <div class="insight-label">CRM · Januar 2026 — App Funnel</div>
+      <div class="lead-table-wrap">
+        <table class="lead-table">
+          <thead>
+            <tr>
+              <th contenteditable="false">First Contact</th>
+              <th contenteditable="false">Name / Projekt</th>
+              <th contenteditable="false">Kanal</th>
+              <th contenteditable="false">Lead Score</th>
+              <th contenteditable="false">Preis</th>
+              <th contenteditable="false">Status</th>
+              <th contenteditable="false">Kampagne</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td contenteditable="false">30. Jan 2026</td>
+              <td contenteditable="false">{APP} "Kanzleikumpel" – Steuerkanzleien – Ole Thalmann</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">90</td>
+              <td contenteditable="false">€35.000,00</td>
+              <td contenteditable="false"><span class="status-pill verhandlung">Verhandlung</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">28. Jan 2026</td>
+              <td contenteditable="false">{APP} XXX – Hamza</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill lead">Lead</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">28. Jan 2026</td>
+              <td contenteditable="false">{APP} Alcar Wheels – Gianluca Maspero</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false">€71.000,00</td>
+              <td contenteditable="false"><span class="status-pill verhandlung">Verhandlung</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">26. Jan 2026</td>
+              <td contenteditable="false">{APP} FINTECH – Remo Transfer – Seeratullah</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">20</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fee2e2;color:#dc2626;">Verloren</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">26. Jan 2026</td>
+              <td contenteditable="false">{APP} Integrations- &amp; Qualifizierungssystem – Bouchra A.</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">65</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fef3c7;color:#b45309;">Follow Up</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">25. Jan 2026</td>
+              <td contenteditable="false">{APP} BAULEITUNG APP – Kisanna Wichmann</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">80</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fef3c7;color:#b45309;">Follow Up</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">21. Jan 2026</td>
+              <td contenteditable="false">{APP} Frederic Tillmanns</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">60</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill termin">Termin</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">20. Jan 2026</td>
+              <td contenteditable="false">{APP} PLENA Rückentrainingsgerät – Jan Ridder</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">70</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fef3c7;color:#b45309;">Follow Up</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">17. Jan 2026</td>
+              <td contenteditable="false">{APP} Plattform Longevity- / Health-Tech – Mathis Limme</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">Website Formular</span></td>
+              <td contenteditable="false">90</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fef3c7;color:#b45309;">Follow Up</span></td>
+              <td contenteditable="false">—</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">15. Jan 2026</td>
+              <td contenteditable="false">{SYSTEM} AUTOMATISIERUNG LIFEWERK GmbH – Alex T.</td>
+              <td contenteditable="false"><span class="tag" style="background:#f3e8ff;color:#7c3aed;" contenteditable="false">Skael</span></td>
+              <td contenteditable="false">50</td>
+              <td contenteditable="false">€5.300,00</td>
+              <td contenteditable="false"><span class="status-pill won">Won 2026</span></td>
+              <td contenteditable="false">—</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">15. Jan 2026</td>
+              <td contenteditable="false">{APP} Projekt Chauffeur App – David Bink</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">Inbound-Mail</span></td>
+              <td contenteditable="false">70</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill verhandlung">Verhandlung</span></td>
+              <td contenteditable="false">—</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">15. Jan 2026</td>
+              <td contenteditable="false">{APP} Livestreaming App – Nico Martinelli</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">50</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill termin">Termin</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">15. Jan 2026</td>
+              <td contenteditable="false">{UPSELL} APX Web-First Subscription – T&amp;M 01/26</td>
+              <td contenteditable="false"><span class="tag g" contenteditable="false">Upsell</span> <span class="tag b" contenteditable="false">Website Formular</span></td>
+              <td contenteditable="false">99</td>
+              <td contenteditable="false">€1.600,00</td>
+              <td contenteditable="false"><span class="status-pill won">Won 2026</span></td>
+              <td contenteditable="false">—</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">9. Jan 2026</td>
+              <td contenteditable="false">{APP} Safety Culture Performance System – Wandelwerk</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">Anruf / WA</span></td>
+              <td contenteditable="false">80</td>
+              <td contenteditable="false">€48.000,00</td>
+              <td contenteditable="false"><span class="status-pill verhandlung">Verhandlung</span></td>
+              <td contenteditable="false">—</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">8. Jan 2026</td>
+              <td contenteditable="false">{V2V} KLON – Tobias Dünnwald</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">80</td>
+              <td contenteditable="false">€7.500,00</td>
+              <td contenteditable="false"><span class="status-pill verhandlung">Verhandlung</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">7. Jan 2026</td>
+              <td contenteditable="false">{APP} "myline" – Eric Herrforth</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">70</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fee2e2;color:#dc2626;">Verloren</span></td>
+              <td contenteditable="false">Whitelabel-DE-Exact</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">4. Jan 2026</td>
+              <td contenteditable="false">{APP} XXX – Evita Fernandez</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">50</td>
+              <td contenteditable="false">—</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fee2e2;color:#dc2626;">Verloren</span></td>
+              <td contenteditable="false">Whitelabel-DE-Exact</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">4. Jan 2026</td>
+              <td contenteditable="false">{APP} x-Poker KLON – Kadir Yagci</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">20</td>
+              <td contenteditable="false">€175.000,00</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#fee2e2;color:#dc2626;">Verloren</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">4. Jan 2026</td>
+              <td contenteditable="false">{APP} HorseHero – Pia Lenssen</td>
+              <td contenteditable="false"><span class="tag g" contenteditable="false">Upsell</span> <span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">80</td>
+              <td contenteditable="false">€30.000,00</td>
+              <td contenteditable="false"><span class="status-pill verhandlung">Verhandlung</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">4. Jan 2026</td>
+              <td contenteditable="false">{V2V} HorseHero – Pia Lenssen</td>
+              <td contenteditable="false"><span class="tag b" contenteditable="false">App – Funnel</span></td>
+              <td contenteditable="false">80</td>
+              <td contenteditable="false">€7.500,00</td>
+              <td contenteditable="false"><span class="status-pill won">Won 2026</span></td>
+              <td contenteditable="false">Whitelabel-DE-Prospecting</td>
+            </tr>
+            <tr>
+              <td contenteditable="false">1. Jan 2026</td>
+              <td contenteditable="false">{WEBSITE} PrivatePay – Andras Bajkor</td>
+              <td contenteditable="false"><span class="tag" style="background:#fce7f3;color:#be185d;" contenteditable="false">Personal – Mensch</span> <span class="tag b" contenteditable="false">Website Formular</span></td>
+              <td contenteditable="false">80</td>
+              <td contenteditable="false">€15.000,00</td>
+              <td contenteditable="false"><span class="status-pill" style="background:#f3e8ff;color:#7c3aed;">Closing</span></td>
+              <td contenteditable="false">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Key Facts -->
+    <div class="insight-card reveal visible" style="margin-top:14px;">
+      <div class="insight-label">Pipeline-Übersicht</div>
+      <p class="insight-text" contenteditable="false"><strong>1 Neukunde gewonnen:</strong> HorseHero (€7.500) 🎉 &nbsp;·&nbsp; <strong>9 Termine</strong> in der Pipeline &nbsp;·&nbsp; <strong>2 Leads in Verhandlung</strong> (Safety Culture €48.000 + Dünnwald €7.500) &nbsp;·&nbsp; <strong>17 Leads gesamt</strong> generiert &nbsp;·&nbsp; <strong>4,34% CTR</strong> – deutlich über Branchendurchschnitt</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EMPFEHLUNGEN SECTION -->
+<section class="section" id="empfehlungen">
+  <div class="section-inner">
+    <h2 class="h-section reveal visible" contenteditable="false"><em contenteditable="false">Empfehlungen</em> &amp; Fazit</h2>
+
+    <div class="prio-grid">
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">01</div>
+          <div>
+            <div class="prio-title-text" contenteditable="false">LP → Funnel Conversion steigern<br></div>
+          </div>
+        </div>
+        <p class="prio-desc" contenteditable="false">Die LP → Funnel Conversion (6,32%) liegt deutlich unter dem Oktober-Wert (14,64%). Anpassungen auf der Landing Page sind notwendig: Inhalte, CTA-Platzierung und Qualifizierungsfragen überprüfen. Ziel: Von 6,32% auf 10%+ steigern.</p>
+      </div>
+
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">02</div>
+          <div>
+            <div class="prio-title-text" contenteditable="false">Budget-Shift Richtung Prospecting<br></div>
+          </div>
+        </div>
+        <p class="prio-desc" contenteditable="false">Die Prospecting-Kampagne liefert 13 von 16 Conversions bei deutlich niedrigerem CPC (€5,87 vs. €10,92). Ein gezielter Budget-Shift von Exact Richtung Prospecting könnte den CPL signifikant senken.</p>
+      </div>
+
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">03</div>
+          <div>
+            <div class="prio-title-text" contenteditable="false">Konkurrenz-Monitoring intensivieren<br></div>
+          </div>
+        </div>
+        <p class="prio-desc" contenteditable="false">Der Impression Share der Prospecting-Kampagne ist um 21,2% gesunken – ein Indikator für steigenden Wettbewerb. Mitbewerber-Analyse durchführen und ggf. Gebotsstrategie anpassen.</p>
+      </div>
+
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">04</div>
+          <div>
+            <div class="prio-title-text" contenteditable="false">Verhandlungen abschließen<br></div>
+          </div>
+        </div>
+        <p class="prio-desc" contenteditable="false">Mit Safety Culture (€48.000) und Dünnwald (€7.500) in Verhandlung steigt der potenzielle ROAS auf 11,17x. Fokus auf zügigen Abschluss dieser Deals legen um den ROI der Kampagne zu maximieren.</p>
+      </div>
+    </div>
+
+    <!-- Fazit -->
+    <div class="fazit-card reveal visible">
+      <div class="card-label" contenteditable="false">Fazit · Januar 2026</div>
+      <div class="fazit-heading" contenteditable="false">Erfolgreicher Startmonat mit <span>positivem ROI</span> — und klarem Optimierungspotenzial</div>
+      <p class="fazit-text" contenteditable="false">Der Januar war ein erfolgreicher Startmonat für den App Funnel. Mit einem gewonnenen Kunden (€7.500) und zwei weiteren Leads in Verhandlung zeigt die Kampagne bereits <strong>positiven ROI</strong>. Die Anzeigen performen überdurchschnittlich gut (4,34% CTR) und auch was die Konkurrenz angeht performen wir aktuell besser – <strong>müssen uns das Verhalten jetzt genauer anschauen &amp; sonst Anpassungen auf unserer LP machen.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-brand" contenteditable="false">Skael <span>Reports</span></span>
+  <span class="footer-date" contenteditable="false">Erstellt März 2026</span>
+</footer>
+
+<!-- EDIT BAR -->
+<div class="edit-bar" id="editBar" style="display: none;">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit on" id="ebEdit" onclick="toggleEdit()">✕ Fertig</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()" style="display: block;">⬇ HTML speichern</button>
+</div>
+
+<script>
+// CHARTS
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+
+const months = ['Okt', 'Nov', 'Dez', 'Jan'];
+
+// Chart 1: CTR & CPC
+new Chart(document.getElementById('chartCtrCpc'), {
+  data: {
+    labels: months,
+    datasets: [
+      {
+        type: 'bar',
+        label: 'CTR (%)',
+        data: [3.49, null, null, 4.34],
+        backgroundColor: ['rgba(58,110,244,0.2)', 'rgba(58,110,244,0.2)', 'rgba(58,110,244,0.2)', '#3a6ef4'],
+        borderRadius: 5,
+        yAxisID: 'y'
+      },
+      {
+        type: 'line',
+        label: 'CPC (€)',
+        data: [7.07, null, null, 7.13],
+        borderColor: '#22c55e',
+        borderWidth: 2,
+        pointBackgroundColor: '#22c55e',
+        pointRadius: 5,
+        tension: 0.3,
+        yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 1000, easing: 'easeInOutQuart' },
+    plugins: { legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } } },
+    scales: {
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => v + '%' } },
+      y2: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => '€' + v } }
+    }
+  }
+});
+
+// Chart 2: Conversions & CPL
+new Chart(document.getElementById('chartConvCpl'), {
+  data: {
+    labels: months,
+    datasets: [
+      {
+        type: 'bar',
+        label: 'Conversions',
+        data: [14, null, null, 16],
+        backgroundColor: ['rgba(58,110,244,0.2)', 'rgba(58,110,244,0.2)', 'rgba(58,110,244,0.2)', '#3a6ef4'],
+        borderRadius: 5,
+        yAxisID: 'y'
+      },
+      {
+        type: 'line',
+        label: 'CPL (€)',
+        data: [286.27, null, null, 352.69],
+        borderColor: '#22c55e',
+        borderWidth: 2,
+        pointBackgroundColor: '#22c55e',
+        pointRadius: 5,
+        tension: 0.3,
+        yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: { duration: 1000, easing: 'easeInOutQuart' },
+    plugins: { legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } } },
+    scales: {
+      y: { grid: { color: 'rgba(0,0,0,0.04)' } },
+      y2: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => '€' + v } }
+    }
+  }
+});
+
+// SCROLL REVEAL
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// FUNNEL BARS
+const fo = new IntersectionObserver(es => {
+  if (es[0].isIntersecting) {
+    document.querySelectorAll('.funnel-fill').forEach((f, i) => setTimeout(() => { f.style.width = f.dataset.width; }, i * 130));
+    fo.disconnect();
+  }
+}, { threshold: 0.2 });
+fo.observe(document.getElementById('funnelCard'));
+
+// AUCTION BARS
+const ao = new IntersectionObserver(es => {
+  if (es[0].isIntersecting) {
+    document.querySelectorAll('.abar-jan').forEach(f => { f.style.width = f.dataset.width; });
+    setTimeout(() => { document.querySelectorAll('.abar-fill').forEach(f => { f.style.width = f.dataset.width; }); }, 150);
+    ao.disconnect();
+  }
+}, { threshold: 0.3 });
+ao.observe(document.getElementById('auctionCard'));
+
+// NAV
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+document.querySelectorAll('section[id]').forEach(s => {
+  new IntersectionObserver(es => {
+    if (es[0].isIntersecting) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      const a = document.querySelector(`.nav-tab[href="#${s.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  }, { threshold: 0.3 }).observe(s);
+});
+
+// EDIT BAR
+const EDITABLE_SELECTORS = [
+  '.h-hero', '.h-hero em', '.google-badge span',
+  '.hero-meta-value', '.hero-meta-label', '.nav-pill',
+  '.kpi-label', '.kpi-value', '.kpi-sub', '.sl',
+  '.insight-text', '.card-label',
+  '.pill', '.h-section', '.h-section em',
+  '.funnel-lbl', '.funnel-val', '.tag',
+  '.einordnung-lbl', '.einordnung-text',
+  '.side-row-lbl', '.side-row-val', '.hint-box p',
+  '.chart-card .card-label',
+  'tbody td', 'thead th',
+  '.auction-name', '.auction-val',
+  '.ii-name', '.ii-desc',
+  '.prio-title-text', '.prio-desc',
+  '.fazit-heading', '.fazit-text',
+  '.footer-brand', '.footer-date',
+].join(',');
+
+let editing = false;
+
+function toggleEdit() {
+  editing = !editing;
+  const btn = document.getElementById('ebEdit');
+  const save = document.getElementById('ebSave');
+  if (editing) {
+    document.body.classList.add('editing');
+    document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+    btn.textContent = '✕ Fertig';
+    btn.classList.add('on');
+    save.style.display = 'block';
+  } else {
+    document.body.classList.remove('editing');
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => el.setAttribute('contenteditable', 'false'));
+    btn.textContent = '✏︎ Bearbeiten';
+    btn.classList.remove('on');
+    save.style.display = 'none';
+  }
+}
+
+function downloadHTML() {
+  const bar = document.getElementById('editBar');
+  const wasEditing = editing;
+  document.body.classList.remove('editing');
+  document.querySelectorAll('[contenteditable]').forEach(el => el.setAttribute('contenteditable', 'false'));
+  bar.style.display = 'none';
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  bar.style.display = '';
+  if (wasEditing) {
+    document.body.classList.add('editing');
+    document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+  }
+  try {
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(html);
+    const blob = new Blob([bytes], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'NXTYOU-Jan-2026.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch(e) {
+    alert('Download fehlgeschlagen. Bitte lokal im Browser öffnen.');
+  }
+}
+</script>
+
+
+</body></html>
