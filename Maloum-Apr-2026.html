@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — Maloum April 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:image" content="https://reports.skael.de/www.skael.de-favicon-large.ico">
+<meta property="og:title" content="Skael Report — Maloum April 2026">
+<meta property="og:description" content="Meta Ads · Performance Report">
+<meta property="og:url" content="https://reports.skael.de/Maloum-Apr-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #fbfcfd;
+    --white:    #ffffff;
+    --border:   #e4e6ec;
+    --border2:  #d0d3de;
+    --navy:     #0f1b2d;
+    --blue:     #3a6ef4;
+    --blue-bg:  #eef2ff;
+    --blue-mid: #c7d4fd;
+    --muted:    #6b7280;
+    --sub:      #9ca3af;
+    --body:     #374151;
+    --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+    --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+    --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--body); font-family: 'Poppins', sans-serif; font-size: 14px; letter-spacing: -0.015em; line-height: 1.65; min-height: 100vh; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  .reveal { opacity:0; transform:translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  nav {
+    position: sticky; top: 0; z-index: 100; height: 58px;
+    background: rgba(251,252,253,0.78); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 28px;
+    opacity: 0; animation: fadeIn 0.5s ease forwards;
+  }
+  .nav-logo-text { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; color: var(--navy); letter-spacing: -0.015em; }
+  .nav-logo-text span { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue); }
+  .nav-sep { width: 1px; height: 22px; background: var(--border2); margin: 0 22px; }
+  .nav-tabs { display: flex; gap: 4px; flex: 1; }
+  .nav-tab {
+    font-family: 'Poppins', sans-serif; font-size: 12.5px; font-weight: 400; color: var(--muted);
+    text-decoration: none; padding: 7px 14px; border-radius: 7px; transition: all 0.15s; letter-spacing: -0.01em;
+  }
+  .nav-tab:hover { color: var(--navy); background: rgba(15,27,45,0.04); }
+  .nav-tab.active { background: var(--navy); color: #fff; font-weight: 500; }
+  .nav-right { margin-left: auto; }
+  .nav-pill {
+    font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--blue); background: var(--blue-bg); border: 1px solid var(--blue-mid);
+    padding: 5px 12px; border-radius: 20px;
+  }
+
+  section { padding: 72px 28px; scroll-margin-top: 58px; }
+  .hero { padding-top: 60px; padding-bottom: 80px; }
+  .section, .section-gray { background: var(--bg); }
+  .container { max-width: 1240px; margin: 0 auto; }
+
+  .brand-pill {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--white); border: 1px solid var(--border);
+    padding: 8px 16px 8px 8px; border-radius: 22px;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeIn 0.5s ease 0.15s forwards;
+  }
+  .brand-pill span {
+    font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted);
+  }
+
+  .h-hero {
+    font-family: 'Poppins', sans-serif; font-size: 60px; font-weight: 500; line-height: 1.05;
+    letter-spacing: -0.04em; color: var(--navy);
+    opacity: 0; animation: fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;
+  }
+  .h-hero em {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue);
+  }
+  .hero-meta {
+    display: flex; gap: 36px; flex-wrap: wrap; margin-top: 40px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.45s forwards;
+  }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta-label {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--sub);
+  }
+  .hero-meta-value {
+    font-family: 'Poppins', sans-serif; font-size: 13.5px; font-weight: 400; color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--blue); display: inline-block; }
+  .h-section {
+    font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 500; line-height: 1.1;
+    letter-spacing: -0.035em; color: var(--navy); margin-bottom: 16px;
+  }
+  .h-section em {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue);
+  }
+  .section-sub { color: var(--muted); font-size: 14px; max-width: 780px; margin-bottom: 36px; }
+
+  .summary-block { margin-top: 60px; opacity: 0; animation: fadeUp 0.7s cubic-bezier(.22,.68,0,1.1) 0.55s forwards; }
+  .h-statement {
+    font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 500; line-height: 1.15;
+    letter-spacing: -0.035em; color: var(--navy); margin-bottom: 22px; max-width: 1080px;
+  }
+  .h-statement em {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue);
+  }
+  .summary-desc {
+    color: var(--muted); font-size: 14.5px; line-height: 1.7;
+    max-width: 920px; margin-bottom: 44px;
+  }
+
+  .summary-kpi-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px;
+  }
+  .summary-kpi {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; position: relative; overflow: hidden;
+  }
+  .summary-kpi.highlight::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--blue);
+  }
+  .summary-kpi-lbl {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--sub); margin-bottom: 12px;
+  }
+  .summary-kpi-val {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 44px;
+    line-height: 1; color: var(--navy); letter-spacing: -0.01em;
+  }
+  .summary-kpi-sub {
+    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 10px;
+    letter-spacing: 0.02em;
+  }
+  .summary-kpi-sub.green { color: var(--green); }
+
+  .key-take {
+    background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--blue);
+    border-radius: 10px; padding: 22px 26px; margin-top: 12px;
+  }
+  .key-take p { color: var(--body); font-size: 14px; line-height: 1.7; }
+  .key-take strong { color: var(--navy); font-weight: 500; }
+
+  .table-wrap {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    margin-top: 8px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: #f9fafb; }
+  thead th {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; font-weight: 500; color: var(--sub);
+    text-transform: uppercase; letter-spacing: 0.14em; text-align: left; padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  thead th.r { text-align: right; }
+  tbody td {
+    padding: 14px 16px; font-size: 13px; color: var(--body); border-top: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  tbody td.r { text-align: right; font-variant-numeric: tabular-nums; font-family: 'DM Mono', monospace; font-size: 12.5px; color: var(--navy); font-weight: 500; }
+  tbody tr:hover td { background: #fafbfc; }
+  .cell-name { font-weight: 500; color: var(--navy); font-size: 13px; line-height: 1.4; }
+  .cell-sub { font-family: 'DM Mono', monospace; font-size: 9.5px; color: var(--sub); margin-top: 3px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .roas-strong { color: var(--green); font-weight: 500; }
+  .roas-weak { color: var(--yellow); font-weight: 500; }
+  .roas-bad { color: var(--red); font-weight: 500; }
+  tr.total-row td { background: #f0f4ff !important; font-weight: 500; border-top: 2px solid var(--blue-mid); }
+  tr.total-row .cell-name { color: var(--blue); }
+
+  .tag {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 9px; border-radius: 20px;
+    vertical-align: middle;
+  }
+  .tag.g { background: var(--green-bg); color: var(--green); }
+  .tag.y { background: var(--yellow-bg); color: var(--yellow); }
+  .tag.r { background: var(--red-bg); color: var(--red); }
+  .tag.b { background: var(--blue-bg); color: var(--blue); }
+
+  .source-note {
+    font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 18px;
+    padding: 12px 16px; background: var(--blue-bg); border: 1px solid var(--blue-mid);
+    border-radius: 8px; font-family: 'Poppins', sans-serif;
+  }
+  .source-note strong { color: var(--navy); font-weight: 500; }
+
+  .blue-spotlight {
+    background: var(--blue); border-radius: 14px; padding: 38px 42px; margin-top: 28px;
+    position: relative; overflow: hidden;
+  }
+  .blue-spotlight::before {
+    content: ''; position: absolute; top: -120px; right: -80px; width: 280px; height: 280px;
+    border-radius: 50%; background: rgba(255,255,255,0.06);
+  }
+  .blue-spotlight::after {
+    content: ''; position: absolute; bottom: -160px; left: -100px; width: 340px; height: 340px;
+    border-radius: 50%; background: rgba(255,255,255,0.04);
+  }
+  .blue-spotlight-content { position: relative; z-index: 1; color: #fff; }
+  .blue-spotlight .card-label { color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; }
+  .blue-spotlight-headline {
+    font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 500; line-height: 1.25;
+    letter-spacing: -0.025em; color: #fff; margin-bottom: 14px; max-width: 880px;
+  }
+  .blue-spotlight p {
+    color: rgba(255,255,255,0.82); font-size: 14px; line-height: 1.65; max-width: 820px;
+  }
+  .spotlight-quad {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 32px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .spotlight-quad-val {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 32px;
+    color: #fff; line-height: 1; letter-spacing: -0.01em;
+  }
+  .spotlight-quad-lbl {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.72); margin-top: 8px;
+  }
+  .spotlight-caveat {
+    color: var(--muted); font-size: 12.5px; line-height: 1.65; margin-top: 18px;
+    padding: 14px 18px; background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; font-style: italic;
+  }
+
+  .mof-block {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px 36px; margin-top: 28px;
+  }
+  .mof-block-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--muted); margin-bottom: 12px;
+  }
+  .mof-block-headline {
+    font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 500; line-height: 1.3;
+    letter-spacing: -0.025em; color: var(--navy); margin-bottom: 12px;
+  }
+  .mof-block-headline em {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue);
+  }
+  .mof-block-desc {
+    color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-bottom: 24px; max-width: 820px;
+  }
+  .mof-table-wrap { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); }
+  .mof-table-wrap thead tr { background: var(--white); }
+  .mof-table-wrap thead th { padding: 11px 14px; font-size: 9px; }
+  .mof-table-wrap tbody td { padding: 11px 14px; font-size: 12.5px; border-top: 1px solid var(--border); }
+  .mof-table-wrap tbody td.r { font-size: 11.5px; }
+  .mof-table-wrap tbody tr.total-row td { background: var(--blue-bg) !important; }
+  .mof-cell-name { font-weight: 500; color: var(--navy); font-size: 12.5px; }
+
+  .creatives-h-row { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; margin-top: 8px;
+    font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
+  .creatives-h-row .star { font-size: 13px; }
+  .spotlight-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  .spotlight-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; display: flex; flex-direction: column; gap: 16px;
+  }
+  .spotlight-top {
+    display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;
+  }
+  .spotlight-top-left { flex: 1; min-width: 0; }
+  .spotlight-info-name {
+    font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--sub); margin-bottom: 8px;
+  }
+  .spotlight-info-headline {
+    font-size: 13px; color: var(--body); line-height: 1.45;
+  }
+  .spotlight-info-headline strong { color: var(--navy); font-weight: 500; }
+  .spotlight-roas-block { text-align: right; flex-shrink: 0; }
+  .spotlight-roas-val {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: 32px;
+    color: var(--green); line-height: 1; letter-spacing: -0.01em;
+  }
+  .spotlight-roas-val.star { color: var(--blue); }
+  .spotlight-roas-val.medium { color: var(--yellow); }
+  .spotlight-roas-lbl {
+    font-family: 'DM Mono', monospace; font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--sub); margin-top: 4px;
+  }
+  .spotlight-info {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .spotlight-info-quote {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-size: 16px; line-height: 1.5;
+    color: var(--navy); padding: 12px 14px; background: var(--bg);
+    border-left: 2px solid var(--blue-mid); border-radius: 4px;
+  }
+  .spotlight-info-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .spotlight-stat-lbl {
+    font-family: 'DM Mono', monospace; font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--sub); margin-bottom: 2px;
+  }
+  .spotlight-stat-val {
+    font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 500; color: var(--navy);
+  }
+  .spotlight-stat-val.green { color: var(--green); }
+
+  .prio-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px;
+  }
+  .prio-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 26px;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .prio-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,27,45,0.06); }
+  .prio-header { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px; }
+  .prio-num {
+    font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 500; color: var(--blue);
+    letter-spacing: -0.02em; line-height: 1; flex-shrink: 0; min-width: 38px;
+  }
+  .prio-title-text { font-size: 16px; font-weight: 500; color: var(--navy); letter-spacing: -0.015em; }
+  .prio-title-text .tag { margin-left: 8px; }
+  .prio-desc { color: var(--muted); font-size: 13px; line-height: 1.65; }
+  .prio-desc strong { color: var(--navy); font-weight: 500; }
+
+  .fazit-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 36px 40px; margin-top: 28px;
+  }
+  .fazit-card .card-label {
+    font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--muted); margin-bottom: 18px;
+  }
+  .fazit-heading {
+    font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 500; line-height: 1.25;
+    letter-spacing: -0.025em; color: var(--navy); margin-bottom: 18px;
+  }
+  .fazit-heading span {
+    font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue);
+  }
+  .fazit-text { color: var(--body); font-size: 14px; line-height: 1.75; max-width: 920px; }
+  .fazit-text strong { color: var(--navy); font-weight: 500; }
+
+  .footer {
+    padding: 36px 28px; border-top: 1px solid var(--border); display: flex; justify-content: space-between;
+    align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--muted);
+  }
+  .footer-brand { color: var(--navy); font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; text-transform: none; letter-spacing: -0.01em; }
+  .footer-brand span { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue); }
+
+  .edit-bar {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--navy); color: #fff; border-radius: 12px;
+    padding: 9px 9px 9px 18px; display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 8px 32px rgba(15,27,45,0.25); z-index: 9999;
+    font-family: 'Poppins', sans-serif; font-size: 12.5px; font-weight: 400;
+    letter-spacing: -0.01em; white-space: nowrap;
+  }
+  .edit-bar-label { color: rgba(255,255,255,0.55); margin-right: 4px; }
+  .eb-btn { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: -0.01em; padding: 7px 15px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.15s; }
+  .eb-edit { background: rgba(255,255,255,0.12); color: #fff; }
+  .eb-edit:hover { background: rgba(255,255,255,0.2); }
+  .eb-edit.on { background: var(--blue); color: #fff; }
+  .eb-save { background: #fff; color: var(--navy); display: none; }
+  .eb-save:hover { background: #eef2ff; }
+  .eb-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); }
+  body.editing [contenteditable="true"] { outline: 1.5px dashed rgba(58,110,244,0.4); outline-offset: 2px; border-radius: 3px; cursor: text; }
+  body.editing [contenteditable="true"]:hover { outline-color: rgba(58,110,244,0.75); }
+  body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); outline-offset: 2px; background: rgba(58,110,244,0.03); border-radius: 3px; }
+
+  @media (max-width: 1100px) {
+    .spotlight-grid { grid-template-columns: 1fr 1fr; }
+    .spotlight-quad { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .summary-kpi-grid { grid-template-columns: 1fr 1fr; }
+    .spotlight-grid, .prio-grid { grid-template-columns: 1fr; }
+    .h-hero { font-size: 36px; }
+    .h-section, .h-statement { font-size: 30px; }
+    .summary-kpi-val { font-size: 36px; }
+    .spotlight-roas-val { font-size: 26px; }
+    section { padding: 48px 16px; }
+    nav { padding: 0 16px; }
+    .nav-tabs { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#kampagnen">Kampagnen</a>
+    <a class="nav-tab" href="#deep-dive">Mai-Push</a>
+    <a class="nav-tab" href="#creatives">Top Creatives</a>
+    <a class="nav-tab" href="#outlook">Outlook</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">April 2026</span></div>
+</nav>
+
+<!-- ─── HERO + EXECUTIVE SUMMARY ─── -->
+<section class="hero" id="uebersicht">
+  <div class="container">
+
+    <div class="brand-pill">
+      <svg width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="11" fill="#3a6ef4"/>
+        <text x="11" y="15.2" font-family="Poppins, sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#ffffff">M</text>
+      </svg>
+      <span>Meta Ads · Performance Report</span>
+    </div>
+
+    <h1 class="h-hero">
+      Maloums<br>
+      <em>Buying Fans</em><br>
+      im April.
+    </h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Zeitraum</span>
+        <span class="hero-meta-value">01. – 30. April 2026</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Konto</span>
+        <span class="hero-meta-value">neolime GmbH</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Kanal</span>
+        <span class="hero-meta-value">Meta Ads · Story · DACH</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Quelle</span>
+        <span class="hero-meta-value">Maloum Reporting · Backend-attribuiert</span>
+      </div>
+    </div>
+
+    <!-- Executive Summary -->
+    <div class="summary-block">
+      <div class="section-eyebrow">01 · Executive Summary</div>
+
+      <h2 class="h-statement">€19.114 Spend liefern <em>362 neue zahlende Fans</em> bei €52,80 CPF — projiziert €72.400 Lifetime-Umsatz.</h2>
+
+      <p class="summary-desc">
+        Der April war der erste Monat mit Budget knapp unter €20k. Aus 2.829 Signups konvertierten <strong>362 Fans zum ersten Kauf</strong> (12,80% CR Signup→Buying Fan), bei <strong>€52,80 Cost per Buying Fan</strong>. First-Purchase ROAS liegt bei 1,58x; bei einem Maloum-Ø-CLTV von ~€200 ergibt das einen hochgerechneten Lifetime-Umsatz von rund <strong>€72.400</strong> und einen LTV-ROAS von 3,79x. Volumen-Treiber: MAL Mai 2026 (124 Buying Fans bei 1,74x ROAS) und Desi Purchase New (112 Fans bei 1,58x ROAS). Stella Purchase New ist der CR-Star: 15,38% Signup→Fan und €30,33 CPF — der niedrigste der Kampagnen.
+      </p>
+
+      <!-- Reihe 1 -->
+      <div class="summary-kpi-grid">
+        <div class="summary-kpi highlight reveal">
+          <div class="summary-kpi-lbl">Spend Total</div>
+          <div class="summary-kpi-val">€19.114</div>
+          <div class="summary-kpi-sub">Hochlauf-Monat</div>
+        </div>
+        <div class="summary-kpi highlight reveal">
+          <div class="summary-kpi-lbl">GMV (Backend)</div>
+          <div class="summary-kpi-val">€30.182</div>
+          <div class="summary-kpi-sub green">↑ ROAS 1,58x</div>
+        </div>
+        <div class="summary-kpi reveal">
+          <div class="summary-kpi-lbl">Buying Fans</div>
+          <div class="summary-kpi-val">362</div>
+          <div class="summary-kpi-sub">CPF Ø €52,80</div>
+        </div>
+        <div class="summary-kpi highlight reveal">
+          <div class="summary-kpi-lbl">LTV-ROAS (Hochrechnung)</div>
+          <div class="summary-kpi-val">3,79x</div>
+          <div class="summary-kpi-sub green">~€72.400 Lifetime</div>
+        </div>
+      </div>
+
+      <!-- Reihe 2 -->
+      <div class="summary-kpi-grid">
+        <div class="summary-kpi reveal">
+          <div class="summary-kpi-lbl">Signups</div>
+          <div class="summary-kpi-val">2.829</div>
+          <div class="summary-kpi-sub">CPA Signup Ø €6,76</div>
+        </div>
+        <div class="summary-kpi reveal">
+          <div class="summary-kpi-lbl">CR Signup → Fan</div>
+          <div class="summary-kpi-val">12,80%</div>
+          <div class="summary-kpi-sub">Stella Top mit 15,38%</div>
+        </div>
+        <div class="summary-kpi reveal">
+          <div class="summary-kpi-lbl">Avg CTR</div>
+          <div class="summary-kpi-val">8,15%</div>
+          <div class="summary-kpi-sub green">deutlich über Industry-Bench</div>
+        </div>
+        <div class="summary-kpi reveal">
+          <div class="summary-kpi-lbl">Reach (uniq.)</div>
+          <div class="summary-kpi-val">253k</div>
+          <div class="summary-kpi-sub">CPC Ø €0,22 · 3,87 Freq</div>
+        </div>
+      </div>
+
+      <!-- Wichtigster Take -->
+      <div class="key-take reveal">
+        <p>
+          <strong>Wichtigster Take:</strong> Die <strong>362 Buying Fans aus April</strong> entsprechen bei €200 Ø-CLTV einem hochgerechneten Lifetime-Umsatz von <strong>~€72.400</strong> — bei €19.114 Spend ist das ein projizierter LTV-ROAS von <strong>3,79x</strong>. First-Purchase ROAS von 1,58x ist nur die Erstkauf-Welle; die echte Marge entsteht über die Subscription-Tail. Volumen-Treiber: <strong>MAL Mai 2026</strong> (124 Fans bei 1,74x ROAS) und <strong>Desi Purchase New</strong> (112 Fans bei 1,58x ROAS). <strong>Stella Purchase New</strong> ist effizienz-Star: 15,38% CR Signup→Fan und €30,33 CPF — sauber bester Wert. <strong>FAYE</strong> hingegen läuft mit nur 8,91% CR und €89,44 CPF deutlich unter dem Schnitt. <strong>MAL April 2026</strong> (alte Iteration) wird kontrolliert ausgelaufen — 0,80x ROAS bei €1.771 Spend zeigt das Ende der Linie.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── KAMPAGNEN-ÜBERSICHT ─── -->
+<section class="section-gray" id="kampagnen">
+  <div class="container">
+    <div class="section-eyebrow reveal">02 · Kampagnen-Übersicht</div>
+    <h2 class="h-section reveal">Fünf aktive Kampagnen, <em>vier tragen</em> die Akquisition.</h2>
+    <p class="section-sub reveal">Aktiver Mix aus laufenden Solo-Pushes (Desi, Stella) und der parallelen Multi-Creator-Kampagne (MAL Creator Push Mai 2026), die im April hochgefahren wurde. Die alte April-Iteration läuft kontrolliert aus. Alle Werte direkt aus dem Maloum Reporting-Sheet (Backend-attribuiert).</p>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Kampagne</th>
+            <th class="r">Spend</th>
+            <th class="r">Signups</th>
+            <th class="r">Fans</th>
+            <th class="r">CR Sgn→Fn</th>
+            <th class="r">GMV</th>
+            <th class="r">ROAS</th>
+            <th class="r">CPF</th>
+            <th class="r">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="cell-name">MAL | Creator Push | Story | Sales | Mai 2026</div>
+              <div class="cell-sub">Multi-Creator · Hochlauf · Stella+Desi+Emma+Terry</div>
+            </td>
+            <td class="r">€5.426</td>
+            <td class="r">918</td>
+            <td class="r">124</td>
+            <td class="r">13,51%</td>
+            <td class="r">€9.429</td>
+            <td class="r"><span class="roas-strong">1,74x</span></td>
+            <td class="r">€43,76</td>
+            <td class="r"><span class="tag g">Aktiv · Skaliert</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">Desi | Purchase New | AT/DE | März 2026 | Story</div>
+              <div class="cell-sub">Solo-Push · Workhorse</div>
+            </td>
+            <td class="r">€6.309</td>
+            <td class="r">816</td>
+            <td class="r">112</td>
+            <td class="r">13,73%</td>
+            <td class="r">€9.986</td>
+            <td class="r"><span class="roas-strong">1,58x</span></td>
+            <td class="r">€56,33</td>
+            <td class="r"><span class="tag g">Aktiv</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">FAYE | Creator Push | Story+Caroussel | Sales | April 2026</div>
+              <div class="cell-sub">Solo-Creator · gemischtes Format</div>
+            </td>
+            <td class="r">€3.667</td>
+            <td class="r">460</td>
+            <td class="r">41</td>
+            <td class="r">8,91%</td>
+            <td class="r">€5.965</td>
+            <td class="r"><span class="roas-strong">1,63x</span></td>
+            <td class="r">€89,44</td>
+            <td class="r"><span class="tag y">CR-Schwäche</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">Stella | Purchase New | AT/DE | April 2026 | Story</div>
+              <div class="cell-sub">Solo-Push · neue Creator · CR-Star</div>
+            </td>
+            <td class="r">€1.941</td>
+            <td class="r">416</td>
+            <td class="r">64</td>
+            <td class="r">15,38%</td>
+            <td class="r">€3.389</td>
+            <td class="r"><span class="roas-strong">1,75x</span></td>
+            <td class="r">€30,33</td>
+            <td class="r"><span class="tag g">Aktiv · Star</span></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">MAL | Creator Push | Story | Sales | April 2026</div>
+              <div class="cell-sub">Multi-Creator · alte Iteration</div>
+            </td>
+            <td class="r">€1.771</td>
+            <td class="r">219</td>
+            <td class="r">21</td>
+            <td class="r">9,59%</td>
+            <td class="r">€1.414</td>
+            <td class="r"><span class="roas-bad">0,80x</span></td>
+            <td class="r">€84,33</td>
+            <td class="r"><span class="tag y">Wird abgelöst</span></td>
+          </tr>
+          <tr class="total-row">
+            <td>
+              <div class="cell-name">Total · April 2026</div>
+              <div class="cell-sub">5 aktive Kampagnen</div>
+            </td>
+            <td class="r">€19.114</td>
+            <td class="r">2.829</td>
+            <td class="r">362</td>
+            <td class="r">12,80%</td>
+            <td class="r">€30.182</td>
+            <td class="r"><span class="roas-strong">1,58x</span></td>
+            <td class="r">€52,80</td>
+            <td class="r"><span class="tag g">Stark</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── DEEP DIVE: MAI-PUSH ─── -->
+<section class="section" id="deep-dive">
+  <div class="container">
+    <div class="section-eyebrow reveal">03 · Deep Dive · MAL Creator Push Mai 2026</div>
+    <h2 class="h-section reveal">Vier Creator, ein <em>System</em> — der Mai-Push wird im April validiert.</h2>
+    <p class="section-sub reveal">Die Mai-Kampagne wurde mit Emma, Desi (Ossi), Terry und Stella jeweils als eigenes Adset aufgesetzt, alle mit identischer TOF/MOF/BOF-Hook-Logik (V1/V2 Varianten pro Stage). Im April läuft sie auf €5.426 Spend an — der Test, ob das Hook-System Creator-übergreifend trägt. Auf Adset-Ebene zeigt sich klar: zwei Adsets tragen, zwei brauchen mehr Volumen oder Hook-Refresh.</p>
+
+    <div class="source-note reveal">
+      <strong>Hinweis zu den Adset-Werten:</strong> Adset-Detail aus Pixel-Tracking auf Ad-ID (Maloum Dashboard). Adset-Total deviiert leicht vom Sheet-Kampagnen-Wert (Adsets summieren zu 137 Fans / €10.307 GMV, Sheet-Kampagnen-Wert: 124 Fans / €9.429 GMV) — die Differenz entsteht durch unterschiedliche Aggregations-Methodik. Die relativen Adset-Verhältnisse bleiben aussagekräftig.
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Adset</th>
+            <th class="r">Spend</th>
+            <th class="r">Fans</th>
+            <th class="r">GMV</th>
+            <th class="r">ROAS</th>
+            <th class="r">CPF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="cell-name">Stella | AS05</div>
+              <div class="cell-sub">Volume King · 6 Ads</div>
+            </td>
+            <td class="r">€2.461</td>
+            <td class="r">80</td>
+            <td class="r">€6.094</td>
+            <td class="r"><span class="roas-strong">2,48x</span></td>
+            <td class="r">€30,76</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">Ossi Desi | AS03</div>
+              <div class="cell-sub">zweitstärkstes Adset · 6 Ads</div>
+            </td>
+            <td class="r">€1.861</td>
+            <td class="r">46</td>
+            <td class="r">€3.830</td>
+            <td class="r"><span class="roas-strong">2,06x</span></td>
+            <td class="r">€40,46</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">Emma Spice | AS01</div>
+              <div class="cell-sub">unterperformt · 6 Ads</div>
+            </td>
+            <td class="r">€727</td>
+            <td class="r">8</td>
+            <td class="r">€351</td>
+            <td class="r"><span class="roas-bad">0,48x</span></td>
+            <td class="r">€90,86</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="cell-name">Terry | AS04</div>
+              <div class="cell-sub">schwächstes Adset · 5 Ads</div>
+            </td>
+            <td class="r">€378</td>
+            <td class="r">2</td>
+            <td class="r">€31</td>
+            <td class="r"><span class="roas-bad">0,08x</span></td>
+            <td class="r">€188,85</td>
+          </tr>
+          <tr class="total-row">
+            <td>
+              <div class="cell-name">Total Adsets · Dashboard</div>
+              <div class="cell-sub">4 Creator · 23 Ads</div>
+            </td>
+            <td class="r">€5.427</td>
+            <td class="r">137</td>
+            <td class="r">€10.307</td>
+            <td class="r"><span class="roas-strong">1,90x</span></td>
+            <td class="r">€39,61</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Blue Spotlight -->
+    <div class="blue-spotlight reveal">
+      <div class="blue-spotlight-content">
+        <div class="card-label">Spotlight · Adset-Validierung</div>
+        <h3 class="blue-spotlight-headline">Stella und Desi tragen — 126 Fans bei 2,30x ROAS. Emma und Terry sind nicht skalierungsbereit.</h3>
+        <p>Die Mai-Push-Kampagne zeigt eine klare Zwei-Klassen-Struktur: Stella-Adset und Desi-Adset liefern zusammen 126 von 137 Fans bei €4.322 Spend (2,30x ROAS, €34,30 CPF). Emma und Terry-Adsets verbrennen €1.105 für nur 10 Fans (0,35x ROAS, €110 CPF). Der gleiche Hook-Code (TOF/MOF/BOF V1+V2) trägt also nicht creator-übergreifend — Creator-Fit ist die größere Variable als die Hook-Logik.</p>
+        <div class="spotlight-quad">
+          <div>
+            <div class="spotlight-quad-val">2,48x</div>
+            <div class="spotlight-quad-lbl">Stella · 80 Fans</div>
+          </div>
+          <div>
+            <div class="spotlight-quad-val">2,06x</div>
+            <div class="spotlight-quad-lbl">Desi · 46 Fans</div>
+          </div>
+          <div>
+            <div class="spotlight-quad-val">0,48x</div>
+            <div class="spotlight-quad-lbl">Emma · 8 Fans</div>
+          </div>
+          <div>
+            <div class="spotlight-quad-val">0,08x</div>
+            <div class="spotlight-quad-lbl">Terry · 2 Fans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="spotlight-caveat reveal">
+      Caveat: Terry-Adset hatte mit €378 Spend und 2 Fans ein zu kleines Sample, um Creator-Fit oder Cold-Start-Effekt sauber zu trennen. Emma-Adset mit €727 Spend hat eine belastbarere Stichprobe — 8 Fans ist klar unter der Schwelle und bedeutet entweder ein Hook-Problem oder eine kleinere Audience-Resonanz für Emma im Story-Format.
+    </p>
+
+    <!-- MOF Block: Paypoint/Klarna -->
+    <div class="mof-block reveal">
+      <div class="mof-block-eyebrow">Sub-Block · MOF-Performance · Pixel-Detail</div>
+      <h3 class="mof-block-headline">MOF V1 (Paypoint/Klarna-Hook) liefert <em>4,63x ROAS</em> bei kleinem Test-Volumen.</h3>
+      <p class="mof-block-desc">
+        Die MOF-Ads sind im April auf nur €204 Test-Spend gelaufen — Sample pro Creator entsprechend klein. Direktional ist die Lehre aber klar: V1 (Paypoint/Klarna-Story als Friction-Reducer) liefert 4,63x ROAS auf €176 Spend — die wenigen Fans, die kommen, kaufen oft (5 Txns je Fan im Schnitt). V2 hat nur 1 Fan auf €28 Spend gebracht. Wichtigster Datenpunkt: Stella MOF V1 mit 4 Fans, €391 GMV, €82 Spend — €20,63 CPF, die effizienteste MOF-Stelle der Kampagne.
+      </p>
+      <div class="mof-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>MOF V1 · Paypoint/Klarna</th>
+              <th class="r">Spend</th>
+              <th class="r">Fans</th>
+              <th class="r">Txns</th>
+              <th class="r">GMV</th>
+              <th class="r">ROAS</th>
+              <th class="r">CPF</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="mof-cell-name">Stella · AD03 · MOF V1</span></td>
+              <td class="r">€82,51</td>
+              <td class="r">4</td>
+              <td class="r">16</td>
+              <td class="r">€390,94</td>
+              <td class="r"><span class="roas-strong">4,74x</span></td>
+              <td class="r">€20,63</td>
+            </tr>
+            <tr>
+              <td><span class="mof-cell-name">Emma Spice · AD03 · MOF V1</span></td>
+              <td class="r">€14,14</td>
+              <td class="r">1</td>
+              <td class="r">6</td>
+              <td class="r">€127,08</td>
+              <td class="r"><span class="roas-strong">8,99x</span></td>
+              <td class="r">€14,14</td>
+            </tr>
+            <tr>
+              <td><span class="mof-cell-name">Desi · AD03 · MOF V1</span></td>
+              <td class="r">€78,92</td>
+              <td class="r">1</td>
+              <td class="r">8</td>
+              <td class="r">€295,55</td>
+              <td class="r"><span class="roas-strong">3,74x</span></td>
+              <td class="r">€78,92</td>
+            </tr>
+            <tr class="total-row">
+              <td><span class="mof-cell-name">Total · MOF V1</span></td>
+              <td class="r">€175,57</td>
+              <td class="r">6</td>
+              <td class="r">30</td>
+              <td class="r">€813,57</td>
+              <td class="r"><span class="roas-strong">4,63x</span></td>
+              <td class="r">€29,26</td>
+            </tr>
+            <tr>
+              <td colspan="7" style="padding: 8px 16px; font-size: 11px; color: var(--sub); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; background: var(--bg);">— MOF V2 zum Vergleich —</td>
+            </tr>
+            <tr>
+              <td><span class="mof-cell-name">Emma Spice · AD04 · MOF V2</span></td>
+              <td class="r">€28,48</td>
+              <td class="r">1</td>
+              <td class="r">1</td>
+              <td class="r">€40,25</td>
+              <td class="r"><span class="roas-weak">1,41x</span></td>
+              <td class="r">€28,48</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── TOP CREATIVES ─── -->
+<section class="section-gray" id="creatives">
+  <div class="container">
+    <div class="section-eyebrow reveal">04 · Top-Performer Creatives</div>
+    <h2 class="h-section reveal">Die Ads, die im April <em>die meisten neuen Fans</em> gebracht haben.</h2>
+    <p class="section-sub reveal">Vier Creatives aus der Mai-Push-Kampagne stechen heraus — sortiert nach Volumen+Effizienz-Kombination. Werte aus Pixel-Tracking auf Ad-ID (Sheet zeigt nur Kampagnen-Total). Headlines und Captions sind Platzhalter und im Edit-Mode mit den Original-Texten aus dem Ads Manager zu ergänzen.</p>
+
+    <div class="creatives-h-row reveal">
+      <span class="star">⭐</span>
+      <span>Spotlight Performer · Pixel-attribuiert</span>
+    </div>
+
+    <div class="spotlight-grid">
+      <!-- Card 1: Stella TOF V1 - Star Pick (Best ROAS) -->
+      <div class="spotlight-card reveal">
+        <div class="spotlight-top">
+          <div class="spotlight-top-left">
+            <div class="spotlight-info-name">Stella · AD01 · TOF V1</div>
+            <div class="spotlight-info-headline">Headline: <strong>„Ich warte auf dich"</strong></div>
+          </div>
+          <div class="spotlight-roas-block">
+            <div class="spotlight-roas-val star">5,51x</div>
+            <div class="spotlight-roas-lbl">ROAS · Star</div>
+          </div>
+        </div>
+        <div class="spotlight-info">
+          <div class="spotlight-info-quote">„Kein Snapchat mehr — ab jetzt nur noch hier 😌"</div>
+          <div class="spotlight-info-stats">
+            <div>
+              <div class="spotlight-stat-lbl">Spend</div>
+              <div class="spotlight-stat-val">€560</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">GMV</div>
+              <div class="spotlight-stat-val green">€3.081</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">Fans</div>
+              <div class="spotlight-stat-val">14</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">CPF</div>
+              <div class="spotlight-stat-val">€39,97</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Stella BOF V1 - Volume King -->
+      <div class="spotlight-card reveal">
+        <div class="spotlight-top">
+          <div class="spotlight-top-left">
+            <div class="spotlight-info-name">Stella · AD05 · BOF V1</div>
+            <div class="spotlight-info-headline">Headline: <strong>„Klick unten und überzeug dich"</strong></div>
+          </div>
+          <div class="spotlight-roas-block">
+            <div class="spotlight-roas-val">1,66x</div>
+            <div class="spotlight-roas-lbl">ROAS · Volume</div>
+          </div>
+        </div>
+        <div class="spotlight-info">
+          <div class="spotlight-info-quote">„Hier siehst du nur die Hälfte von mir 😏"</div>
+          <div class="spotlight-info-stats">
+            <div>
+              <div class="spotlight-stat-lbl">Spend</div>
+              <div class="spotlight-stat-val">€1.571</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">GMV</div>
+              <div class="spotlight-stat-val green">€2.605</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">Fans</div>
+              <div class="spotlight-stat-val">61</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">CPF</div>
+              <div class="spotlight-stat-val">€25,75</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Desi AD01 TOF V1 -->
+      <div class="spotlight-card reveal">
+        <div class="spotlight-top">
+          <div class="spotlight-top-left">
+            <div class="spotlight-info-name">Desi · AD01 · TOF V1</div>
+            <div class="spotlight-info-headline">Headline: <strong>„Ich warte auf dich"</strong></div>
+          </div>
+          <div class="spotlight-roas-block">
+            <div class="spotlight-roas-val">2,37x</div>
+            <div class="spotlight-roas-lbl">ROAS</div>
+          </div>
+        </div>
+        <div class="spotlight-info">
+          <div class="spotlight-info-quote">„Kein Snapchat mehr — ab jetzt nur noch hier 😌"</div>
+          <div class="spotlight-info-stats">
+            <div>
+              <div class="spotlight-stat-lbl">Spend</div>
+              <div class="spotlight-stat-val">€884</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">GMV</div>
+              <div class="spotlight-stat-val green">€2.094</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">Fans</div>
+              <div class="spotlight-stat-val">31</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">CPF</div>
+              <div class="spotlight-stat-val">€28,50</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Desi AD02 TOF V2 -->
+      <div class="spotlight-card reveal">
+        <div class="spotlight-top">
+          <div class="spotlight-top-left">
+            <div class="spotlight-info-name">Desi · AD02 · TOF V2</div>
+            <div class="spotlight-info-headline">Headline: <strong>„Jetzt schreiben"</strong></div>
+          </div>
+          <div class="spotlight-roas-block">
+            <div class="spotlight-roas-val">2,20x</div>
+            <div class="spotlight-roas-lbl">ROAS</div>
+          </div>
+        </div>
+        <div class="spotlight-info">
+          <div class="spotlight-info-quote">„Hier erreichst du mich direkt 😌"</div>
+          <div class="spotlight-info-stats">
+            <div>
+              <div class="spotlight-stat-lbl">Spend</div>
+              <div class="spotlight-stat-val">€643</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">GMV</div>
+              <div class="spotlight-stat-val green">€1.412</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">Fans</div>
+              <div class="spotlight-stat-val">11</div>
+            </div>
+            <div>
+              <div class="spotlight-stat-lbl">CPF</div>
+              <div class="spotlight-stat-val">€58,43</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── OUTLOOK MAI ─── -->
+<section class="section" id="outlook">
+  <div class="container">
+    <div class="section-eyebrow reveal">05 · Outlook Mai</div>
+    <h2 class="h-section reveal">Was wir <em>im Mai</em> testen — und wo wir skalieren.</h2>
+    <p class="section-sub reveal">Aprils Lehre: Creator-Fit ist die größere Variable als die Hook-Logik. Mai geht es um Volume auf den funktionierenden Hook (Interview-Ads), eine neue Optimierungs-Strategie auf Wert statt Conversions, und Audience-Expansion mit weiteren Creatorn.</p>
+
+    <div class="prio-grid">
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">01</div>
+          <div>
+            <div class="prio-title-text">Interview-Ads pushen <span class="tag g">Skaliert</span></div>
+          </div>
+        </div>
+        <div class="prio-desc">
+          Die Q&amp;A-Story-Ads aus den 20–30min Creator-Interviews sind das funktionierende Format — TOF V1 („Ich warte auf dich" / „Kein Snapchat mehr") trägt creator-übergreifend bei Stella und Desi. Im Mai wird der <strong>Interview-Ad-Output erhöht</strong> (mehr Variants pro Creator aus dem bestehenden Interview-Footage) und das Spend-Volumen auf den Stella- und Desi-Adsets der Mai-Push <strong>auf €8.000–9.000</strong> hochgefahren.
+        </div>
+      </div>
+
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">02</div>
+          <div>
+            <div class="prio-title-text">Conversion-Value-Ads testen <span class="tag y">Hoch</span></div>
+          </div>
+        </div>
+        <div class="prio-desc">
+          Aktuell läuft die Optimierung auf <em>Purchase</em> (Anzahl Conversions). Test im Mai: <strong>parallele Kampagne mit Optimierung auf Conversion Value</strong> (Wert statt Stückzahl) — Maloum's Subscription-Modell mit hoher Spread zwischen €5–20 First-Purchase und €200 CLTV ist genau der Use Case, in dem Value-Optimization in der Theorie besser performt. Test-Setup: bestehende Stella- oder Desi-Adset duplizieren, identische Creatives, nur Optimization-Goal umstellen, vergleichen über 14 Tage.
+        </div>
+      </div>
+
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">03</div>
+          <div>
+            <div class="prio-title-text">Weitere Creator testen <span class="tag y">Mittel</span></div>
+          </div>
+        </div>
+        <div class="prio-desc">
+          Stella und Desi tragen, Emma und Terry nicht — der Pool ist zu klein, um aus zwei Creator-Profilen die richtigen Schlüsse zu ziehen. Im Mai werden <strong>2–3 neue Creator</strong> mit dem gleichen Interview-Setup und Hook-System (TOF V1 „Ich warte auf dich") onboarded, je in einem eigenen Test-Adset bei <strong>€500–800</strong>. Ziel: weitere belastbare Datenpunkte zu Creator-Fit-Mustern.
+        </div>
+      </div>
+
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">04</div>
+          <div>
+            <div class="prio-title-text">Weitere Engels testen <span class="tag b">Optional</span></div>
+          </div>
+        </div>
+        <div class="prio-desc">
+          Spezifischer Test: <strong>weitere Creator aus dem Engel-Umfeld</strong> (ähnliches Profil wie Lia Engel) onboarden und mit dem gleichen Interview-Setup laufen lassen. Hypothese: wenn ein Profil-Typ trägt, sind ähnliche Creator das schnellste Skalierungsmuster, weil Audience-Resonanz und Hook-Adaption bereits validiert sind. Spend pro neuem Engel-Adset bei <strong>€300–500</strong> für eine erste Volumen-Probe.
+        </div>
+      </div>
+    </div>
+
+    <!-- Fazit -->
+    <div class="fazit-card reveal">
+      <div class="card-label">Fazit · April 2026</div>
+      <div class="fazit-heading"><span>362 neue Buying Fans</span> bei €52,80 CPF — projiziert 3,79x LTV-Marge.</div>
+      <p class="fazit-text">
+        Der April war der erste Test, ob Maloum mit knapp €20k Spend auf Akquisitions-Effizienz fährt — und die Antwort ist <strong>ja, aber selektiv</strong>. Mit €19.114 Spend, 362 neuen Buying Fans, einem CPF von €52,80 und einem hochgerechneten LTV-ROAS von 3,79x ist das Akquisitions-System grundsätzlich tragfähig. Die wichtigste Lehre des Monats: <strong>Creator-Fit ist die größere Variable als die Hook-Logik</strong>. Stella und Desi-Adsets tragen mit 2,30x ROAS und identischer Headline („Ich warte auf dich" / „Kein Snapchat mehr — ab jetzt nur noch hier"), während dieselbe Hook-Mechanik bei Emma (0,48x) und Terry (0,08x) nicht greift. Mai-Strategie folgt drei Hebeln: <strong>Interview-Ads pushen</strong> (mehr Variants aus bestehendem Footage, Stella+Desi Adsets auf €8–9k hochziehen), <strong>Conversion-Value-Ads testen</strong> (Maloums hohes CLTV-Spread macht Value-Optimization zum naheliegenden Test), und <strong>Audience-Expansion über neue Creator</strong> — generell breiter testen, plus gezielter Test mit weiteren Creator-Profilen aus dem Engel-Umfeld als schnellster Skalierungs-Pfad falls der Profil-Typ trägt.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <span class="footer-brand">Skael <span>Reports</span></span>
+  <span class="footer-date">Erstellt am 06. Mai 2026</span>
+</footer>
+
+<!-- ─── EDIT BAR ─── -->
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+  const ro = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  document.querySelectorAll('section[id]').forEach(s => {
+    new IntersectionObserver(es => {
+      if (es[0].isIntersecting) {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        const a = document.querySelector(`.nav-tab[href="#${s.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    }, { threshold: 0.3 }).observe(s);
+  });
+
+  const EDITABLE_SELECTORS = [
+    '.h-hero', '.h-hero em', '.brand-pill span',
+    '.hero-meta-value', '.hero-meta-label', '.nav-pill',
+    '.h-statement', '.summary-desc',
+    '.summary-kpi-lbl', '.summary-kpi-val', '.summary-kpi-sub',
+    '.key-take p',
+    '.section-eyebrow', '.h-section', '.section-sub', '.source-note',
+    'tbody td', 'thead th', '.cell-name', '.cell-sub',
+    '.tag',
+    '.blue-spotlight-headline', '.blue-spotlight p',
+    '.spotlight-quad-val', '.spotlight-quad-lbl',
+    '.spotlight-caveat',
+    '.mof-block-eyebrow', '.mof-block-headline', '.mof-block-desc', '.mof-cell-name',
+    '.creatives-h-row',
+    '.spotlight-info-name', '.spotlight-info-headline', '.spotlight-info-quote',
+    '.spotlight-roas-val', '.spotlight-roas-lbl',
+    '.spotlight-stat-lbl', '.spotlight-stat-val',
+    '.prio-title-text', '.prio-desc',
+    '.fazit-heading', '.fazit-text',
+    '.footer-brand', '.footer-date',
+  ].join(',');
+
+  let editing = false;
+
+  function toggleEdit() {
+    editing = !editing;
+    const btn = document.getElementById('ebEdit');
+    const save = document.getElementById('ebSave');
+    if (editing) {
+      document.body.classList.add('editing');
+      document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+      btn.textContent = '✕ Fertig';
+      btn.classList.add('on');
+      save.style.display = 'block';
+    } else {
+      document.body.classList.remove('editing');
+      document.querySelectorAll('[contenteditable="true"]').forEach(el => el.setAttribute('contenteditable', 'false'));
+      btn.textContent = '✏︎ Bearbeiten';
+      btn.classList.remove('on');
+      save.style.display = 'none';
+    }
+  }
+
+  function downloadHTML() {
+    const bar = document.getElementById('editBar');
+    const wasEditing = editing;
+    document.body.classList.remove('editing');
+    document.querySelectorAll('[contenteditable]').forEach(el => el.setAttribute('contenteditable', 'false'));
+    bar.style.display = 'none';
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    bar.style.display = '';
+    if (wasEditing) {
+      document.body.classList.add('editing');
+      document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+    }
+    try {
+      const encoder = new TextEncoder();
+      const bytes = encoder.encode(html);
+      const blob = new Blob([bytes], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Maloum-Apr-2026.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch(e) {
+      alert('Download fehlgeschlagen. Bitte lokal im Browser öffnen.');
+    }
+  }
+</script>
+</body>
+</html>
