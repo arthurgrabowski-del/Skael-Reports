@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        const originalConsole = window.console;
+        window.console = {
+          log: (...args) => {
+            originalConsole.log(...args);
+            window.parent.postMessage({ type: 'console', message: args.join(' ') }, '*');
+          },
+          error: (...args) => {
+            originalConsole.error(...args);
+            window.parent.postMessage({ type: 'console', message: 'Error: ' + args.join(' ') }, '*');
+          },
+          warn: (...args) => {
+            originalConsole.warn(...args);
+            window.parent.postMessage({ type: 'console', message: 'Warning: ' + args.join(' ') }, '*');
+          }
+        };
+
+        let requestId = 0;
+        let callbacksMap = new Map();
+        let streamControllers = new Map();
+        
+        window.claude = {
+          complete: (prompt) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'claudeComplete', id, prompt }, '*');
+            });
+          }
+        };
+
+        window.storage = {
+          get: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageGet', id, key, shared }, '*');
+            });
+          },
+          set: (key, value, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageSet', id, key, value, shared }, '*');
+            });
+          },
+          delete: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageDelete', id, key, shared }, '*');
+            });
+          },
+          list: (prefix, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'storageList', id, prefix, shared }, '*');
+            });
+          }
+        };
+
+        let pendingBlobs = new Map();
+        URL.createObjectURL = (blob) => {
+          // Store the blob and create an ID and URL for it
+          const blobId = `blob-${Date.now()}-${Math.random()}`;
+          pendingBlobs.set(blobId, blob);
+          return `blob-request://${blobId}`;
+        };
+
+        URL.revokeObjectURL = (url) => {
+          // Remove the blob from our store
+          const blobId = url.replace("blob-request://", "");
+          pendingBlobs.delete(blobId);
+        };
+
+        const getBlobFromURL = (url) => {
+          const blobId = url.replace("blob-request://", "");
+          return pendingBlobs.get(blobId);
+        };
+
+        // Override global fetch with streaming support
+        window.fetch = (url, init = {}) => {
+          return new Promise((resolve, reject) => {
+            const id = requestId++;
+            const channelId = `fetch-${id}-${Date.now()}`;
+            
+            callbacksMap.set(id, { 
+              resolve: (response) => {
+                // Create a ReadableStream for the response body
+                const stream = new ReadableStream({
+                  start(controller) {
+                    streamControllers.set(channelId, controller);
+                  },
+                  cancel() {
+                    streamControllers.delete(channelId);
+                  }
+                });
+                
+                // Create and return the Response with the stream
+                resolve(new Response(stream, {
+                  status: response.status,
+                  statusText: response.statusText,
+                  headers: response.headers
+                }));
+              },
+              reject,
+              channelId
+            });
+            
+            window.parent.postMessage({
+              type: 'proxyFetch',
+              id,
+              url,
+              init,
+              channelId
+            }, '*');
+          });
+        };
+
+        window.addEventListener('message', async (event) => {
+          if (event.data.type === 'takeScreenshot') {
+            const rootElement = document.getElementById('artifacts-component-root-html');
+            if (!rootElement) {
+              window.parent.postMessage({
+                type: 'screenshotError',
+                error: new Error('Root element not found'),
+              }, '*');
+              return;
+            }
+            // Catch CDN load failures (htmlToImage undefined) and toPng errors
+            // so the parent always gets a response instead of hanging forever.
+            try {
+              const screenshot = await htmlToImage.toPng(rootElement, {
+                imagePlaceholder:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjePDgwX8ACOQDoNsk0PMAAAAASUVORK5CYII=",
+              });
+              window.parent.postMessage({
+                type: 'screenshotData',
+                data: screenshot,
+              }, '*');
+            } catch (err) {
+              window.parent.postMessage({
+                type: 'screenshotError',
+                error: err instanceof Error ? err : new Error(String(err)),
+              }, '*');
+            }
+          } else if (event.data.type === 'claudeComplete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.completion);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'proxyFetchResponse') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+              callbacksMap.delete(event.data.id);
+            } else {
+              // Initial response with headers, status, etc.
+              callback.resolve({
+                status: event.data.status,
+                statusText: event.data.statusText,
+                headers: event.data.headers
+              });
+              // Don't delete the callback yet if streaming
+              if (!event.data.body) {
+                callbacksMap.delete(event.data.id);
+              }
+            }
+          } else if (event.data.type === 'proxyFetchStream') {
+            // Handle streaming data chunks
+            const controller = streamControllers.get(event.data.channelId);
+            if (controller) {
+              if (event.data.error) {
+                controller.error(new Error(event.data.error));
+                streamControllers.delete(event.data.channelId);
+              } else if (event.data.done) {
+                controller.close();
+                streamControllers.delete(event.data.channelId);
+                // Clean up the callback
+                const callback = Array.from(callbacksMap.entries()).find(
+                  ([_, value]) => value.channelId === event.data.channelId
+                );
+                if (callback) {
+                  callbacksMap.delete(callback[0]);
+                }
+              } else if (event.data.chunk) {
+                controller.enqueue(new Uint8Array(event.data.chunk));
+              }
+            }
+          } else if (event.data.type === 'storageGet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageSet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageDelete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageList') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          }
+        });
+
+        window.addEventListener('click', (event) => {
+          const isEl = event.target instanceof HTMLElement;
+          if (!isEl) return;
+    
+          // find ancestor links
+          const linkEl = event.target.closest("a");
+          if (!linkEl || !linkEl.href) return;
+    
+          event.preventDefault();
+          event.stopImmediatePropagation();
+    
+          if (linkEl.href.startsWith("blob-request:")) {
+            const blob = getBlobFromURL(linkEl.href);
+            if (!blob) return;
+            void blob.arrayBuffer().then((data) => {
+              window.parent.postMessage({
+                type: "downloadFile",
+                filename: linkEl.download,
+                data,
+                mimeType: blob.type || "application/octet-stream",
+              });
+            });
+          } else if (linkEl.href.startsWith("data:")) {
+            const [header, base64Data] = linkEl.href.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "application/octet-stream";
+            const binaryString = atob(base64Data);
+            const data = Uint8Array.from(binaryString, (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            window.parent.postMessage({
+              type: "downloadFile",
+              filename: linkEl.download,
+              data,
+              mimeType,
+            });
+          } else {
+            let linkUrl;
+            try {
+              linkUrl = new URL(linkEl.href);
+            } catch (error) {
+              return;
+            }
+    
+            if (linkUrl.hostname === window.location.hostname) return;
+      
+            window.parent.postMessage({
+              type: 'openExternal',
+              href: linkEl.href,
+            }, '*');
+          }
+      });
+
+        const originalOpen = window.open;
+        window.open = function (url) {
+          window.parent.postMessage({
+            type: "openExternal",
+            href: url,
+          }, "*");
+        };
+
+        window.addEventListener('error', (event) => {
+          window.parent.postMessage({ type: 'console', message: 'Uncaught Error: ' + event.message }, '*');
+        });
+      })();
+    </script>
+  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — RezensionsHeld Mai 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:image" content="https://reports.skael.de/www.skael.de-favicon-large.ico">
+<meta property="og:title" content="Skael Report — RezensionsHeld Mai 2026">
+<meta property="og:description" content="Multi-Channel Performance Report · Google · Bing · Meta">
+<meta property="og:url" content="https://reports.skael.de/RezensionsHeld-Mai-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;family=Instrument+Serif:ital@0;1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fbfcfd; --white:#ffffff; --border:#e4e6ec; --border2:#d0d3de;
+  --navy:#0f1b2d; --blue:#3a6ef4; --blue-bg:#eef2ff; --blue-mid:#c7d4fd;
+  --muted:#6b7280; --sub:#9ca3af; --body:#374151;
+  --green:#16a34a; --green-bg:#dcfce7; --green-dot:#22c55e;
+  --yellow:#b45309; --yellow-bg:#fef3c7; --yellow-dot:#f59e0b;
+  --red:#dc2626; --red-bg:#fee2e2; --red-dot:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Poppins',sans-serif; font-size:14px; letter-spacing:-0.015em;
+  line-height:1.65; color:var(--body); background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+em{font-style:normal;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky; top:0; z-index:200; height:58px;
+  display:flex; align-items:center; gap:18px;
+  padding:0 48px; background:rgba(251,252,253,0.82);
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  opacity:0; animation:fadeIn 0.5s ease forwards;
+}
+.nav-logo-text{font-size:14px; font-weight:500; letter-spacing:-0.02em; color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px; height:20px; background:var(--border2);}
+.nav-tabs{display:flex; gap:4px; flex:1;}
+.nav-tab{
+  font-size:12.5px; font-weight:400; color:var(--muted); text-decoration:none;
+  padding:6px 11px; border-radius:7px; transition:all .15s; letter-spacing:-0.01em;
+}
+.nav-tab:hover{color:var(--navy); background:rgba(15,27,45,0.05);}
+.nav-tab.active{color:#fff; background:var(--navy); font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{
+  font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase;
+  letter-spacing:0.1em; color:var(--muted); border:1px solid var(--border2);
+  padding:5px 10px; border-radius:6px;
+}
+
+/* ---------- SECTIONS ---------- */
+section{scroll-margin-top:58px;}
+.hero,.section,.section-gray{background:var(--bg); padding:72px 48px;}
+.wrap{max-width:1280px; margin:0 auto;}
+.section-eyebrow{
+  font-family:'DM Mono',monospace; font-size:10.5px; text-transform:uppercase;
+  letter-spacing:0.18em; color:var(--blue); margin-bottom:18px;
+  display:flex; align-items:center; gap:10px;
+}
+.section-eyebrow::before{content:""; width:22px; height:1.5px; background:var(--blue); display:inline-block;}
+.h-section{
+  font-size:42px; font-weight:500; letter-spacing:-0.035em; color:var(--navy);
+  line-height:1.08; margin-bottom:14px;
+}
+.h-section em{font-family:'Instrument Serif',serif; font-style:italic; color:var(--blue); font-weight:400;}
+.section-sub{font-size:14px; color:var(--muted); max-width:620px; margin-bottom:40px;}
+
+/* ---------- HERO ---------- */
+.brand-pill{
+  display:inline-flex; align-items:center; gap:9px; background:var(--white);
+  border:1px solid var(--border); border-radius:8px; padding:7px 14px 7px 11px;
+  margin-bottom:30px; opacity:0; animation:fadeIn 0.5s ease 0.15s forwards;
+}
+.brand-pill .pdot{width:8px; height:8px; border-radius:50%; background:var(--blue);}
+.brand-pill span{
+  font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase;
+  letter-spacing:0.12em; color:var(--muted);
+}
+.h-hero{
+  font-size:60px; font-weight:500; letter-spacing:-0.04em; color:var(--navy);
+  line-height:1.02; margin-bottom:34px;
+  opacity:0; animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;
+}
+.h-hero em{font-family:'Instrument Serif',serif; font-style:italic; color:var(--blue); font-weight:400;}
+.hero-meta{
+  display:flex; gap:42px; flex-wrap:wrap; padding-bottom:44px;
+  border-bottom:1px solid var(--border); margin-bottom:44px;
+  opacity:0; animation:fadeUp 0.6s ease 0.45s forwards;
+}
+.hero-meta-item{display:flex; flex-direction:column; gap:5px;}
+.hero-meta-label{
+  font-family:'DM Mono',monospace; font-size:9.5px; text-transform:uppercase;
+  letter-spacing:0.12em; color:var(--sub);
+}
+.hero-meta-value{font-size:13.5px; font-weight:500; color:var(--navy); letter-spacing:-0.01em;}
+
+/* ---------- KPI ---------- */
+.kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:14px;}
+.kpi-card{
+  background:var(--white); border:1px solid var(--border); border-radius:12px;
+  padding:20px 22px; opacity:0; transform:translateY(18px);
+}
+.kpi-card.show{animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.1) forwards;}
+.kpi-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+.kpi-label{
+  font-family:'DM Mono',monospace; font-size:9.5px; text-transform:uppercase;
+  letter-spacing:0.14em; color:var(--sub);
+}
+.sw{display:flex; align-items:center; gap:6px;}
+.sd{width:8px; height:8px; border-radius:50%;}
+.sd.g{background:var(--green-dot); box-shadow:0 0 0 2px rgba(34,197,94,0.2);}
+.sd.y{background:var(--yellow-dot); box-shadow:0 0 0 2px rgba(245,158,11,0.2);}
+.sd.r{background:var(--red-dot); box-shadow:0 0 0 2px rgba(239,68,68,0.2);}
+.sl{font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.06em;}
+.sl.g{color:var(--green);} .sl.y{color:var(--yellow);} .sl.r{color:var(--red);}
+.kpi-value{font-size:30px; font-weight:500; letter-spacing:-0.02em; color:var(--navy); line-height:1;}
+.kpi-sub{font-size:11.5px; color:var(--muted); margin-top:8px;}
+
+/* ---------- INSIGHT ---------- */
+.insight-card{
+  background:var(--white); border:1px solid var(--border); border-radius:12px;
+  padding:26px 28px; margin-top:14px;
+}
+.card-label{
+  font-family:'DM Mono',monospace; font-size:9.5px; text-transform:uppercase;
+  letter-spacing:0.14em; color:var(--sub); margin-bottom:12px;
+}
+.insight-text{font-size:14.5px; color:var(--body); line-height:1.7;}
+.insight-text strong{color:var(--navy); font-weight:600;}
+
+/* ---------- CHANNEL CARDS ---------- */
+.channel-card{
+  background:var(--white); border:1px solid var(--border); border-radius:14px;
+  padding:26px 28px; margin-bottom:16px;
+}
+.channel-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:22px;}
+.channel-name{font-size:19px; font-weight:500; letter-spacing:-0.02em; color:var(--navy);}
+.channel-name span{font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--sub); margin-left:8px;}
+.channel-kpis{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; border-top:1px solid var(--border); padding-top:20px;}
+.chan-kpi{display:flex; flex-direction:column; gap:6px;}
+.chan-kpi-lbl{font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.1em; color:var(--sub);}
+.chan-kpi-val{font-size:22px; font-weight:500; letter-spacing:-0.02em; color:var(--navy); line-height:1;}
+.channel-note{font-size:13px; color:var(--muted); line-height:1.65; margin-top:18px; padding-top:16px; border-top:1px solid var(--border);}
+.channel-note strong{color:var(--navy); font-weight:600;}
+
+/* ---------- TAGS ---------- */
+.tag{
+  font-family:'DM Mono',monospace; font-size:9px; font-weight:500; text-transform:uppercase;
+  letter-spacing:0.08em; border-radius:20px; padding:3px 10px; display:inline-block; white-space:nowrap;
+}
+.tag.g{background:var(--green-bg); color:var(--green);}
+.tag.y{background:var(--yellow-bg); color:var(--yellow);}
+.tag.r{background:var(--red-bg); color:var(--red);}
+.tag.b{background:var(--blue-bg); color:var(--blue);}
+
+/* ---------- CHARTS ---------- */
+.chart-row{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:40px;}
+.chart-card{background:var(--white); border:1px solid var(--border); border-radius:12px; padding:24px 26px;}
+.chart-wrap{height:280px; position:relative; margin-top:14px;}
+
+/* ---------- TABLE ---------- */
+.table-card{background:var(--white); border:1px solid var(--border); border-radius:12px; padding:8px 10px; overflow-x:auto;}
+table{width:100%; border-collapse:collapse;}
+thead th{
+  font-family:'DM Mono',monospace; font-size:9.5px; text-transform:uppercase;
+  letter-spacing:0.12em; color:var(--sub); text-align:right; padding:14px 14px 12px; font-weight:500;
+  border-bottom:1px solid var(--border);
+}
+thead th:first-child{text-align:left;}
+tbody td{font-size:13px; color:var(--body); text-align:right; padding:13px 14px; border-bottom:1px solid var(--border);}
+tbody td:first-child{text-align:left; color:var(--navy); font-weight:500;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr.total-row td{background:#f0f4ff; font-weight:600; color:var(--navy);}
+tbody tr.total-row td:first-child{color:var(--blue);}
+.td-sub{display:block; font-size:11px; color:var(--sub); font-weight:400; margin-top:2px; letter-spacing:0;}
+.tbl-note{font-size:11.5px; color:var(--sub); margin-top:14px; line-height:1.6;}
+
+/* ---------- PRIO ---------- */
+.prio-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:40px;}
+.prio-card{
+  background:var(--white); border:1px solid var(--border); border-radius:12px; padding:24px 26px;
+}
+.prio-header{display:flex; align-items:flex-start; gap:16px; margin-bottom:12px;}
+.prio-num{font-size:30px; font-weight:500; letter-spacing:-0.02em; color:var(--blue); line-height:1; font-family:'Poppins',sans-serif;}
+.prio-title-text{font-size:15px; font-weight:500; color:var(--navy); letter-spacing:-0.02em; display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding-top:6px;}
+.prio-desc{font-size:13px; color:var(--muted); line-height:1.65;}
+.prio-desc strong{color:var(--navy); font-weight:600;}
+
+/* ---------- FAZIT ---------- */
+.fazit-card{background:var(--white); border:1px solid var(--border); border-radius:14px; padding:34px 36px;}
+.fazit-heading{font-size:28px; font-weight:500; letter-spacing:-0.03em; color:var(--navy); line-height:1.18; margin:12px 0 18px;}
+.fazit-heading span{font-family:'Instrument Serif',serif; font-style:italic; color:var(--blue); font-weight:400;}
+.fazit-text{font-size:14.5px; color:var(--body); line-height:1.75;}
+.fazit-text strong{color:var(--navy); font-weight:600;}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:28px 48px; border-top:1px solid var(--border); margin-top:40px;
+}
+.footer-brand{font-size:13px; font-weight:500; color:var(--navy);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--sub);}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .55s ease, transform .55s ease;}
+.reveal.visible{opacity:1; transform:translateY(0);}
+
+/* ---------- EDIT BAR ---------- */
+.edit-bar{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  background:var(--navy); color:#fff; border-radius:12px;
+  padding:9px 9px 9px 18px; display:flex; align-items:center; gap:8px;
+  box-shadow:0 8px 32px rgba(15,27,45,0.25); z-index:9999;
+  font-family:'Poppins',sans-serif; font-size:12.5px; font-weight:400;
+  letter-spacing:-0.01em; white-space:nowrap;
+}
+.edit-bar-label{color:rgba(255,255,255,0.55); margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif; font-size:12px; font-weight:500; letter-spacing:-0.01em; padding:7px 15px; border-radius:8px; border:none; cursor:pointer; transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12); color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue); color:#fff;}
+.eb-save{background:#fff; color:var(--navy); display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px; height:20px; background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4); outline-offset:2px; border-radius:3px; cursor:text;}
+body.editing [contenteditable="true"]:hover{outline-color:rgba(58,110,244,0.75);}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue); outline-offset:2px; background:rgba(58,110,244,0.03); border-radius:3px;}
+
+/* ---------- ANIM ---------- */
+@keyframes fadeUp{from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:960px){
+  nav{padding:0 16px; gap:10px;}
+  .nav-tabs{overflow-x:auto;}
+  .hero,.section,.section-gray{padding:48px 16px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .channel-kpis{grid-template-columns:repeat(2,1fr); gap:16px;}
+  .chart-row{grid-template-columns:1fr;}
+  .prio-grid{grid-template-columns:1fr;}
+  .h-hero{font-size:36px;}
+  .h-section{font-size:30px;}
+  .hero-meta{gap:24px;}
+}
+</style>
+</head>
+<body id="artifacts-component-root-html" class="">
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#kanaele">Kanäle</a>
+    <a class="nav-tab" href="#vergleich">Vergleich</a>
+    <a class="nav-tab" href="#suchbegriffe">Suchbegriffe</a>
+    <a class="nav-tab active" href="#empfehlungen">Empfehlungen</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill" contenteditable="false">Mai 2026</span></div>
+</nav>
+
+<!-- ============ ÜBERSICHT ============ -->
+<section id="uebersicht" class="hero">
+  <div class="wrap">
+    <div class="brand-pill"><span class="pdot" contenteditable="false"></span><span contenteditable="false">Google Ads · Bing Ads · Meta Ads</span></div>
+    <h1 class="h-hero" contenteditable="false">RezensionsHeld<br><em contenteditable="false">Performance Report</em><br>im Mai.</h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label" contenteditable="false">Zeitraum</span><span class="hero-meta-value" contenteditable="false">01. – 22. Mai 2026</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label" contenteditable="false">Konto</span><span class="hero-meta-value" contenteditable="false">Rezensionsheld LLC</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label" contenteditable="false">Kanäle</span><span class="hero-meta-value" contenteditable="false">Google · Bing · Meta</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label" contenteditable="false">Erstellt</span><span class="hero-meta-value" contenteditable="false">22. Mai 2026</span></div>
+    </div>
+
+    <!-- KPI Row 1 -->
+    <div class="kpi-grid" id="kpiRow1">
+      <div class="kpi-card show" style="animation-delay: 0.65s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">Ausgaben</span><div class="sw"><div class="sd y"></div><span class="sl y" contenteditable="false">3 Kanäle</span></div></div>
+        <div class="kpi-value" contenteditable="false">€16.850,96</div>
+        <div class="kpi-sub" contenteditable="false">Gesamt über alle Kanäle</div>
+      </div>
+      <div class="kpi-card show" style="animation-delay: 0.73s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">Orders</span><div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Solide</span></div></div>
+        <div class="kpi-value" contenteditable="false">319</div>
+        <div class="kpi-sub" contenteditable="false">Quelle: CRM (alle Kanäle)</div>
+      </div>
+      <div class="kpi-card show" style="animation-delay: 0.81s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">Umsatz</span><div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Stark</span></div></div>
+        <div class="kpi-value" contenteditable="false">€41.790,29</div>
+        <div class="kpi-sub" contenteditable="false">Aus 319 Orders</div>
+      </div>
+      <div class="kpi-card show" style="animation-delay: 0.89s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">ROAS</span><div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Profitabel</span></div></div>
+        <div class="kpi-value" contenteditable="false">2,48</div>
+        <div class="kpi-sub" contenteditable="false">€2,48 Umsatz je €1 Spend</div>
+      </div>
+    </div>
+
+    <!-- KPI Row 2 -->
+    <div class="kpi-grid" id="kpiRow2">
+      <div class="kpi-card show" style="animation-delay: 0.97s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">Impressionen</span><div class="sw"><div class="sd y"></div><span class="sl y" contenteditable="false">Reichweite</span></div></div>
+        <div class="kpi-value" contenteditable="false">195.450</div>
+        <div class="kpi-sub" contenteditable="false">Davon 140.751 über Bing</div>
+      </div>
+      <div class="kpi-card show" style="animation-delay: 1.05s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">Klicks</span><div class="sw"><div class="sd y"></div><span class="sl y" contenteditable="false">Traffic</span></div></div>
+        <div class="kpi-value" contenteditable="false">3.209</div>
+        <div class="kpi-sub" contenteditable="false">Über alle drei Kanäle</div>
+      </div>
+      <div class="kpi-card show" style="animation-delay: 1.13s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">CPO</span><div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Tragfähig</span></div></div>
+        <div class="kpi-value" contenteditable="false">€52,82</div>
+        <div class="kpi-sub" contenteditable="false">Kosten je Order (gemischt)</div>
+      </div>
+      <div class="kpi-card show" style="animation-delay: 1.21s;">
+        <div class="kpi-header"><span class="kpi-label" contenteditable="false">Ø Order-Wert</span><div class="sw"><div class="sd g"></div><span class="sl g" contenteditable="false">Konstant</span></div></div>
+        <div class="kpi-value" contenteditable="false">€131,00</div>
+        <div class="kpi-sub" contenteditable="false">Umsatz je Order</div>
+      </div>
+    </div>
+
+    <div class="insight-card reveal visible">
+      <div class="card-label" contenteditable="false">Kern-Einordnung</div>
+      <p class="insight-text" contenteditable="false">Über alle drei Kanäle stehen <strong>€16.851 Ausgaben</strong> gegen <strong>€41.790 Umsatz</strong> — ein gemischter ROAS von <strong>2,48</strong>. Getragen wird das fast vollständig von <strong>Google Search</strong> (ROAS 2,98, 301 von 319 Orders). <strong>Bing</strong> liegt mit ROAS 0,53 deutlich unter Break-even und <strong>Meta</strong> mit ROAS 0,26 ebenfalls — beide wurden im Monatsverlauf zurückgefahren.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KANÄLE ============ -->
+<section id="kanaele" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal visible" contenteditable="false">01 · Kanal-Aufschlüsselung</div>
+    <h2 class="h-section reveal visible" contenteditable="false">Drei Kanäle, <em contenteditable="false">ein Treiber</em>.</h2>
+    <p class="section-sub reveal visible" contenteditable="false">Spend in Euro (Bing &amp; Meta von USD bei 0,91 umgerechnet). Order- und Umsatzzahlen kommen durchgängig aus dem CRM, nicht aus den Conversion-Trackern der Plattformen.</p>
+
+    <!-- GOOGLE -->
+    <div class="channel-card reveal visible">
+      <div class="channel-head">
+        <div class="channel-name" contenteditable="false">Google Ads <span>Search</span></div>
+        <span class="tag g" contenteditable="false">Profitabel</span>
+      </div>
+      <div class="channel-kpis">
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Ausgaben</span><span class="chan-kpi-val" contenteditable="false">€13.497</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Orders</span><span class="chan-kpi-val" contenteditable="false">301</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Umsatz</span><span class="chan-kpi-val" contenteditable="false">€40.180</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">ROAS</span><span class="chan-kpi-val" contenteditable="false">2,98</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">CPO</span><span class="chan-kpi-val" contenteditable="false">€44,84</span></div>
+      </div>
+      <p class="channel-note" contenteditable="false">Eine Search-Kampagne (<strong>Cold-Google</strong>, €750/Tag, Maximize Conversions). 27.524 Impressionen, 1.779 Klicks, CTR 6,46 %, Ø CPC €7,59. Trägt mit Abstand den größten Teil von Umsatz und Orders. Die Google-eigenen Conversions (155) bleiben außen vor — gezählt werden die <strong>301 CRM-Orders</strong>.</p>
+    </div>
+
+    <!-- BING -->
+    <div class="channel-card reveal visible">
+      <div class="channel-head">
+        <div class="channel-name" contenteditable="false">Bing Ads <span>Microsoft Search</span></div>
+        <span class="tag r" contenteditable="false">Defizitär</span>
+      </div>
+      <div class="channel-kpis">
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Ausgaben</span><span class="chan-kpi-val" contenteditable="false">€2.748</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Orders</span><span class="chan-kpi-val" contenteditable="false">17</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Umsatz</span><span class="chan-kpi-val" contenteditable="false">€1.451</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">ROAS</span><span class="chan-kpi-val" contenteditable="false">0,53</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">CPO</span><span class="chan-kpi-val" contenteditable="false">€161,67</span></div>
+      </div>
+      <p class="channel-note" contenteditable="false">140.751 Aufrufe, 730 Klicks, CTR 0,52 %, Ø CPC €3,76. Hohe Reichweite, aber wenig qualifizierter Traffic: <strong>€2.748 Spend gegen €1.451 Umsatz</strong>. Bing wurde gegen Monatsende stark heruntergefahren — die letzten Tage sogar ausgeschaltet.</p>
+    </div>
+
+    <!-- META -->
+    <div class="channel-card reveal visible">
+      <div class="channel-head">
+        <div class="channel-name" contenteditable="false">Meta Ads <span>Facebook · Instagram</span></div>
+        <span class="tag r" contenteditable="false">Defizitär</span>
+      </div>
+      <div class="channel-kpis">
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Ausgaben</span><span class="chan-kpi-val" contenteditable="false">€605</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Orders</span><span class="chan-kpi-val" contenteditable="false">1</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">Umsatz</span><span class="chan-kpi-val" contenteditable="false">€160</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">ROAS</span><span class="chan-kpi-val" contenteditable="false">0,26</span></div>
+        <div class="chan-kpi"><span class="chan-kpi-lbl" contenteditable="false">CPO</span><span class="chan-kpi-val" contenteditable="false">€605,45</span></div>
+      </div>
+      <p class="channel-note" contenteditable="false">27.175 Impressionen, 700 Klicks, CTR 2,58 %, Ø CPC €0,86. Der Meta-Pixel meldet 8 Käufe — im CRM landet aber nur <strong>eine echte Order (€159,60)</strong>, die übrigen sind Tracking-Überzählung. Die Hauptkampagne lief 01.–10. Mai, war dann <strong>10 Tage ausgestellt</strong>, seit 21. Mai läuft ein kleines Retargeting an.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERGLEICH ============ -->
+<section id="vergleich" class="section">
+  <div class="wrap">
+    <div class="section-eyebrow reveal visible" contenteditable="false">02 · Vergleich</div>
+    <h2 class="h-section reveal visible" contenteditable="false">Wo das Geld <em contenteditable="false">zurückkommt</em>.</h2>
+    <p class="section-sub reveal visible" contenteditable="false">Ausgaben gegen Umsatz und ROAS je Kanal. Die Break-even-Linie bei 1,0 markiert die Schwelle, ab der ein Kanal mehr einbringt, als er kostet.</p>
+
+    <div class="chart-row reveal visible">
+      <div class="chart-card">
+        <div class="card-label" contenteditable="false">Ausgaben vs. Umsatz je Kanal (€)</div>
+        <div class="chart-wrap"><canvas id="chartSpendRev" width="823" height="560" style="display: block; box-sizing: border-box; height: 280px; width: 411px;"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-label" contenteditable="false">ROAS je Kanal</div>
+        <div class="chart-wrap"><canvas id="chartRoas" width="823" height="560" style="display: block; box-sizing: border-box; height: 280px; width: 411px;"></canvas></div>
+      </div>
+    </div>
+
+    <div class="table-card reveal visible">
+      <table>
+        <thead>
+          <tr>
+            <th contenteditable="false">Kanal</th><th contenteditable="false">Ausgaben</th><th contenteditable="false">Impr.</th><th contenteditable="false">Klicks</th><th contenteditable="false">CTR</th>
+            <th contenteditable="false">Ø CPC</th><th contenteditable="false">Orders</th><th contenteditable="false">Umsatz</th><th contenteditable="false">ROAS</th><th contenteditable="false">CPO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td contenteditable="false">Google Ads</td><td contenteditable="false">€13.497,04</td><td contenteditable="false">27.524</td><td contenteditable="false">1.779</td><td contenteditable="false">6,46 %</td>
+            <td contenteditable="false">€7,59</td><td contenteditable="false">301</td><td contenteditable="false">€40.180,19</td><td contenteditable="false">2,98</td><td contenteditable="false">€44,84</td>
+          </tr>
+          <tr>
+            <td contenteditable="false">Bing Ads</td><td contenteditable="false">€2.748,47</td><td contenteditable="false">140.751</td><td contenteditable="false">730</td><td contenteditable="false">0,52 %</td>
+            <td contenteditable="false">€3,76</td><td contenteditable="false">17</td><td contenteditable="false">€1.450,50</td><td contenteditable="false">0,53</td><td contenteditable="false">€161,67</td>
+          </tr>
+          <tr>
+            <td contenteditable="false">Meta Ads</td><td contenteditable="false">€605,45</td><td contenteditable="false">27.175</td><td contenteditable="false">700</td><td contenteditable="false">2,58 %</td>
+            <td contenteditable="false">€0,86</td><td contenteditable="false">1</td><td contenteditable="false">€159,60</td><td contenteditable="false">0,26</td><td contenteditable="false">€605,45</td>
+          </tr>
+          <tr class="total-row">
+            <td contenteditable="false">Gesamt</td><td contenteditable="false">€16.850,96</td><td contenteditable="false">195.450</td><td contenteditable="false">3.209</td><td contenteditable="false">—</td>
+            <td contenteditable="false">—</td><td contenteditable="false">319</td><td contenteditable="false">€41.790,29</td><td contenteditable="false">2,48</td><td contenteditable="false">€52,82</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="tbl-note" contenteditable="false">Spend für Bing und Meta von USD auf EUR umgerechnet (Kurs 0,91). Orders und Umsatz aus dem CRM. Eine gemischte CTR/CPC-Zeile ist nicht aussagekräftig, da Bing mit 140.751 Aufrufen den Schnitt verzerrt — daher pro Kanal ausgewiesen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUCHBEGRIFFE ============ -->
+<section id="suchbegriffe" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal visible" contenteditable="false">03 · Google · Suchbegriffe</div>
+    <h2 class="h-section reveal visible" contenteditable="false">Suchanfragen&nbsp;<em contenteditable="false">im Überblick</em>.</h2>
+    <p class="section-sub reveal visible" contenteditable="false">Die zehn klickstärksten Suchbegriffe der Google-Kampagne. Die Conversion-Spalte stammt aus dem Google-Tracking und dient nur der Einordnung — die maßgebliche Order-Zahl bleibt das CRM.</p>
+
+    <div class="table-card reveal visible">
+      <table>
+        <thead>
+          <tr>
+            <th contenteditable="false">Suchbegriff</th><th contenteditable="false">Match</th><th contenteditable="false">Klicks</th><th contenteditable="false">Impr.</th><th contenteditable="false">CTR</th>
+            <th contenteditable="false">Ø CPC</th><th contenteditable="false">Kosten</th><th contenteditable="false">Conv. (Google)</th><th contenteditable="false">CPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td contenteditable="false">google bewertungen löschen</td><td contenteditable="false">Exact (Added)</td><td contenteditable="false">141</td><td contenteditable="false">1.251</td><td contenteditable="false">11,27 %</td><td contenteditable="false">€9,98</td><td contenteditable="false">€1.407,66</td><td contenteditable="false">12,0</td><td contenteditable="false">€117,31</td></tr>
+          <tr><td contenteditable="false">google bewertung löschen lassen</td><td contenteditable="false">Exact (CV)</td><td contenteditable="false">86</td><td contenteditable="false">673</td><td contenteditable="false">12,78 %</td><td contenteditable="false">€11,00</td><td contenteditable="false">€946,13</td><td contenteditable="false">12,0</td><td contenteditable="false">€78,84</td></tr>
+          <tr><td contenteditable="false">rezensionsheld</td><td contenteditable="false">Broad</td><td contenteditable="false">70</td><td contenteditable="false">138</td><td contenteditable="false">50,72 %</td><td contenteditable="false">€3,00</td><td contenteditable="false">€210,03</td><td contenteditable="false">11,0</td><td contenteditable="false">€19,09</td></tr>
+          <tr><td contenteditable="false">google rezension löschen</td><td contenteditable="false">Exact (Added)</td><td contenteditable="false">66</td><td contenteditable="false">756</td><td contenteditable="false">8,73 %</td><td contenteditable="false">€9,00</td><td contenteditable="false">€593,69</td><td contenteditable="false">12,0</td><td contenteditable="false">€49,47</td></tr>
+          <tr><td contenteditable="false">google bewertung löschen</td><td contenteditable="false">Exact (CV)</td><td contenteditable="false">53</td><td contenteditable="false">365</td><td contenteditable="false">14,52 %</td><td contenteditable="false">€10,59</td><td contenteditable="false">€561,15</td><td contenteditable="false">6,0</td><td contenteditable="false">€93,53</td></tr>
+          <tr><td contenteditable="false">google bewertungen löschen lassen</td><td contenteditable="false">Exact (CV)</td><td contenteditable="false">43</td><td contenteditable="false">409</td><td contenteditable="false">10,51 %</td><td contenteditable="false">€9,70</td><td contenteditable="false">€417,24</td><td contenteditable="false">5,0</td><td contenteditable="false">€83,45</td></tr>
+          <tr><td contenteditable="false">google rezension löschen lassen</td><td contenteditable="false">Exact (CV)</td><td contenteditable="false">22</td><td contenteditable="false">183</td><td contenteditable="false">12,02 %</td><td contenteditable="false">€11,77</td><td contenteditable="false">€258,98</td><td contenteditable="false">4,0</td><td contenteditable="false">€64,74</td></tr>
+          <tr><td contenteditable="false">rezensionsheld erfahrungen</td><td contenteditable="false">Broad</td><td contenteditable="false">21</td><td contenteditable="false">130</td><td contenteditable="false">16,15 %</td><td contenteditable="false">€6,75</td><td contenteditable="false">€141,65</td><td contenteditable="false">4,5</td><td contenteditable="false">€31,48</td></tr>
+          <tr><td contenteditable="false">google rezensionen löschen</td><td contenteditable="false">Exact (CV)</td><td contenteditable="false">21</td><td contenteditable="false">305</td><td contenteditable="false">6,89 %</td><td contenteditable="false">€10,03</td><td contenteditable="false">€210,60</td><td contenteditable="false">4,0</td><td contenteditable="false">€52,65</td></tr>
+          <tr><td contenteditable="false">bewertungen löschen</td><td contenteditable="false">Exact (Added)</td><td contenteditable="false">19</td><td contenteditable="false">93</td><td contenteditable="false">20,43 %</td><td contenteditable="false">€9,86</td><td contenteditable="false">€187,40</td><td contenteditable="false">3,0</td><td contenteditable="false">€62,47</td></tr>
+        </tbody>
+      </table>
+      <p class="tbl-note" contenteditable="false">Die Marken-Begriffe „rezensionsheld" und „rezensionsheld erfahrungen" sind mit €3,00 bzw. €6,75 CPC und €19–31 CPA klar am effizientesten. Die generischen Löschanfragen-Begriffe holen das Volumen, kosten aber €9–12 pro Klick und €78–117 pro Conversion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMPFEHLUNGEN ============ -->
+<section id="empfehlungen" class="section">
+  <div class="wrap">
+    <div class="section-eyebrow reveal visible" contenteditable="false">04 · Empfehlungen</div>
+    <h2 class="h-section reveal visible" contenteditable="false">Was sind unsere&nbsp;<em contenteditable="false">nächsten Schritte?</em></h2>
+    <p class="section-sub reveal visible" contenteditable="false">Vier Maßnahmen für Juni, priorisiert nach Hebel auf die Profitabilität.</p>
+
+    <div class="prio-grid">
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">01</div>
+          <div><div class="prio-title-text" contenteditable="false">Google-Ads-Kampagne weiter ausbauen<span style="background-color: rgb(254, 226, 226); color: rgb(220, 38, 38); font-family: &quot;DM Mono&quot;, monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;">Kritisch</span></div></div>
+        </div>
+        <div class="prio-desc" contenteditable="false"><span style="letter-spacing: -0.21px;">Die Marken-Begriffe konvertieren bei €19–31 CPA, generische Löschanfragen-Terms bei €78–117. Budget-Anteil stärker auf Brand und die besten Exact-Match-Begriffe lenken, teure Streubegriffe drosseln.</span></div>
+      </div>
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">02</div>
+          <div><div class="prio-title-text" contenteditable="false">Trustpilot &amp; Kununu Löschungen Live schalten<span style="background-color: rgb(254, 243, 199); color: rgb(180, 83, 9); font-family: &quot;DM Mono&quot;, monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;">Hoch</span></div></div>
+        </div>
+        <div class="prio-desc" contenteditable="false"><p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"></p></p><p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"></p></p><p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">Neben Google-Löschungen kommt eine eigene Search-Kampagne für Trustpilot- und Kununu-Löschungen dazu — getrennte Anzeigengruppen, eigene Keywords („Trustpilot Bewertung löschen", „Kununu Bewertung entfernen") und eine eigene Landingpage je Plattform. <strong>Klein und sauber getrennt starten</strong>, damit sich CPA und Conversion pro Vertical von Tag 1 an einzeln messen lassen, statt im Google-Topf zu verschwimmen.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"></p></div>
+      </div>
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">03</div>
+          <div><div class="prio-title-text" contenteditable="false">Retargeting auf Meta für alle drei Verticals aufsetzen<span style="background-color: rgb(254, 243, 199); color: rgb(180, 83, 9); font-family: &quot;DM Mono&quot;, monospace; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;">Mittel</span></div></div>
+        </div>
+        <div class="prio-desc" contenteditable="false"><p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">Jetzt wo Google Ads live ist, kommen deutlich mehr verwertbare Zahlen rein — genug Traffic, um echtes Retargeting zu fahren. Über Meta werden die Webseiten-Besucher zurückgeholt, die noch nicht gekauft haben, getrennt nach den drei Verticals (Google-, Kununu- und Trustpilot-Löschung). <strong>Audiences sauber nach Quelle und Funnel-Stufe abbilden</strong> (Page-View, Formular-Abbruch) und mit kleinen Budgets starten, bevor skaliert wird.</p>
+<p class="font-claude-response-body break-words whitespace-normal leading-[1.7]"></p></div>
+      </div>
+      <div class="prio-card reveal visible">
+        <div class="prio-header">
+          <div class="prio-num">04</div>
+          <div><div class="prio-title-text" contenteditable="false">OptiMind für Conversion-Optimierung auf allen Funneln<span class="tag b" contenteditable="false">Optional</span></div></div>
+        </div>
+        <div class="prio-desc" contenteditable="false"><p class="font-claude-response-body break-words whitespace-normal leading-[1.7]">OptiMind auf die Google-Löschungs-Page und die neuen Trustpilot-/Kununu-Funnel legen, um Headlines, CTAs und Formular-Flows datenbasiert gegeneinander zu testen. Statt einzelner Bauchgefühl-Anpassungen laufen <strong>kontinuierliche A/B-Tests</strong>, deren Gewinner automatisch ausgespielt werden — der direkteste Hebel auf CPA und Conversion, sobald die neuen Kampagnen genug Traffic liefern.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-brand" contenteditable="false">Skael <span>Reports</span></span>
+  <span class="footer-date" contenteditable="false">Erstellt am 22. Mai 2026</span>
+</footer>
+
+<!-- EDIT BAR -->
+<div class="edit-bar" id="editBar" style="display: none;">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit on" id="ebEdit" onclick="toggleEdit()">✕ Fertig</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()" style="display: block;">⬇ HTML speichern</button>
+</div>
+
+<script>
+/* ---------- KPI STAGGER ---------- */
+window.addEventListener('load', () => {
+  document.querySelectorAll('#kpiRow1 .kpi-card').forEach((c,i) => { c.style.animationDelay = (0.65 + i*0.08)+'s'; c.classList.add('show'); });
+  document.querySelectorAll('#kpiRow2 .kpi-card').forEach((c,i) => { c.style.animationDelay = (0.97 + i*0.08)+'s'; c.classList.add('show'); });
+});
+
+/* ---------- REVEAL ---------- */
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ---------- NAV ---------- */
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+document.querySelectorAll('section[id]').forEach(s => {
+  new IntersectionObserver(es => {
+    if (es[0].isIntersecting) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      const a = document.querySelector(`.nav-tab[href="#${s.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  }, { threshold: 0.3 }).observe(s);
+});
+
+/* ---------- CHARTS ---------- */
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+
+const eur = v => '€' + v.toLocaleString('de-DE');
+
+new Chart(document.getElementById('chartSpendRev'), {
+  type: 'bar',
+  data: {
+    labels: ['Google', 'Bing', 'Meta'],
+    datasets: [
+      { label: 'Ausgaben', data: [13497.04, 2748.47, 605.45], backgroundColor: '#3a6ef4', borderRadius: 5, maxBarThickness: 46 },
+      { label: 'Umsatz', data: [40180.19, 1450.50, 159.60], backgroundColor: '#22c55e', borderRadius: 5, maxBarThickness: 46 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { duration: 1000, easing: 'easeInOutQuart' },
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true, padding: 16, font: { size: 11 } } },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + eur(c.parsed.y) } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: v => eur(v), font: { size: 10 } } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartRoas'), {
+  type: 'bar',
+  data: {
+    labels: ['Google', 'Bing', 'Meta'],
+    datasets: [
+      { label: 'ROAS', data: [2.98, 0.53, 0.26], backgroundColor: ['#22c55e', '#ef4444', '#ef4444'], borderRadius: 5, maxBarThickness: 56, order: 2 },
+      { label: 'Break-even (1,0)', type: 'line', data: [1, 1, 1], borderColor: '#6b7280', borderWidth: 1.5, borderDash: [5, 5], pointRadius: 0, fill: false, order: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { duration: 1000, easing: 'easeInOutQuart' },
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, usePointStyle: true, padding: 16, font: { size: 11 } } },
+      tooltip: { callbacks: { label: c => c.dataset.label === 'ROAS' ? 'ROAS: ' + c.parsed.y.toLocaleString('de-DE') : 'Break-even: 1,0' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: 'rgba(0,0,0,0.05)' }, beginAtZero: true, ticks: { callback: v => v.toLocaleString('de-DE'), font: { size: 10 } } }
+    }
+  }
+});
+
+/* ---------- EDIT BAR ---------- */
+const EDITABLE_SELECTORS = [
+  '.h-hero', '.h-hero em', '.brand-pill span',
+  '.hero-meta-value', '.hero-meta-label', '.nav-pill',
+  '.kpi-label', '.kpi-value', '.kpi-sub', '.sl',
+  '.insight-text', '.card-label',
+  '.section-eyebrow', '.h-section', '.h-section em', '.section-sub',
+  '.channel-name', '.chan-kpi-val', '.chan-kpi-lbl', '.channel-note', '.tag',
+  '.chart-card .card-label', '.tbl-note',
+  'tbody td', 'thead th',
+  '.prio-title-text', '.prio-desc',
+  '.fazit-heading', '.fazit-text',
+  '.footer-brand', '.footer-date',
+].join(',');
+
+let editing = false;
+
+function toggleEdit() {
+  editing = !editing;
+  const btn = document.getElementById('ebEdit');
+  const save = document.getElementById('ebSave');
+  if (editing) {
+    document.body.classList.add('editing');
+    document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+    btn.textContent = '✕ Fertig';
+    btn.classList.add('on');
+    save.style.display = 'block';
+  } else {
+    document.body.classList.remove('editing');
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => el.setAttribute('contenteditable', 'false'));
+    btn.textContent = '✏︎ Bearbeiten';
+    btn.classList.remove('on');
+    save.style.display = 'none';
+  }
+}
+
+function downloadHTML() {
+  const bar = document.getElementById('editBar');
+  const wasEditing = editing;
+  document.body.classList.remove('editing');
+  document.querySelectorAll('[contenteditable]').forEach(el => el.setAttribute('contenteditable', 'false'));
+  bar.style.display = 'none';
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  bar.style.display = '';
+  if (wasEditing) {
+    document.body.classList.add('editing');
+    document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+  }
+  try {
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(html);
+    const blob = new Blob([bytes], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'RezensionsHeld-Mai-2026.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch(e) {
+    alert('Download fehlgeschlagen. Bitte lokal im Browser öffnen.');
+  }
+}
+</script>
+
+
+</body></html>
