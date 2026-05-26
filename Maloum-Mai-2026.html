@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — Maloum Mai 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report — Maloum Mai 2026">
+<meta property="og:description" content="Meta Ads · Performance Report · Mid-Month">
+<meta property="og:url" content="https://reports.skael.de/Maloum-Mai-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.hero{padding:72px 0 64px;scroll-margin-top:58px;}
+.section{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+.section-gray{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+
+.h-hero{font-family:'Poppins',sans-serif;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:42px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:32px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:12px;}
+
+.meta-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px 7px 10px;margin-bottom:24px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform 0.2s,box-shadow 0.2s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-card.hi{border:1px solid var(--blue-mid);background:#fafbff;}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,0.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}
+.sl.y{color:var(--yellow);}
+.sl.r{color:var(--red);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:20px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+.insight-text strong{color:var(--navy);font-weight:500;}
+
+.funnel-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.funnel-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.funnel-row{display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:14px;margin-bottom:16px;}
+.funnel-lbl{font-size:13px;font-weight:500;color:var(--navy);}
+.funnel-track{height:38px;background:#f3f5f9;border-radius:6px;overflow:hidden;}
+.funnel-fill{height:100%;width:0;border-radius:6px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.funnel-right{display:flex;align-items:center;gap:8px;min-width:170px;justify-content:flex-end;}
+.funnel-val{font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+.einordnung-lbl{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:6px;}
+.einordnung-text{font-size:13px;color:var(--muted);line-height:1.6;}
+.einordnung-text strong{color:var(--navy);font-weight:500;}
+
+.side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.side-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.side-row:last-child{border-bottom:none;}
+.side-row-lbl{font-size:12px;color:var(--muted);}
+.side-row-val{font-size:13px;font-weight:500;color:var(--navy);}
+.side-row-val.green{color:var(--green);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border-color:#fca5a5;}
+.hint-box.red p{color:var(--red);}
+
+.kamp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;}
+.kamp-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+.kamp-card.star{border:1px solid #86efac;background:#f8fff9;}
+.kamp-card.warn{border:1px solid #fcd34d;background:#fffbf2;}
+.kamp-card.crit{border:1px solid #fca5a5;background:#fff8f8;}
+.kamp-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;line-height:1.35;}
+.kamp-sub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:10px;}
+.kamp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);}
+.kamp-row:last-child{border-bottom:none;}
+.kamp-lbl{font-size:11.5px;color:var(--muted);}
+.kamp-val{font-size:12px;font-weight:500;color:var(--navy);}
+.kamp-val.green{color:var(--green);}
+.kamp-val.red{color:var(--red);}
+.kamp-val.big{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;}
+
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 24px 20px;}
+.chart-card canvas{max-height:220px;}
+
+.table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:12px 16px;text-align:right;border-bottom:1px solid var(--border);}
+thead th:first-child{text-align:left;}
+tbody td{font-size:13px;color:var(--body);padding:11px 16px;border-bottom:1px solid var(--border);text-align:right;}
+tbody td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+tbody tr:last-child td{border-bottom:none;background:#f0f4ff;}
+tbody tr:hover td{background:#f8f9ff;}
+tbody tr:last-child:hover td{background:#e6edff;}
+.cell-sub{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--sub);margin-top:3px;letter-spacing:0.04em;text-transform:uppercase;display:block;font-weight:400;}
+.roas-strong{color:var(--green);font-weight:600;}
+.roas-mid{color:var(--yellow);font-weight:600;}
+.roas-bad{color:var(--red);font-weight:600;}
+
+.insight-list-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.ii{padding:16px 0;border-bottom:1px solid var(--border);}
+.ii:last-child{border-bottom:none;padding-bottom:0;}
+.ii:first-child{padding-top:0;}
+.ii-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px;justify-content:space-between;}
+.ii-hdr-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
+.ii-arrow{color:var(--blue);font-size:14px;font-weight:700;}
+.ii-name{font-size:13.5px;font-weight:500;color:var(--navy);}
+.ii-metrics{display:flex;gap:18px;align-items:baseline;}
+.ii-metric{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.ii-metric-val{font-family:'Poppins',sans-serif;font-size:16px;font-weight:500;color:var(--navy);}
+.ii-metric-val.green{color:var(--green);}
+.ii-metric-val.red{color:var(--red);}
+.ii-metric-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.ii-desc{font-size:12.5px;color:var(--muted);line-height:1.6;padding-left:24px;}
+.ii-desc strong{color:var(--navy);font-weight:500;}
+
+.prio-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.prio-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 26px;transition:transform 0.2s,box-shadow 0.2s;}
+.prio-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.prio-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px;}
+.prio-num{font-family:'Poppins',sans-serif;font-size:32px;font-weight:500;line-height:1;color:var(--blue);}
+.prio-title-text{font-size:14px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.4;}
+.prio-desc{font-size:13px;color:var(--body);line-height:1.65;}
+.prio-desc strong{color:var(--navy);font-weight:500;}
+
+.fazit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 36px;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:22px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-text{font-size:14px;color:var(--body);line-height:1.75;}
+.fazit-text strong{color:var(--navy);font-weight:500;}
+
+.footer{padding:32px 0 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.h-hero{opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+.kpi-r1 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.65s forwards;}
+.kpi-r1 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.73s forwards;}
+.kpi-r1 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.81s forwards;}
+.kpi-r1 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.89s forwards;}
+.kpi-r2 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.97s forwards;}
+.kpi-r2 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.05s forwards;}
+.kpi-r2 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.13s forwards;}
+.kpi-r2 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.21s forwards;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;white-space:nowrap;}
+.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue);color:#fff;}
+.eb-save{background:#fff;color:var(--navy);display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);}
+
+@media(max-width:960px){
+  .container{padding:0 16px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .funnel-grid,.chart-row,.prio-grid,.kamp-grid{grid-template-columns:1fr;}
+  .h-hero{font-size:36px;}
+  .h-section{font-size:30px;}
+  .hero,.section,.section-gray{padding:48px 0;}
+  .funnel-row{grid-template-columns:140px 1fr auto;}
+  .nav-tabs{display:none;}
+  .ii-metrics{flex-wrap:wrap;gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#funnel">Funnel</a>
+    <a class="nav-tab" href="#cltv">Lifetime Value</a>
+    <a class="nav-tab" href="#vergleich">Vergleich</a>
+    <a class="nav-tab" href="#kampagnen">Kampagnen</a>
+    <a class="nav-tab" href="#mai-push">Mai-Push</a>
+    <a class="nav-tab" href="#empfehlungen">Empfehlungen</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">Mai 2026 · Mid-Month</span></div>
+</nav>
+
+<!-- HERO -->
+<section id="uebersicht" class="hero">
+  <div class="container">
+    <div class="meta-badge">
+      <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#3a6ef4"/><text x="9" y="12.5" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#fff">M</text></svg>
+      <span>Meta Ads · Story · DACH · Mid-Month</span>
+    </div>
+
+    <h1 class="h-hero">Maloum<br><em>Mai 2026</em><br>im Detail</h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Zeitraum</span><span class="hero-meta-value">01. – 17. Mai 2026 (17 Tage)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Konto</span><span class="hero-meta-value">neolime GmbH · act_518812163474228</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Quelle</span><span class="hero-meta-value">Spend: Meta Ads API · GMV/Fans: Realized Guests CSV</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Erstellt</span><span class="hero-meta-value">19. Mai 2026</span></div>
+    </div>
+
+    <!-- KPI Row 1: Akquisitions-Core -->
+    <div class="kpi-grid kpi-r1" style="margin-top:36px;">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Spend Total</span><div class="sw"><div class="sd y"></div><span class="sl y">Skaliert</span></div></div>
+        <div class="kpi-value">13.577 €</div>
+        <div class="kpi-sub">Ø 799 €/Tag · April: 19.114 € (30d)</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Buying Fans (Backend)</span><div class="sw"><div class="sd g"></div><span class="sl g">Hochlauf</span></div></div>
+        <div class="kpi-value">321</div>
+        <div class="kpi-sub">Run-Rate Vollmonat: ~566 · April: 362</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">GMV (Backend)</span><div class="sw"><div class="sd g"></div><span class="sl g">Sehr gut</span></div></div>
+        <div class="kpi-value">23.268 €</div>
+        <div class="kpi-sub">Run-Rate ~41k € · April: 30.182 € (30d)</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">ROAS (Backend)</span><div class="sw"><div class="sd g"></div><span class="sl g">Verbessert</span></div></div>
+        <div class="kpi-value">1,71x</div>
+        <div class="kpi-sub">April: 1,58x · +8,2%</div>
+      </div>
+    </div>
+
+    <!-- KPI Row 2: Unit-Economics -->
+    <div class="kpi-grid kpi-r2" style="margin-top:14px;">
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">CPF — Cost per Fan</span><div class="sw"><div class="sd g"></div><span class="sl g">−20%</span></div></div>
+        <div class="kpi-value">42,29 €</div>
+        <div class="kpi-sub">April: 52,80 € · −10,51 € pro Fan</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">CR Guest → Fan</span><div class="sw"><div class="sd g"></div><span class="sl g">Verbessert</span></div></div>
+        <div class="kpi-value">17,68%</div>
+        <div class="kpi-sub">April: 12,80% · +4,88 pp</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ø AOV pro Fan</span><div class="sw"><div class="sd g"></div><span class="sl g">Stark</span></div></div>
+        <div class="kpi-value">72,49 €</div>
+        <div class="kpi-sub">Mix von Stella €56 bis Faye €232</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">LTV-ROAS (Ø-CLTV 200 €)</span><div class="sw"><div class="sd g"></div><span class="sl g">Hochrechnung</span></div></div>
+        <div class="kpi-value">4,73x</div>
+        <div class="kpi-sub">Lifetime-Umsatz ~64.200 € · April: 3,79x</div>
+      </div>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Kern-Einordnung · Mai Mid-Month</div>
+      <p class="insight-text">Mai läuft strukturell <strong>effizienter</strong> als April: CPF von 52,80 € auf <strong>42,29 €</strong> gefallen (−20%), ROAS von 1,58x auf 1,71x gestiegen (+8%), Guest→Fan-CR von 12,80% auf 17,68% (+4,88 pp). Hochgerechnet auf den Vollmonat kommen wir auf <strong>~566 Buying Fans bei ~41k € GMV</strong> — gegenüber April (362 Fans / 30,2k € GMV) ein klarer Sprung. <strong>Stella Solo (Purchase New April)</strong> ist mit 27,57 € CPF die effizienteste Stelle des Accounts, gefolgt von der MAL Creator Push Mai 2026 mit 43,10 €. Achtung: Personal Approach läuft auf <strong>0,98x Backend-ROAS</strong> trotz hohem Meta-Pixel-Wert — vor Skalierung klären.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section id="funnel" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal">Account-<em>Funnel</em></h2>
+    <div class="funnel-grid">
+      <div class="funnel-card reveal" id="funnelCard">
+        <div class="card-label">Conversion Funnel · 01. – 17. Mai 2026 · Backend-attribuiert</div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Impressionen</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#0f1b2d,#1e3a5f);" data-width="100%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">668.544</span><span class="tag b">Basis</span></div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Klicks</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#1e3a5f,#2d5fa0);" data-width="8.86%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">59.214</span><span class="tag b">8,86% CTR</span></div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Realized Guests</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="3.07%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">1.816</span><span class="tag y">3,07% v. Klicks</span></div>
+        </div>
+        <div class="funnel-row" style="margin-bottom:0;">
+          <div class="funnel-lbl">Buying Fans</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#16a34a,#22c55e);" data-width="17.68%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">321</span><span class="tag g">17,68% v. Guests</span></div>
+        </div>
+        <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;">
+          <div class="einordnung-lbl">Einordnung</div>
+          <p class="einordnung-text">Die Backend-CSV-Sicht zählt Realized Guests (User auf Maloum-Page via UTM) und Buying Fans (mit echtem Erstkauf-Wert). 321 Fans aus 1.816 Guests = <strong>17,68% CR</strong>, deutlich über April (12,80%). Der schwächste Schritt im Funnel bleibt <strong>Klick → Realized Guest</strong> (3,07%) — hier wird auf der Maloum-Landing das meiste Volumen verloren. Wer aber auf der Page landet, konvertiert mit 17,68% sehr stark.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card reveal">
+          <div class="card-label">Unit-Economics · 17 Tage</div>
+          <div class="side-row"><span class="side-row-lbl">Cost per Fan (CPF)</span><span class="side-row-val green">42,29 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Ø AOV pro Fan</span><span class="side-row-val">72,49 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Margin / Fan (Erstkauf)</span><span class="side-row-val green">+30,20 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">ROAS (Backend)</span><span class="side-row-val green">1,71x</span></div>
+          <div class="side-row"><span class="side-row-lbl">CR Guest → Fan</span><span class="side-row-val">17,68%</span></div>
+        </div>
+        <div class="side-card reveal" style="margin-top:12px;">
+          <div class="card-label">vs. April 2026 (30d)</div>
+          <div class="side-row"><span class="side-row-lbl">CPF April</span><span class="side-row-val">52,80 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">CPF Mai</span><span class="side-row-val green">42,29 € · −20%</span></div>
+          <div class="side-row"><span class="side-row-lbl">ROAS April</span><span class="side-row-val">1,58x</span></div>
+          <div class="side-row"><span class="side-row-lbl">ROAS Mai</span><span class="side-row-val green">1,71x · +8%</span></div>
+          <div class="side-row"><span class="side-row-lbl">Fans Run-Rate</span><span class="side-row-val green">~566 · +56%</span></div>
+        </div>
+        <div class="hint-box reveal" style="margin-top:12px;">
+          <p><strong>Backend ist die Wahrheit.</strong> Meta-Pixel zeigt 7,91x ROAS und 4.945 Purchases, weil Multi-Event-Tracking (Re-Subscriptions, Tips) zählt. Für die echte Akquisitions-Effizienz nutzen wir das Realized-Guests-CSV — 321 Buying Fans mit echtem Erstkauf-Wert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLTV / LIFETIME VALUE -->
+<section id="cltv" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Lifetime-<em>Value</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:840px;">Der First-Purchase-ROAS von 1,71x ist nur die <strong>Erstkauf-Welle</strong>. Maloums Subscription-Modell erzeugt die echte Marge über die Lifetime: Bei einem Ø-CLTV von 200 € pro Buying Fan ergeben die <strong>321 neuen Fans aus 17 Tagen einen hochgerechneten Lifetime-Umsatz</strong> — das ist die relevante Zahl für die Skalierungs-Entscheidung, nicht der Erstkauf.</p>
+
+    <div class="funnel-grid">
+      <div class="funnel-card reveal">
+        <div class="card-label">Lifetime-Hochrechnung · 321 Buying Fans · Ø-CLTV 200 €</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:8px;">
+          <div style="padding:22px;border-right:1px solid var(--border);">
+            <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);margin-bottom:8px;">Erstkauf-GMV</div>
+            <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:500;color:var(--navy);line-height:1;">23.268 €</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:6px;">1,71x ROAS · jetzt realisiert</div>
+          </div>
+          <div style="padding:22px;border-right:1px solid var(--border);background:#fafbff;">
+            <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);margin-bottom:8px;">Lifetime-Umsatz</div>
+            <div style="font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;font-weight:400;color:var(--blue);line-height:1;">64.200 €</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:6px;">321 × 200 € · projiziert</div>
+          </div>
+          <div style="padding:22px;background:#f8fff9;">
+            <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);margin-bottom:8px;">LTV-ROAS</div>
+            <div style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:500;color:var(--green);line-height:1;">4,73x</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:6px;">64.200 € / 13.577 € Spend</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;">
+          <div class="einordnung-lbl">Einordnung</div>
+          <p class="einordnung-text">Bei 42,29 € CPF und 200 € CLTV verdient Maloum pro neuem Fan <strong>+157,70 € Lifetime-Marge</strong> — also fast das 5-fache des Akquisitions-Spends über die Subscription-Tail. Der Erstkauf deckt mit 1,71x bereits die Werbekosten, alles darüber ist Profit. Hochgerechnet auf den Vollmonat (~566 Fans Run-Rate): <strong>~113.200 € Lifetime-Umsatz</strong>.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card reveal">
+          <div class="card-label">Sensitivität · CLTV-Annahme</div>
+          <div class="side-row"><span class="side-row-lbl">150 € CLTV</span><span class="side-row-val">48.150 € · 3,55x</span></div>
+          <div class="side-row"><span class="side-row-lbl">175 € CLTV</span><span class="side-row-val">56.175 € · 4,14x</span></div>
+          <div class="side-row"><span class="side-row-lbl" style="color:var(--blue);font-weight:500;">200 € CLTV</span><span class="side-row-val" style="color:var(--blue);">64.200 € · 4,73x</span></div>
+          <div class="side-row"><span class="side-row-lbl">225 € CLTV</span><span class="side-row-val">72.225 € · 5,32x</span></div>
+          <div class="side-row"><span class="side-row-lbl">250 € CLTV</span><span class="side-row-val">80.250 € · 5,91x</span></div>
+        </div>
+        <div class="hint-box reveal" style="margin-top:12px;">
+          <p><strong>CLTV-Annahme prüfen:</strong> Die 200 € sind aus dem April-Report übernommen. Jeder 25-€-Sprung im CLTV bewegt den Lifetime-Umsatz um ~8.000 € — ein präziser Cohort-Wert von Maloum würde die Hochrechnung deutlich schärfen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH MAI VS APRIL -->
+<section id="vergleich" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal">April-vs-Mai <em>Effizienz-Vergleich</em></h2>
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">Spend &amp; Buying Fans — April vs Mai Run-Rate</div>
+        <canvas id="chartSpend"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">CPF &amp; ROAS — April vs Mai</div>
+        <canvas id="chartCPF"></canvas>
+      </div>
+    </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Periode</th>
+            <th>Spend</th>
+            <th>Realized Guests</th>
+            <th>Buying Fans</th>
+            <th>GMV</th>
+            <th>ROAS</th>
+            <th>CPF</th>
+            <th>CR G→F</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>April 2026 (30 Tage)</td>
+            <td>19.114 €</td>
+            <td>2.829</td>
+            <td>362</td>
+            <td>30.182 €</td>
+            <td>1,58x</td>
+            <td>52,80 €</td>
+            <td>12,80%</td>
+          </tr>
+          <tr>
+            <td>Mai 2026 (17 Tage Stand)</td>
+            <td>13.577 €</td>
+            <td>1.816</td>
+            <td>321</td>
+            <td>23.268 €</td>
+            <td>1,71x</td>
+            <td>42,29 €</td>
+            <td>17,68%</td>
+          </tr>
+          <tr>
+            <td>Mai Run-Rate (Vollmonat)</td>
+            <td>~23.959 €</td>
+            <td>~3.205</td>
+            <td>~566</td>
+            <td>~41.061 €</td>
+            <td>1,71x</td>
+            <td>42,29 €</td>
+            <td>17,68%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- KAMPAGNEN -->
+<section id="kampagnen" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal">Kampagnen-<em>Effizienz</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:840px;">Alle Werte CSV-attribuiert: <strong>Spend</strong> aus Meta Ads API, <strong>Fans und GMV</strong> aus Realized Guests CSV (Buying Fans = Einträge mit Wert &gt; 0). ROAS = CSV-GMV / Spend, CPF = Spend / Buying Fans. Sortiert nach Spend.</p>
+
+    <div class="kamp-grid reveal">
+      <div class="kamp-card">
+        <div class="kamp-name">MAL | Creator Push | Mai 2026</div>
+        <div class="kamp-sub">Multi-Creator · 4 Adsets · Volume Leader</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">5.947 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Buying Fans</span><span class="kamp-val big">138</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV (CSV)</span><span class="kamp-val">11.492 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">ROAS</span><span class="kamp-val green big">1,93x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPF</span><span class="kamp-val">43,10 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CR Guest→Fan</span><span class="kamp-val">19,60%</span></div>
+      </div>
+      <div class="kamp-card">
+        <div class="kamp-name">Desi | Purchase New März 2026</div>
+        <div class="kamp-sub">Solo-Push · Workhorse</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">2.547 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Buying Fans</span><span class="kamp-val big">42</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV (CSV)</span><span class="kamp-val">4.004 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">ROAS</span><span class="kamp-val big">1,57x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPF</span><span class="kamp-val">60,65 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CR Guest→Fan</span><span class="kamp-val">18,92%</span></div>
+      </div>
+      <div class="kamp-card star">
+        <div class="kamp-name">Stella | Purchase New April 2026</div>
+        <div class="kamp-sub">Solo-Push · CPF-Champion ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">2.012 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Buying Fans</span><span class="kamp-val big">73</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV (CSV)</span><span class="kamp-val">3.654 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">ROAS</span><span class="kamp-val green big">1,82x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPF</span><span class="kamp-val green big">27,57 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CR Guest→Fan</span><span class="kamp-val">16,04%</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">MAL | Personal Approach</div>
+        <div class="kamp-sub">Static-Test · 2 Adsets · ROAS-Warnung</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">1.228 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Buying Fans</span><span class="kamp-val big">41</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV (CSV)</span><span class="kamp-val">1.201 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">ROAS</span><span class="kamp-val red big">0,98x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPF</span><span class="kamp-val">29,96 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CR Guest→Fan</span><span class="kamp-val">16,40%</span></div>
+      </div>
+      <div class="kamp-card">
+        <div class="kamp-name">MAL | Conv. Value Mai 2026</div>
+        <div class="kamp-sub">Optimization-Test · Höchste CR im Account</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">1.029 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Buying Fans</span><span class="kamp-val big">19</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV (CSV)</span><span class="kamp-val">1.288 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">ROAS</span><span class="kamp-val big">1,25x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPF</span><span class="kamp-val">54,14 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CR Guest→Fan</span><span class="kamp-val green big">21,59%</span></div>
+      </div>
+      <div class="kamp-card warn">
+        <div class="kamp-name">FAYE | Creator Push April 2026</div>
+        <div class="kamp-sub">Solo · Premium AOV · CPF zu hoch</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">812 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Buying Fans</span><span class="kamp-val big">7</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV (CSV)</span><span class="kamp-val">1.627 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">ROAS</span><span class="kamp-val green big">2,00x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPF</span><span class="kamp-val red big">116,07 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CR Guest→Fan</span><span class="kamp-val">7,53%</span></div>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Kampagne</th>
+            <th>Spend</th>
+            <th>Guests</th>
+            <th>Fans</th>
+            <th>GMV (CSV)</th>
+            <th>ROAS</th>
+            <th>CPF</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stella Purchase New April<span class="cell-sub">Solo · CPF-Champion</span></td>
+            <td>2.012 €</td>
+            <td>455</td>
+            <td>73</td>
+            <td>3.654 €</td>
+            <td><span class="roas-strong">1,82x</span></td>
+            <td><span class="roas-strong">27,57 €</span></td>
+            <td><span class="tag g">Star</span></td>
+          </tr>
+          <tr>
+            <td>MAL Personal Approach<span class="cell-sub">Static · Backend-Warnung</span></td>
+            <td>1.228 €</td>
+            <td>250</td>
+            <td>41</td>
+            <td>1.201 €</td>
+            <td><span class="roas-bad">0,98x</span></td>
+            <td>29,96 €</td>
+            <td><span class="tag r">Klären</span></td>
+          </tr>
+          <tr>
+            <td>MAL Creator Push Mai 2026<span class="cell-sub">Multi-Creator · Volume</span></td>
+            <td>5.947 €</td>
+            <td>704</td>
+            <td>138</td>
+            <td>11.492 €</td>
+            <td><span class="roas-strong">1,93x</span></td>
+            <td>43,10 €</td>
+            <td><span class="tag g">Skaliert</span></td>
+          </tr>
+          <tr>
+            <td>MAL Conv. Value Mai 2026<span class="cell-sub">Optimization-Test</span></td>
+            <td>1.029 €</td>
+            <td>88</td>
+            <td>19</td>
+            <td>1.288 €</td>
+            <td><span class="roas-mid">1,25x</span></td>
+            <td>54,14 €</td>
+            <td><span class="tag b">Test</span></td>
+          </tr>
+          <tr>
+            <td>Desi Purchase New März<span class="cell-sub">Solo · Workhorse</span></td>
+            <td>2.547 €</td>
+            <td>222</td>
+            <td>42</td>
+            <td>4.004 €</td>
+            <td><span class="roas-strong">1,57x</span></td>
+            <td>60,65 €</td>
+            <td><span class="tag g">Aktiv</span></td>
+          </tr>
+          <tr>
+            <td>FAYE Creator Push April<span class="cell-sub">Premium AOV · CPF teuer</span></td>
+            <td>812 €</td>
+            <td>92</td>
+            <td>7</td>
+            <td>1.627 €</td>
+            <td><span class="roas-strong">2,00x</span></td>
+            <td><span class="roas-bad">116,07 €</span></td>
+            <td><span class="tag y">Optimieren</span></td>
+          </tr>
+          <tr>
+            <td>Total · Mai 2026 (17 Tage)<span class="cell-sub">6 aktive Kampagnen</span></td>
+            <td>13.577 €</td>
+            <td>1.816</td>
+            <td>321</td>
+            <td>23.268 €</td>
+            <td><span class="roas-strong">1,71x</span></td>
+            <td><span class="roas-strong">42,29 €</span></td>
+            <td><span class="tag g">Stark</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE MCP MAI -->
+<section id="mai-push" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Deep Dive · <em>MAL Creator Push Mai 2026</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:840px;">Pro Creator-Adset aufgeschlüsselt — Spend aus Meta Ads API, Fans und GMV aus dem Realized-Guests-CSV. <strong>Emma Spice ist mit 2,51x ROAS der Effizienz-Sieger</strong>, Stella mit 2,13x das Volumen-Fundament. Terry-Adset bleibt mit 0,36x ROAS und 203 € CPF schwach — anders als der Meta-Pixel-Wert (10,84x) suggerierte.</p>
+
+    <div class="insight-list-card reveal" style="margin-bottom:24px;">
+      <div class="card-label">Adset-Performance · CSV-attribuiert</div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left">
+            <span class="ii-arrow">▸</span>
+            <span class="ii-name">Emma Spice | AS01</span>
+            <span class="tag g">ROAS-Sieger</span>
+          </div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val green">2,51x</span><span class="ii-metric-lbl">ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">74,22 €</span><span class="ii-metric-lbl">CPF</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">13</span><span class="ii-metric-lbl">Fans</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>965 € Spend · 72 Realized Guests · 13 Buying Fans · 2.420 € GMV · Ø AOV 186 €.</strong> Höchster ROAS in der MAL Creator Push, getrieben durch hohen AOV (Emmas Audience kauft im Schnitt fast 4× so teuer wie Stellas). Sample mit 13 Fans noch klein — vor Skalierung 1-2 Wochen mehr Daten sammeln, dann Spend verdoppeln.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left">
+            <span class="ii-arrow">▸</span>
+            <span class="ii-name">Stella | AS05</span>
+            <span class="tag g">Volume-Anker</span>
+          </div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val green">2,13x</span><span class="ii-metric-lbl">ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">32,57 €</span><span class="ii-metric-lbl">CPF</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">90</span><span class="ii-metric-lbl">Fans</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>2.932 € Spend · 411 Realized Guests · 90 Buying Fans · 6.253 € GMV · Ø AOV 69 €.</strong> Bringt 65% des Volumens der Mai-Push-Kampagne und einen sehr starken 32,57 € CPF — fast doppelt so effizient wie der Account-Durchschnitt (42,29 €). Audience trägt, Hooks funktionieren — kein Eingriff nötig.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left">
+            <span class="ii-arrow">▸</span>
+            <span class="ii-name">Ossi Desi | AS03</span>
+            <span class="tag g">Stabiler Mid-Tier</span>
+          </div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val">1,63x</span><span class="ii-metric-lbl">ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">49,81 €</span><span class="ii-metric-lbl">CPF</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">33</span><span class="ii-metric-lbl">Fans</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>1.644 € Spend · 214 Realized Guests · 33 Buying Fans · 2.671 € GMV · Ø AOV 81 €.</strong> Solides Mid-Tier-Adset. CPF leicht über Account-Schnitt (49,81 € vs 42,29 €), ROAS leicht darunter. Auf aktuellem Volumen weiterlaufen lassen, Spend nicht erhöhen.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left">
+            <span class="ii-arrow">▸</span>
+            <span class="ii-name">Terry | AS04</span>
+            <span class="tag r">Schwächstes Adset</span>
+          </div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val red">0,36x</span><span class="ii-metric-lbl">ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val red">203 €</span><span class="ii-metric-lbl">CPF</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">2</span><span class="ii-metric-lbl">Fans</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>407 € Spend · 6 Realized Guests · 2 Buying Fans · 148 € GMV.</strong> Trotz starkem Meta-Pixel-Output (199 Pixel-Purchases, 10,84x Pixel-ROAS) bringt das Backend nur 2 echte Buying Fans. Die Pixel-Werte werden hier durch Re-Events stark überzeichnet. <strong>Empfehlung: Adset pausieren bis Maloum die Pixel-Backend-Diskrepanz klärt.</strong></p>
+      </div>
+    </div>
+
+    <div class="hint-box red reveal" style="margin-bottom:32px;">
+      <p><strong>Achtung Personal Approach:</strong> Die Kampagne läuft mit <strong>0,98x Backend-ROAS bei 30 € CPF</strong> (1.228 € Spend / 41 Fans / 1.201 € GMV). Meta-Pixel zeigte 9,01x ROAS — die Diskrepanz von Faktor 9 ist die größte im Account. Bevor das Adset skaliert wird (war ursprüngliche Empfehlung auf Pixel-Basis), muss mit Maloum geklärt werden, was die echte Performance ist. Aktueller CSV-Stand sagt: Break-Even — kein klarer Grund für Spend-Erhöhung.</p>
+    </div>
+
+    <!-- CREATOR EFFIZIENZ -->
+    <h2 class="h-section reveal" style="font-size:28px;margin-top:48px;">Creator-<em>Effizienz</em> über alle Kampagnen</h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:840px;">Aggregiert pro Creator über alle Mai-Kampagnen (Solo Pushes + MAL Creator Push + Personal Approach + Conv. Value). Spend nach Adset-Allokation, Fans und GMV aus dem CSV. <strong>Stella ist mit 31,53 € Creator-CPF die effizienteste Creatorin im Account</strong> und trägt 53% des GMV.</p>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Creator</th>
+            <th>Spend (gesch.)</th>
+            <th>Guests</th>
+            <th>Fans</th>
+            <th>GMV (CSV)</th>
+            <th>Ø AOV</th>
+            <th>ROAS</th>
+            <th>CPF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>stella4twenty<span class="cell-sub">4 Kampagnen · Volume + Effizienz</span></td>
+            <td>7.032 €</td>
+            <td>1.193</td>
+            <td>223</td>
+            <td>12.397 €</td>
+            <td>55,59 €</td>
+            <td><span class="roas-strong">1,76x</span></td>
+            <td><span class="roas-strong">31,53 €</span></td>
+          </tr>
+          <tr>
+            <td>ossi.desii<span class="cell-sub">3 Kampagnen · Mid-Tier</span></td>
+            <td>4.360 €</td>
+            <td>450</td>
+            <td>76</td>
+            <td>6.677 €</td>
+            <td>87,85 €</td>
+            <td><span class="roas-strong">1,53x</span></td>
+            <td>57,37 €</td>
+          </tr>
+          <tr>
+            <td>emma.spice<span class="cell-sub">1 Adset · Premium AOV</span></td>
+            <td>965 €</td>
+            <td>72</td>
+            <td>13</td>
+            <td>2.420 €</td>
+            <td><span class="roas-strong">186,15 €</span></td>
+            <td><span class="roas-strong">2,51x</span></td>
+            <td>74,22 €</td>
+          </tr>
+          <tr>
+            <td>fayesxh<span class="cell-sub">1 Kampagne · Top AOV</span></td>
+            <td>812 €</td>
+            <td>93</td>
+            <td>7</td>
+            <td>1.627 €</td>
+            <td><span class="roas-strong">232,39 €</span></td>
+            <td><span class="roas-strong">2,00x</span></td>
+            <td><span class="roas-bad">116,07 €</span></td>
+          </tr>
+          <tr>
+            <td>terrysweet<span class="cell-sub">1 Adset · zu klein</span></td>
+            <td>407 €</td>
+            <td>6</td>
+            <td>2</td>
+            <td>148 €</td>
+            <td>74,17 €</td>
+            <td><span class="roas-bad">0,36x</span></td>
+            <td><span class="roas-bad">203,46 €</span></td>
+          </tr>
+          <tr>
+            <td>Total · 5 Creator<span class="cell-sub">(miawild + vanessa_liberte ohne Käufe)</span></td>
+            <td>13.577 €</td>
+            <td>1.816</td>
+            <td>321</td>
+            <td>23.268 €</td>
+            <td>72,49 €</td>
+            <td><span class="roas-strong">1,71x</span></td>
+            <td><span class="roas-strong">42,29 €</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- EMPFEHLUNGEN -->
+<section id="empfehlungen" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal"><em>Empfehlungen</em> &amp; Fazit</h2>
+    <div class="prio-grid">
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">Stella Solo Push hochziehen <span class="tag g">Skalieren</span></div></div></div>
+        <p class="prio-desc">Stella Purchase New April hat den <strong>besten CPF im Account (27,57 €)</strong> bei 1,82x ROAS und 16% CR. Aktuell läuft das Adset auf 2.012 € Spend in 17 Tagen — Run-Rate Vollmonat ~3,5k €. <strong>Spend in der zweiten Mai-Hälfte auf 4-5k €/Monat ziehen</strong>, parallel die Audience-Frequency (aktuell 1,93) beobachten. Stella ist das effizienteste Adset im Portfolio, hier ist der unmittelbare Skalierungs-Hebel.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">02</div><div><div class="prio-title-text">Personal Approach klären <span class="tag r">Kritisch</span></div></div></div>
+        <p class="prio-desc">Personal Approach läuft auf <strong>0,98x Backend-ROAS</strong> — bei 1.228 € Spend praktisch Break-Even. Meta-Pixel zeigte aber 9,01x — das ist die größte Pixel-Backend-Diskrepanz im Account. <strong>Vor Skalierungs-Entscheidung mit Maloum klären</strong>, ob (a) die Re-Käufer im Pixel nicht im Backend ankommen, (b) das Tracking-Setup für Static-Format kaputt ist oder (c) das Format echt nicht trägt. Bis dahin Spend auf aktuellem Niveau halten.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">03</div><div><div class="prio-title-text">FAYE Spend reduzieren <span class="tag y">Optimieren</span></div></div></div>
+        <p class="prio-desc">FAYE hat den <strong>höchsten CPF im Account (116 €)</strong> — bei 2,0x ROAS dank Premium AOV (232 €) noch profitabel, aber doppelt so teuer pro Fan wie der Durchschnitt. Nur 7 Buying Fans aus 93 Guests = 7,53% CR (Account-Schnitt 17,68%). <strong>Spend in zweiter Mai-Hälfte auf 500 €/Monat reduzieren</strong>, parallel Audience oder Hook-Iteration testen. Wenn CR nicht auf &gt;12% steigt, FAYE Anfang Juni pausieren.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">04</div><div><div class="prio-title-text">Conv. Value Test ausweiten <span class="tag b">Mittel</span></div></div></div>
+        <p class="prio-desc">Conv. Value Mai 2026 hat mit <strong>21,59% die höchste CR im Account</strong> bei 1,25x ROAS und 54 € CPF. Bei 1.029 € Test-Spend noch zu klein für eine endgültige Bewertung. <strong>In der zweiten Mai-Hälfte auf 60-80 €/Tag verdoppeln</strong>, parallel zur Standard-Mai-Iteration laufen lassen. Wenn die CR über 18% bleibt und CPF unter 55 €, ist Value-Optimization der Default für Q3.</p>
+      </div>
+    </div>
+    <div class="fazit-card reveal">
+      <div class="card-label">Fazit · Mai 2026 · Mid-Month (Stand 17.05.)</div>
+      <div class="fazit-heading"><span>CPF um 20% gefallen</span>, ROAS 1,71x, LTV-ROAS 4,73x, Run-Rate ~566 Fans.</div>
+      <p class="fazit-text">Die erste Mai-Hälfte ist klar der effizienteste Monat seit Start: bei <strong>13.577 € Spend und 321 Buying Fans</strong> ergeben sich <strong>42,29 € CPF, 1,71x First-Purchase-ROAS und 17,68% Guest→Fan-CR</strong>. Gegenüber April (52,80 € CPF, 1,58x ROAS, 12,80% CR) ist das eine 20-prozentige Effizienz-Verbesserung im CPF und eine 8-prozentige Steigerung im ROAS bei gleichzeitig 4,88pp besserer Konversion.<br><br>Über die Lifetime gerechnet trägt die echte Marge: bei einem Ø-CLTV von 200 € liefern die 321 Fans einen <strong>hochgerechneten Lifetime-Umsatz von ~64.200 € — ein LTV-ROAS von 4,73x</strong> (April: 3,79x). Pro Fan bleibt nach Akquisitionskosten eine Lifetime-Marge von +157,70 €. Hochgerechnet auf den Vollmonat: ~566 Fans bei ~113.200 € Lifetime-Umsatz.<br><br>Die wichtigste operative Erkenntnis: <strong>Stella Solo Push (Purchase New April) ist die effizienteste Stelle im Account</strong> mit 27,57 € CPF — fast halb so teuer wie der Account-Durchschnitt. Das ist der primäre Skalierungs-Hebel. Über alle Kampagnen trägt Stella als Creator mit 31,53 € Creator-CPF 53% des Mai-GMV.<br><br>Drei kritische offene Punkte vor weiterer Skalierung: (1) <strong>Personal Approach läuft auf 0,98x Backend-ROAS</strong> bei 9,01x Meta-Pixel-ROAS — die Diskrepanz muss mit Maloum geklärt werden, bevor dort weiter investiert wird. (2) <strong>FAYE</strong> ist mit 116 € CPF zu teuer für das CR-Niveau (7,53%) — Optimierung oder Spend-Reduktion. (3) <strong>Conv. Value</strong> verdient mehr Test-Volumen — die 21,59% CR ist die höchste im Account und könnte der Q3-Default werden, wenn die Werte stabil bleiben.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <footer class="footer">
+    <span class="footer-brand">Skael <span>Reports</span></span>
+    <span class="footer-date">Erstellt am 19. Mai 2026 · Stand 17.05.2026</span>
+  </footer>
+</div>
+
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+
+const labels = ['April 2026 (30d)', 'Mai 17d', 'Mai Run-Rate'];
+
+new Chart(document.getElementById('chartSpend'), {
+  data: {
+    labels: labels,
+    datasets: [
+      { type:'bar', label:'Spend €', data:[19114, 13577, 23959], backgroundColor:labels.map((_,i)=>i===2?'#3a6ef4':i===1?'#5b89f7':'rgba(58,110,244,0.2)'), borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Buying Fans', data:[362, 321, 566], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#22c55e', pointRadius:5, tension:0.3, yAxisID:'y2' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v}} } }
+});
+
+new Chart(document.getElementById('chartCPF'), {
+  data: {
+    labels: ['April 2026', 'Mai 2026'],
+    datasets: [
+      { type:'bar', label:'CPF €', data:[52.80, 42.29], backgroundColor:['rgba(58,110,244,0.3)','#3a6ef4'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'ROAS', data:[1.58, 1.71], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, yAxisID:'y2' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>v.toFixed(0)+' €'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+});
+
+const ro = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+const fo = new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.funnel-fill').forEach((f,i)=>setTimeout(()=>{f.style.width=f.dataset.width;},i*130));fo.disconnect();}},{threshold:0.2});
+fo.observe(document.getElementById('funnelCard'));
+
+document.querySelectorAll('.nav-tab').forEach(tab=>{tab.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+document.querySelectorAll('section[id]').forEach(s=>{new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.nav-tab[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:0.3}).observe(s);});
+
+const ES=['.h-hero','.h-hero em','.meta-badge span','.hero-meta-value','.hero-meta-label','.nav-pill','.kpi-label','.kpi-value','.kpi-sub','.sl','.insight-text','.card-label','.h-section','.h-section em','.funnel-lbl','.funnel-val','.tag','.einordnung-lbl','.einordnung-text','.side-row-lbl','.side-row-val','.hint-box p','.kamp-name','.kamp-sub','.kamp-lbl','.kamp-val','tbody td','thead th','.ii-name','.ii-desc','.ii-metric-val','.ii-metric-lbl','.prio-title-text','.prio-desc','.fazit-heading','.fazit-text','.footer-brand','.footer-date'].join(',');
+let editing=false;
+function toggleEdit(){editing=!editing;const btn=document.getElementById('ebEdit'),save=document.getElementById('ebSave');if(editing){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';}}
+function downloadHTML(){const bar=document.getElementById('editBar'),was=editing;document.body.classList.remove('editing');document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));bar.style.display='none';const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;bar.style.display='';if(was){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));}try{const enc=new TextEncoder(),bytes=enc.encode(html),blob=new Blob([bytes],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Maloum-Mai-2026.html';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){alert('Download fehlgeschlagen.');}}
+</script>
+
+</body>
+</html>
