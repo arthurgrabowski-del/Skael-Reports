@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="de"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — NXT YOU April 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:image" content="https://reports.skael.de/www.skael.de-favicon-large.ico">
+<meta property="og:title" content="Skael Report — NXT YOU April 2026">
+<meta property="og:description" content="Google Ads Performance Report">
+<meta property="og:url" content="https://reports.skael.de/NXTYOU-Apr-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+/* LAYOUT */
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.hero{padding:72px 0 64px;scroll-margin-top:58px;}
+.section{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+.section-gray{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+
+/* TYPOGRAPHY */
+.h-hero{font-family:'Poppins',sans-serif;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:42px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:32px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:12px;}
+
+/* GOOGLE BADGE */
+.google-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px 7px 10px;margin-bottom:24px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.google-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+
+/* HERO META */
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform 0.2s,box-shadow 0.2s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,0.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}
+.sl.y{color:var(--yellow);}
+.sl.r{color:var(--red);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+/* INSIGHT */
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:20px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+
+/* FUNNEL */
+.funnel-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.funnel-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.funnel-row{display:grid;grid-template-columns:170px 1fr auto;align-items:center;gap:14px;margin-bottom:16px;}
+.funnel-lbl{font-size:13px;font-weight:500;color:var(--navy);}
+.funnel-track{height:38px;background:#f3f5f9;border-radius:6px;overflow:hidden;}
+.funnel-fill{height:100%;width:0;border-radius:6px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.funnel-right{display:flex;align-items:center;gap:8px;min-width:140px;justify-content:flex-end;}
+.funnel-val{font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+.einordnung-lbl{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:6px;}
+.einordnung-text{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* SIDE */
+.side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.side-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.side-row:last-child{border-bottom:none;}
+.side-row-lbl{font-size:12px;color:var(--muted);}
+.side-row-val{font-size:13px;font-weight:500;color:var(--navy);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+
+/* KAMPAGNEN */
+.kamp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.kamp-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+.kamp-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:12px;}
+.kamp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);}
+.kamp-row:last-child{border-bottom:none;}
+.kamp-lbl{font-size:11.5px;color:var(--muted);}
+.kamp-val{font-size:12px;font-weight:500;color:var(--navy);}
+
+/* CHARTS */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 24px 20px;}
+.chart-card canvas{max-height:220px;}
+
+/* TABLE */
+.table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:12px 16px;text-align:right;border-bottom:1px solid var(--border);}
+thead th:first-child{text-align:left;}
+tbody td{font-size:13px;color:var(--body);padding:11px 16px;border-bottom:1px solid var(--border);text-align:right;}
+tbody td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+tbody tr:last-child td{border-bottom:none;background:#f0f4ff;}
+tbody tr:hover td{background:#f8f9ff;}
+
+/* LEADS TABLE */
+.leads-table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.leads-table-wrap table thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);}
+.leads-table-wrap table tbody td{font-size:12.5px;color:var(--body);padding:10px 16px;border-bottom:1px solid var(--border);text-align:left;font-weight:400;}
+.leads-table-wrap table tbody td:first-child{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);white-space:nowrap;}
+.leads-table-wrap table tbody tr:last-child td{border-bottom:none;}
+.leads-table-wrap table tbody tr:hover td{background:#f8f9ff;}
+.lead-name{font-weight:500;color:var(--navy);}
+.pipeline-summary{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:13px;color:var(--blue);line-height:1.7;}
+
+/* AUCTION */
+.auction-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.auction-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.auction-metric{padding:16px 0;border-bottom:1px solid var(--border);}
+.auction-metric:last-child{border-bottom:none;padding-bottom:0;}
+.auction-metric:first-child{padding-top:0;}
+.auction-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.auction-name{font-size:13px;font-weight:500;color:var(--navy);}
+.auction-vals{display:flex;align-items:center;gap:10px;}
+.auction-val{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+.auction-val span{font-weight:500;color:var(--navy);}
+.abar-group{display:flex;flex-direction:column;gap:6px;}
+.abar-row{display:grid;grid-template-columns:28px 1fr;align-items:center;gap:8px;}
+.abar-row-lbl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.06em;color:var(--sub);}
+.abar-track{height:8px;background:#e9ecf0;border-radius:3px;overflow:hidden;}
+.abar-feb{height:100%;background:#94a3b8;border-radius:3px;width:0;transition:width 0.9s cubic-bezier(.4,0,.2,1);}
+.abar-fill{height:100%;border-radius:3px;width:0;transition:width 0.9s cubic-bezier(.4,0,.2,1) 0.15s;}
+.abar-fill.g{background:var(--green-dot);}
+.abar-fill.y{background:var(--yellow-dot);}
+.abar-fill.r{background:var(--red-dot);}
+
+/* INSIGHT ITEMS */
+.ii{padding:14px 0;border-bottom:1px solid var(--border);}
+.ii:last-child{border-bottom:none;padding-bottom:0;}
+.ii:first-child{padding-top:0;}
+.ii-hdr{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.ii-arrow{color:var(--blue);font-size:14px;font-weight:700;}
+.ii-name{font-size:13px;font-weight:500;color:var(--navy);}
+.ii-desc{font-size:12px;color:var(--muted);line-height:1.55;padding-left:20px;}
+
+/* EMPFEHLUNGEN */
+.prio-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.prio-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 26px;transition:transform 0.2s,box-shadow 0.2s;}
+.prio-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.prio-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px;}
+.prio-num{font-family:'Poppins',sans-serif;font-size:32px;font-weight:500;line-height:1;color:var(--blue);}
+.prio-title-text{font-size:14px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.4;}
+.prio-desc{font-size:13px;color:var(--body);line-height:1.65;}
+
+/* FAZIT */
+.fazit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 36px;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:22px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-text{font-size:14px;color:var(--body);line-height:1.75;}
+
+/* FOOTER */
+.footer{padding:32px 0 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);}
+
+/* AB TEST */
+.ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
+.ab-variant-card{border-radius:12px;overflow:hidden;border:2px solid var(--border);}
+.ab-variant-card.control{border-color:#ef4444;}
+.ab-variant-card.winner{border-color:#22c55e;}
+.ab-variant-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;}
+.ab-variant-card.control .ab-variant-header{background:#fee2e2;}
+.ab-variant-card.winner .ab-variant-header{background:#dcfce7;}
+.ab-variant-badge{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;}
+.ab-variant-card.control .ab-variant-badge{background:#ef4444;color:#fff;}
+.ab-variant-card.winner .ab-variant-badge{background:#22c55e;color:#fff;}
+.ab-variant-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
+.ab-variant-card.winner .ab-lift{font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#16a34a;}
+.ab-preview{width:100%;height:220px;background:#0f1b2d;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.ab-preview-inner{width:90%;background:#1a2740;border-radius:8px;padding:20px 22px;color:#fff;}
+.ab-preview-eyebrow{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:#94a3b8;margin-bottom:8px;}
+.ab-preview-headline{font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;line-height:1.25;color:#fff;margin-bottom:10px;}
+.ab-preview-headline em{font-family:'Instrument Serif',serif;font-style:italic;color:#3a6ef4;}
+.ab-preview-sub{font-size:11px;color:#94a3b8;line-height:1.5;margin-bottom:14px;}
+.ab-preview-cta{display:inline-block;font-size:11px;font-weight:500;padding:6px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.2);color:#fff;}
+.ab-variant-card.winner .ab-preview-cta{background:rgba(58,110,244,0.3);border-color:rgba(58,110,244,0.5);}
+.ab-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--border);}
+.ab-stat{padding:14px 16px;border-right:1px solid var(--border);background:var(--white);}
+.ab-stat:last-child{border-right:none;}
+.ab-stat-label{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);margin-bottom:4px;}
+.ab-stat-val{font-family:'Poppins',sans-serif;font-size:18px;font-weight:500;color:var(--navy);}
+.ab-stat-val.green{color:var(--green);}
+.ab-metrics-card{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.ab-metrics-header{display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:0;background:#f8f9fc;border-bottom:1px solid var(--border);padding:10px 16px;}
+.ab-metrics-header span{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.ab-metrics-row{display:grid;grid-template-columns:200px 1fr 1fr 1fr;gap:0;padding:12px 16px;border-bottom:1px solid var(--border);align-items:center;}
+.ab-metrics-row:last-child{border-bottom:none;}
+.ab-metrics-row:hover{background:#f8f9fc;}
+.ab-metric-name{font-size:13px;font-weight:500;color:var(--navy);}
+.ab-metric-val{font-size:13px;color:var(--body);}
+.ab-metric-change{font-size:13px;font-weight:500;}
+.ab-metric-change.pos{color:var(--green);}
+.ab-metric-change.neg-good{color:var(--green);}
+.ab-result-box{margin-top:16px;background:var(--green-bg);border:1px solid #86efac;border-radius:10px;padding:18px 22px;display:flex;align-items:flex-start;gap:14px;}
+.ab-result-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
+.ab-result-text{font-size:13.5px;color:#14532d;line-height:1.7;}
+.ab-result-text strong{color:#14532d;}
+
+/* QUALIFIER BEFORE/AFTER */
+.qualifier-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px;}
+.qualifier-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.qualifier-card.after{border-color:#22c55e;background:#f0fdf4;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.h-hero{opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+.kpi-r1 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.65s forwards;}
+.kpi-r1 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.73s forwards;}
+.kpi-r1 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.81s forwards;}
+.kpi-r1 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.89s forwards;}
+.kpi-r2 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.97s forwards;}
+.kpi-r2 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.05s forwards;}
+.kpi-r2 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.13s forwards;}
+.kpi-r2 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.21s forwards;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* EDIT BAR */
+.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;white-space:nowrap;}
+.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue);color:#fff;}
+.eb-save{background:#fff;color:var(--navy);display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .container{padding:0 16px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .funnel-grid,.chart-row,.auction-grid,.prio-grid,.kamp-grid{grid-template-columns:1fr;}
+  .h-hero{font-size:36px;}
+  .h-section{font-size:30px;}
+  .hero,.section,.section-gray{padding:48px 0;}
+  .funnel-row{grid-template-columns:120px 1fr auto;}
+}
+</style>
+</head>
+<body id="artifacts-component-root-html">
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#funnel">Funnel</a>
+    <a class="nav-tab" href="#vergleich">Vergleich</a>
+    <a class="nav-tab" href="#leads">Leads</a>
+    <a class="nav-tab" href="#empfehlungen">Empfehlungen</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">April 2026</span></div>
+</nav>
+
+<!-- HERO -->
+<section id="uebersicht" class="hero">
+  <div class="container">
+    <div class="google-badge">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"></path><path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"></path><path d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"></path><path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"></path></svg>
+      <span>Google Ads · Search</span>
+    </div>
+
+    <h1 class="h-hero">NXT YOU<br><em>April 2026</em><br>im Detail</h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Zeitraum</span><span class="hero-meta-value">01. – 30. April 2026</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Kampagnen</span><span class="hero-meta-value">Whitelabel-DE-Exact + Prospecting</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Tagesbudget</span><span class="hero-meta-value">€325 (€200 + €125)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Erstellt</span><span class="hero-meta-value">10. Juni 2026</span></div>
+    </div>
+
+    <div class="kpi-grid kpi-r1" style="margin-top:36px;">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Impressionen</span><div class="sw"><div class="sd r"></div><span class="sl r">Gesperrt</span></div></div>
+        <div class="kpi-value">7.537</div>
+        <div class="kpi-sub">Mrz: 26.577 · −71,6%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Klicks</span><div class="sw"><div class="sd r"></div><span class="sl r">Rückläufig</span></div></div>
+        <div class="kpi-value">369</div>
+        <div class="kpi-sub">Mrz: 1.098 · −66,4%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">CTR</span><div class="sw"><div class="sd g"></div><span class="sl g">Sehr gut</span></div></div>
+        <div class="kpi-value">4,90%</div>
+        <div class="kpi-sub">Mrz: 4,13% · +0,77 pp</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ausgaben</span><div class="sw"><div class="sd y"></div><span class="sl y">Reduziert</span></div></div>
+        <div class="kpi-value">2.600 €</div>
+        <div class="kpi-sub">Mrz: 7.636 € · −66,0%</div>
+      </div>
+    </div>
+
+    <div class="kpi-grid kpi-r2" style="margin-top:14px;">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">CRM-Leads</span><div class="sw"><div class="sd r"></div><span class="sl r">Rückläufig</span></div></div>
+        <div class="kpi-value">9</div>
+        <div class="kpi-sub">Mrz: 26 · −65,4%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Conv. Rate</span><div class="sw"><div class="sd g"></div><span class="sl g">Stabil</span></div></div>
+        <div class="kpi-value">2,44%</div>
+        <div class="kpi-sub">Mrz: 2,37% · +0,07 pp</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ø CPC</span><div class="sw"><div class="sd y"></div><span class="sl y">Stabil</span></div></div>
+        <div class="kpi-value">7,05 €</div>
+        <div class="kpi-sub">Mrz: 6,95 € · +1,4%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">CPL</span><div class="sw"><div class="sd g"></div><span class="sl g">Stabil</span></div></div>
+        <div class="kpi-value">288,85 €</div>
+        <div class="kpi-sub">Mrz: 293,68 € · −1,6%</div>
+      </div>
+    </div>
+
+    <div class="insight-card" style="margin-top:20px;">
+      <div class="card-label">Kern-Einordnung · April 2026</div>
+      <p class="insight-text">April war ein Ausnahmemonat: Mitte des Monats wurde unser Werbekonto nach einem <strong>Hack-Vorfall gesperrt</strong> — über weite Strecken konnten keine Anzeigen ausgespielt werden. Entsprechend brach das Volumen ein, <strong>7.537 Impressionen und 369 Klicks</strong> (−72% bzw. −66% vs. März). Bemerkenswert ist, dass die Effizienz trotzdem stabil blieb: Der CPL liegt mit 288,85 € sogar leicht unter März, die Conv. Rate mit 2,44% leicht darüber. Whitelabel-DE-Exact kam mit nur 32 Klicks praktisch zum Erliegen (0 Leads) — das wenige Volumen lief über Prospecting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section id="funnel" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal">Funnel-<em>Analyse</em></h2>
+    <div class="funnel-grid">
+      <div class="funnel-card reveal" id="funnelCard">
+        <div class="card-label">Conversion Funnel · April 2026</div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Impressionen</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(15, 27, 45), rgb(30, 58, 95));" data-width="100%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">7.537</span><span class="tag b">Basis</span></div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Klicks → LP</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(30, 58, 95), rgb(45, 95, 160));" data-width="4.90%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">369</span><span class="tag b">4,90% CTR</span></div>
+        </div>
+        <div class="funnel-row" style="margin-bottom:0;">
+          <div class="funnel-lbl">Klick → Lead</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background: linear-gradient(90deg, rgb(22, 163, 74), rgb(34, 197, 94));" data-width="2.44%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">9</span><span class="tag g">2,44%</span></div>
+        </div>
+        <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;">
+          <div class="einordnung-lbl">Einordnung</div>
+          <p class="einordnung-text">Der Volumen-Einbruch ist kein Funnel-Problem, sondern Folge der Konto-Sperre. Die Conversion-Logik blieb intakt: aus 369 Klicks wurden 9 Leads (2,44%) — auf März-Niveau. Sobald wieder voll ausgespielt wird, greift der Funnel wie zuvor.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card reveal">
+          <div class="card-label">Konto-Status · April 2026</div>
+          <div class="side-row"><span class="side-row-lbl">Vorfall</span><span class="side-row-val">Hack / Sperre</span></div>
+          <div class="side-row"><span class="side-row-lbl">Ausspielung</span><span class="side-row-val">Zeitweise gestoppt</span></div>
+          <div class="side-row"><span class="side-row-lbl">Exact</span><span class="side-row-val">Quasi inaktiv</span></div>
+          <div class="side-row"><span class="side-row-lbl">Spend vs. März</span><span class="side-row-val">−66,0%</span></div>
+        </div>
+        <div class="side-card reveal" style="margin-top:12px;">
+          <div class="card-label">Kosten-Analyse</div>
+          <div class="side-row"><span class="side-row-lbl">Gesamtausgaben</span><span class="side-row-val">2.599,65 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Ø CPC</span><span class="side-row-val">7,05 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">CPL (CRM-Leads)</span><span class="side-row-val">288,85 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">CPL (Prospecting)</span><span class="side-row-val">239,29 €</span></div>
+        </div>
+        <div class="hint-box reveal" style="margin-top:12px;">
+          <p>Trotz Konto-Sperre blieb der CPL mit 288,85 € nahezu auf März-Niveau. Mit der Reaktivierung des Kontos kommt das Volumen ab Mai zurück — der Mai liegt bereits wieder bei €5.531 Spend und 20 Leads.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- KAMPAGNEN -->
+    <h2 class="h-section reveal" style="margin-top:56px;">Kampagnen-<em>Vergleich</em></h2>
+    <div class="kamp-grid reveal">
+      <div class="kamp-card">
+        <div class="kamp-name">Whitelabel-DE-Exact</div>
+        <div class="kamp-row"><span class="kamp-lbl">Ausgaben</span><span class="kamp-val">446,06 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Klicks / CTR</span><span class="kamp-val">32 / 5,80%</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPC</span><span class="kamp-val">13,94 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Conversions</span><span class="kamp-val">0</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Conv. Rate</span><span class="kamp-val">0,00%</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPL</span><span class="kamp-val">—</span></div>
+      </div>
+      <div class="kamp-card">
+        <div class="kamp-name">Whitelabel-DE-Prospecting</div>
+        <div class="kamp-row"><span class="kamp-lbl">Ausgaben</span><span class="kamp-val">2.153,60 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Klicks / CTR</span><span class="kamp-val">337 / 4,82%</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPC</span><span class="kamp-val">6,39 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Conversions</span><span class="kamp-val">9</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Conv. Rate</span><span class="kamp-val">2,67%</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CPL</span><span class="kamp-val">239,29 €</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH -->
+<section id="vergleich" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Monats-<em>Vergleich</em></h2>
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">CTR &amp; Ø CPC — Jan bis Apr 2026</div>
+        <canvas id="chartCTR" height="220"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Leads &amp; CPL — Jan bis Apr 2026</div>
+        <canvas id="chartLeads" height="220"></canvas>
+      </div>
+    </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Monat</th><th>Impressionen</th><th>Klicks</th><th>CTR</th><th>Ø CPC</th><th>Leads</th><th>CPL</th><th>Ausgaben</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Januar 2026</td><td>18.210</td><td>791</td><td>4,34%</td><td>7,13 €</td><td>16</td><td>352,69 €</td><td>5.642,96 €</td></tr>
+          <tr><td>Februar 2026</td><td>25.824</td><td>992</td><td>3,84%</td><td>6,41 €</td><td>19</td><td>334,64 €</td><td>6.358,16 €</td></tr>
+          <tr><td>März 2026</td><td>26.577</td><td>1.098</td><td>4,13%</td><td>6,95 €</td><td>26</td><td>293,68 €</td><td>7.635,75 €</td></tr>
+          <tr style="background:#f0f4ff;"><td>April 2026</td><td>7.537</td><td>369</td><td>4,90%</td><td>7,05 €</td><td>9</td><td>288,85 €</td><td>2.599,65 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- LEADS -->
+<section id="leads" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Lead-<em>Übersicht</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:28px;max-width:760px;">Im April kamen <strong>9 Leads über den App-Funnel</strong> (Google Ads) — überwiegend mit niedriger Qualität (Fake / SPAST / Ghosted). Die werthaltigen April-Deals (O2O-Projekt und „lexalo" je €6.400, Praxis-/Behörden-Apps) liefen über Inbound-Mail und Website-Formular, also außerhalb der bezahlten Kampagnen.</p>
+    <div class="leads-table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Datum</th><th>Name / Projekt</th><th>Kanal</th><th>Score</th><th>Preis</th><th>Status</th><th>Nächster Schritt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>28. Apr</td><td class="lead-name">{APP} Affiliate PROJECT (like Vetain) – Maximilian Schn.</td><td>Inbound-Mail</td><td>18</td><td>—</td><td><span class="tag r">Verloren</span></td><td>Budget</td></tr>
+          <tr><td>23. Apr</td><td class="lead-name">{APP} O2O PROJECT – Hannes Müller</td><td>Inbound-Mail</td><td>25</td><td>€6.400</td><td><span class="tag y">Verbal Commitment</span></td><td>Closing</td></tr>
+          <tr><td>23. Apr</td><td class="lead-name">{APP} „lexalo" Marktplatz für Expertentermine – Christia.</td><td>Website Formular</td><td>—</td><td>€6.400</td><td><span class="tag y">Proposal</span></td><td>Scoping</td></tr>
+          <tr><td>16. Apr</td><td class="lead-name">{APP} BIP APP (Regierung) – Aleksandar Kasterovic</td><td>Website Formular</td><td>—</td><td>—</td><td><span class="tag y">Qualified</span></td><td>Scoping</td></tr>
+          <tr><td>12. Apr</td><td class="lead-name">{APP} XXX – Kofi Obeng</td><td>App-Funnel</td><td>1</td><td>—</td><td><span class="tag r">Verloren</span></td><td>SPAST</td></tr>
+          <tr><td>12. Apr</td><td class="lead-name">{APP} XXX – Michael</td><td>App-Funnel</td><td>—</td><td>—</td><td><span class="tag b">Follow Up</span></td><td>1. Follow-Up Mail</td></tr>
+          <tr><td>10. Apr</td><td class="lead-name">{APP} Stundenplan Schule – Daniel Simonov</td><td>App-Funnel</td><td>—</td><td>—</td><td><span class="tag b">Follow Up</span></td><td>1. Follow-Up Mail</td></tr>
+          <tr><td>09. Apr</td><td class="lead-name">{APP} XXX – rogert</td><td>App-Funnel</td><td>1</td><td>—</td><td><span class="tag r">Verloren</span></td><td>SPAST</td></tr>
+          <tr><td>09. Apr</td><td class="lead-name">{APP} „Whatsapp Clone" – Elias Sehlenschweif</td><td>App-Funnel</td><td>—</td><td>—</td><td><span class="tag r">Verloren</span></td><td>Fake</td></tr>
+          <tr><td>06. Apr</td><td class="lead-name">{APP} XXX – feras</td><td>App-Funnel</td><td>1</td><td>—</td><td><span class="tag r">Verloren</span></td><td>Fake</td></tr>
+          <tr><td>06. Apr</td><td class="lead-name">{APP} XXX – About</td><td>App-Funnel</td><td>1</td><td>—</td><td><span class="tag r">Verloren</span></td><td>Fake</td></tr>
+          <tr><td>05. Apr</td><td class="lead-name">{APP} XXX – David</td><td>App-Funnel</td><td>5</td><td>—</td><td><span class="tag b">Follow Up</span></td><td>Entfernen</td></tr>
+          <tr><td>02. Apr</td><td class="lead-name">{APP} „Study Buddy" – Lilly Jungwirth</td><td>App-Funnel</td><td>—</td><td>—</td><td><span class="tag r">Verloren</span></td><td>Ghosted</td></tr>
+          <tr><td>01. Apr</td><td class="lead-name">{APP} „askster" EXPERTEN APP – Jan Hermann</td><td>App-Funnel</td><td>—</td><td>€100.000</td><td><span class="tag b">New Lead</span></td><td>Entfernen</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- EMPFEHLUNGEN -->
+<section id="empfehlungen" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal"><em>Empfehlungen</em> &amp; Fazit</h2>
+    <div class="prio-grid">
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">Konto reaktiviert &amp; abgesichert <span class="tag g">Erledigt</span></div></div></div>
+        <p class="prio-desc">Nach dem Hack-Vorfall wurde das Werbekonto Mitte April gesperrt. Das Konto ist inzwischen wieder freigegeben und abgesichert (Zugriffe geprüft, 2FA aktiv). Ab Mai läuft die Ausspielung wieder regulär — das ist die Grundlage für die Erholung.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">02</div><div><div class="prio-title-text">Prospecting zurück auf Vollbudget <span class="tag y">Mai</span></div></div></div>
+        <p class="prio-desc">Prospecting war selbst während der Sperre durchgehend „Limited by budget" (€125/Tag). Sobald das Konto stabil läuft, das Budget schrittweise zurück Richtung März-Niveau (€360/Tag) hochfahren — die Effizienz (CPL 239,29 €) trägt die Skalierung.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">03</div><div><div class="prio-title-text">Exact wiederbeleben <span class="tag y">Mai</span></div></div></div>
+        <p class="prio-desc">Exact kam im April auf nur 32 Klicks und 0 Leads — Status „Limited by search volume". Gebote und Keywords prüfen, ob die Sperre die Auslieferung zusätzlich gedrosselt hat. Ziel: zurück auf das März-Niveau von ~150 Klicks.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">04</div><div><div class="prio-title-text">Lead-Qualität App-Funnel <span class="tag b">Optional</span></div></div></div>
+        <p class="prio-desc">Von 9 App-Funnel-Leads waren die meisten Fake / SPAST / Ghosted. Die wertvollen Deals kamen über Inbound &amp; Website. Qualifier-Fragen im App-Funnel verschärfen, um den Anteil unbrauchbarer Leads zu senken.</p>
+      </div>
+    </div>
+    <div class="fazit-card reveal">
+      <div class="card-label">Fazit · April 2026</div>
+      <div class="fazit-heading">Ausnahmemonat durch Konto-Sperre — <span>Effizienz blieb stabil</span></div>
+      <p class="fazit-text">April 2026 war durch den Hack-Vorfall und die anschließende Konto-Sperre ein klarer Ausnahmemonat. Das Volumen brach ein: <strong>7.537 Impressionen, 369 Klicks und 9 Leads</strong> — rund zwei Drittel unter März. Das ist aber keine Performance-Schwäche, sondern Folge der zeitweisen Sperre. Wichtig: Die Effizienz blieb intakt — der <strong>CPL lag mit 288,85 € sogar leicht unter März</strong> (293,68 €), die Conv. Rate mit 2,44% leicht darüber.<br><br>Das Konto ist inzwischen wieder frei. Der Mai zeigt mit €5.531 Spend und 20 Leads bereits eine deutliche Erholung. April ist damit als Sondereffekt zu lesen, nicht als Trendbruch.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <footer class="footer">
+    <span class="footer-brand">Skael <span>Reports</span></span>
+    <span class="footer-date">Erstellt am 10. Juni 2026</span>
+  </footer>
+</div>
+
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+
+const months = ['Jan 26','Feb 26','Mrz 26','Apr 26'];
+const hl = i => i===3 ? '#3a6ef4' : 'rgba(58,110,244,0.2)';
+
+new Chart(document.getElementById('chartCTR'), {
+  data: { labels: months, datasets: [
+    { type:'bar', label:'CTR %', data:[4.34,3.84,4.13,4.90], backgroundColor:months.map((_,i)=>hl(i)), borderRadius:5, yAxisID:'y' },
+    { type:'line', label:'Ø CPC €', data:[7.13,6.41,6.95,7.05], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#22c55e', pointRadius:5, tension:0.3, yAxisID:'y2' }
+  ]},
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>v+'%'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v.toFixed(2)+' €'}} } }
+});
+
+new Chart(document.getElementById('chartLeads'), {
+  data: { labels: months, datasets: [
+    { type:'bar', label:'Leads', data:[16,19,26,9], backgroundColor:months.map((_,i)=>hl(i)), borderRadius:5, yAxisID:'y' },
+    { type:'line', label:'CPL €', data:[352.69,334.64,293.68,288.85], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#22c55e', pointRadius:5, tension:0.3, yAxisID:'y2' }
+  ]},
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v.toFixed(0)+' €'}} } }
+});
+
+const ro = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+const fo = new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.funnel-fill').forEach((f,i)=>setTimeout(()=>{f.style.width=f.dataset.width;},i*130));fo.disconnect();}},{threshold:0.2});
+fo.observe(document.getElementById('funnelCard'));
+
+document.querySelectorAll('.nav-tab').forEach(tab=>{tab.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+document.querySelectorAll('section[id]').forEach(s=>{new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.nav-tab[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:0.3}).observe(s);});
+
+const ES=['.h-hero','.h-hero em','.google-badge span','.hero-meta-value','.hero-meta-label','.nav-pill','.kpi-label','.kpi-value','.kpi-sub','.sl','.insight-text','.card-label','.h-section','.h-section em','.funnel-lbl','.funnel-val','.tag','.einordnung-lbl','.einordnung-text','.side-row-lbl','.side-row-val','.hint-box p','.chart-card .card-label','tbody td','thead th','.prio-title-text','.prio-desc','.fazit-heading','.fazit-text','.footer-brand','.footer-date','.kamp-name','.kamp-lbl','.kamp-val','.lead-name'].join(',');
+let editing=false;
+function toggleEdit(){editing=!editing;const btn=document.getElementById('ebEdit'),save=document.getElementById('ebSave');if(editing){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';}}
+function downloadHTML(){const bar=document.getElementById('editBar'),was=editing;document.body.classList.remove('editing');document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));bar.style.display='none';const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;bar.style.display='';if(was){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));}try{const enc=new TextEncoder(),bytes=enc.encode(html),blob=new Blob([bytes],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='NXTYOU-Apr-2026.html';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){alert('Download fehlgeschlagen.');}}
+</script>
+
+</body></html>
