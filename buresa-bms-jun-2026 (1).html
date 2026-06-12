@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SEO & Google Ads Wettbewerbsreport – buresa.de vs. bms-koehler.de</title>
+<link rel="icon" href="https://favicon.im/www.skael.de">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Poppins:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;
+  --card:#ffffff;
+  --card-alt:#eff3fa;
+  --navy:#0a1628;
+  --orange:#3b5ba8;
+  --orange-light:#ebf0f8;
+  --sky:#9ab1d9;
+  --sky-soft:#d4deef;
+  --border:#e0e6f0;
+  --muted:#6b7589;
+  --body:#333b4d;
+  --good-dot:#2ecc71; --good-text:#236b4a; --good-bg:#e6f4ed;
+  --mid-dot:#f0a500;  --mid-text:#9a6e18;  --mid-bg:#fdf2d8;
+  --bad-dot:#e53935;  --bad-text:#b83030;  --bad-bg:#fdeaea;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--body);line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+
+/* ───── NAV ───── */
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 32px;height:60px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.nav-brand{display:flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);font-weight:500;white-space:nowrap}
+.nav-dot{width:8px;height:8px;border-radius:99px;background:var(--orange)}
+.nav-tabs{display:flex;gap:4px;overflow-x:auto}
+.nav-tab{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:99px;white-space:nowrap;transition:all .2s}
+.nav-tab:hover{color:var(--navy);background:var(--card-alt)}
+.nav-date{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+
+/* ───── LAYOUT ───── */
+.page-section{max-width:1180px;margin:0 auto;padding:64px 32px 0}
+.page-section:last-of-type{padding-bottom:72px}
+
+/* ───── HERO ───── */
+.hero{padding-top:80px;position:relative}
+.hero::before{content:'';position:absolute;top:-60px;right:-120px;width:520px;height:520px;border-radius:999px;background:radial-gradient(circle,rgba(154,177,217,.22),transparent 65%);pointer-events:none;z-index:-1}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+.hero-title{font-family:'Instrument Serif',Georgia,serif;font-size:64px;line-height:1.05;letter-spacing:-.01em;color:var(--navy);margin:0 0 24px;font-weight:400}
+.hero-title em{font-style:italic;color:var(--sky)}
+.hero-sub{font-size:16px;color:var(--muted);max-width:760px;margin:0 0 24px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+
+/* ───── STATUS TAGS ───── */
+.tag{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:99px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.04em;font-weight:500;border:1px solid var(--border);background:var(--card)}
+.tag .dot{width:7px;height:7px;border-radius:99px;flex:none}
+.tag.good{background:var(--good-bg);color:var(--good-text);border-color:transparent}
+.tag.good .dot{background:var(--good-dot)}
+.tag.mid{background:var(--mid-bg);color:var(--mid-text);border-color:transparent}
+.tag.mid .dot{background:var(--mid-dot)}
+.tag.bad{background:var(--bad-bg);color:var(--bad-text);border-color:transparent}
+.tag.bad .dot{background:var(--bad-dot)}
+.tag.plain{color:var(--navy)}
+.tag.plain .dot{background:var(--orange)}
+
+/* ───── SECTION HEADERS ───── */
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.sec-num{font-family:'DM Mono',monospace;font-size:12px;color:var(--orange);letter-spacing:.1em}
+h2{font-family:'Instrument Serif',Georgia,serif;font-size:34px;line-height:1.15;color:var(--navy);margin:0;font-weight:400}
+h3{font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;color:var(--navy);margin:0 0 10px}
+.section-note{font-size:13.5px;color:var(--muted);margin:6px 0 24px;max-width:780px}
+.sec-spacer{height:24px}
+
+/* ───── CARDS ───── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:0 1px 3px rgba(10,22,40,.04),0 8px 24px rgba(10,22,40,.03)}
+.grid{display:grid;gap:16px}
+.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card p{font-size:14px;color:var(--body);margin:8px 0}
+.card p strong{color:var(--navy)}
+.small{font-size:12.5px;color:var(--muted)}
+
+/* ───── KPI ───── */
+.kpi-label{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.kpi{font-family:'Instrument Serif',Georgia,serif;font-size:42px;line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
+.kpi-sub{font-size:12.5px;color:var(--muted);margin-top:8px}
+
+/* ───── SCORE ───── */
+.score-box{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:center}
+.score-circle{width:120px;height:120px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',Georgia,serif;font-size:44px;color:var(--navy);border:1px solid var(--border);background:var(--card-alt);position:relative}
+.score-circle::after{content:'/ 100';position:absolute;bottom:24px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted)}
+.score-rows{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.score-row{display:grid;grid-template-columns:140px 64px 1fr;gap:12px;align-items:center}
+.score-row .lbl{font-size:13px;color:var(--body)}
+.score-row .val{font-family:'DM Mono',monospace;font-size:13px;color:var(--navy);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:99px;background:var(--card-alt);border:1px solid var(--border);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--orange))}
+
+/* ───── TABLES ───── */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px;background:var(--card)}
+table{width:100%;border-collapse:collapse}
+th{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:13px 16px;border-bottom:1px solid var(--border);background:var(--card-alt);white-space:nowrap}
+td{font-size:13.5px;color:var(--body);padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;font-variant-numeric:tabular-nums}
+td strong{color:var(--navy);font-weight:600}
+tr:last-child td{border-bottom:none}
+table.plain-table{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.row-hl td{background:var(--orange-light)}
+
+/* ───── LISTS ───── */
+ul.list{margin:12px 0 0;padding-left:0;list-style:none}
+ul.list li{font-size:14px;color:var(--body);margin:9px 0;padding-left:20px;position:relative}
+ul.list li::before{content:'';position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:99px;background:var(--orange)}
+ul.list li strong{color:var(--navy)}
+
+/* ───── STATUS LIST ───── */
+.status-list{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.status-item{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;padding:11px 14px;border-radius:11px}
+.status-item .dot{width:8px;height:8px;border-radius:99px;flex:none;margin-top:6px}
+.status-item.good{background:var(--good-bg);color:var(--good-text)}
+.status-item.good .dot{background:var(--good-dot)}
+.status-item.mid{background:var(--mid-bg);color:var(--mid-text)}
+.status-item.mid .dot{background:var(--mid-dot)}
+.status-item.bad{background:var(--bad-bg);color:var(--bad-text)}
+.status-item.bad .dot{background:var(--bad-dot)}
+
+/* ───── CALLOUTS ───── */
+.callout{border-left:3px solid var(--orange);background:var(--orange-light);border-radius:0 12px 12px 0;padding:16px 20px;font-size:14px;color:var(--body);margin-top:16px}
+.callout strong{color:var(--navy)}
+.callout.warn{border-left-color:var(--mid-dot);background:var(--mid-bg);color:var(--mid-text)}
+.callout.warn strong{color:var(--mid-text)}
+.callout.danger{border-left-color:var(--bad-dot);background:var(--bad-bg);color:var(--bad-text)}
+.callout.danger strong{color:var(--bad-text)}
+.callout.goodbox{border-left-color:var(--good-dot);background:var(--good-bg);color:var(--good-text)}
+.callout.goodbox strong{color:var(--good-text)}
+
+hr.sep{border:none;border-top:1px solid var(--border);margin:24px 0}
+
+/* ───── FOOTER ───── */
+.footer{max-width:1180px;margin:0 auto;padding:0 32px 56px}
+.footer-inner{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer-inner p{font-size:12.5px;color:var(--muted);margin:0;max-width:760px}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:8px;white-space:nowrap}
+
+/* ───── ANIMATION ───── */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  nav{padding:0 16px}
+  .nav-tabs{display:none}
+  .page-section{padding:48px 16px 0}
+  .hero{padding-top:48px}
+  .hero-title{font-size:38px}
+  h2{font-size:27px}
+  .cols-2,.cols-3{grid-template-columns:1fr}
+  .cols-4{grid-template-columns:repeat(2,1fr)}
+  .score-box{grid-template-columns:1fr}
+  .score-row{grid-template-columns:1fr 60px;grid-template-rows:auto auto}
+  .score-row .bar{grid-column:1 / -1}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span class="nav-dot"></span>Skael Intelligence</div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#summary">Summary</a>
+    <a class="nav-tab" href="#scores">Scores</a>
+    <a class="nav-tab" href="#benchmark">Benchmark</a>
+    <a class="nav-tab" href="#seo">SEO</a>
+    <a class="nav-tab" href="#ads">Google Ads</a>
+    <a class="nav-tab" href="#potenzial">Potenzial</a>
+  </div>
+  <div class="nav-date">Juni 2026</div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<div class="page-section hero">
+  <div class="eyebrow reveal">Suchmarkt- & Wettbewerbsreport · SpyFu DE</div>
+  <h1 class="hero-title reveal">SEO- und Google-Ads-Report für<br>buresa.de <em>vs.</em> bms-koehler.de</h1>
+  <p class="hero-sub reveal">Dieser Report vergleicht beide Domains im deutschen Suchmarkt, zeigt das tatsächliche Wettbewerbsniveau, ordnet die aktuelle Sichtbarkeit ein, macht das Marktpotenzial sichtbar und leitet konkrete Prioritäten für SEO und Google Ads ab.</p>
+  <div class="hero-meta reveal">
+    <span class="tag plain"><span class="dot"></span>Markt: Deutschland (DE)</span>
+    <span class="tag plain"><span class="dot"></span>Snapshot: Juni 2026</span>
+    <span class="tag plain"><span class="dot"></span>Format: Suchmarkt- & Wettbewerbsreport</span>
+  </div>
+  <div class="callout warn reveal">
+    <strong>Wichtig:</strong> Dieser Report basiert auf SpyFu-Daten für den deutschen Markt. Enthalten sind Live-SEO-Stats, Bulk-Domain-Stats (Mai 2026), SEO-Wettbewerber, Top Pages, Keyword-Sichtbarkeit und PPC-Leader-Daten. Es handelt sich um einen Suchmarkt- und Wettbewerbsreport, nicht um einen vollständigen technischen Crawl der Websites.
+  </div>
+</div>
+
+<!-- ─── 1) EXECUTIVE SUMMARY ─── -->
+<div id="summary" class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">01</span><h2>Executive Summary</h2></div>
+  <div class="sec-spacer"></div>
+  <div class="grid cols-2">
+    <div class="card reveal">
+      <h3>buresa.de – Kurzfazit</h3>
+      <p><strong>Der Suchkanal ist aktuell praktisch unerschlossen.</strong> In den SpyFu-Daten gibt es derzeit weder nennenswerte SEO-Sichtbarkeit noch aktive Google-Ads-Signale. Das bedeutet nicht automatisch, dass die Firma schwach ist – wohl aber, dass organische und bezahlte Nachfrage aktuell kaum über Google abgegriffen wird.</p>
+      <div class="hero-meta" style="margin:14px 0 0">
+        <span class="tag bad"><span class="dot"></span>SEO 1/100</span>
+        <span class="tag bad"><span class="dot"></span>Ads 0/100</span>
+        <span class="tag good"><span class="dot"></span>84/100 Marktchance</span>
+      </div>
+      <ul class="list">
+        <li>SEO aktuell faktisch unsichtbar</li>
+        <li>Keine erkennbare Google-Ads-Präsenz</li>
+        <li>Sehr hohe Chance, mit sauberem Themen- und Kampagnenaufbau schnell Grundsichtbarkeit aufzubauen</li>
+      </ul>
+    </div>
+    <div class="card reveal">
+      <h3>bms-koehler.de – Kurzfazit</h3>
+      <p><strong>Es gibt erste SEO-Signale, aber fast nur im marken- bzw. produktnahen Bereich.</strong> Sichtbar sind vor allem Dieci- und OilQuick-Begriffe sowie Unternehmensnähe. Generische Nachfrage und Nachfrage im unteren Funnel werden kaum abgegriffen. Auch Google Ads ist derzeit praktisch nicht aktiv.</p>
+      <div class="hero-meta" style="margin:14px 0 0">
+        <span class="tag bad"><span class="dot"></span>SEO 27/100</span>
+        <span class="tag bad"><span class="dot"></span>Ads 0/100</span>
+        <span class="tag good"><span class="dot"></span>78/100 Marktchance</span>
+      </div>
+      <ul class="list">
+        <li>Kleine, aber echte SEO-Basis vorhanden</li>
+        <li>Starker Fokus auf supplier-/markennahe Begriffe</li>
+        <li>Sehr große Lücke bei generischer Nachfrage und bezahlter Nachfrageabschöpfung</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 2) SCORES ─── -->
+<div id="scores" class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">02</span><h2>Punktestand / Marktposition</h2></div>
+  <p class="section-note reveal">Die Scores sind relative Search-Acquisition-Scores gegenüber dem sichtbaren Wettbewerbsniveau im Markt – nicht Schulnoten für die Firmen insgesamt.</p>
+
+  <div class="grid cols-2">
+    <div class="card reveal">
+      <div class="score-box">
+        <div class="score-circle">1</div>
+        <div>
+          <h3 style="margin-bottom:2px">buresa.de</h3>
+          <div class="kpi-label">Overall Search Maturity</div>
+          <div class="score-rows">
+            <div class="score-row"><span class="lbl">SEO Score</span><span class="val">1/100</span><div class="bar"><span style="width:1%"></span></div></div>
+            <div class="score-row"><span class="lbl">Google Ads Score</span><span class="val">0/100</span><div class="bar"><span style="width:1%"></span></div></div>
+            <div class="score-row"><span class="lbl">Marktchance</span><span class="val">84/100</span><div class="bar"><span style="width:84%"></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <div class="score-box">
+        <div class="score-circle">18</div>
+        <div>
+          <h3 style="margin-bottom:2px">bms-koehler.de</h3>
+          <div class="kpi-label">Overall Search Maturity</div>
+          <div class="score-rows">
+            <div class="score-row"><span class="lbl">SEO Score</span><span class="val">27/100</span><div class="bar"><span style="width:27%"></span></div></div>
+            <div class="score-row"><span class="lbl">Google Ads Score</span><span class="val">0/100</span><div class="bar"><span style="width:1%"></span></div></div>
+            <div class="score-row"><span class="lbl">Marktchance</span><span class="val">78/100</span><div class="bar"><span style="width:78%"></span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-spacer"></div>
+  <div class="grid cols-4">
+    <div class="card reveal"><div class="kpi-label">buresa.de</div><div class="kpi">0</div><div class="kpi-sub">organische Keywords</div></div>
+    <div class="card reveal"><div class="kpi-label">buresa.de</div><div class="kpi">0</div><div class="kpi-sub">monatliche SEO-Klicks</div></div>
+    <div class="card reveal"><div class="kpi-label">buresa.de</div><div class="kpi">0 €</div><div class="kpi-sub">monatlicher SEO-Wert</div></div>
+    <div class="card reveal"><div class="kpi-label">buresa.de</div><div class="kpi">0 €</div><div class="kpi-sub">geschätztes Ads-Budget / Monat</div></div>
+    <div class="card reveal"><div class="kpi-label">bms-koehler.de</div><div class="kpi">9</div><div class="kpi-sub">organische Keywords</div></div>
+    <div class="card reveal"><div class="kpi-label">bms-koehler.de</div><div class="kpi">1</div><div class="kpi-sub">monatliche SEO-Klicks</div></div>
+    <div class="card reveal"><div class="kpi-label">bms-koehler.de</div><div class="kpi">29,5 €</div><div class="kpi-sub">monatlicher SEO-Wert</div></div>
+    <div class="card reveal"><div class="kpi-label">bms-koehler.de</div><div class="kpi">0 €</div><div class="kpi-sub">geschätztes Ads-Budget / Monat</div></div>
+  </div>
+</div>
+
+<!-- ─── 3) BENCHMARK ─── -->
+<div id="benchmark" class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">03</span><h2>Suchmarkt-Benchmark: Wie stark ist die Konkurrenz?</h2></div>
+  <p class="section-note reveal">Die beiden Ziel-Domains konkurrieren nicht in einem kleinen Vakuum. Sichtbare Marktführer im Suchkanal arbeiten mit massiv mehr SEO-Coverage und aktiver PPC-Abdeckung. Daraus ergibt sich ein klares Bild: <strong style="color:var(--navy)">Die Lücke ist groß, aber der Markt ist bestätigt.</strong></p>
+
+  <div class="table-wrap reveal">
+    <table>
+      <thead>
+        <tr><th>Domain</th><th>Organic Keywords</th><th>SEO Klicks / Monat</th><th>Paid Klicks / Monat</th><th>Paid Keywords</th><th>Strength</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>hkl-baumaschinen.de</strong></td><td>9.381</td><td>6.963</td><td>112</td><td>189</td><td>44</td></tr>
+        <tr><td><strong>beyer-mietservice.de</strong></td><td>5.625</td><td>2.287</td><td>238</td><td>1.660</td><td>43</td></tr>
+        <tr><td><strong>zeppelin-rental.de</strong></td><td>5.612</td><td>5.697</td><td>340</td><td>745</td><td>43</td></tr>
+        <tr><td><strong>fjhofschroeer.de</strong></td><td>42</td><td>32</td><td>0</td><td>0</td><td>21</td></tr>
+        <tr><td><strong>baumaschinen-koehler.de</strong></td><td>81</td><td>8</td><td>0</td><td>0</td><td>25</td></tr>
+        <tr class="row-hl"><td><strong>bms-koehler.de</strong></td><td>9</td><td>1</td><td>0</td><td>0</td><td>13</td></tr>
+        <tr class="row-hl"><td><strong>buresa.de</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout danger reveal">
+    <strong>Kernaussage:</strong> Gegenüber HKL, Beyer und Zeppelin liegen beide Ziel-Domains aktuell nicht nur „etwas hinten“, sondern nahezu am Startpunkt. Das ist unangenehm – aber strategisch sehr nützlich, weil die To-dos dadurch extrem klar werden.
+  </div>
+</div>
+
+<!-- ─── 4) SEO-ANALYSE ─── -->
+<div id="seo" class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">04</span><h2>SEO-Analyse je Domain</h2></div>
+  <div class="sec-spacer"></div>
+
+  <div class="card reveal">
+    <h3>buresa.de</h3>
+    <table class="plain-table" style="margin-top:10px">
+      <tbody>
+        <tr><td>Organische Keywords</td><td><strong>0</strong></td></tr>
+        <tr><td>Monatliche SEO-Klicks</td><td><strong>0</strong></td></tr>
+        <tr><td>Monatlicher SEO-Wert</td><td><strong>0 €</strong></td></tr>
+        <tr><td>Summiertes Suchvolumen der rankenden Keywords</td><td><strong>0</strong></td></tr>
+        <tr><td>Ø organische Position</td><td><strong>–</strong></td></tr>
+        <tr><td>Domain Strength</td><td><strong>0</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="status-list">
+      <div class="status-item bad"><span class="dot"></span>In SpyFu aktuell keine messbare organische Sichtbarkeit im deutschen Markt gefunden.</div>
+      <div class="status-item bad"><span class="dot"></span>Keine aktive Google-Ads-Präsenz in den verfügbaren SpyFu-Daten erkennbar.</div>
+      <div class="status-item mid"><span class="dot"></span>Der Suchkanal scheint derzeit kein relevanter Akquisekanal zu sein oder ist technisch/inhaltlich kaum indexiert.</div>
+    </div>
+  </div>
+
+  <div class="sec-spacer"></div>
+
+  <div class="card reveal">
+    <h3>bms-koehler.de</h3>
+    <table class="plain-table" style="margin-top:10px">
+      <tbody>
+        <tr><td>Organische Keywords</td><td><strong>9</strong></td></tr>
+        <tr><td>Monatliche SEO-Klicks</td><td><strong>1</strong></td></tr>
+        <tr><td>Monatlicher SEO-Wert</td><td><strong>29,5 €</strong></td></tr>
+        <tr><td>Summiertes Suchvolumen der rankenden Keywords</td><td><strong>140</strong></td></tr>
+        <tr><td>Ø organische Position</td><td><strong>22,9</strong></td></tr>
+        <tr><td>Domain Strength</td><td><strong>13</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="status-list">
+      <div class="status-item mid"><span class="dot"></span>Die bestehende SEO-Sichtbarkeit stammt fast komplett aus marken- und produktnahen Keywords rund um Dieci / OilQuick / Firmenname.</div>
+      <div class="status-item bad"><span class="dot"></span>Es gibt praktisch keine breite Sichtbarkeit auf generische Nachfrage wie Baumaschinen mieten, Baumaschinenverleih oder regionale Miet-Keywords.</div>
+      <div class="status-item mid"><span class="dot"></span>Google Ads ist in den SpyFu-Daten derzeit nicht aktiv.</div>
+    </div>
+
+    <hr class="sep"/>
+    <h3>Aktuelle Keyword-Sichtbarkeit</h3>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Rank</th><th>Δ</th><th>SV</th><th>KD</th><th>SEO-Klicks</th><th>CPC</th><th>Cluster</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>dieci teleskoplader</strong></td><td>22</td><td>–</td><td>70</td><td>5</td><td>1</td><td>1,2 €</td><td>kommerziell / produktnah</td></tr>
+          <tr><td><strong>oilquick deutschland</strong></td><td>30</td><td>+5</td><td>70</td><td>5</td><td>0</td><td>–</td><td>markennah</td></tr>
+          <tr><td><strong>bms mietpartner gmbh</strong></td><td>20</td><td>+2</td><td>–</td><td>18</td><td>0</td><td>–</td><td>brand</td></tr>
+          <tr><td><strong>teleskoplader dieci</strong></td><td>24</td><td>+13</td><td>–</td><td>4</td><td>0</td><td>0,6 €</td><td>kommerziell</td></tr>
+          <tr><td><strong>dieci deutschland</strong></td><td>23</td><td>+6</td><td>–</td><td>6</td><td>0</td><td>–</td><td>markennah</td></tr>
+          <tr><td><strong>dieci radlader</strong></td><td>21</td><td>+6</td><td>–</td><td>3</td><td>0</td><td>–</td><td>kommerziell</td></tr>
+          <tr><td><strong>dieci lader</strong></td><td>19</td><td>–</td><td>–</td><td>4</td><td>0</td><td>–</td><td>kommerziell</td></tr>
+          <tr><td><strong>schultes nachfolger siegen</strong></td><td>36</td><td>–</td><td>–</td><td>11</td><td>0</td><td>–</td><td>navigational</td></tr>
+          <tr><td><strong>köhler gmbh baumaschinen</strong></td><td>11</td><td>-3</td><td>–</td><td>7</td><td>0</td><td>–</td><td>brand / company</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="margin-top:12px">Lesart: bms-koehler.de rankt vor allem auf produkt- und markennahe Begriffe. Genau dort ist schon thematische Relevanz vorhanden. Die große Lücke liegt bei generischen Suchanfragen mit echter Neukunden-Nachfrage.</p>
+
+    <hr class="sep"/>
+    <h3>Nächstliegende SEO-Wettbewerber aus SpyFu</h3>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <thead><tr><th>Domain</th><th>gemeinsame Terms</th></tr></thead>
+        <tbody>
+          <tr><td>dieci.pro</td><td>2</td></tr>
+          <tr><td>fjhofschroeer.de</td><td>3</td></tr>
+          <tr><td>dieci.com</td><td>3</td></tr>
+          <tr><td>koehlerverleih.de</td><td>1</td></tr>
+          <tr><td>dickmann-landtechnik.de</td><td>1</td></tr>
+          <tr><td>bss.net</td><td>3</td></tr>
+          <tr><td>amselgruber.at</td><td>3</td></tr>
+          <tr><td>baggerleih.de</td><td>1</td></tr>
+          <tr><td>k-kran.de</td><td>2</td></tr>
+          <tr><td>baumaschinen-koehler.de</td><td>2</td></tr>
+          <tr><td>bms-verleih.de</td><td>1</td></tr>
+          <tr><td>koehler-baumaschinen.de</td><td>2</td></tr>
+          <tr><td>baumaschinen-veit.de</td><td>3</td></tr>
+          <tr><td>machineryline.de</td><td>4</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 5) GOOGLE ADS ─── -->
+<div id="ads" class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">05</span><h2>Google Ads Analyse</h2></div>
+  <div class="sec-spacer"></div>
+  <div class="grid cols-2">
+    <div class="card reveal">
+      <h3>Ist-Zustand der beiden Ziel-Domains</h3>
+      <p>Für <strong>buresa.de</strong> und <strong>bms-koehler.de</strong> ist in den SpyFu-Daten aktuell keine nennenswerte Google-Ads-Aktivität sichtbar. Das ist strategisch relevant, weil bezahlte Suche in diesem Markt offenbar aktiv von Wettbewerbern genutzt wird – nur eben nicht von den beiden Ziel-Domains.</p>
+      <ul class="list">
+        <li>Keine sichtbaren Paid Keywords</li>
+        <li>Kein messbares Monatsbudget</li>
+        <li>Keine systematische Bottom-Funnel-Abdeckung</li>
+      </ul>
+    </div>
+    <div class="card reveal">
+      <h3>Wie die Konkurrenz Google Ads spielt</h3>
+      <p>Die Marktführer kombinieren breite generische Nachfrage mit lokaler und transaktionaler Abdeckung. Das sieht man besonders bei HKL, Beyer und Zeppelin: sie kaufen keine „Image-Keywords“, sondern konkrete Leistungsbegriffe mit hoher Abschlussnähe.</p>
+      <div class="callout goodbox">
+        <strong>Interpretation:</strong> Schon der reine Umstand, dass Wettbewerber Tausende Euro bis sechsstellige Monatsbudgets investieren, ist ein starkes Signal für funktionierende Nachfrage und funktionierende Kampagnenökonomie.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-spacer"></div>
+  <div class="card reveal">
+    <h3>PPC-Leader-Keywords im Markt</h3>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>SV</th><th>CPC</th><th>Paid Competitors</th><th>Marktbedeutung</th><th>Wer hier sichtbar ist</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>minibagger mieten</strong></td><td>2.400</td><td>0,8 €</td><td>16</td><td>hoch</td><td>beyer, zeppelin, boels, hkl, weitere</td></tr>
+          <tr><td><strong>bagger mieten</strong></td><td>2.300</td><td>1,3 €</td><td>17</td><td>hoch</td><td>zeppelin, hkl, boels, beyer, weitere</td></tr>
+          <tr><td><strong>baumaschinenverleih</strong></td><td>1.000</td><td>1,8 €</td><td>10</td><td>hoch</td><td>beyer, zeppelin, boels, hkl</td></tr>
+          <tr><td><strong>baumaschinen mieten</strong></td><td>840</td><td>1,5 €</td><td>10</td><td>hoch</td><td>beyer, zeppelin, boels, hkl</td></tr>
+          <tr><td><strong>arbeitsbühne mieten</strong></td><td>690</td><td>3,0 €</td><td>26</td><td>mittel bis hoch</td><td>beyer, klickrent, hkl, systemlift, weitere</td></tr>
+          <tr><td><strong>radlader mieten</strong></td><td>570</td><td>1,3 €</td><td>18</td><td>mittel bis hoch</td><td>zeppelin, hkl, beyer, boels, weitere</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="margin-top:12px">Auffällig ist nicht nur das Volumen, sondern die Mischung: generische Begriffe, lokale Signale, kaufnahe Formulierungen und Preis-/Mietbezug. Genau dort findet Nachfrageabschöpfung statt.</p>
+  </div>
+</div>
+
+<!-- ─── 6) MARKTPOTENZIAL ─── -->
+<div id="potenzial" class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">06</span><h2>Marktpotenzial: Wie viel Nachfrage ist da?</h2></div>
+  <p class="section-note reveal">Das Marktpotenzial ergibt sich hier nicht aus „theoretischen Suchanfragen“, sondern aus Keywords mit echtem Suchvolumen, realem CPC und bereits aktiver Konkurrenz. Das heißt: Der Markt ist bestätigt, die Nachfrage ist da, und andere Unternehmen schöpfen sie bereits ab.</p>
+
+  <div class="table-wrap reveal">
+    <table>
+      <thead>
+        <tr><th>Keyword</th><th>Monatliches Suchvolumen</th><th>Ø CPC</th><th>Paid Competitors</th><th>SERP-Leader</th><th>Intent</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>teleskoplader</strong></td><td>2.000</td><td>0,9 €</td><td>10</td><td>weidemann.de</td><td>hoch / informativ-kommerziell</td></tr>
+        <tr><td><strong>teleskoplader mieten</strong></td><td>210</td><td>3,9 €</td><td>6</td><td>niklaus-baugeraete.de</td><td>sehr hoch / bottom funnel</td></tr>
+        <tr><td><strong>dieci teleskoplader</strong></td><td>70</td><td>1,2 €</td><td>1</td><td>dieci.com</td><td>hoch / produktnah</td></tr>
+        <tr><td><strong>baumaschinenverleih</strong></td><td>1.000</td><td>1,8 €</td><td>10</td><td>reichertservicecenter.de</td><td>hoch / generische Nachfrage</td></tr>
+        <tr><td><strong>baumaschinen mieten</strong></td><td>840</td><td>1,5 €</td><td>10</td><td>zeppelin-rental.de</td><td>hoch / generische Nachfrage</td></tr>
+        <tr><td><strong>minibagger mieten</strong></td><td>2.400</td><td>0,8 €</td><td>16</td><td>zeppelin-rental.de</td><td>sehr hoch / transaktional</td></tr>
+        <tr><td><strong>bagger mieten</strong></td><td>2.300</td><td>1,3 €</td><td>17</td><td>hagebau-bolay.de</td><td>sehr hoch / transaktional</td></tr>
+        <tr><td><strong>radlader mieten</strong></td><td>570</td><td>1,3 €</td><td>18</td><td>kleinanzeigen.de</td><td>hoch / transaktional</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout reveal">
+    <strong>Wichtigste Interpretation:</strong>
+    <br>• <strong>„teleskoplader mieten“</strong> ist kleinervolumiger als breite Mietbegriffe, aber wegen des hohen CPC ein sehr starker Bottom-Funnel-Keyword-Cluster.
+    <br>• <strong>„baumaschinen mieten“, „baumaschinenverleih“, „bagger mieten“, „minibagger mieten“</strong> zeigen, dass der Markt nicht nur vorhanden, sondern klar transaktional ist.
+    <br>• Für bms-koehler.de ist die nächste sinnvolle Expansion von markennahen Produktseiten in generische Kategorie- und Mietseiten.
+    <br>• Für buresa.de ist zuerst eine saubere Themen- und Leistungsarchitektur nötig, bevor Skalierung sinnvoll wird.
+  </div>
+</div>
+
+<!-- ─── 7) KONKURRENZ ─── -->
+<div class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">07</span><h2>Was die Konkurrenz besser macht</h2></div>
+  <div class="sec-spacer"></div>
+  <div class="grid cols-3">
+    <div class="card reveal">
+      <h3>1. Breite Themenabdeckung</h3>
+      <p>Marktführer ranken nicht nur für den Firmennamen oder einzelne Herstellermarken, sondern für ganze Nachfrage-Cluster: Mietbegriffe, Gerätekategorien, regionale Suchanfragen, Preis- und „in der Nähe“-Formulierungen.</p>
+    </div>
+    <div class="card reveal">
+      <h3>2. Gleichzeitige SEO- und PPC-Nutzung</h3>
+      <p>Die stärksten Wettbewerber verlassen sich nicht nur auf organische Rankings. Sie sichern transaktionale Nachfrage zusätzlich per Google Ads ab und besetzen dadurch den unteren Funnel deutlich aggressiver.</p>
+    </div>
+    <div class="card reveal">
+      <h3>3. Mehr Einstiegsseiten</h3>
+      <p>Wettbewerber haben viele Landingpages und Kategorien, über die Google überhaupt erst Nachfrage zuordnen kann. Ohne diese Seiten bleibt Sichtbarkeit selbst dann schwach, wenn die Firma operativ stark ist.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 8) BEWERTUNG ─── -->
+<div class="page-section">
+  <div class="sec-head reveal"><span class="sec-num">08</span><h2>Konkrete Bewertung je Domain</h2></div>
+  <div class="sec-spacer"></div>
+  <div class="grid cols-2">
+    <div class="card reveal">
+      <h3>buresa.de – Bewertung</h3>
+      <div class="callout danger" style="margin-top:8px">
+        <strong>Aktuelle Lage:</strong> Im Suchkanal nahezu unsichtbar.
+      </div>
+      <ul class="list">
+        <li><strong>SEO:</strong> Es fehlt aktuell die sichtbare Themenabdeckung. Entweder ist das Angebot nicht suchmarktfähig abgebildet, die Website ist inhaltlich zu dünn, oder die Indexierung/Struktur ist zu schwach, um Nachfrage abzugreifen.</li>
+        <li><strong>Google Ads:</strong> Keine aktive Nachfrageabschöpfung erkennbar.</li>
+        <li><strong>Wettbewerb:</strong> Wer heute im Markt sichtbar ist, arbeitet klar strukturiert mit Leistungs- und Kategorieseiten sowie Ads.</li>
+        <li><strong>Strategischer Hebel:</strong> Sehr hoch – weil nahezu jede sauber aufgebaute Suchstrategie hier bereits messbare Fortschritte bringen dürfte.</li>
+      </ul>
+    </div>
+    <div class="card reveal">
+      <h3>bms-koehler.de – Bewertung</h3>
+      <div class="callout warn" style="margin-top:8px">
+        <strong>Aktuelle Lage:</strong> Kleine SEO-Basis, aber noch keine echte Suchmaschinen-Distribution.
+      </div>
+      <ul class="list">
+        <li><strong>SEO:</strong> Die Sichtbarkeit ist real, aber extrem schmal und überwiegend markennah.</li>
+        <li><strong>Google Ads:</strong> Ebenfalls nicht aktiv, obwohl der Markt transaktionale Nachfrage zeigt.</li>
+        <li><strong>Wettbewerb:</strong> Zwischen bms-koehler.de und den großen Marktteilnehmern liegt eine große Lücke – aber auch zwischen bms und kleinen Spezialisten ist noch viel Luft.</li>
+        <li><strong>Strategischer Hebel:</strong> Hoch – denn die vorhandenen Produkt-/Markensignale zeigen bereits thematische Anschlussfähigkeit.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── FOOTER ─── -->
+<div class="footer">
+  <div class="sec-spacer"></div>
+  <div class="footer-inner">
+    <p>Datenbasis: SpyFu API, deutscher Markt (DE), Live SEO Stats + Bulk Domain Stats (Mai 2026) + SEO Competitors + Top Pages + Keyword Visibility + PPC-Leader-Daten.</p>
+    <div class="footer-brand"><span class="nav-dot"></span>Skael Intelligence</div>
+  </div>
+</div>
+
+<script>
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
