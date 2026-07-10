@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — RezensionsHeld Juni 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:image" content="https://reports.skael.de/www.skael.de-favicon-large.ico">
+<meta property="og:title" content="Skael Report — RezensionsHeld Juni 2026">
+<meta property="og:description" content="Multi-Channel Performance Report · Juni 2026">
+<meta property="og:url" content="https://reports.skael.de/RezensionsHeld-Jun-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Poppins', sans-serif; font-size: 14px; letter-spacing: -0.015em;
+  line-height: 1.65; color: var(--body); background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 200; height: 58px;
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 32px; background: rgba(251,252,253,0.82);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  opacity: 0; animation: fadeIn 0.5s ease forwards;
+}
+.nav-logo-text { font-size: 14.5px; font-weight: 600; color: var(--navy); letter-spacing: -0.02em; white-space: nowrap; }
+.nav-logo-text span { color: var(--blue); font-weight: 500; }
+.nav-sep { width: 1px; height: 20px; background: var(--border2); }
+.nav-tabs { display: flex; gap: 4px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab {
+  font-size: 12.5px; color: var(--muted); text-decoration: none;
+  padding: 6px 12px; border-radius: 7px; white-space: nowrap; transition: all 0.18s;
+}
+.nav-tab:hover { color: var(--navy); background: rgba(0,0,0,0.045); }
+.nav-tab.active { background: var(--navy); color: #fff; font-weight: 500; }
+.nav-right { margin-left: auto; }
+.nav-pill {
+  font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--muted); border: 1px solid var(--border2);
+  border-radius: 20px; padding: 4px 12px; white-space: nowrap;
+}
+
+/* ── LAYOUT ── */
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+section { scroll-margin-top: 58px; }
+.hero, .section, .section-gray { background: var(--bg); padding: 72px 0; }
+.hero { padding-top: 64px; }
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* ── BADGES ── */
+.badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; opacity: 0; animation: fadeIn 0.5s ease 0.15s forwards; }
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+  padding: 7px 14px 7px 11px;
+}
+.badge span { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.badge .dot-b { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ── HERO ── */
+.h-hero {
+  font-size: 60px; font-weight: 500; letter-spacing: -0.04em; line-height: 1.06;
+  color: var(--navy); margin-bottom: 30px;
+  opacity: 0; animation: fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;
+}
+.h-hero em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue); }
+.hero-meta {
+  display: flex; gap: 42px; flex-wrap: wrap; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp 0.6s ease 0.45s forwards;
+}
+.hero-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.hero-meta-label { font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sub); }
+.hero-meta-value { font-size: 13.5px; font-weight: 500; color: var(--navy); }
+
+/* ── KPI CARDS ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
+.kpi-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px 22px; transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+}
+.kpi-card:hover { box-shadow: 0 6px 24px rgba(15,27,45,0.06); transform: translateY(-2px); border-color: var(--blue-mid); }
+.kpi-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.kpi-label { font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sub); }
+.sw { display: flex; align-items: center; gap: 6px; }
+.sd { width: 8px; height: 8px; border-radius: 50%; }
+.sd.g { background: var(--green-dot); box-shadow: 0 0 0 2.5px rgba(34,197,94,0.18); }
+.sd.y { background: var(--yellow-dot); box-shadow: 0 0 0 2.5px rgba(245,158,11,0.18); }
+.sd.r { background: var(--red-dot); box-shadow: 0 0 0 2.5px rgba(239,68,68,0.18); }
+.sl { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; }
+.sl.g { color: var(--green); } .sl.y { color: var(--yellow); } .sl.r { color: var(--red); }
+.kpi-value { font-size: 30px; font-weight: 500; letter-spacing: -0.02em; color: var(--navy); line-height: 1.1; margin-bottom: 5px; }
+.kpi-sub { font-size: 11.5px; color: var(--muted); }
+.hero .kpi-grid .kpi-card { opacity: 0; }
+.hero .kpi-grid.row1 .kpi-card:nth-child(1) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 0.65s forwards; }
+.hero .kpi-grid.row1 .kpi-card:nth-child(2) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 0.73s forwards; }
+.hero .kpi-grid.row1 .kpi-card:nth-child(3) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 0.81s forwards; }
+.hero .kpi-grid.row1 .kpi-card:nth-child(4) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 0.89s forwards; }
+.hero .kpi-grid.row2 .kpi-card:nth-child(1) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 0.97s forwards; }
+.hero .kpi-grid.row2 .kpi-card:nth-child(2) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 1.05s forwards; }
+.hero .kpi-grid.row2 .kpi-card:nth-child(3) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 1.13s forwards; }
+.hero .kpi-grid.row2 .kpi-card:nth-child(4) { animation: fadeUp 0.6s cubic-bezier(.22,.68,0,1.15) 1.21s forwards; }
+
+/* ── INSIGHT CARD ── */
+.insight-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+  padding: 26px 30px; margin-top: 14px;
+}
+.card-label { font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--sub); margin-bottom: 12px; }
+.insight-text { font-size: 14px; color: var(--body); }
+.insight-text strong { color: var(--navy); font-weight: 600; }
+
+/* ── SECTIONS ── */
+.section-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.16em; color: var(--blue); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--blue); }
+.h-section { font-size: 42px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.12; color: var(--navy); margin-bottom: 14px; }
+.h-section em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue); }
+.section-sub { font-size: 14px; color: var(--muted); max-width: 720px; margin-bottom: 36px; }
+.section-sub strong { color: var(--navy); font-weight: 600; }
+
+/* ── TABLES ── */
+.table-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; overflow-x: auto; margin-top: 14px; }
+table { width: 100%; border-collapse: collapse; min-width: 700px; }
+thead th {
+  font-family: 'DM Mono', monospace; font-size: 9.5px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--sub); font-weight: 500; text-align: left;
+  padding: 8px 12px; border-bottom: 1px solid var(--border2);
+}
+thead th.num, tbody td.num { text-align: right; }
+tbody td { font-size: 13px; color: var(--body); padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #f6f8fc; }
+tbody tr.total-row { background: #f0f4ff; }
+tbody tr.total-row td { font-weight: 600; color: var(--navy); }
+tbody tr.hl-row { background: #f0f4ff; }
+tbody tr.hl-row td { font-weight: 500; color: var(--navy); }
+.cell-name { font-weight: 500; color: var(--navy); }
+.cell-sub { font-size: 11px; color: var(--sub); margin-top: 1px; }
+
+/* ── TAGS ── */
+.tag {
+  display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px;
+  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+  border-radius: 20px; padding: 2.5px 9px; white-space: nowrap;
+}
+.tag.g { background: var(--green-bg); color: var(--green); }
+.tag.y { background: var(--yellow-bg); color: var(--yellow); }
+.tag.r { background: var(--red-bg); color: var(--red); }
+.tag.b { background: var(--blue-bg); color: var(--blue); }
+
+/* ── SIDE GRID / CHANNEL CARDS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.side-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 22px 26px; }
+.side-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.side-row:last-child { border-bottom: none; }
+.side-row-lbl { font-size: 12.5px; color: var(--muted); }
+.side-row-val { font-size: 13.5px; font-weight: 500; color: var(--navy); }
+.hint-box { background: var(--blue-bg); border: 1px solid var(--blue-mid); border-radius: 12px; padding: 22px 26px; }
+.hint-box .card-label { color: var(--blue); }
+.hint-box p { font-size: 13px; color: var(--body); }
+.hint-box p strong { color: var(--navy); font-weight: 600; }
+.channel-num { font-size: 26px; font-weight: 500; letter-spacing: -0.02em; color: var(--navy); line-height: 1.15; margin: 4px 0 2px; }
+.channel-share { font-size: 11.5px; color: var(--muted); }
+
+/* ── CHARTS ── */
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+.chart-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; }
+.chart-wrap { position: relative; height: 280px; margin-top: 14px; }
+
+/* ── PRIO CARDS ── */
+.prio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.prio-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; transition: box-shadow 0.2s, transform 0.2s; }
+.prio-card:hover { box-shadow: 0 6px 24px rgba(15,27,45,0.06); transform: translateY(-2px); }
+.prio-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+.prio-num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; color: var(--blue); line-height: 1; padding-top: 2px; }
+.prio-title-text { font-size: 15px; font-weight: 600; color: var(--navy); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.prio-desc { font-size: 13px; color: var(--muted); }
+.prio-desc strong { color: var(--navy); font-weight: 600; }
+
+/* ── FAZIT ── */
+.fazit-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 34px 38px; }
+.fazit-heading { font-size: 26px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.25; color: var(--navy); margin-bottom: 14px; }
+.fazit-heading span { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--blue); }
+.fazit-text { font-size: 14px; color: var(--body); }
+.fazit-text strong { color: var(--navy); font-weight: 600; }
+
+/* ── FOOTER ── */
+.footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 36px 0 110px; border-top: 1px solid var(--border); margin-top: 72px;
+}
+.footer-brand { font-size: 14px; font-weight: 600; color: var(--navy); }
+.footer-brand span { color: var(--blue); font-weight: 500; }
+.footer-date { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sub); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── EDIT BAR ── */
+.edit-bar {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: var(--navy); color: #fff; border-radius: 12px;
+  padding: 9px 9px 9px 18px; display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 8px 32px rgba(15,27,45,0.25); z-index: 9999;
+  font-family: 'Poppins', sans-serif; font-size: 12.5px; font-weight: 400;
+  letter-spacing: -0.01em; white-space: nowrap;
+}
+.edit-bar-label { color: rgba(255,255,255,0.55); margin-right: 4px; }
+.eb-btn { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: -0.01em; padding: 7px 15px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.15s; }
+.eb-edit { background: rgba(255,255,255,0.12); color: #fff; }
+.eb-edit:hover { background: rgba(255,255,255,0.2); }
+.eb-edit.on { background: var(--blue); color: #fff; }
+.eb-save { background: #fff; color: var(--navy); display: none; }
+.eb-save:hover { background: #eef2ff; }
+.eb-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); }
+body.editing [contenteditable="true"] { outline: 1.5px dashed rgba(58,110,244,0.4); outline-offset: 2px; border-radius: 3px; cursor: text; }
+body.editing [contenteditable="true"]:hover { outline-color: rgba(58,110,244,0.75); }
+body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); outline-offset: 2px; background: rgba(58,110,244,0.03); border-radius: 3px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .wrap { padding: 0 16px; }
+  .hero, .section, .section-gray { padding: 48px 0; }
+  .h-hero { font-size: 36px; }
+  .h-section { font-size: 30px; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .chart-row, .prio-grid, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  nav { padding: 0 16px; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#google">Google Ads</a>
+    <a class="nav-tab" href="#bing">Bing Ads</a>
+    <a class="nav-tab" href="#meta">Meta Ads</a>
+    <a class="nav-tab" href="#sales">Sales</a>
+    <a class="nav-tab" href="#empfehlungen">Empfehlungen</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">Juni 2026</span></div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="uebersicht" class="hero">
+  <div class="wrap">
+    <div class="badge-row">
+      <div class="badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        <span>Google Ads</span>
+      </div>
+      <div class="badge"><div class="dot-b" style="background:#00809d;"></div><span>Bing Ads</span></div>
+      <div class="badge"><div class="dot-b" style="background:#0866ff;"></div><span>Meta Ads</span></div>
+      <div class="badge"><div class="dot-b" style="background:#16a34a;"></div><span>CRM · Sales</span></div>
+    </div>
+
+    <h1 class="h-hero">RezensionsHelds<br><em>Ad Performance</em><br>Juni 2026.</h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Zeitraum</span><span class="hero-meta-value">01. – 30. Juni 2026</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Konto</span><span class="hero-meta-value">RezensionsHeld</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Kanäle</span><span class="hero-meta-value">Google · Bing · Meta · CRM</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Erstellt</span><span class="hero-meta-value">10. Juli 2026</span></div>
+    </div>
+
+    <div class="kpi-grid row1">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ad Spend Gesamt</span><div class="sw"><div class="sd y"></div><span class="sl y">Rekord</span></div></div>
+        <div class="kpi-value">€40.237</div>
+        <div class="kpi-sub">+83 % vs. Mai · 3 Kanäle</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Umsatz CRM</span><div class="sw"><div class="sd g"></div><span class="sl g">Rekord</span></div></div>
+        <div class="kpi-value">€57.536</div>
+        <div class="kpi-sub">+26 % vs. Mai · Ads-attribuiert</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">ROAS Gesamt</span><div class="sw"><div class="sd y"></div><span class="sl y">Rückläufig</span></div></div>
+        <div class="kpi-value">1,43×</div>
+        <div class="kpi-sub">Mai: 2,07× · CRM-basiert</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Orders Gesamt</span><div class="sw"><div class="sd g"></div><span class="sl g">CRM</span></div></div>
+        <div class="kpi-value">515</div>
+        <div class="kpi-sub">Google 460 · Bing 54 · Meta 1</div>
+      </div>
+    </div>
+    <div class="kpi-grid row2">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Google Spend</span><div class="sw"><div class="sd y"></div><span class="sl y">Verdoppelt</span></div></div>
+        <div class="kpi-value">€33.865</div>
+        <div class="kpi-sub">+102 % vs. Mai (€16.800)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Google ROAS</span><div class="sw"><div class="sd y"></div><span class="sl y">Gesunken</span></div></div>
+        <div class="kpi-value">1,48×</div>
+        <div class="kpi-sub">Mai: 2,55× · CPC +62 %</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Bing ROAS</span><div class="sw"><div class="sd g"></div><span class="sl g">Profitabel</span></div></div>
+        <div class="kpi-value">1,32×</div>
+        <div class="kpi-sub">54 Orders · +116 % vs. Mai</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ø Cost per Order</span><div class="sw"><div class="sd y"></div><span class="sl y">Gestiegen</span></div></div>
+        <div class="kpi-value">€78,13</div>
+        <div class="kpi-sub">Mai: €59,14 · über alle Kanäle</div>
+      </div>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Einordnung · Juni 2026</div>
+      <p class="insight-text">Der Juni ist beim Volumen ein <strong>Rekordmonat</strong>: 515 CRM-Orders und €57.536 Umsatz über drei Kanäle. Der Preis dafür ist die Effizienz — Google-Spend wurde auf €33.865 <strong>verdoppelt</strong>, der CPC stieg dabei von €8,38 auf €13,59 (+62 %), und der Google-ROAS fiel von 2,55× auf <strong>1,48×</strong>. Die Kampagne bleibt profitabel, aber der Skalierungs-Schritt war teurer als der im Mai. Bing legt deutlich zu: <strong>54 Orders (+116 %) bei €5.512 Spend, ROAS 1,32×</strong>. Meta läuft weiter als kleines Retargeting-Setup mit ungelöster Tracking-Diskrepanz.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════ GOOGLE ═══════════ -->
+<section id="google" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">02 · Google Ads</div>
+    <h2 class="h-section reveal">Spend von €16.800 auf €33.865 verdoppelt — <em>CPC steigt auf €13,59</em>.</h2>
+    <p class="section-sub reveal">„Search | Cold-Google" bleibt die einzige aktive Kampagne. Der Spend wurde von €16.800 auf €33.865 verdoppelt, der Umsatz stieg auf den Rekordwert von €49.998 — aber der Klickpreis kletterte um 62 %. Die Skalierung hat funktioniert, nur nicht zum gleichen Preis wie im Mai.</p>
+
+    <div class="kpi-grid reveal">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Impressionen</span><div class="sw"><div class="sd g"></div><span class="sl g">+15 %</span></div></div>
+        <div class="kpi-value">35.739</div>
+        <div class="kpi-sub">Mai: 31.034</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Klicks · CTR</span><div class="sw"><div class="sd g"></div><span class="sl g">Stark</span></div></div>
+        <div class="kpi-value">2.492</div>
+        <div class="kpi-sub">CTR 6,97 % · Mai: 6,46 %</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Spend</span><div class="sw"><div class="sd y"></div><span class="sl y">Skaliert</span></div></div>
+        <div class="kpi-value">€33.865</div>
+        <div class="kpi-sub">+102 % vs. Mai · Maximize Conversions</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Avg. CPC</span><div class="sw"><div class="sd r"></div><span class="sl r">+62 %</span></div></div>
+        <div class="kpi-value">€13,59</div>
+        <div class="kpi-sub">Mai: €8,38</div>
+      </div>
+    </div>
+    <div class="kpi-grid reveal">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Pixel-Conv.</span><div class="sw"><div class="sd y"></div><span class="sl y">Untertrackt</span></div></div>
+        <div class="kpi-value">372,57</div>
+        <div class="kpi-sub">Google Ads Tracking · Wert €37.137</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">CRM Orders</span><div class="sw"><div class="sd g"></div><span class="sl g">Authoritative</span></div></div>
+        <div class="kpi-value">460</div>
+        <div class="kpi-sub">Faktor 1,23 vs. Pixel</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">CPO (CRM)</span><div class="sw"><div class="sd y"></div><span class="sl y">+51 %</span></div></div>
+        <div class="kpi-value">€73,62</div>
+        <div class="kpi-sub">Mai: €48,84</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">ROAS (CRM)</span><div class="sw"><div class="sd y"></div><span class="sl y">Profitabel</span></div></div>
+        <div class="kpi-value">1,48×</div>
+        <div class="kpi-sub">€49.998 Umsatz · Mai: 2,55×</div>
+      </div>
+    </div>
+
+    <div class="table-card reveal">
+      <div class="card-label">Kampagnen-Performance · Google Ads · 01.–30. Juni 2026</div>
+      <table>
+        <thead>
+          <tr><th>Kampagne</th><th class="num">Impr.</th><th class="num">Klicks</th><th class="num">CTR</th><th class="num">Ø CPC</th><th class="num">Spend</th><th class="num">Pixel-Conv.</th><th class="num">CPA Pixel</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cell-name">Search | Cold-Google</div><div class="cell-sub">Maximize Conversions · DE</div></td>
+            <td class="num">35.739</td><td class="num">2.492</td><td class="num">6,97 %</td><td class="num">€13,59</td><td class="num">€33.864,57</td><td class="num">372,57</td><td class="num">€90,89</td>
+            <td><span class="tag g">Aktiv</span></td>
+          </tr>
+          <tr class="total-row">
+            <td>Gesamt</td>
+            <td class="num">35.739</td><td class="num">2.492</td><td class="num">6,97 %</td><td class="num">€13,59</td><td class="num">€33.864,57</td><td class="num">372,57</td><td class="num">€90,89</td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Einordnung · Google Ads</div>
+      <p class="insight-text">Die Verdopplung des Spends hat das Volumen geliefert — 460 CRM-Orders (+34 %) und €49.998 Umsatz (+17 %) — aber die zusätzlichen Conversions wurden über <strong>deutlich teurere Klicks</strong> eingekauft: Der CPC stieg von €8,38 auf €13,59, der CPO (CRM) von €48,84 auf €73,62. Der Umsatz wuchs langsamer als der Spend, deshalb fällt der ROAS auf 1,48×. Positiv: Die <strong>Tracking-Diskrepanz verbessert sich weiter</strong> — der Pixel-zu-CRM-Faktor liegt jetzt bei 1,23 (Mai: 1,72), Google optimiert also auf zunehmend realistischere Daten. Für Juli ist die zentrale Frage nicht ob, sondern <strong>auf welchem Spend-Level</strong> die Kampagne ihre beste Marge fährt.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════ BING ═══════════ -->
+<section id="bing" class="section">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">03 · Bing / Microsoft Ads</div>
+    <h2 class="h-section reveal">54 Orders bei €5.512 Spend — <em>ROAS 1,32</em>.</h2>
+    <p class="section-sub reveal">Bing liefert im Juni 54 Orders und €7.264 Umsatz — mehr als doppelt so viele Bestellungen wie im Mai, bei weniger Klicks. Die Traffic-Qualität hat sich sichtbar verbessert. Plattform-Werte in EUR (USD × 0,91). Conversion-Tracking auf Bing-Seite weiterhin nicht aktiv — CRM ist die einzige Quelle.</p>
+
+    <div class="kpi-grid reveal">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Spend</span><div class="sw"><div class="sd y"></div><span class="sl y">Sekundär</span></div></div>
+        <div class="kpi-value">€5.512</div>
+        <div class="kpi-sub">Mai: €4.326 · +27 %</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Klicks · CTR</span><div class="sw"><div class="sd g"></div><span class="sl g">Qualität</span></div></div>
+        <div class="kpi-value">800</div>
+        <div class="kpi-sub">CTR 0,69 % · Mai: 0,40 %</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Impressionen</span><div class="sw"><div class="sd y"></div><span class="sl y">Mix</span></div></div>
+        <div class="kpi-value">115.698</div>
+        <div class="kpi-sub">Ø CPC €6,89 · Mai: €3,72</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">ROAS (CRM)</span><div class="sw"><div class="sd g"></div><span class="sl g">Profitabel</span></div></div>
+        <div class="kpi-value">1,32×</div>
+        <div class="kpi-sub">Umsatz €7.264 · +200 % vs. Mai</div>
+      </div>
+    </div>
+
+    <div class="grid-2 reveal" style="margin-top:14px;">
+      <div class="side-card">
+        <div class="card-label">CRM-Bestellungen · Bing · Juni</div>
+        <div class="side-row"><span class="side-row-lbl">Bestellungen</span><span class="side-row-val">54</span></div>
+        <div class="side-row"><span class="side-row-lbl">Umsatz</span><span class="side-row-val">€7.263,60</span></div>
+        <div class="side-row"><span class="side-row-lbl">Ø Bestellwert (AOV)</span><span class="side-row-val">€134,51</span></div>
+        <div class="side-row"><span class="side-row-lbl">Cost per Order (CRM)</span><span class="side-row-val">€102,07</span></div>
+        <div class="side-row"><span class="side-row-lbl">ROAS Monat 1</span><span class="side-row-val">1,32×</span></div>
+      </div>
+      <div class="hint-box">
+        <div class="card-label">Einordnung · Bing Ads</div>
+        <p>Der Sprung von 25 auf <strong>54 Orders (+116 %)</strong> bei nur +27 % Spend ist der eigentliche Story-Punkt des Monats. Die CTR hat sich von 0,40 % auf 0,69 % verbessert und der Umsatz verdreifacht sich auf €7.264 — der Kanal zieht qualitativ besseren Traffic als in den Vormonaten. Der CPC ist mit €6,89 zwar gestiegen, aber die Conversion-Qualität trägt das. <strong>Nächster Schritt: Conversion-Tracking auf Plattformseite aufsetzen</strong>, damit Bing überhaupt auf Conversions optimieren kann — aktuell läuft die Kampagne blind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════ META ═══════════ -->
+<section id="meta" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">04 · Meta Ads</div>
+    <h2 class="h-section reveal">€861 Spend, 4 Pixel-Purchases — <em>aber nur 1 Order im CRM</em>.</h2>
+    <p class="section-sub reveal">Die [RE]-Retargeting-Kampagne auf Google-Ads-Besucher lief den ganzen Juni durch, dazu kam ein kleiner Test auf ein „Selected Reviews"-Segment. Werte in EUR (USD × 0,91). Die im Mai identifizierte Pixel-zu-CRM-Diskrepanz ist weiterhin nicht aufgelöst: 4 Pixel-Purchases stehen 1 CRM-Order gegenüber.</p>
+
+    <div class="table-card reveal">
+      <div class="card-label">Kampagnen-Performance · Meta Ads · Werte in EUR (USD × 0,91)</div>
+      <table>
+        <thead>
+          <tr><th>Kampagne</th><th class="num">Reach</th><th class="num">Impr.</th><th class="num">Freq.</th><th class="num">Link Clicks</th><th class="num">CTR Link</th><th class="num">CPC Link</th><th class="num">Spend</th><th class="num">Purch. (Pixel)</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cell-name">[RE] Google Löschanfragen · Website Visitors</div><div class="cell-sub">Retargeting · DE</div></td>
+            <td class="num">9.863</td><td class="num">25.215</td><td class="num">2,56</td><td class="num">501</td><td class="num">1,99 %</td><td class="num">€1,56</td><td class="num">€782,37</td><td class="num">4</td>
+            <td><span class="tag g">Aktiv</span></td>
+          </tr>
+          <tr>
+            <td><div class="cell-name">[RE] Google Löschanfragen · Selected Reviews</div><div class="cell-sub">Retargeting-Test · Mini-Audience · DE</div></td>
+            <td class="num">152</td><td class="num">2.899</td><td class="num">19,07</td><td class="num">9</td><td class="num">0,31 %</td><td class="num">€8,75</td><td class="num">€78,75</td><td class="num">0</td>
+            <td><span class="tag y">Test</span></td>
+          </tr>
+          <tr class="total-row">
+            <td>Gesamt</td>
+            <td class="num">—</td><td class="num">28.114</td><td class="num">—</td><td class="num">510</td><td class="num">1,81 %</td><td class="num">€1,69</td><td class="num">€861,12</td><td class="num">4</td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2 reveal" style="margin-top:14px;">
+      <div class="side-card">
+        <div class="card-label">CRM-Sicht · Meta inkl. Instagram</div>
+        <div class="side-row"><span class="side-row-lbl">Orders (CRM)</span><span class="side-row-val">1</span></div>
+        <div class="side-row"><span class="side-row-lbl">Umsatz</span><span class="side-row-val">€273,90</span></div>
+        <div class="side-row"><span class="side-row-lbl">Pixel-Purchases</span><span class="side-row-val">4</span></div>
+        <div class="side-row"><span class="side-row-lbl">ROAS (CRM)</span><span class="side-row-val">0,32×</span></div>
+        <div class="side-row"><span class="side-row-lbl">CPO (CRM)</span><span class="side-row-val">€861,12</span></div>
+      </div>
+      <div class="hint-box">
+        <div class="card-label">Tracking-Diskrepanz · weiter offen</div>
+        <p>Das Pixel meldet <strong>4 Purchases</strong>, im CRM kommt <strong>1 Order (€273,90)</strong> an — die Bestellung erscheint dort sowohl unter „Meta Ads" als auch unter „Instagram Ads" und ist hier als eine Order zusammengefasst. Die im Mai empfohlene Klärung (Purchase-Event-Prüfung, Conversion API, Attribution-Window-Abgleich) steht weiter aus. Bei €861 Monats-Spend ist der Schaden begrenzt, aber solange das Setup nicht sauber misst, lässt sich die Retargeting-Performance nicht bewerten — und eine Skalierung ist nicht sinnvoll. Der „Selected Reviews"-Test lief mit Frequenz 19 auf ein Mini-Publikum von 152 Personen — zu klein für eine Aussage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════ SALES ═══════════ -->
+<section id="sales" class="section">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">05 · Sales · CRM-Sicht</div>
+    <h2 class="h-section reveal">€57.536 Umsatz — <em>87 % davon über Google</em>, 13 % über Bing.</h2>
+    <p class="section-sub reveal">CRM ist die authoritative Quelle für Bestellungen und Umsatz. Google trägt weiterhin den Löwenanteil, Bing verdreifacht seinen Umsatz-Beitrag gegenüber Mai. Meta- und Instagram-Bestellungen sind zusammengeführt, da beide über denselben Meta-Spend laufen.</p>
+
+    <div class="grid-3 reveal">
+      <div class="side-card">
+        <div class="card-label">Google Ads</div>
+        <div class="channel-num">€49.998,03</div>
+        <div class="channel-share">460 Bestellungen · 86,9 % Ads-Umsatz</div>
+      </div>
+      <div class="side-card">
+        <div class="card-label">Bing Ads</div>
+        <div class="channel-num">€7.263,60</div>
+        <div class="channel-share">54 Bestellungen · 12,6 % Ads-Umsatz</div>
+      </div>
+      <div class="side-card">
+        <div class="card-label">Meta Ads · inkl. Instagram</div>
+        <div class="channel-num">€273,90</div>
+        <div class="channel-share">1 Bestellung · 0,5 % Ads-Umsatz</div>
+      </div>
+    </div>
+
+    <div class="table-card reveal">
+      <div class="card-label">ROAS pro Kanal · CRM-Umsatz ÷ Plattform-Spend</div>
+      <table>
+        <thead>
+          <tr><th>Kanal</th><th class="num">Spend</th><th class="num">Orders</th><th class="num">Umsatz CRM</th><th class="num">Ø Order-Wert</th><th class="num">ROAS</th><th class="num">CPO</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cell-name">Google Ads</div></td>
+            <td class="num">€33.864,57</td><td class="num">460</td><td class="num">€49.998,03</td><td class="num">€108,69</td><td class="num">1,48×</td><td class="num">€73,62</td>
+          </tr>
+          <tr>
+            <td><div class="cell-name">Bing Ads</div></td>
+            <td class="num">€5.511,76</td><td class="num">54</td><td class="num">€7.263,60</td><td class="num">€134,51</td><td class="num">1,32×</td><td class="num">€102,07</td>
+          </tr>
+          <tr>
+            <td><div class="cell-name">Meta Ads · inkl. Instagram</div></td>
+            <td class="num">€861,12</td><td class="num">1</td><td class="num">€273,90</td><td class="num">€273,90</td><td class="num">0,32×</td><td class="num">€861,12</td>
+          </tr>
+          <tr class="total-row">
+            <td>Gesamt</td>
+            <td class="num">€40.237,45</td><td class="num">515</td><td class="num">€57.535,53</td><td class="num">€111,72</td><td class="num">1,43×</td><td class="num">€78,13</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">Spend vs. Umsatz · März – Juni</div>
+        <div class="chart-wrap"><canvas id="chartSpend"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Orders &amp; ROAS · März – Juni</div>
+        <div class="chart-wrap"><canvas id="chartOrders"></canvas></div>
+      </div>
+    </div>
+
+    <div class="table-card reveal">
+      <div class="card-label">Monatsvergleich · alle Ads-Kanäle · CRM-basiert</div>
+      <table>
+        <thead>
+          <tr><th>Monat</th><th class="num">Spend</th><th class="num">Orders</th><th class="num">Umsatz CRM</th><th class="num">Ø CPO</th><th class="num">ROAS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><div class="cell-name">März 2026</div><div class="cell-sub">Bing + Meta</div></td><td class="num">€7.810</td><td class="num">51</td><td class="num">€8.870</td><td class="num">€153,14</td><td class="num">1,14×</td></tr>
+          <tr><td><div class="cell-name">April 2026</div><div class="cell-sub">Google-Start Mitte April</div></td><td class="num">€25.241</td><td class="num">148</td><td class="num">€19.209</td><td class="num">€170,55</td><td class="num">0,76×</td></tr>
+          <tr><td><div class="cell-name">Mai 2026</div><div class="cell-sub">Google skaliert</div></td><td class="num">€21.942</td><td class="num">371</td><td class="num">€45.501</td><td class="num">€59,14</td><td class="num">2,07×</td></tr>
+          <tr class="hl-row"><td><div class="cell-name">Juni 2026</div><div class="cell-sub">Rekord-Volumen · Effizienz sinkt</div></td><td class="num">€40.237</td><td class="num">515</td><td class="num">€57.536</td><td class="num">€78,13</td><td class="num">1,43×</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Anmerkung · CRM-Attribution</div>
+      <p class="insight-text">Die Channel-Zuordnung im CRM ist UTM-/Last-Click-basiert; einzelne Bestellungen können in mehreren Quellen gleichzeitig auftauchen. Die eine Meta-Order des Monats erscheint im CRM identisch unter „Meta Ads" und „Instagram Ads" und ist hier <strong>als eine Bestellung gezählt</strong>. Bing-Bestellungen kommen sauber im CRM an — der ROAS von 1,32× ist eine echte Performance-Aussage, kein Tracking-Artefakt. Für Google gilt weiterhin: CRM (460 Orders) schlägt Pixel (372,57 Conversions) als Maßstab.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ═══════════ EMPFEHLUNGEN ═══════════ -->
+<section id="empfehlungen" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">06 · Empfehlungen · Juli</div>
+    <h2 class="h-section reveal">Vier Punkte <em>für den Juli</em>.</h2>
+    <p class="section-sub reveal">Vier priorisierte Maßnahmen für die kommenden Wochen. Reihenfolge nach Impact und Aufwand.</p>
+
+    <div class="prio-grid">
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">01</div>
+          <div><div class="prio-title-text">Google-Effizienz zurückholen <span class="tag r">Kritisch</span></div></div>
+        </div>
+        <div class="prio-desc">Der CPC ist von €8,38 auf <strong>€13,59 (+62 %)</strong> gestiegen, der ROAS von 2,55× auf 1,48× gefallen. Suchbegriffs- und Auktionsanalyse fahren, prüfen ob das Spend-Level über dem effizienten Punkt liegt, und ein tROAS- oder tCPA-Ziel gegen reines Maximize Conversions testen. Ziel: das Mai-Effizienz-Niveau bei möglichst viel des Juni-Volumens halten.</div>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">02</div>
+          <div><div class="prio-title-text">Conversion auf der Landingpage verbessern <span class="tag y">Hoch</span></div></div>
+        </div>
+        <div class="prio-desc">Bei €13,59 CPC entscheidet die Landingpage über den CPO. Die neue Landingpage fertigstellen, gegen die aktuelle testen und Hürden im Anfrage-Prozess reduzieren. <strong>Jeder Prozentpunkt mehr Conversion-Rate senkt den CPO direkt</strong> — ohne am Einkaufspreis der Klicks zu drehen.</div>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">03</div>
+          <div><div class="prio-title-text">Trustpilot &amp; Kununu Kampagnen launchen <span class="tag y">Mittel</span></div></div>
+        </div>
+        <div class="prio-desc">Im Juni ist die Channel-Expansion nicht gestartet — Cold-Google war die einzige aktive Google-Kampagne. Die zwei geplanten Search-Kampagnen für Trustpilot- und Kununu-Löschanfragen jetzt aufsetzen, mit dem Cold-Google-Setup als Template. Gleichzeitig eine zweite Traffic-Quelle neben dem teurer werdenden Cold-Google-Kernkeyword-Set.</div>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header">
+          <div class="prio-num">04</div>
+          <div><div class="prio-title-text">Meta-Tracking-Audit abschließen <span class="tag b">Optional</span></div></div>
+        </div>
+        <div class="prio-desc">Pixel 4 vs. CRM 1 — die Diskrepanz aus dem Mai besteht weiter. Purchase-Event prüfen, Conversion API einbauen, Attribution-Windows abgleichen. Bei €861 Monats-Spend keine akute Baustelle, aber Voraussetzung, bevor Retargeting auf Trustpilot-/Kununu-Traffic ausgeweitet wird.</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-brand">Skael <span>Reports</span></span>
+      <span class="footer-date">Erstellt am 10. Juli 2026 · USD × 0,91</span>
+    </footer>
+  </div>
+</section>
+
+<!-- EDIT BAR -->
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+/* ── Charts ── */
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+Chart.defaults.font.size = 11;
+
+const months = ['März', 'April', 'Mai', 'Juni'];
+
+new Chart(document.getElementById('chartSpend'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Spend (€)', data: [7810, 25241, 21942, 40237], backgroundColor: 'rgba(58,110,244,0.22)', borderRadius: 5 },
+      { label: 'Umsatz CRM (€)', data: [8870, 19209, 45501, 57536], backgroundColor: '#3a6ef4', borderRadius: 5 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { duration: 1000, easing: 'easeInOutQuart' },
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, padding: 16 } } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => '€' + (v/1000) + 'k' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('chartOrders'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Orders (CRM)', data: [51, 148, 371, 515], backgroundColor: '#3a6ef4', borderRadius: 5, yAxisID: 'y' },
+      { label: 'ROAS', data: [1.14, 0.76, 2.07, 1.43], type: 'line', borderColor: '#22c55e', backgroundColor: '#22c55e', borderWidth: 2, pointRadius: 4, tension: 0.3, yAxisID: 'y1' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    animation: { duration: 1000, easing: 'easeInOutQuart' },
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, padding: 16 } } },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' } },
+      y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v.toFixed(1).replace('.', ',') + '×' } }
+    }
+  }
+});
+
+/* ── Scroll Reveal ── */
+const ro = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ── Nav ── */
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+document.querySelectorAll('section[id]').forEach(s => {
+  new IntersectionObserver(es => {
+    if (es[0].isIntersecting) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      const a = document.querySelector(`.nav-tab[href="#${s.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  }, { threshold: 0.3 }).observe(s);
+});
+
+/* ── Edit Bar ── */
+const EDITABLE_SELECTORS = [
+  '.h-hero', '.h-hero em', '.badge span',
+  '.hero-meta-value', '.hero-meta-label', '.nav-pill',
+  '.kpi-label', '.kpi-value', '.kpi-sub', '.sl',
+  '.insight-text', '.card-label',
+  '.section-eyebrow', '.h-section', '.h-section em', '.section-sub',
+  '.side-row-lbl', '.side-row-val', '.hint-box p',
+  '.channel-num', '.channel-share',
+  '.cell-name', '.cell-sub', '.tag',
+  'tbody td', 'thead th',
+  '.prio-title-text', '.prio-desc',
+  '.fazit-heading', '.fazit-text',
+  '.footer-brand', '.footer-date',
+].join(',');
+
+let editing = false;
+
+function toggleEdit() {
+  editing = !editing;
+  const btn = document.getElementById('ebEdit');
+  const save = document.getElementById('ebSave');
+  if (editing) {
+    document.body.classList.add('editing');
+    document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+    btn.textContent = '✕ Fertig';
+    btn.classList.add('on');
+    save.style.display = 'block';
+  } else {
+    document.body.classList.remove('editing');
+    document.querySelectorAll('[contenteditable="true"]').forEach(el => el.setAttribute('contenteditable', 'false'));
+    btn.textContent = '✏︎ Bearbeiten';
+    btn.classList.remove('on');
+    save.style.display = 'none';
+  }
+}
+
+function downloadHTML() {
+  const bar = document.getElementById('editBar');
+  const wasEditing = editing;
+  document.body.classList.remove('editing');
+  document.querySelectorAll('[contenteditable]').forEach(el => el.setAttribute('contenteditable', 'false'));
+  bar.style.display = 'none';
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  bar.style.display = '';
+  if (wasEditing) {
+    document.body.classList.add('editing');
+    document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => el.setAttribute('contenteditable', 'true'));
+  }
+  try {
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(html);
+    const blob = new Blob([bytes], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'RezensionsHeld-Jun-2026.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch(e) {
+    alert('Download fehlgeschlagen. Bitte lokal im Browser öffnen.');
+  }
+}
+</script>
+</body>
+</html>
