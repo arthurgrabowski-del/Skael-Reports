@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maloum Juni · CSV Double-Check</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfcfd;--white:#fff;--border:#e4e6ec;--border2:#d0d3de;--navy:#0f1b2d;--blue:#3a6ef4;--blue-bg:#eef2ff;--blue-mid:#c7d4fd;--muted:#6b7280;--sub:#9ca3af;--body:#374151;--green:#16a34a;--green-bg:#dcfce7;--yellow:#b45309;--yellow-bg:#fef3c7;--red:#dc2626;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.6;background:var(--bg);color:var(--body);}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+header{padding:56px 0 40px;border-bottom:1px solid var(--border);}
+.brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:20px;}
+h1{font-family:'Poppins',sans-serif;font-size:46px;font-weight:500;letter-spacing:-0.035em;line-height:1.05;color:var(--navy);}
+h1 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.lead{font-size:15px;color:var(--muted);max-width:70ch;margin-top:16px;}
+section{padding:44px 0;border-bottom:1px solid var(--border);}
+.kick{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--sub);margin-bottom:8px;}
+h2{font-family:'Poppins',sans-serif;font-size:28px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:6px;}
+h2 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.note{font-size:13.5px;color:var(--muted);margin-bottom:22px;max-width:74ch;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px 24px;}
+/* timeline */
+.tl{position:relative;height:150px;margin:8px 0 4px;}
+.tl-axis{position:absolute;left:0;right:0;bottom:26px;height:1px;background:var(--border2);}
+.tl-june{position:absolute;top:0;bottom:26px;border-left:2px dashed var(--blue);}
+.tl-june span{position:absolute;top:-2px;left:6px;font-family:'DM Mono',monospace;font-size:9.5px;color:var(--blue);white-space:nowrap;}
+.tl-bar{position:absolute;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;color:#fff;font-weight:500;overflow:hidden;white-space:nowrap;}
+.tl-lbl{position:absolute;bottom:6px;font-family:'DM Mono',monospace;font-size:9px;color:var(--sub);}
+/* flow */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;}
+.fbox{flex:1;min-width:150px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px;text-align:center;}
+.fbox.hi{border-color:var(--blue-mid);background:#fafbff;}
+.fbox.new{border-color:#86efac;background:#f8fff9;}
+.fbox.old{border-color:var(--blue-mid);background:#f5f8ff;}
+.fbox .v{font-family:'Poppins',sans-serif;font-size:30px;font-weight:600;color:var(--navy);line-height:1;}
+.fbox .v.g{color:var(--green);}.fbox .v.b{color:var(--blue);}
+.fbox .l{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);margin-top:8px;}
+.fbox .s{font-size:12px;color:var(--muted);margin-top:6px;}
+.arrow{display:flex;align-items:center;justify-content:center;padding:0 10px;color:var(--blue);font-size:22px;font-weight:700;}
+.minus{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);display:flex;align-items:center;padding:0 8px;}
+table{width:100%;border-collapse:collapse;margin-top:6px;}
+th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);padding:10px 12px;text-align:right;border-bottom:1px solid var(--border);}
+th:first-child{text-align:left;}
+td{font-size:13px;padding:10px 12px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums;}
+td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+tr:last-child td{border-bottom:none;}
+.mono{font-family:'DM Mono',monospace;}
+.split-bar{display:flex;height:52px;border-radius:10px;overflow:hidden;margin:6px 0 18px;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;}
+.split-bar .n{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.split-bar .o{background:linear-gradient(135deg,#3a6ef4,#5b89f7);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.split-bar small{font-size:10px;opacity:0.85;font-weight:400;}
+.defbox{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;font-size:13px;color:var(--navy);}
+.defbox b{color:var(--blue);}
+.coh{display:grid;grid-template-columns:110px 1fr 150px;align-items:center;gap:12px;margin:6px 0;}
+.coh .m{font-family:'DM Mono',monospace;font-size:12px;color:var(--navy);}
+.coh .track{background:#eef2ff;border-radius:5px;height:24px;overflow:hidden;}
+.coh .fill{height:100%;border-radius:5px;}
+.coh .val{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);text-align:right;}
+.check{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
+.check:last-child{border-bottom:none;}
+.tick{width:20px;height:20px;border-radius:50%;background:var(--green-bg);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.check b{color:var(--navy);font-weight:500;}
+.hl{background:#f8fff9;border:1px solid #86efac;border-radius:12px;padding:20px 24px;margin-top:20px;}
+.hl .big{font-family:'Poppins',sans-serif;font-size:34px;font-weight:600;color:var(--green);line-height:1;}
+.hl .lbl{font-size:13px;color:var(--body);margin-top:8px;}
+footer{padding:28px 0 46px;font-family:'DM Mono',monospace;font-size:10.5px;color:var(--sub);}
+@media(max-width:820px){.flow{flex-direction:column;}.arrow,.minus{transform:rotate(90deg);padding:6px 0;}.coh{grid-template-columns:80px 1fr 120px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">Skael · Data Verification</div>
+  <h1>Maloum Juni 2026<br><em>CSV Double-Check</em></h1>
+  <p class="lead">Alle 4 Transaktions-Exporte frisch durchgerechnet — jeder Schritt einzeln nachvollziehbar: Rohdateien → Dedup → Juni-Filter → Neu-/Alt-Split → die €82.077. Geld-Spalte: <span class="mono">Net + Payment Fee</span>. Datum: <span class="mono">Created at</span> (UTC).</p>
+</header>
+
+<!-- 1. FILES -->
+<section>
+  <div class="kick">Schritt 1</div>
+  <h2>Die 4 <em>Rohdateien</em></h2>
+  <p class="note">Die Files decken zusammen den 18.05.–30.06. lückenlos ab. Sie überlappen an den Rändern (z.B. 11.06. in File 1 <em>und</em> File 3) — deshalb ist Dedup nötig.</p>
+  <div class="card">
+    <div class="tl">
+      <div class="tl-june" style="left:30.2%;"><span>Juni beginnt</span></div>
+      <div class="tl-bar" style="left:0%;width:55.8%;top:6px;background:#0f1b2d;">File 1 · 18.05 → 11.06</div>
+      <div class="tl-bar" style="left:55.8%;width:16.3%;top:40px;background:#3a6ef4;">File 3 · 11–18.06</div>
+      <div class="tl-bar" style="left:74.4%;width:4.7%;top:74px;background:#7a4ff4;font-size:8px;">F4</div>
+      <div class="tl-bar" style="left:81.4%;width:18.6%;top:74px;background:#16a34a;">File 2 · 22–30.06</div>
+      <div class="tl-axis"></div>
+      <div class="tl-lbl" style="left:0%;">18.05</div>
+      <div class="tl-lbl" style="left:29%;">01.06</div>
+      <div class="tl-lbl" style="right:0%;">30.06</div>
+    </div>
+  </div>
+  <table style="margin-top:16px;">
+    <thead><tr><th>Datei</th><th>Zeilen</th><th>Zeitraum (Created at)</th><th>GMV in Datei</th></tr></thead>
+    <tbody>
+      <tr><td>File 1 (anonymized)</td><td>3.571</td><td class="mono">18.05 → 11.06</td><td>78.905 €</td></tr>
+      <tr><td>File 3 (06-19 Pull)</td><td>1.527</td><td class="mono">11.06 → 18.06</td><td>38.233 €</td></tr>
+      <tr><td>File 4 (06-22 Pull)</td><td>545</td><td class="mono">19.06 → 21.06</td><td>13.235 €</td></tr>
+      <tr><td>File 2 (07-01 Pull)</td><td>1.834</td><td class="mono">22.06 → 30.06</td><td>51.522 €</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 2. WATERFALL -->
+<section>
+  <div class="kick">Schritt 2</div>
+  <h2>Von <em>roh</em> zu Juni</h2>
+  <p class="note">4 Files addiert = 7.477 Zeilen. Nach Dedup über die Transaktions-ID bleiben 7.261 eindeutige. Davon fallen alle mit Kaufdatum im Juni in den Report: 5.368.</p>
+  <div class="flow">
+    <div class="fbox"><div class="v">7.477</div><div class="l">Zeilen roh (4 Files)</div><div class="s">18.05 – 30.06</div></div>
+    <div class="minus">− 216 Dupes</div>
+    <div class="fbox hi"><div class="v">7.261</div><div class="l">eindeutige Txns</div><div class="s">nach Dedup (ID)</div></div>
+    <div class="arrow">→</div>
+    <div class="fbox hi"><div class="v b">5.368</div><div class="l">Juni-Transaktionen</div><div class="s">131.656 € · 1.514 Käufer</div></div>
+  </div>
+  <p class="note" style="margin-top:18px;">Die 216 Duplikate sind Transaktionen, die in zwei überlappenden Pulls doppelt auftauchen — davon nur <b>7</b> mit minimal abweichendem Betrag (Wert zwischen zwei Pulls aktualisiert). Wer die Files einfach aneinanderhängt <b>ohne Dedup</b>, zählt 216 Käufe zu viel.</p>
+</section>
+
+<!-- 3. SPLIT -->
+<section>
+  <div class="kick">Schritt 3 · Kernfrage</div>
+  <h2>Neukunden <em>vs.</em> Bestand</h2>
+  <div class="defbox" style="margin-bottom:20px;">
+    <b>Definition NEU:</b> Käufer, dessen Account im Juni angelegt wurde (<span class="mono">Buyer created at</span> = 2026-06) <b>UND</b> der im Juni gezahlt hat (<span class="mono">Created at</span> = 2026-06). Inkl. aller Wiederkäufe im selben Monat — nicht nur der Erstkauf.
+  </div>
+  <div class="split-bar">
+    <div class="n" style="width:62.34%;">NEU · 82.077 €<small>62,3% · 879 Kunden · 2.970 Txns</small></div>
+    <div class="o" style="width:37.66%;">ALT · 49.580 €<small>37,7% · 635 Kunden · 2.398 Txns</small></div>
+  </div>
+  <div class="flow">
+    <div class="fbox new"><div class="v g">82.077 €</div><div class="l">Neukunden-GMV</div><div class="s">879 Kunden · Ø 93,38 € · 3,38 Txns/Kunde</div></div>
+    <div class="fbox"><div class="v">+</div><div class="l" style="visibility:hidden;">.</div></div>
+    <div class="fbox old"><div class="v b">49.580 €</div><div class="l">Bestandskunden-GMV</div><div class="s">635 Kunden · Ø 78,08 € · 3,78 Txns/Kunde</div></div>
+    <div class="arrow">=</div>
+    <div class="fbox hi"><div class="v">131.656 €</div><div class="l">Juni gesamt</div><div class="s">1.514 Kunden · 5.368 Txns</div></div>
+  </div>
+</section>
+
+<!-- 4. COHORTS -->
+<section>
+  <div class="kick">Schritt 4 · Gegenprobe</div>
+  <h2>Juni-Umsatz nach <em>Kohorte</em> des Käufers</h2>
+  <p class="note">Aufschlüsselung der 131.656 € danach, wann der zahlende Käufer angelegt wurde. Die grüne Zeile (Juni) = die 82.077 € Neukunden. Alles darunter = Bestand, der weiterzahlt.</p>
+  <div class="card">
+    <div class="coh"><span class="m">Juni · NEU</span><div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div><span class="val">82.077 € · 879 K.</span></div>
+    <div class="coh"><span class="m">Mai</span><div class="track"><div class="fill" style="width:36.8%;background:#3a6ef4;"></div></div><span class="val">30.191 € · 412 K.</span></div>
+    <div class="coh"><span class="m">April</span><div class="track"><div class="fill" style="width:16.9%;background:#5b89f7;"></div></div><span class="val">13.830 € · 166 K.</span></div>
+    <div class="coh"><span class="m">März</span><div class="track"><div class="fill" style="width:2.1%;background:#93b0f9;"></div></div><span class="val">1.738 € · 23 K.</span></div>
+    <div class="coh"><span class="m">Feb</span><div class="track"><div class="fill" style="width:1.6%;background:#93b0f9;"></div></div><span class="val">1.287 € · 9 K.</span></div>
+    <div class="coh"><span class="m">Jan</span><div class="track"><div class="fill" style="width:0.9%;background:#c7d4fd;"></div></div><span class="val">757 € · 6 K.</span></div>
+    <div class="coh"><span class="m">Dez 25</span><div class="track"><div class="fill" style="width:1.9%;background:#c7d4fd;"></div></div><span class="val">1.594 € · 13 K.</span></div>
+    <div class="coh"><span class="m">Nov 25</span><div class="track"><div class="fill" style="width:0.2%;background:#c7d4fd;"></div></div><span class="val">183 € · 6 K.</span></div>
+  </div>
+</section>
+
+<!-- 5. SAMPLE -->
+<section>
+  <div class="kick">Schritt 5 · Stichprobe zum Selbst-Prüfen</div>
+  <h2>12 echte <em>Neukunden</em>-Transaktionen</h2>
+  <p class="note">Erste 12 Neukunden-Zeilen (01.06.). Jede erfüllt beide Bedingungen: Käufer im Juni angelegt <b>und</b> im Juni gezahlt. Beispiel <span class="mono">danii95</span>: am 01.06. angelegt, macht am selben Tag 5 Käufe (1,15 → 172,50 €) — der klassische Funnel vom Intro-Unlock zum großen Kauf. Alle 5 zählen ins Neukunden-GMV.</p>
+  <table>
+    <thead><tr><th>Käufer (anonym)</th><th>angelegt</th><th>Kaufdatum</th><th>Creator</th><th>Betrag</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">airy-lagoon-4025</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>1,15 €</td></tr>
+      <tr><td class="mono">amused-outpost-1478</td><td class="mono">01.06</td><td class="mono">01.06</td><td>stella4twenty</td><td>1,15 €</td></tr>
+      <tr><td class="mono">careful-swale-8384</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>1,15 €</td></tr>
+      <tr><td class="mono">aspiring-bamboo-1330</td><td class="mono">01.06</td><td class="mono">01.06</td><td>stella4twenty</td><td>1,15 €</td></tr>
+      <tr><td class="mono">handy-reservoir-2164</td><td class="mono">01.06</td><td class="mono">01.06</td><td>stella4twenty</td><td>1,15 €</td></tr>
+      <tr><td class="mono">danii95</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>1,15 €</td></tr>
+      <tr><td class="mono">danii95</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>21,85 €</td></tr>
+      <tr><td class="mono">danii95</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>44,85 €</td></tr>
+      <tr><td class="mono">danii95</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>136,85 €</td></tr>
+      <tr><td class="mono">danii95</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>172,50 €</td></tr>
+      <tr><td class="mono">familiar-ravine-0501</td><td class="mono">01.06</td><td class="mono">01.06</td><td>stella4twenty</td><td>1,15 €</td></tr>
+      <tr><td class="mono">steven999</td><td class="mono">01.06</td><td class="mono">01.06</td><td>ossi.desii</td><td>1,15 €</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 6. CHECKS -->
+<section style="border-bottom:none;">
+  <div class="kick">Schritt 6</div>
+  <h2>Reconciliation-<em>Checks</em></h2>
+  <div class="card">
+    <div class="check"><span class="tick">✓</span><span><b>82.077 € + 49.580 € = 131.656 €</b> — Neu + Alt ergibt exakt den Juni-Umsatz (auf den Cent).</span></div>
+    <div class="check"><span class="tick">✓</span><span><b>879 + 635 = 1.514 Käufer</b> — überschneidungsfrei, kein Kunde doppelt gezählt (jeder ist entweder neu oder alt).</span></div>
+    <div class="check"><span class="tick">✓</span><span><b>2.970 + 2.398 = 5.368 Transaktionen</b> — vollständige Aufteilung, nichts verloren.</span></div>
+    <div class="check"><span class="tick">✓</span><span><b>30/30 Juni-Tage</b> abgedeckt, keine Lücke zwischen den Files.</span></div>
+    <div class="check"><span class="tick">✓</span><span><b>Nur APPROVED</b> — keine Refunds/Pending im Export enthalten.</span></div>
+    <div class="check"><span class="tick">✓</span><span><b>100% Ad-attribuiert</b> — jede der 5.368 Txns trägt eine Meta-Ads-UTM (Tobis Backend-Total liegt höher, weil es auch Organik enthält).</span></div>
+  </div>
+  <div class="hl">
+    <div class="big">82.077 €</div>
+    <div class="lbl">= Umsatz von Kunden, die <b>im Juni neu dazukamen</b> und <b>im Juni zahlten</b> (879 Kunden, 2.970 Transaktionen). Nicht enthalten: was diese Kunden in Juli+ noch zahlen (LTV-Tail) und der Juni-Umsatz alter Kunden (49.580 €).</div>
+  </div>
+</section>
+
+<footer>Skael · CSV Double-Check · Basis: 4 Transaktions-Exporte · 7.261 eindeutige Txns · Geld = „Net + Payment Fee" · Datum = „Created at" (UTC) · erstellt 10.07.2026</footer>
+
+</div>
+</body>
+</html>
