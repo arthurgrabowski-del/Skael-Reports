@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIER Group × ASYMMETRY · Partnermodell</title>
+<meta property="og:title" content="TIER Group × ASYMMETRY · Partnermodell">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#fbfcfd; --white:#ffffff; --border:#e4e6ec; --border2:#d0d3de;
+  --navy:#0f1b2d; --blue:#3a6ef4; --blue-bg:#eef2ff; --blue-mid:#c7d4fd;
+  --muted:#6b7280; --sub:#9ca3af; --body:#374151;
+  --green:#16a34a; --green-bg:#dcfce7; --green-dot:#22c55e;
+  --yellow:#b45309; --yellow-bg:#fef3c7; --yellow-dot:#f59e0b;
+  --red:#dc2626; --red-bg:#fee2e2; --red-dot:#ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;height:58px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 48px;gap:16px;opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);white-space:nowrap;}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);flex-shrink:0;}
+.nav-tabs{display:flex;gap:4px;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.04);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--white);border:1px solid var(--border);padding:4px 10px;border-radius:20px;}
+
+/* LAYOUT */
+.wrap{max-width:1180px;margin:0 auto;padding:0 48px;}
+section{scroll-margin-top:58px;}
+.sec{padding:72px 48px;max-width:1180px;margin:0 auto;}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0 48px;}
+.proj-sep{height:4px;background:linear-gradient(90deg,var(--blue) 0%,var(--blue-mid) 100%);margin:0;opacity:0.15;}
+
+/* HERO */
+.h-hero{font-family:'Poppins',sans-serif;font-size:58px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);margin-bottom:24px;}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400;}
+.h-section{font-family:'Poppins',sans-serif;font-size:40px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:14px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);font-weight:400;}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--blue);margin-bottom:14px;}
+.sec-intro{font-size:15px;color:var(--muted);line-height:1.7;max-width:760px;margin-bottom:36px;}
+.lede{font-size:16px;color:var(--body);line-height:1.75;max-width:780px;}
+.lede strong{color:var(--navy);font-weight:500;}
+
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:36px;margin-bottom:8px;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px;}
+.kpi-grid.three{grid-template-columns:repeat(3,1fr);}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:box-shadow 0.2s,transform 0.2s;}
+.kpi-card:hover{box-shadow:0 4px 16px rgba(15,27,45,0.08);transform:translateY(-2px);}
+.kpi-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.kpi-value{font-size:29px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;margin-bottom:6px;}
+.kpi-sub{font-size:11.5px;color:var(--muted);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.b{background:var(--blue);box-shadow:0 0 0 2px rgba(58,110,244,0.20);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);} .sl.y{color:var(--yellow);} .sl.b{color:var(--blue);}
+
+/* TAGS */
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;display:inline-block;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+
+/* CRITIQUE ITEMS */
+.crit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.crit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;transition:box-shadow 0.2s,transform 0.2s;}
+.crit-card:hover{box-shadow:0 4px 16px rgba(15,27,45,0.08);transform:translateY(-2px);}
+.crit-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.crit-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);font-weight:500;}
+.crit-title{font-size:14px;font-weight:500;color:var(--navy);}
+.crit-desc{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.crit-desc b{color:var(--body);font-weight:500;}
+
+/* TABLE */
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.tbl-cap{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);}
+thead th.num{text-align:right;}
+tbody td{font-size:13px;color:var(--body);padding:12px 16px;border-bottom:1px solid var(--border);}
+tbody td.num{text-align:right;font-family:'DM Mono',monospace;letter-spacing:-0.02em;}
+tbody td.navy{color:var(--navy);font-weight:500;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f8f9ff;}
+tbody tr.total td{background:#f0f4ff;font-weight:500;color:var(--navy);border-top:1px solid var(--border2);}
+tbody tr.total td.num{color:var(--navy);}
+.cell-old{color:var(--muted);}
+.cell-new{color:var(--navy);font-weight:500;}
+.tbl-note{font-size:11.5px;color:var(--sub);margin-top:12px;line-height:1.6;}
+
+/* HINT / CALLOUT */
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:18px 20px;margin-top:16px;}
+.hint-box .card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:8px;}
+.hint-box p{font-size:13px;color:var(--navy);line-height:1.65;}
+.hint-box p b{font-weight:600;}
+
+/* SPLIT TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:start;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px;}
+.chart-card .card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:16px;}
+.chart-card canvas{max-height:260px;}
+
+/* PARTY CARDS */
+.party-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;}
+.party-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 24px;position:relative;overflow:hidden;}
+.party-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.party-card.tier::before{background:var(--navy);}
+.party-card.skael::before{background:var(--blue);}
+.party-card.asy::before{background:var(--blue-mid);}
+.party-name{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:10px;}
+.party-val{font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.05;margin-bottom:4px;}
+.party-sub{font-size:11.5px;color:var(--muted);}
+
+/* FAZIT */
+.fazit-card{background:var(--navy);border-radius:12px;padding:40px 44px;color:#fff;}
+.fazit-eyebrow{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:var(--blue-mid);margin-bottom:16px;}
+.fazit-heading{font-size:26px;font-weight:500;letter-spacing:-0.02em;color:#fff;margin-bottom:20px;line-height:1.35;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue-mid);}
+.fazit-text{font-size:14px;color:#c9d2e0;line-height:1.75;max-width:820px;}
+.fazit-text strong{color:#fff;font-weight:500;}
+
+/* FOOTER */
+.footer{padding:32px 48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);max-width:1180px;margin:0 auto;}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);}
+
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:960px){
+  nav{padding:0 16px;} .sec{padding:52px 20px;} .wrap{padding:0 20px;} .footer{padding:24px 20px;}
+  .h-hero{font-size:38px;} .h-section{font-size:30px;}
+  .kpi-grid{grid-template-columns:1fr 1fr;} .kpi-grid.three{grid-template-columns:1fr 1fr;} .crit-grid{grid-template-columns:1fr;}
+  .party-grid{grid-template-columns:1fr;} .two-col{grid-template-columns:1fr;}
+  .nav-tabs{display:none;}
+  .tbl-wrap{overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Strategy</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#kritik">Was nicht passt</a>
+    <a class="nav-tab" href="#modell">Was wir ändern</a>
+    <a class="nav-tab" href="#rechnung">Die Rechnung</a>
+    <a class="nav-tab" href="#tier">Was für TIER Group drin ist</a>
+    <a class="nav-tab" href="#fazit">Fazit</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">Intern · Entwurf</span></div>
+</nav>
+
+<!-- HERO -->
+<section class="sec" style="padding-top:64px;padding-bottom:40px;">
+  <div class="sec-eyebrow" style="opacity:0;animation:fadeUp 0.6s ease 0.1s forwards;">Partnermodell TIER Group × ASYMMETRY · Gegenvorschlag</div>
+  <h1 class="h-hero" style="opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;">
+    Das aktuelle Paper<br>lohnt sich <em>so</em> nicht.
+  </h1>
+  <p class="lede" style="opacity:0;animation:fadeUp 0.6s ease 0.4s forwards;">
+    Clemens, hier mal kurz wo ich beim Modell von TIER Group stehe. Die Idee an sich (reines Erfolgsmodell) ist okay. Aber so wie das Paper geschrieben ist, hängen wir mit dem ganzen Risiko drin und TIER Group sitzt auf allen Zahlen. Unten steht, <strong>was ich nicht gut finde</strong>, <strong>was ich ändern würde</strong> und <strong>was am Ende bei jedem hängen bleibt</strong>.
+  </p>
+  <div class="hero-meta" style="opacity:0;animation:fadeUp 0.6s ease 0.55s forwards;">
+    <div class="hero-meta-item"><span class="hero-meta-label">Basis-Szenario</span><span class="hero-meta-value">6 Termine → 2 Neukunden</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">ICP-Kunde</span><span class="hero-meta-value">250.000 € Umsatz · 20 % RE</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Split intern</span><span class="hero-meta-value">Skael 80 % · ASYMMETRY 20 %</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Stand</span><span class="hero-meta-value">Juli 2026</span></div>
+  </div>
+</section>
+
+<div class="proj-sep"></div>
+
+<!-- KRITIK -->
+<section id="kritik" class="sec">
+  <div class="sec-eyebrow reveal">01 · Was am Paper nicht passt</div>
+  <h2 class="h-section reveal"><em>Probleme</em>, die ich sehe</h2>
+  <p class="sec-intro reveal">Janni liegt mit seiner Kritik ziemlich richtig. Das Paper ist komplett aus Sicht von TIER Group geschrieben und wir sitzen am kürzeren Hebel. Was mich am meisten stört:</p>
+
+  <div class="crit-grid reveal">
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num">01</span><span class="crit-title">Musterkalkulation ist geschönt</span></div>
+      <p class="crit-desc">Der ICP sagt <b>250k Spend</b>, die Beispielrechnung nimmt dann aber auf einmal <b>500k-Kunden</b>. Wenn man ehrlich mit dem ICP rechnet, bleiben nach AdSpend und Terminen <b>7.625 € für ein ganzes Jahr Arbeit</b>. Also die Hälfte von dem, was das Paper vormacht.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num">02</span><span class="crit-title">AdSpend wird von unserer Basis abgezogen</span></div>
+      <p class="crit-desc">In Punkt 4 steht „TIER Group trägt die Werbekosten“, aber der AdSpend geht trotzdem vor der Provision ab. Heißt, wir zahlen 12,5 % der Werbekosten am Ende selbst mit. Passt vorne und hinten nicht zusammen.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num">03</span><span class="crit-title">Termin-Fee ist keine echte Vergütung</span></div>
+      <p class="crit-desc">Die 500 € werden am Jahresende zu <b>100 % verrechnet</b>, das ist also nur ein Vorschuss, keine echte Bezahlung. Und wer entscheidet, ob ein Termin „nachweislich ICP“ war? Aktuell TIER Group. Die können Termine einfach abbügeln.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num">04</span><span class="crit-title">Rohertrag ist eine Blackbox</span></div>
+      <p class="crit-desc">Die 20 % Marge sind nur „Kalkulationsbasis“, nichts Garantiertes. Wenn TIER Group Deals billig reinholt, sackt die Marge und damit unsere Basis ab, und wir können nix dagegen machen.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num">05</span><span class="crit-title">Governance ist einseitig</span></div>
+      <p class="crit-desc">Abgerechnet wird einmal im Jahr rückwirkend, das Controlling macht komplett TIER Group und prüfen dürfen wir nur auf eigene Kosten. Wir sehen die Zahlen erst, wenn das Jahr längst durch ist.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num">06</span><span class="crit-title">Budget-Pause + kein Kündigungsschutz</span></div>
+      <p class="crit-desc">TIER Group darf das eh schon winzige 1.250-€-Budget „bei ausbleibender Qualität“ einfach pausieren. Damit können die uns jederzeit die Pipeline abdrehen. Und ohne Kündigungsschutz kündigen sie nach Jahr 1 und behalten alle Kunden.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- MODELL -->
+<section id="modell" class="sec">
+  <div class="sec-eyebrow reveal">02 · Was wir ändern</div>
+  <h2 class="h-section reveal">Was wir <em>anpassen würden</em></h2>
+  <p class="sec-intro reveal">Was ich haben will: mindestens 15k pro Neukunde und keine versteckten Kosten, die wir mittragen. Das meiste dreht sich über eine Sache, nämlich worauf die Provision überhaupt gerechnet wird.</p>
+
+  <div class="tbl-wrap reveal">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:24%;">Punkt</th>
+          <th style="width:38%;">Aktuelles Paper von TIER Group</th>
+          <th style="width:38%;">Unser Modell</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="navy">Provisionsbasis</td><td class="cell-old">Deckungsbeitrag II (Rohertrag − AdSpend)</td><td class="cell-new">Rohertrag, AdSpend fliegt komplett raus</td></tr>
+        <tr><td class="navy">Provisionssatz</td><td class="cell-old">12,50 %</td><td class="cell-new">15 % (+ Staffel-Option nach oben)</td></tr>
+        <tr><td class="navy">Rohertragsmarge</td><td class="cell-old">„ca. 20 %“, keine Garantie</td><td class="cell-new">20 % Mindest-Floor, vertraglich fixiert</td></tr>
+        <tr><td class="navy">Vergütung Termin/Abschluss</td><td class="cell-old">500 € pro Termin · zu 100 % verrechnet</td><td class="cell-new">2.000 € Abschluss-Bonus · nur bei gewonnenem Neukunden, on top</td></tr>
+        <tr><td class="navy">AdSpend-Budget</td><td class="cell-old">max. 1.250 € / Monat</td><td class="cell-new">2.000 bis 2.500 € / Monat, Floor garantiert</td></tr>
+        <tr><td class="navy">Laufzeit</td><td class="cell-old">3 Jahre, kein Kündigungsschutz</td><td class="cell-new">3 Jahre als harter Floor, überlebt Kündigung</td></tr>
+        <tr><td class="navy">Beteiligungsumfang</td><td class="cell-old">nur initiale Warengruppen</td><td class="cell-new">gesamter Kundenumsatz inkl. Upsell</td></tr>
+        <tr><td class="navy">Setup</td><td class="cell-old">gratis für TIER Group</td><td class="cell-new">lizenziertes Asset, Buyout bei Kündigung</td></tr>
+        <tr><td class="navy">Governance</td><td class="cell-old">jährlich · Prüfung auf unsere Kosten</td><td class="cell-new">Quartalsreporting · WP-Prüfung auf Kosten von TIER Group bei Abw. &gt; 5 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hint-box reveal">
+    <div class="card-label">Der wichtigste Punkt</div>
+    <p><b>Provision auf den Rohertrag, nicht auf DB II.</b> Der AdSpend ist die Kost von TIER Group als Werbetreibender, nicht unsere. Nur dadurch wird die Basis größer und der ganze Rest sauber. Dazu der 20 %-Floor, damit TIER Group uns die Basis nicht kleinrechnen kann, wenn sie mal billig pricen.</p>
+  </div>
+
+  <div style="margin-top:32px;">
+    <p class="tbl-cap reveal">Warum 15 % passt: Skael-Anteil pro ICP-Kunde (nach 80/20-Split)</p>
+    <div class="kpi-grid three reveal">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">1 Jahr</span><span class="sw"><span class="sd y"></span><span class="sl y">unter Ziel</span></span></div>
+        <div class="kpi-value">6.000 €</div>
+        <div class="kpi-sub">7.500 € Provision × 80 %</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">2 Jahre</span><span class="sw"><span class="sd y"></span><span class="sl y">knapp drunter</span></span></div>
+        <div class="kpi-value">12.000 €</div>
+        <div class="kpi-sub">noch unter 15k-Ziel</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">3 Jahre <span style="color:var(--sub);font-weight:400;">(volle Laufzeit)</span></span><span class="sw"><span class="sd g"></span><span class="sl g">Ziel erreicht</span></span></div>
+        <div class="kpi-value">18.000 €</div>
+        <div class="kpi-sub">15k-Floor sicher übertroffen</div>
+      </div>
+    </div>
+    <p class="tbl-note reveal">Genau deshalb ist mir der <b>3-Jahres-Floor, der eine Kündigung übersteht</b>, wichtiger als ein höherer Satz. Der sichert die 15k pro Kunde ab, egal was TIER Group macht.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RECHNUNG -->
+<section id="rechnung" class="sec">
+  <div class="sec-eyebrow reveal">03 · Die Rechnung</div>
+  <h2 class="h-section reveal">Was am Ende <em>für alle</em> rauskommt</h2>
+  <p class="sec-intro reveal">Gleiches Szenario wie im Original: 6 qualifizierte Ersttermine, davon werden 2 zu Neukunden (je 250k Umsatz, macht je 50k Rohertrag). Den AdSpend von 2 bis 2,5k im Monat trägt TIER Group, und der wird <b>nicht</b> von der Basis abgezogen.</p>
+
+  <!-- Abschluss-Bonus -->
+  <p class="tbl-cap reveal">Abschluss-Bonus: 2.000 € pro gewonnenem Neukunden, on top der Provision</p>
+  <div class="tbl-wrap reveal">
+    <table>
+      <thead>
+        <tr><th style="width:46%;">Baustein</th><th class="num">Gesamt</th><th class="num">Skael 80 %</th><th class="num">ASYMMETRY 20 %</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>4 Termine ohne Abschluss <span class="tag" style="margin-left:6px;background:#eef1f5;color:var(--sub);">keine Vergütung</span></td><td class="num navy">0 €</td><td class="num">0 €</td><td class="num">0 €</td></tr>
+        <tr><td>2 gewonnene Neukunden × 2.000 € <span class="tag g" style="margin-left:6px;">Bonus</span></td><td class="num navy">4.000 €</td><td class="num">3.200 €</td><td class="num">800 €</td></tr>
+        <tr class="total"><td>Abschluss-Bonus gesamt (Jahr 1)</td><td class="num">4.000 €</td><td class="num">3.200 €</td><td class="num">800 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note reveal">TIER Group zahlt nur, wenn ein Neukunde wirklich landet. Kein Geld für Termine ohne Abschluss, keine Verrechnung. Der Bonus kommt oben drauf zur Provision.</p>
+
+  <!-- Provision -->
+  <p class="tbl-cap reveal" style="margin-top:36px;">Provision: 15 % auf Rohertrag (2 Kunden × 50k × 15 % = 15.000 € / Jahr, voll)</p>
+  <div class="tbl-wrap reveal">
+    <table>
+      <thead>
+        <tr><th style="width:46%;">Zeitraum</th><th class="num">Gesamt</th><th class="num">Skael 80 %</th><th class="num">ASYMMETRY 20 %</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Jahr 1</td><td class="num navy">15.000 €</td><td class="num">12.000 €</td><td class="num">3.000 €</td></tr>
+        <tr><td>Jahr 2</td><td class="num navy">15.000 €</td><td class="num">12.000 €</td><td class="num">3.000 €</td></tr>
+        <tr><td>Jahr 3</td><td class="num navy">15.000 €</td><td class="num">12.000 €</td><td class="num">3.000 €</td></tr>
+        <tr class="total"><td>Provision gesamt (3 Jahre)</td><td class="num">45.000 €</td><td class="num">36.000 €</td><td class="num">9.000 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Gesamt alle Parteien -->
+  <p class="tbl-cap reveal" style="margin-top:36px;">Gesamt pro Jahr, alle drei Parteien (Bonus + Provision zusammen)</p>
+  <div class="tbl-wrap reveal">
+    <table>
+      <thead>
+        <tr><th style="width:28%;"></th><th class="num">TIER Group <span style="color:var(--sub);">(behält)</span></th><th class="num">Skael</th><th class="num">ASYMMETRY</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="navy">Jahr 1 <span style="color:var(--sub);font-weight:400;">(Akquise)</span></td><td class="num">~54.000 €</td><td class="num navy">15.200 €</td><td class="num navy">3.800 €</td></tr>
+        <tr><td class="navy">Jahr 2</td><td class="num">85.000 €</td><td class="num navy">12.000 €</td><td class="num navy">3.000 €</td></tr>
+        <tr><td class="navy">Jahr 3</td><td class="num">85.000 €</td><td class="num navy">12.000 €</td><td class="num navy">3.000 €</td></tr>
+        <tr class="total"><td>Summe über 3 Jahre</td><td class="num">~224.000 €</td><td class="num">39.200 €</td><td class="num">9.800 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note reveal">Skael Jahr 1 = 3.200 € Bonus + 12.000 € Provision = 15.200 €. Bei TIER Group ist Jahr 1 niedriger, weil da der AdSpend (rund 24 bis 30k) draufgeht. Ab Jahr 2 läuft die volle 85 %-Marge.</p>
+
+  <!-- Kuchen + Chart -->
+  <p class="tbl-cap reveal" style="margin-top:36px;">Der ganze Kuchen: 2 Kunden über 3 Jahre = 300.000 € Rohertrag</p>
+  <div class="two-col reveal">
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th style="width:48%;">Partei</th><th class="num">3-Jahres-Summe</th><th class="num">Anteil</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="navy">TIER Group Rohertrag-Anteil <span style="color:var(--sub);font-weight:400;">(vor AdSpend)</span></td><td class="num navy">251.000 €</td><td class="num">~84 %</td></tr>
+          <tr><td>− AdSpend <span style="color:var(--sub);">(TIER Group zahlt an Meta / Google)</span></td><td class="num" style="color:var(--red);">− 27.000 €</td><td class="num"></td></tr>
+          <tr class="total"><td>= TIER Group netto</td><td class="num">224.000 €</td><td class="num"></td></tr>
+          <tr><td class="navy">Skael</td><td class="num navy">39.200 €</td><td class="num">~13 %</td></tr>
+          <tr><td class="navy">ASYMMETRY</td><td class="num navy">9.800 €</td><td class="num">~3 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-card">
+      <div class="card-label">Verteilung Rohertrag</div>
+      <canvas id="kuchenChart"></canvas>
+    </div>
+  </div>
+  <p class="tbl-note reveal">So liest sich das: Von den 300.000 € Rohertrag gehen 49.000 € an uns (Skael + ASYMMETRY), TIER Group bleiben 251.000 €. Davon zahlt TIER Group selbst den AdSpend (rund 27.000 €) an Meta und Google, macht <b>224.000 € netto bei TIER Group</b>. Ab Jahr 4 zahlen sie uns null und behalten alles.</p>
+
+  <div class="hint-box reveal">
+    <div class="card-label">Kurz gesagt</div>
+    <p>TIER Group zahlt <b>nur auf gewonnene Neukunden</b>: 15 % Provision auf den Rohertrag plus 2.000 € Bonus pro Abschluss, drei Jahre lang. Kein Fixum, kein Geld für Fehltermine, danach behält TIER Group alles. Skael landet bei <b>18.000 € Provision pro Kunde über drei Jahre</b> und damit locker über den 15k, die ich haben will.</p>
+  </div>
+
+</section>
+
+<hr class="divider">
+
+<!-- TIER Group PERSPEKTIVE -->
+<section id="tier" class="sec">
+  <div class="sec-eyebrow reveal">04 · Was für TIER Group drin ist</div>
+  <h2 class="h-section reveal">TIER Group ist trotzdem der <em>absolute Gewinner</em></h2>
+  <p class="sec-intro reveal">Das ist mein wichtigstes Argument fürs Gespräch: Wir ziehen TIER Group nicht über den Tisch. Das ist eine ganz normale erfolgsbasierte Provision, nur eben fair aufgeteilt. Ihre Seite sieht so aus:</p>
+
+  <div class="party-grid reveal">
+    <div class="party-card tier">
+      <div class="party-name">TIER Group behält / Kunde / Jahr</div>
+      <div class="party-val">42.500 €</div>
+      <div class="party-sub">85 % vom Rohertrag</div>
+    </div>
+    <div class="party-card skael">
+      <div class="party-name">Provision an uns</div>
+      <div class="party-val">15 %</div>
+      <div class="party-sub">nur auf realisierten Umsatz</div>
+    </div>
+    <div class="party-card asy">
+      <div class="party-name">Ab Jahr 4</div>
+      <div class="party-val">100 %</div>
+      <div class="party-sub">TIER Group behält alles, für immer</div>
+    </div>
+  </div>
+
+  <div class="crit-grid reveal" style="margin-top:14px;">
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num" style="color:var(--green);">✓</span><span class="crit-title">Null Fixkosten, null Risiko</span></div>
+      <p class="crit-desc">TIER Group zahlt nur, wenn ein Neukunde wirklich landet. Für Termine ohne Abschluss zahlen sie null. Kein Retainer, keine Vorabkosten, kein Geld für Fehltermine. Nur AdSpend und ein Bonus pro gewonnenem Kunden.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num" style="color:var(--green);">✓</span><span class="crit-title">Der teure Teil ist nur Jahr 1</span></div>
+      <p class="crit-desc">AdSpend und der Abschluss-Bonus fallen nur im ersten Jahr an, wenn akquiriert wird. Ab Jahr 2 ist die Marge fett (85 %), weil für diese Kunden kein neuer Akquiseaufwand mehr dazukommt.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num" style="color:var(--green);">✓</span><span class="crit-title">Der Kunde gehört TIER Group</span></div>
+      <p class="crit-desc">Wir bringen den Kunden, TIER Group pflegt ihn und behält ihn als Bestandskunden. Nach den 3 Jahren fließt der komplette Rohertrag dauerhaft zu TIER Group.</p>
+    </div>
+    <div class="crit-card">
+      <div class="crit-head"><span class="crit-num" style="color:var(--green);">✓</span><span class="crit-title">Wir tragen die Akquise vorab</span></div>
+      <p class="crit-desc">Aufbau, Netzwerk, Steuerung, Kampagnen laufen komplett bei uns. TIER Group kriegt eine fertige Pipeline, ohne selbst Marketing aufbauen zu müssen.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAZIT -->
+<section id="fazit" class="sec">
+  <div class="sec-eyebrow reveal">05 · Fazit</div>
+  <div class="fazit-card reveal">
+    <div class="fazit-eyebrow">Worum's eigentlich geht</div>
+    <div class="fazit-heading">Will TIER Group einen billigen Lead-Lieferanten<br>oder einen <span>echten Growth-Partner?</span></div>
+    <p class="fazit-text">
+      Das aktuelle Paper würde ich so absagen. Da tragen wir das Risiko und kriegen 7.625 € fürs Jahr. Mit dem umgebauten Modell (Basis = Rohertrag, 15 %, 20 %-Floor, 2.000 € Abschluss-Bonus pro Neukunden, 3-Jahres-Floor mit Kündigungsschutz, Setup als Asset) holen <strong>wir 15k+ pro Kunde</strong> raus und <strong>TIER Group trotzdem das 4-fache</strong>, plus alles ab Jahr 4. TIER Group zahlt dabei nur auf echte Abschlüsse, das nimmt den ganzen „wir zahlen für nichts“-Einwand raus. Das Einzige, wo sie zucken werden, ist Jahr 1, weil da die Akquise draufgeht. Genau da holen wir sie ab: der Aufwand ist einmalig, verdient wird danach noch jahrelang.
+    </p>
+  </div>
+</section>
+
+<div class="footer">
+  <span class="footer-brand">Skael <span>Strategy</span></span>
+  <span class="footer-date">TIER Group × ASYMMETRY · Intern · Juli 2026</span>
+</div>
+
+<script>
+// Scroll reveal
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Nav active on scroll
+const secs=[...document.querySelectorAll('section[id]')];
+const tabs=[...document.querySelectorAll('.nav-tab')];
+function onScroll(){
+  let cur=secs[0]?.id;
+  const y=window.scrollY+120;
+  for(const s of secs){ if(s.offsetTop<=y) cur=s.id; }
+  tabs.forEach(t=>t.classList.toggle('active',t.getAttribute('href')==='#'+cur));
+}
+window.addEventListener('scroll',onScroll); onScroll();
+
+// Kuchen doughnut
+new Chart(document.getElementById('kuchenChart'),{
+  type:'doughnut',
+  data:{
+    labels:['TIER Group (netto)','Skael','ASYMMETRY','AdSpend (zahlt TIER Group)'],
+    datasets:[{
+      data:[224000,39200,9800,27000],
+      backgroundColor:['#0f1b2d','#3a6ef4','#c7d4fd','#94a3b8'],
+      borderColor:'#ffffff',borderWidth:2
+    }]
+  },
+  options:{
+    cutout:'62%',
+    plugins:{
+      legend:{position:'bottom',labels:{font:{family:'Poppins',size:11},color:'#374151',padding:12,boxWidth:10,boxHeight:10,usePointStyle:true,pointStyle:'circle'}},
+      tooltip:{callbacks:{label:(c)=>' '+c.label+': '+c.parsed.toLocaleString('de-DE')+' €'}}
+    }
+  }
+});
+</script>
+</body>
+</html>
