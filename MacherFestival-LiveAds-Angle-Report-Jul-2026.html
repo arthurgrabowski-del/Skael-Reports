@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macher Festival 2026 — Live-Ads · Angle-Report</title>
+<link rel="icon" href="www.skael.de-favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0e; --surface:#161619; --surface-2:#1d1d22; --line:#2c2c33;
+    --ink:#f3efe6; --muted:#8b8b95;
+    --orange:#ff5c1c; --yellow:#ffd200; --green:#37d399; --amber:#ffb020; --red:#ff4d4d;
+    --hazard:repeating-linear-gradient(45deg,#ffd200 0 14px,#0c0c0e 14px 28px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:"Barlow Semi Condensed",sans-serif;line-height:1.35;-webkit-font-smoothing:antialiased;padding:0 0 80px;
+    background-image:radial-gradient(circle at 12% -5%,rgba(255,92,28,.10),transparent 40%),radial-gradient(circle at 90% 5%,rgba(255,210,0,.06),transparent 45%);}
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
+
+  header{padding:52px 0 26px}
+  .kicker{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.28em;color:var(--orange);text-transform:uppercase}
+  h1{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(38px,7vw,86px);line-height:.92;text-transform:uppercase;margin:10px 0 4px}
+  h1 span{color:var(--orange)}
+  .sub{font-size:19px;color:var(--muted);max-width:840px;margin-top:12px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;font-family:"Space Mono",monospace;font-size:11.5px}
+  .chip{border:1px solid var(--line);background:var(--surface);padding:7px 12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .chip b{color:var(--ink);font-weight:700}
+  .hazbar{height:8px;background:var(--hazard);margin:26px 0 0;border-radius:2px;opacity:.8}
+
+  h2{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,40px);text-transform:uppercase;margin:56px 0 8px}
+  h2 span{color:var(--orange)}
+  .h2sub{color:var(--muted);font-size:16.5px;max-width:840px;margin-bottom:22px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+  .setup li{margin:8px 0 8px 18px;color:var(--ink);font-size:16.5px}
+  .setup li b{color:var(--orange)}
+  .mono{font-family:"Space Mono",monospace;font-size:12px;color:var(--muted)}
+
+  table{width:100%;border-collapse:collapse;font-size:15.5px}
+  th{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+  td b{color:var(--orange)}
+  tr:last-child td{border-bottom:none}
+
+  .adcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:300px 1fr;margin-bottom:22px}
+  @media(max-width:860px){.adcard{grid-template-columns:1fr}}
+  .adimgs{background:var(--surface-2);padding:18px;display:flex;gap:12px;align-items:center;justify-content:center}
+  .adimgs img{border-radius:8px;border:1px solid var(--line);display:block;max-width:100%}
+  .adimgs .feed{width:230px}
+  .adimgs .story{width:150px}
+  .vidcard{width:230px;aspect-ratio:4/5;border-radius:8px;border:1px dashed #4a4a52;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:linear-gradient(160deg,#1d1d22,#141417)}
+  .vidcard .play{width:64px;height:64px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:24px;color:#0c0c0e}
+  .vidcard .t{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;padding:0 16px}
+  .adbody{padding:22px 24px}
+  .adtag{display:inline-block;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#0c0c0e;background:var(--orange);padding:4px 9px;border-radius:3px;margin-bottom:8px;margin-right:6px}
+  .adtag.alt{background:var(--yellow)}
+  .adtag.vid{background:#3a3a44;color:#ddd}
+  .adbody h3{font-family:"Anton",sans-serif;font-weight:400;font-size:26px;text-transform:uppercase;margin-bottom:4px}
+  .adname{font-family:"Space Mono",monospace;font-size:11px;color:var(--muted);margin-bottom:14px}
+  .adrow{margin:10px 0}
+  .adrow .lbl{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+  .adrow p{font-size:15.5px;color:var(--ink)}
+  .copyquote{background:var(--surface-2);border-left:3px solid var(--orange);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14.5px;white-space:pre-line;color:#d9d5cc}
+  .verdict{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:15px}
+  .verdict .dot{width:10px;height:10px;border-radius:50%;flex:none;margin-top:5px}
+  .d-green{background:var(--green)} .d-amber{background:var(--amber)} .d-orange{background:var(--orange)}
+
+  .reco{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px}
+  .reco .head{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--surface-2)}
+  .reco .rank{font-family:"Anton",sans-serif;font-size:22px;color:var(--orange);min-width:34px}
+  .reco .head h3{font-family:"Anton",sans-serif;font-weight:400;font-size:20px;text-transform:uppercase}
+  .reco .body{padding:14px 18px;font-size:15.5px;color:#d9d5cc;background:var(--surface)}
+  .pill{display:inline-block;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:3px 8px;border-radius:999px;margin-left:auto}
+
+  footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:"Space Mono",monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  footer a{color:var(--orange);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Skael × Macher Festival · Creative-Strategie-Report</div>
+  <h1>Die Live-Ads.<br><span>Der Angle-Report.</span></h1>
+  <div class="sub">Analyse der Prospecting-Kampagne, die den Ticketverkauf seit dem 23. Juni getragen hat: 10 Ads, 7 Creative-Konzepte, ausgespielt ausschließlich in Story &amp; Reels. Bewusst ohne Performance-Zahlen — hier geht es darum, welcher Angle wie funktioniert, was die Copy stark macht und welche Konzepte den größten Ausbau verdienen.</div>
+  <div class="meta-row">
+    <div class="chip">Kampagne <b>MF26 | SALES | DE | CBO | Prospecting</b></div>
+    <div class="chip">Laufzeit <b>seit 23.06.2026</b></div>
+    <div class="chip">Struktur <b>10 Ads · 7 Konzepte · Story/Reels</b></div>
+    <div class="chip">Ziele <b>/funnel &amp; /eltern-und-kind</b></div>
+  </div>
+  <div class="hazbar"></div>
+</header>
+
+<!-- SETUP -->
+<section>
+  <h2>Das Setup <span>in 30 Sekunden</span></h2>
+  <div class="h2sub">Eine Kampagne, ein breites Adset, sieben Konzepte im freien Wettbewerb — Meta entscheidet, welcher Angle Budget bekommt.</div>
+  <div class="grid2">
+    <div class="card setup">
+      <span class="mono">STRUKTUR</span>
+      <ul>
+        <li><b>Broad+ DE/AT 18–55</b>: IG-Engager &lt;365 T., Website-Besucher, Lookalike 2–3% als Advantage-Signal — Ticketkäufer ausgeschlossen</li>
+        <li>Placements bewusst nur <b>Story &amp; Reels</b> (FB + IG) — voller Fokus auf 9:16</li>
+        <li>Optimierung auf <b>Purchase</b> (Pixel), CBO 140 €/Tag</li>
+        <li><b>Zwei Funnel-Ziele:</b> generische Konzepte → /funnel, Familien-Konzepte → /eltern-und-kind</li>
+      </ul>
+    </div>
+    <div class="card setup">
+      <span class="mono">CREATIVE-LOGIK</span>
+      <ul>
+        <li><b>4 Video-Konzepte</b> (Werkstatt, Schweißen, Heli, Fahrschule) + <b>3 Static-Konzepte</b> der Real-Life-Guys-Serie (Handy, Autark, Family)</li>
+        <li>Jedes RLG-Konzept läuft als <b>A/B-Paar: CTA „Ticket" vs. CTA „Share"</b> — getestet wird nicht nur der Angle, sondern auch die Aufforderung</li>
+        <li>Copy-Stil: <b>nativ und locker</b> — kurze Sätze, Emojis als Anker, „bei Leipzig" als greifbarer Geo-Anker statt „Ferropolis"</li>
+        <li>Signature-CTA am Ende fast jeder Copy: <b>„Sichere dir dein Ticket 👇"</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ANGLE MAP -->
+<section>
+  <h2>Die Angle-Map: <span>7 Konzepte, 7 Motivationen</span></h2>
+  <div class="h2sub">Die Kampagne deckt ein bemerkenswert breites Motivations-Spektrum ab — vom rationalen Gratis-Argument bis zum Identitäts-Play über die Creator.</div>
+  <div class="card" style="padding:6px 6px;overflow-x:auto">
+    <table>
+      <tr><th>Konzept</th><th>Format</th><th>Angle</th><th>Psychologischer Hebel</th><th>Zielgruppe</th></tr>
+      <tr><td><b>01</b> Werkstatt</td><td>Video</td><td>Value / Gratis</td><td>„Unglaublich!"-Staun-Hook + kostenlose Ressourcen</td><td>Preisbewusste DIY-Interessierte</td></tr>
+      <tr><td><b>02</b> Schweißen</td><td>Video</td><td>Skill-Direktversprechen</td><td>Frage → sofortige Zusage („Kriegst du.")</td><td>Skill-Suchende, Kernzielgruppe</td></tr>
+      <tr><td><b>03</b> Heli</td><td>Video</td><td>Action-Listicle</td><td>Erlebnis-Stacking (Heli, Bagger, Seifenkisten)</td><td>Breite Erlebnis-Zielgruppe</td></tr>
+      <tr><td><b>04</b> Fahrschule</td><td>Video</td><td>Kuriosität / Pattern-Interrupt</td><td>„Die verrückteste Fahrschule Deutschlands"</td><td>Scroll-Stopper für alle</td></tr>
+      <tr><td><b>05/06</b> RLG-Handy</td><td>Static ×2</td><td>Digital Detox</td><td>Schmerzpunkt Handysucht → „4 Tage offline"</td><td>Junge Erwachsene, Selbstoptimierer</td></tr>
+      <tr><td><b>07/08</b> RLG-Autark</td><td>Static ×2</td><td>Creator-Community</td><td>Ich-Form der Real Life Guys („meine Autark-Serie")</td><td>RLG-Fanbase (warm)</td></tr>
+      <tr><td><b>09/10</b> RLG-Family</td><td>Static ×2</td><td>Teen→Eltern-Umweg</td><td>Spricht Jugendliche an, die die Eltern überzeugen</td><td>Teens 13–18 als Multiplikator</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- DEEP DIVES -->
+<section>
+  <h2>Die Konzepte <span>im Detail</span></h2>
+  <div class="h2sub">Copy im Original-Wortlaut aus den Live-Ads. Bei den vier Video-Konzepten läuft das Bewegtbild in Story/Reels — abgebildet ist jeweils die Feed-Fallback-Grafik bzw. eine Video-Kennzeichnung.</div>
+
+  <div class="adcard">
+    <div class="adimgs"><div class="vidcard"><div class="play">▶</div><div class="t">Video-Creative<br>Story/Reels · Werkstatt-Footage</div></div></div>
+    <div class="adbody">
+      <span class="adtag alt">Value · Gratis</span><span class="adtag vid">Video</span>
+      <h3>01 · Werkstatt</h3>
+      <div class="adname">MF26 | Werkstatt | 01 | Video</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Unglaublich! Kostenloses Material, Werkzeug zum Ausleihen und Dein Traumprojekt wird endlich real!
+• Über 1000 m² Workshop-Fläche
+• Tausende an Werkzeug &amp; Materialien kostenlos verfügbar …
+
+Headline: Werkzeug &amp; Material gratis 🔩</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>Das rationale Fundament der Kampagne: „gratis" ist im DACH-Markt einer der stärksten Trigger, und die Bullets machen den Wert konkret. Schwäche: Der „Unglaublich!"-Einstieg ist generisches Werbedeutsch — der schwächste Hook im Set. Achtung außerdem: <b>„über 1000 m²" widerspricht den 10.000 qm der Website</b> — sollte vereinheitlicht werden.</p></div>
+      <div class="verdict"><span class="dot d-amber"></span><p><b>Starkes Argument, schwacher Hook.</b> Value-Botschaft behalten, Einstieg neu schreiben.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><div class="vidcard"><div class="play">▶</div><div class="t">Video-Creative<br>Story/Reels · Schweiß-Footage</div></div></div>
+    <div class="adbody">
+      <span class="adtag">Skill-Versprechen</span><span class="adtag vid">Video</span>
+      <h3>02 · Schweißen</h3>
+      <div class="adname">MF26 | Schweissen | 02 | Video</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Du willst schweißen lernen? Kriegst du. Plus Workshops, Action und alles, was Deutschlands größte Werkstatt hergibt. 🔥
+Schnapp dir deine Leute. Tickets im Link 👇</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>„Du willst schweißen lernen? Kriegst du." ist die beste Copy-Zeile der ganzen Kampagne — Frage-Hook plus sofortige, selbstbewusste Zusage in zwei Wörtern. Dazu der soziale CTA „Schnapp dir deine Leute", der aus dem Einzelkauf einen Gruppenkauf macht (höherer Warenkorb).</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Copy-Benchmark der Kampagne.</b> Das „Willst du X? Kriegst du."-Muster ist beliebig auf andere Workshops übertragbar.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><div class="vidcard"><div class="play">▶</div><div class="t">Video-Creative<br>Story/Reels · Action-Footage</div></div></div>
+    <div class="adbody">
+      <span class="adtag">Action-Listicle</span><span class="adtag vid">Video</span>
+      <h3>03 · Heli</h3>
+      <div class="adname">MF26 | Heli | 03 | Video</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Das ultimative Macherfest in Leipzig!
+• Heli fliegen, Bagger fahren &amp; Co.
+• Seifenkisten aus 4.000 Reifen bauen
+Für jeden ist was dabei! 🚁
+Im August in Leipzig – Tickets sichern? 👉
+
+Headline: 🚁 Heli fliegen &amp; viel mehr</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>Erlebnis-Stacking mit dem spektakulärsten Element (Heli) als Anker — klassisches Breiten-Prospecting. „4.000 Reifen" gibt der Behauptung Substanz. „Für jeden ist was dabei" ist dagegen eine Floskel, die niemanden meint; die Zeile kostet mehr, als sie bringt.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Solider Reichweiten-Angle.</b> Der Heli ist das teuerste visuelle Asset des Festivals — gehört prominent in jede Awareness-Welle.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><div class="vidcard"><div class="play">▶</div><div class="t">Video-Creative<br>Story/Reels · Acker-Fahrschule</div></div></div>
+    <div class="adbody">
+      <span class="adtag">Kuriosität</span><span class="adtag vid">Video</span>
+      <h3>04 · Fahrschule</h3>
+      <div class="adname">MF26 | Fahrschule | 04 | Video</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Die verrückteste Fahrschule Deutschlands: Autofahren auf dem Acker, ohne dein eigenes Auto zu schrotten. 🚗
+Im August beim Macherfest. Hol dir dein Ticket 👇
+
+Headline: 🚗 Die verrückteste Fahrschule</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>Bester Pattern-Interrupt des Sets: „Fahrschule" ist ein Wort, das niemand in einer Festival-Ad erwartet, und „ohne dein eigenes Auto zu schrotten" liefert den Benefit mit einem Grinsen. Genau die Sorte Hook, die in Reels funktioniert, weil sie wie Content klingt statt wie Werbung.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Vorlage für eine ganze Kuriositäten-Serie</b> — jedes ungewöhnliche Festival-Element kann so einen Hook tragen.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-live/ohnehandy.jpg" alt="RLG Handy Creative"><img class="story" src="assets/mf26-live/keinscrollen.jpg" alt="Kein Scrollen Variante"></div>
+    <div class="adbody">
+      <span class="adtag">Digital Detox</span><span class="adtag alt">A/B: Ticket vs. Share</span>
+      <h3>05/06 · RLG-Handy</h3>
+      <div class="adname">MF26 | RLG-Handy | 05+06 | CTA-Ticket / CTA-Share</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Zu viel am Handy diesen Sommer? Komm raus, lern verrückte Leute kennen und erleb den krassesten Urlaub bei Leipzig. 🔥
+Über 5.000 Macher, eine Werkstatt ohne Grenzen. Sichere dir dein Ticket 👇
+
+Headline: 4 Tage offline, volle Action 🔥</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>Trifft den wunden Punkt der Zielgruppe genau dort, wo sie ihn spürt: beim Scrollen. „4 Tage offline" als Headline ist mutig und differenzierend — ein Festival, das mit Abwesenheit von Technik wirbt. Die Creatives („Kein WLAN. Kein Scrollen. Dreckige Hände. Echte Erinnerungen.") sind die stärksten Statements der Bildsprache.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Der Identitäts-Kern der Marke.</b> Wurde in der neuen 90%-Kampagne bereits als „Dreckige Hände"-Angle weitergeführt.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="story" src="assets/mf26-live/keinwlan_story.jpg" alt="Kein WLAN Story"></div>
+    <div class="adbody">
+      <span class="adtag">Creator-Community</span><span class="adtag alt">A/B: Ticket vs. Share</span>
+      <h3>07/08 · RLG-Autark</h3>
+      <div class="adname">MF26 | RLG-Autark | 07+08 | CTA-Ticket / CTA-Share</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Du hast meine Autark-Serie verfolgt und Bock bekommen, selbst draußen was zu bauen? Dann ist das hier für dich. 🔨
+Deutschlands größte Werkstatt, 4.000 Reifen, Material kostenlos. Sichere dir dein Ticket 👇
+
+Headline: 📅 06.–09.08 bei Leipzig</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>Die einzige Ad in <b>Ich-Form der Real Life Guys</b> — und damit das wertvollste Copy-Asset der Kampagne. „Du hast meine Autark-Serie verfolgt" qualifiziert die Fanbase in einem Halbsatz und macht aus einer Anzeige eine persönliche Einladung. Creator-Voice umgeht Werbe-Skepsis wie kein anderes Format.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Unfairer Vorteil des Festivals.</b> Die RLG-Reichweite ist ein Asset, das Wettbewerber nicht kaufen können — mehr davon.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-live/elternkind.jpg" alt="Eltern und Kind Creative"></div>
+    <div class="adbody">
+      <span class="adtag">Teen→Eltern-Umweg</span><span class="adtag alt">A/B: Ticket vs. Share</span>
+      <h3>09/10 · RLG-Family</h3>
+      <div class="adname">MF26 | RLG-Family | 09+10 | CTA-Ticket / CTA-Share</div>
+      <div class="adrow"><span class="lbl">Copy (Original)</span><div class="copyquote">Eltern haben mal wieder den langweiligsten Urlaub geplant? Dann zeig ihnen das hier. 🚜
+Vier Tage Action bei Leipzig: Bagger, Rennstrecke, riesige Werkstatt. Sichere dir dein Ticket 👇
+
+Headline: Schluss mit langweiligem Urlaub! 🔥</div></div>
+      <div class="adrow"><span class="lbl">Analyse</span><p>Der cleverste Targeting-Kniff der Kampagne: Die Ad spricht nicht die zahlenden Eltern an, sondern die <b>Teenager als Fürsprecher</b> („Dann zeig ihnen das hier"). Der Share-CTA ist hier kein Test, sondern der eigentliche Mechanismus — Kinder teilen die Ad in den Familienchat. Eigene Landingpage (/eltern-und-kind) schließt den Kreis.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Konzeptionell die smarteste Ad im Set.</b> Der Familien-Funnel verdient eine eigene Creative-Serie.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COPY-BEFUND -->
+<section>
+  <h2>Copy-Befund: <span>was trägt, was bremst</span></h2>
+  <div class="h2sub">Quer über alle sieben Konzepte betrachtet.</div>
+  <div class="grid3">
+    <div class="card"><span class="mono" style="color:var(--green)">✓ STÄRKEN</span><ul class="setup" style="margin-top:8px">
+      <li><b>Native Tonalität:</b> klingt nach Creator-Content, nicht nach Anzeige — ideal für Reels</li>
+      <li><b>Konkrete Zahlen</b> statt Adjektive: 4.000 Reifen, 5.000 Macher, Material kostenlos</li>
+      <li><b>„bei Leipzig"</b> als Geo-Anker — greifbarer als „Ferropolis" für kalte Audiences</li>
+      <li><b>Frage-Hooks</b>, die einen echten Zustand treffen („Zu viel am Handy?")</li>
+    </ul></div>
+    <div class="card"><span class="mono" style="color:var(--amber)">⚠ SCHWÄCHEN</span><ul class="setup" style="margin-top:8px">
+      <li><b>Zahlen-Wildwuchs:</b> „1000 m²" (Ad) vs. „10.000 qm" (Website) vs. „5.000 Macher" — eine Quelle der Wahrheit festlegen</li>
+      <li><b>Floskeln</b> wie „Für jeden ist was dabei" und „Unglaublich!" verwässern starke Sets</li>
+      <li><b>Kein Scarcity-Layer:</b> Keine der Copies nutzte Verknappung — genau die Lücke, die die neue 90%-Kampagne schließt</li>
+      <li><b>CTA „Mehr dazu"</b> statt „Tickets kaufen" auf den Fallbacks — schwächer als nötig</li>
+    </ul></div>
+    <div class="card"><span class="mono">→ MUSTER ZUM ÜBERNEHMEN</span><ul class="setup" style="margin-top:8px">
+      <li><b>„Willst du X? Kriegst du."</b> — übertragbar auf jeden Workshop</li>
+      <li><b>Creator-Ich-Form</b> für alle warmen Audiences</li>
+      <li><b>„Schnapp dir deine Leute"</b> — Gruppenkauf-CTA weiter forcieren</li>
+      <li><b>Umweg-Targeting</b> (Teens→Eltern) auf weitere Beziehungen ausweiten (Freundesgruppen, Vereine)</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- EMPFEHLUNG -->
+<section>
+  <h2>Die Klammer: <span>welche Angles ausbauen?</span></h2>
+  <div class="h2sub">Priorisiert nach strategischem Potenzial — als Grundlage für die nächste Creative-Welle (und bereits teilweise in der neuen 90%-Kampagne umgesetzt).</div>
+
+  <div class="reco">
+    <div class="head"><span class="rank">01</span><h3>Creator-Voice (RLG-Autark-Muster)</h3><span class="pill">unfairer Vorteil</span></div>
+    <div class="body">Die Ich-Form der Real Life Guys ist das einzige Copy-Format, das Werbe-Skepsis komplett umgeht. Ausbau: jede RLG-Serie („Autark", Heli-Projekt, …) bekommt ihre eigene Einladungs-Ad in Ich-Form; dazu kurze Talking-Head-Videos („Wir bauen dieses Jahr … kommst du?"). Auch für die 90%-Scarcity-Botschaft wäre eine RLG-Stimme („Unser Festival ist fast voll") die glaubwürdigste Absender-Variante.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">02</span><h3>Digital Detox / „4 Tage offline"</h3><span class="pill">marken-kern</span></div>
+    <div class="body">Der differenzierendste Angle: Kein anderes Event wirbt mit Abwesenheit von Technik. Die Bildsprache („Kein WLAN. Kein Scrollen. Dreckige Hände.") ist bereits ikonisch und wurde in der 90%-Kampagne weitergeführt. Ausbau: als Serie mit wechselnden Kontrasten (Screentime-Statistik vs. Werkstatt-Foto), UGC „Mein erster Tag ohne Handy" nach dem Festival.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">03</span><h3>Teen→Eltern-Umweg (Family)</h3><span class="pill">eigener funnel</span></div>
+    <div class="body">Der Umweg über die Kinder plus Share-CTA plus eigene Landingpage ist ein komplettes System — kein Einzel-Creative. Ausbau: 3–4 Motivvarianten („Zeig das deinem Papa", Seifenkisten-Duo, Bagger-Führerschein für Teens), dazu die Gegenrichtung an Eltern („Der Urlaub, für den dein Kind dich feiert"). Die neue 90%-Kampagne hat dafür bereits das Eltern-&amp;-Kind-Motiv in der Hinterhand.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">04</span><h3>Kuriositäten-Serie (Fahrschul-Muster)</h3><span class="pill">reels-hooks</span></div>
+    <div class="body">„Die verrückteste Fahrschule Deutschlands" zeigt das Muster: ein unerwartetes Wort + ein konkreter Benefit mit Augenzwinkern. Das Festival hat genug Material für eine ganze Serie — „Der einzige Baumarkt mit Bühne", „Deutschlands lauteste Sauna", „TÜV-freie Zone". Jede Folge ist ein eigener Scroll-Stopper.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">05</span><h3>Value/Gratis → Einwand-Killer</h3><span class="pill">retargeting</span></div>
+    <div class="body">Das Gratis-Argument (Material, Werkzeug, Workshops inklusive) ist zu stark, um es mit einem „Unglaublich!"-Hook zu verschenken. Neuer Rahmen: „Rechne mal nach" — was 35+ Workshops einzeln kosten würden vs. ein Ticket. Gehört vor allem ins Retargeting, wo der letzte Einwand der Preis ist. Vorher die Flächen-Zahl vereinheitlichen (1000 m² vs. 10.000 qm).</div>
+  </div>
+
+  <div class="card" style="margin-top:26px">
+    <span class="mono">EINORDNUNG ZUR NEUEN 90%-KAMPAGNE</span>
+    <p style="margin-top:8px;font-size:15.5px;color:#d9d5cc">Diese Prospecting-Welle hat die Angles etabliert — die am 22.07. gestartete Nachfolge-Kampagne legt die fehlende Scarcity-Klammer („zu 90% ausverkauft") über die bewährten Motive. Detail-Analyse der sechs neuen Ads im Companion-Report: <a href="MacherFestival-90-Angle-Report-Jul-2026.html" style="color:var(--orange)">90% Ausverkauft — Der Angle-Report</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div>Skael — Performance Marketing · reports.skael.de</div>
+  <div>Macher Festival 2026 · Live-Ads Angle-Report · 22.07.2026</div>
+</footer>
+
+</div>
+</body>
+</html>
