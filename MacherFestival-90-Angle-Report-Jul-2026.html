@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macher Festival 2026 — 90%-Kampagne · Angle-Report</title>
+<link rel="icon" href="www.skael.de-favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c0e; --surface:#161619; --surface-2:#1d1d22; --line:#2c2c33;
+    --ink:#f3efe6; --muted:#8b8b95;
+    --orange:#ff5c1c; --yellow:#ffd200; --green:#37d399; --amber:#ffb020; --red:#ff4d4d;
+    --hazard:repeating-linear-gradient(45deg,#ffd200 0 14px,#0c0c0e 14px 28px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:"Barlow Semi Condensed",sans-serif;line-height:1.35;-webkit-font-smoothing:antialiased;padding:0 0 80px;
+    background-image:radial-gradient(circle at 12% -5%,rgba(255,92,28,.10),transparent 40%),radial-gradient(circle at 90% 5%,rgba(255,210,0,.06),transparent 45%);}
+  .grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
+
+  header{padding:52px 0 26px}
+  .kicker{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.28em;color:var(--orange);text-transform:uppercase}
+  h1{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(38px,7vw,86px);line-height:.92;text-transform:uppercase;margin:10px 0 4px}
+  h1 span{color:var(--orange)}
+  .sub{font-size:19px;color:var(--muted);max-width:820px;margin-top:12px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;font-family:"Space Mono",monospace;font-size:11.5px}
+  .chip{border:1px solid var(--line);background:var(--surface);padding:7px 12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .chip b{color:var(--ink);font-weight:700}
+
+  .hazbar{height:8px;background:var(--hazard);margin:26px 0 0;border-radius:2px;opacity:.8}
+
+  h2{font-family:"Anton",sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,40px);text-transform:uppercase;margin:56px 0 8px}
+  h2 span{color:var(--orange)}
+  .h2sub{color:var(--muted);font-size:16.5px;max-width:820px;margin-bottom:22px}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+
+  /* Setup summary */
+  .setup li{margin:8px 0 8px 18px;color:var(--ink);font-size:16.5px}
+  .setup li b{color:var(--orange)}
+  .mono{font-family:"Space Mono",monospace;font-size:12px;color:var(--muted)}
+
+  /* Angle map table */
+  table{width:100%;border-collapse:collapse;font-size:15.5px}
+  th{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+  td b{color:var(--orange)}
+  tr:last-child td{border-bottom:none}
+
+  /* Ad cards */
+  .adcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:340px 1fr;margin-bottom:22px}
+  @media(max-width:860px){.adcard{grid-template-columns:1fr}}
+  .adimgs{background:var(--surface-2);padding:18px;display:flex;gap:12px;align-items:flex-start;justify-content:center}
+  .adimgs img{border-radius:8px;border:1px solid var(--line);display:block}
+  .adimgs .feed{width:200px}
+  .adimgs .story{width:96px}
+  .adbody{padding:22px 24px}
+  .adtag{display:inline-block;font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#0c0c0e;background:var(--orange);padding:4px 9px;border-radius:3px;margin-bottom:8px}
+  .adtag.alt{background:var(--yellow)}
+  .adbody h3{font-family:"Anton",sans-serif;font-weight:400;font-size:26px;text-transform:uppercase;margin-bottom:4px}
+  .adname{font-family:"Space Mono",monospace;font-size:11px;color:var(--muted);margin-bottom:14px}
+  .adrow{margin:10px 0}
+  .adrow .lbl{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px}
+  .adrow p{font-size:15.5px;color:var(--ink)}
+  .copyquote{background:var(--surface-2);border-left:3px solid var(--orange);padding:10px 14px;border-radius:0 8px 8px 0;font-size:14.5px;white-space:pre-line;color:#d9d5cc}
+  .verdict{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:15px}
+  .verdict .dot{width:10px;height:10px;border-radius:50%;flex:none;margin-top:5px}
+  .d-green{background:var(--green)} .d-amber{background:var(--amber)} .d-orange{background:var(--orange)}
+
+  /* Empfehlung */
+  .reco{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px}
+  .reco .head{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--surface-2)}
+  .reco .rank{font-family:"Anton",sans-serif;font-size:22px;color:var(--orange);min-width:34px}
+  .reco .head h3{font-family:"Anton",sans-serif;font-weight:400;font-size:20px;text-transform:uppercase}
+  .reco .body{padding:14px 18px;font-size:15.5px;color:#d9d5cc;background:var(--surface)}
+  .pill{display:inline-block;font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:3px 8px;border-radius:999px;margin-left:auto}
+
+  footer{margin-top:70px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:"Space Mono",monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Skael × Macher Festival · Creative-Strategie-Report</div>
+  <h1>90% Ausverkauft<br><span>Der Angle-Report.</span></h1>
+  <div class="sub">Sechs neue Scarcity-Ads sind live. Dieser Report erklärt, welcher psychologische Hebel hinter jeder Ad steckt, warum die Copy so gebaut ist, wie sie gebaut ist — und welche Angles das größte Ausbau-Potenzial haben. Bewusst ohne Performance-Zahlen: Die Kampagne ist frisch live, hier geht es um die Strategie dahinter.</div>
+  <div class="meta-row">
+    <div class="chip">Kampagne <b>MF26 | SALES | DE | CBO | 90% Ausverkauft</b></div>
+    <div class="chip">Stand <b>22.07.2026</b></div>
+    <div class="chip">Ads <b>6 Statics · Feed 4:5 + Story 9:16</b></div>
+    <div class="chip">Ziel <b>macherfestival.io/funnel</b></div>
+  </div>
+  <div class="hazbar"></div>
+</header>
+
+<!-- SETUP -->
+<section>
+  <h2>Das Setup <span>in 30 Sekunden</span></h2>
+  <div class="h2sub">Die Kampagne ist ein 1:1-Klon der laufenden Prospecting-Struktur — gleiche Audiences, gleiche Placements, gleiche Attribution. Einziger Unterschied: der Message-Layer. Alle sechs Ads spielen dieselbe Klammer („zu 90% ausverkauft"), aber jede über einen anderen psychologischen Einstieg.</div>
+  <div class="grid2">
+    <div class="card setup">
+      <span class="mono">STRUKTUR</span>
+      <ul>
+        <li><b>Broad+ DE/AT 18–55</b> mit IG-Engagern, Website-Besuchern &amp; Lookalike 2–3% als Advantage-Signal, Ticketkäufer ausgeschlossen</li>
+        <li>Nur <b>Story &amp; Reels</b> (FB + IG) — wie die laufende Kampagne; jede Ad liefert dafür ein eigenes 9:16-Asset</li>
+        <li>Optimierung auf <b>Purchase</b> (Pixel), 7-Tage-Klick + 1-Tag-View</li>
+        <li>Ziel-URL <b>/funnel</b> — identisch zu den Bestands-Ads, volle UTM-Parametrisierung</li>
+      </ul>
+    </div>
+    <div class="card setup">
+      <span class="mono">CREATIVE-SYSTEM</span>
+      <ul>
+        <li>Einheitliche Design-DNA: <b>offizielles 2026-Logo</b>, Anton-Headlines, Orange auf Schwarz, Warndreieck-Signatur, oranger Glow</li>
+        <li><b>„90%" ist in jeder Ad das größte Element</b> — die Zahl trägt, nicht das Adjektiv</li>
+        <li>Nur belegbare Fakten aus der Website: 35+ Workshops, 40+ Schweißbänke, 10.000 qm Werkstatt, 4 Tage Camping</li>
+        <li>Copy-Formel: <b>Kauf-Imperativ + echte Verknappung + Konsequenz</b> („dann ist Schluss") — kein Fake-Countdown, UWG-sicher</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ANGLE MAP -->
+<section>
+  <h2>Die Angle-Map: <span>eine Klammer, sechs Einstiege</span></h2>
+  <div class="h2sub">Scarcity allein nutzt sich schnell ab. Deshalb kombiniert jede Ad die 90%-Klammer mit einem zweiten Hebel — so testet die Kampagne sechs Motivationen gleichzeitig, ohne die Botschaft zu verwässern.</div>
+  <div class="card" style="padding:6px 6px">
+    <table>
+      <tr><th>Ad</th><th>Sekundär-Angle</th><th>Psychologischer Hebel</th><th>Für wen die Ad gebaut ist</th></tr>
+      <tr><td><b>11</b> Dreckige Hände</td><td>Identität / Anti-Scroll</td><td>Selbstbild („Ich bin Macher, kein Scroller")</td><td>Kernzielgruppe, die sich über Handwerk definiert</td></tr>
+      <tr><td><b>12</b> Dein Projekt</td><td>Take-Home / Besitz</td><td>Endowment-Effekt — man verliert etwas, das man schon fast besitzt</td><td>DIY-Interessierte, die ein konkretes Ergebnis wollen</td></tr>
+      <tr><td><b>13</b> Alles drin</td><td>Value / Einfachheit</td><td>Risiko-Entschärfung („keine versteckten Kosten")</td><td>Preisbewusste &amp; Unentschlossene, letzter Einwand</td></tr>
+      <tr><td><b>14</b> Stat-Cards</td><td>Programm-Beweis</td><td>Konkretheit schlägt Behauptung (Workshops als Bild)</td><td>Kalte Audience, die das Festival noch nicht kennt</td></tr>
+      <tr><td><b>15</b> Ticket-Grid</td><td>Visualisierte Knappheit</td><td>Loss Aversion, ohne Text verständlich</td><td>Scroll-Stopper für alle — funktioniert in 1 Sekunde</td></tr>
+      <tr><td><b>16</b> Polaroid</td><td>Emotion / Erinnerung</td><td>Antizipierte Nostalgie („das hätte ich verpasst")</td><td>Familien &amp; Freundesgruppen, warmer Traffic</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- AD DEEP DIVES -->
+<section>
+  <h2>Die sechs Ads <span>im Detail</span></h2>
+  <div class="h2sub">Jede Karte: Creative (Feed + Story), der Hook, warum er verkauft — und was wir beobachten sollten.</div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-90/V2_feed.jpg" alt="Ad 11 Feed"><img class="story" src="assets/mf26-90/V2_story.jpg" alt="Ad 11 Story"></div>
+    <div class="adbody">
+      <span class="adtag">Identität · Anti-Scroll</span>
+      <h3>11 · Dreckige Hände</h3>
+      <div class="adname">MF26 | 90-DreckigeHaende | 11 | Static</div>
+      <div class="adrow"><span class="lbl">Hook</span><div class="copyquote">Sichere dir jetzt eins der letzten Tickets fürs Macher Festival — 90% sind weg.
+
+Kein WLAN, dreckige Hände, stolze Gesichter. Wenn die letzten 10% weg sind, war's das.</div></div>
+      <div class="adrow"><span class="lbl">Warum das verkauft</span><p>Der Dreiklang „Kein WLAN. Dreckige Hände. Stolze Gesichter." ist das komprimierteste Markenversprechen der ganzen Kampagne — er sagt in sechs Wörtern, was das Festival ist und was es nicht ist. Die Scarcity-Klammer macht daraus eine Entscheidung statt einer Info.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Stärkste Identitäts-Ad im Set.</b> Beobachten: Saves &amp; Shares — Identitäts-Angles werden geteilt, nicht nur geklickt.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-90/V4_feed.jpg" alt="Ad 12 Feed"><img class="story" src="assets/mf26-90/V4_story.jpg" alt="Ad 12 Story"></div>
+    <div class="adbody">
+      <span class="adtag">Take-Home · Besitz</span>
+      <h3>12 · Dein Projekt</h3>
+      <div class="adname">MF26 | 90-DeinProjekt | 12 | Static</div>
+      <div class="adrow"><span class="lbl">Hook</span><div class="copyquote">Hol dir jetzt dein Ticket — und bring im August dein eigenes Projekt mit nach Hause.
+
+35+ Workshops, 40+ Schweißbänke, 10.000 qm Werkstatt. Nur noch 10% der Tickets da, dann ist Schluss.</div></div>
+      <div class="adrow"><span class="lbl">Warum das verkauft</span><p>Das ist der USP, den kein anderes Festival kopieren kann: Man nimmt physisch etwas mit. Die Copy verkauft nicht das Event, sondern das Ergebnis danach — und die Zahlen (35+/40+/10.000 qm) machen das Versprechen falsifizierbar statt werblich.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Der „ownable" Angle der Marke.</b> Wenn eine Ad langfristig trägt, dann diese.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-90/V5_feed.jpg" alt="Ad 13 Feed"><img class="story" src="assets/mf26-90/V5_story.jpg" alt="Ad 13 Story"></div>
+    <div class="adbody">
+      <span class="adtag alt">Value · Einwand-Killer</span>
+      <h3>13 · Alles drin</h3>
+      <div class="adname">MF26 | 90-AllesDrin | 13 | Static</div>
+      <div class="adrow"><span class="lbl">Hook</span><div class="copyquote">Schnapp dir jetzt eins der letzten Tickets — ein Preis, alles drin.
+
+35+ DIY-Workshops, Werkzeuge von Bosch Pro, 4 Tage Camping. Keine versteckten Kosten, kein Aufpreis.</div></div>
+      <div class="adrow"><span class="lbl">Warum das verkauft</span><p>Deutsche Käufer haben Abofallen-Trauma — „keine versteckten Kosten, kein Aufpreis" ist im DACH-Markt ein messbarer Conversion-Hebel. Diese Ad beantwortet den letzten Einwand vor dem Kauf und gehört deshalb strategisch ans Ende der Customer Journey.</p></div>
+      <div class="verdict"><span class="dot d-amber"></span><p><b>Eher Closer als Opener.</b> Im Prospecting okay, ihr eigentliches Zuhause wäre ein Retargeting-Adset.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-90/L1_feed.jpg" alt="Ad 14 Feed"><img class="story" src="assets/mf26-90/L1_story.jpg" alt="Ad 14 Story"></div>
+    <div class="adbody">
+      <span class="adtag alt">Programm-Beweis</span>
+      <h3>14 · Stat-Cards</h3>
+      <div class="adname">MF26 | 90-StatCards | 14 | Static</div>
+      <div class="adrow"><span class="lbl">Hook</span><div class="copyquote">Sichere dir jetzt die letzten Tickets fürs Macher Festival 2026 — es ist zu 90% ausverkauft.
+
+Schweißen lernen, Bagger fahren, Stuhl bauen: 35+ Workshops, alle in deinem Ticket drin.</div></div>
+      <div class="adrow"><span class="lbl">Warum das verkauft</span><p>Die vier Workshop-Cards mit den Original-Piktogrammen sind der schnellste Weg, einer kalten Audience zu erklären, was hier passiert — konkret („Bagger fahren") statt abstrakt („einzigartiges Erlebnis"). Der Aufbau ist die bewährte Struktur der Bestands-Ads, nur mit Scarcity-Kopf.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Bester Erklär-Einstieg für Neue.</b> Ideal als erste Berührung in der Cold Audience.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-90/L3_feed.jpg" alt="Ad 15 Feed"><img class="story" src="assets/mf26-90/L3_story.jpg" alt="Ad 15 Story"></div>
+    <div class="adbody">
+      <span class="adtag">Visualisierte Knappheit</span>
+      <h3>15 · Ticket-Grid</h3>
+      <div class="adname">MF26 | 90-TicketGrid | 15 | Static</div>
+      <div class="adrow"><span class="lbl">Hook</span><div class="copyquote">9 von 10 Tickets sind weg — schnapp dir jetzt eins der letzten.
+
+Wer zu lange wartet, schaut im August nur zu.</div></div>
+      <div class="adrow"><span class="lbl">Warum das verkauft</span><p>Die einzige Ad, die ohne ein einziges Wort funktioniert: 9 durchgestrichene Tickets, eins leuchtet — „DEINS?". Loss Aversion als Bild statt als Behauptung. Das personalisierte Fragezeichen macht aus der Marktinfo eine direkte Ansprache.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Der Scroll-Stopper des Sets.</b> Größte visuelle Differenz zu allem, was sonst im Feed läuft — Hook-Rate beobachten.</p></div>
+    </div>
+  </div>
+
+  <div class="adcard">
+    <div class="adimgs"><img class="feed" src="assets/mf26-90/L5_feed.jpg" alt="Ad 16 Feed"><img class="story" src="assets/mf26-90/L5_story.jpg" alt="Ad 16 Story"></div>
+    <div class="adbody">
+      <span class="adtag alt">Emotion · Erinnerung</span>
+      <h3>16 · Polaroid</h3>
+      <div class="adname">MF26 | 90-Polaroid | 16 | Static</div>
+      <div class="adrow"><span class="lbl">Hook</span><div class="copyquote">Hol dir jetzt dein Ticket, bevor die letzten 10% weg sind.
+
+4 Tage, die du nicht nachkaufen kannst: bauen, schweißen, feiern — und alles Selbstgebaute nimmst du mit.</div></div>
+      <div class="adrow"><span class="lbl">Warum das verkauft</span><p>Drei Polaroids mit handschriftlichen Captions („Papa &amp; ich", „erster Schweißkurs") erzählen die Erinnerung, bevor sie passiert ist. „4 Tage, die du nicht nachkaufen kannst" dreht Scarcity von Tickets auf Zeit — emotionaler als jede Prozentzahl.</p></div>
+      <div class="verdict"><span class="dot d-green"></span><p><b>Emotionalster Einstieg im Set.</b> Prädestiniert für Familien-Zielgruppe und den /eltern-und-kind-Funnel.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COPY-PRINZIPIEN -->
+<section>
+  <h2>Was die Copy <span>verkaufen lässt</span></h2>
+  <div class="h2sub">Alle sechs Texte folgen derselben Verkaufs-Formel — bewusst direkter als die bisherigen Bestands-Ads.</div>
+  <div class="grid3">
+    <div class="card"><span class="mono">1 · KAUF-IMPERATIV ZUERST</span><p style="margin-top:8px;font-size:15.5px">Jede Ad startet mit „Sichere dir / Hol dir / Schnapp dir" + Verknappung — komplett vor dem 125-Zeichen-Cut. Kein Aufwärmen, die erste Zeile ist der Verkauf.</p></div>
+    <div class="card"><span class="mono">2 · KONSEQUENZ STATT DRUCK</span><p style="margin-top:8px;font-size:15.5px">Statt Ausrufezeichen: „dann ist Schluss", „war's das", „wer zu lange wartet, schaut im August nur zu." Echte Konsequenz erzeugt mehr Handlungsdruck als Hype — und bleibt UWG-sicher, weil die 90% real sind.</p></div>
+    <div class="card"><span class="mono">3 · DOPPELTER CTA</span><p style="margin-top:8px;font-size:15.5px">👉-Zeile mit Link im Text + CTA-nahe Headline neben dem Button. Jede Ad sagt zweimal „jetzt sichern", einmal im Bild sogar ein drittes Mal.</p></div>
+  </div>
+</section>
+
+<!-- EMPFEHLUNG -->
+<section>
+  <h2>Die Klammer: <span>welche Angles ausbauen?</span></h2>
+  <div class="h2sub">Empfehlung für die nächsten Creative-Iterationen — priorisiert nach strategischem Potenzial, unabhängig von den ersten Performance-Daten.</div>
+
+  <div class="reco">
+    <div class="head"><span class="rank">01</span><h3>Take-Home / „Dein Projekt"</h3><span class="pill">ownable · skalierbar</span></div>
+    <div class="body">Der einzige Angle, den kein Wettbewerber kopieren kann — kein anderes Festival schickt dich mit einem selbstgeschweißten Stuhl nach Hause. Ausbau: UGC-Videos von Besuchern mit ihren Projekten („Das habe ich beim Macher Festival gebaut"), Vorher/Nachher-Karussells, nach dem Festival als Proof-Content für 2027 recyclen. Dieser Angle wird mit jedem Festivaljahr stärker.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">02</span><h3>Visualisierte Knappheit / Ticket-Grid</h3><span class="pill">countdown-fähig</span></div>
+    <div class="body">Das Grid ist ein System, keine einzelne Ad: Bei 95% wird ein weiteres Ticket durchgestrichen, in der letzten Woche wird daraus „Noch 3 Tage". Dieselbe Mechanik trägt die komplette Endphase des Ticketverkaufs — jede Aktualisierung ist ein neuer Creative-Impuls bei minimalem Produktionsaufwand (HTML-Template, Änderung in Minuten).</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">03</span><h3>Identität / „Dreckige Hände"</h3><span class="pill">brand-hebel</span></div>
+    <div class="body">„Kein WLAN. Dreckige Hände. Stolze Gesichter." hat das Zeug zur wiedererkennbaren Kampagnen-Zeile über 2026 hinaus. Ausbau: als Serie mit wechselnden Dreiklängen („Kein Scrollen. Echte Funken. Echte Freunde."), als Merch-Zeile, als Video-Hook gesprochen über Werkstatt-Footage. Identitäts-Angles bauen die Marke, während Scarcity die Tickets verkauft.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">04</span><h3>Emotion / Polaroid → Familien-Funnel</h3><span class="pill">segment-spezifisch</span></div>
+    <div class="body">Die Polaroid-Mechanik gehört mit familienspezifischen Motiven („Papa &amp; ich") auf den bestehenden /eltern-und-kind-Funnel — dort läuft bereits ein eigener Angle in der Bestandskampagne. Empfehlung: eigenes Adset mit Eltern-Targeting, Polaroid-Serie mit 3–4 Familien-Motivsets.</div>
+  </div>
+  <div class="reco">
+    <div class="head"><span class="rank">05</span><h3>Value / „Alles drin" → Retargeting</h3><span class="pill">closer</span></div>
+    <div class="body">Als Prospecting-Ad solide, aber ihr eigentlicher Job ist der letzte Meter: Funnel-Besucher ohne Kauf bekommen „ein Preis, alles drin, keine versteckten Kosten" als Einwand-Killer. Empfehlung: ins Retargeting-Adset duplizieren, sobald die 90%-Kampagne Daten gesammelt hat.</div>
+  </div>
+
+  <div class="card" style="margin-top:26px">
+    <span class="mono">NÄCHSTE SCHRITTE (VORSCHLAG)</span>
+    <ul class="setup" style="margin-top:8px">
+      <li><b>Woche 1–2:</b> Alle 6 Ads laufen lassen, keine vorschnellen Abschaltungen — Meta braucht die Lernphase</li>
+      <li><b>Ab Woche 2:</b> Hook-Rate &amp; CTR je Angle vergleichen, die schwächsten 2 pausieren, Gewinner-Angle in 2–3 neuen Varianten nachlegen (Template steht, Produktion in Minuten)</li>
+      <li><b>Endphase:</b> Ticket-Grid auf „95%" bzw. Countdown umstellen — die Mechanik ist dafür gebaut</li>
+      <li><b>Kontinuierlich:</b> 90%-Zahl mit Daniel aktuell halten — die Klammer funktioniert nur, solange sie stimmt (UWG)</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div>Skael — Performance Marketing · reports.skael.de</div>
+  <div>Macher Festival 2026 · Angle-Report · 22.07.2026</div>
+</footer>
+
+</div>
+</body>
+</html>
