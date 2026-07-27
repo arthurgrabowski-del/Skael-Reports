@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NXT YOU — Halbjahres-Workshop 2026</title>
+<style>
+  :root{
+    --page:#0a0d12; --panel:#12161d; --panel-2:#161b24;
+    --line:rgba(154,177,217,.16); --ring:rgba(154,177,217,.14);
+    --fg:#eaeef5; --fg-2:#aeb8c9; --muted:#7b869a; --faint:#59637a;
+    --blue:#9ab1d9; --blue-hi:#bcd0f0; --blue-soft:rgba(154,177,217,.12);
+    --good:#5fd48a; --good-soft:rgba(95,212,138,.13);
+    --warn:#ffc178; --warn-soft:rgba(255,193,120,.13);
+    --crit:#f08a88; --crit-soft:rgba(240,138,136,.13);
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;color:var(--fg);
+    background:radial-gradient(1100px 640px at 82% -8%,rgba(154,177,217,.10),transparent 60%),
+      radial-gradient(800px 500px at -5% 4%,rgba(154,177,217,.07),transparent 55%),var(--page);
+    background-attachment:fixed}
+  .mono{font-family:var(--mono)}
+  .ital{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--blue)}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+
+  header{padding:52px 0 44px;border-bottom:1px solid var(--line)}
+  header .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  header h1{font-size:clamp(30px,5vw,52px);font-weight:600;line-height:1.06;letter-spacing:-.02em;max-width:16ch}
+  header p.sub{margin-top:16px;max-width:62ch;color:var(--fg-2);font-size:16px;line-height:1.6}
+  .meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .meta-chips .chip{font-family:var(--mono);font-size:11.5px;padding:7px 13px;border:1px solid var(--line);border-radius:999px;color:var(--fg-2);background:rgba(255,255,255,.02)}
+  .meta-chips .chip b{color:var(--blue-hi);font-weight:600}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,13,18,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:2px;overflow-x:auto}
+  nav a{flex:0 0 auto;padding:14px 15px;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s}
+  nav a:hover{color:var(--blue-hi)} nav a.active{color:var(--blue-hi);border-bottom-color:var(--blue)}
+
+  section{padding:58px 0 12px;scroll-margin-top:56px}
+  .sec-label{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+  .sec-num{font-family:var(--mono);font-size:12px;color:var(--blue);background:var(--blue-soft);border:1px solid var(--line);border-radius:8px;padding:4px 11px}
+  h2{font-size:clamp(22px,3vw,30px);font-weight:600;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
+  .sec-intro{color:var(--fg-2);font-size:15px;max-width:70ch;margin-top:10px;line-height:1.6}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin:22px 0 6px}
+  .kpi{border:1px solid transparent;border-radius:14px;padding:17px 18px;
+    background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(155deg,rgba(154,177,217,.32),transparent 60%) border-box}
+  .kpi.hero{background:linear-gradient(160deg,rgba(154,177,217,.14),var(--panel)) padding-box,linear-gradient(155deg,rgba(154,177,217,.55),transparent 60%) border-box}
+  .kpi .lbl{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .kpi .val{font-size:27px;font-weight:600;margin-top:5px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .kpi .val.good{color:var(--good)} .kpi .val.blue{color:var(--blue-hi)}
+  .kpi .sub{font-family:var(--mono);font-size:11px;color:var(--fg-2);margin-top:3px}
+
+  .timeline{display:grid;gap:10px;margin-top:22px}
+  .t-row{display:grid;grid-template-columns:70px 1fr auto;gap:18px;background:var(--panel);border:1px solid var(--ring);border-radius:14px;padding:16px 20px;align-items:center}
+  .t-month{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--blue)}
+  .t-body .t-title{font-weight:600;font-size:15px}
+  .t-body .t-desc{font-size:13.5px;color:var(--fg-2);margin-top:3px;line-height:1.5}
+  .t-stat{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1.6}
+  .t-stat b{color:var(--fg);font-weight:600} .t-stat .win{color:var(--good)}
+  .t-row.live{background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(120deg,var(--warn-soft),transparent) border-box;border-color:transparent}
+  @media(max-width:720px){.t-row{grid-template-columns:1fr;gap:6px}.t-stat{text-align:left}}
+  .flag{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;border-radius:6px;padding:2px 8px;margin-left:8px;vertical-align:2px}
+  .flag.blue{background:var(--blue-soft);color:var(--blue)} .flag.warn{background:var(--warn-soft);color:var(--warn)}
+
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+  @media(max-width:760px){.charts{grid-template-columns:1fr}}
+  .chart-card{background:var(--panel);border:1px solid var(--ring);border-radius:16px;padding:20px}
+  .chart-card h3{font-size:14px;font-weight:600}
+  .chart-card .h-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin:2px 0 14px}
+  svg text{font-family:var(--mono)}
+  .chart-card svg{display:block;width:100%;height:auto}
+  #c-leads,#c-spend{aspect-ratio:460/220}#c-conv{aspect-ratio:460/210}
+
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--ring);border-radius:14px;background:var(--panel);margin-top:20px}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:620px}
+  th{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:left;padding:13px 15px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+  td{padding:12px 15px;border-bottom:1px solid rgba(255,255,255,.045)}
+  tr:last-child td{border-bottom:none}
+  tbody tr{cursor:pointer;transition:background .12s}
+  tbody tr:hover{background:rgba(154,177,217,.05)}
+  tbody tr.marked{background:rgba(154,177,217,.14);box-shadow:inset 3px 0 0 var(--blue)}
+  td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+  td.kw{font-weight:500} td .star{color:var(--faint);margin-right:8px}
+  tr.marked td .star{color:var(--blue)}
+  .mt{font-family:var(--mono);font-size:10px;color:var(--faint);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:7px}
+
+  .offers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+  @media(max-width:720px){.offers{grid-template-columns:1fr}}
+  .offer{background:var(--panel);border:1px solid var(--ring);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:4px}
+  .offer .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+  .offer h3{font-size:19px;font-weight:600;margin-top:4px}
+  .offer .price{font-family:var(--mono);font-size:23px;color:var(--blue-hi);margin:8px 0 4px;font-weight:500}
+  .offer p{font-size:13.5px;color:var(--fg-2);line-height:1.55}
+  .offer ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .offer li{font-size:13px;color:var(--fg-2);padding-left:20px;position:relative;line-height:1.45}
+  .offer li::before{content:"→";position:absolute;left:0;color:var(--blue);font-family:var(--mono)}
+
+  .bench{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--ring);border-radius:14px;overflow:hidden;margin-top:16px}
+  .bench div{background:var(--panel);padding:15px 17px}
+  .bench .b-lbl{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+  .bench .b-val{font-family:var(--mono);font-size:20px;font-weight:500;margin-top:3px;color:var(--fg)}
+
+  .note{border-left:3px solid var(--blue);background:var(--blue-soft);border-radius:0 12px 12px 0;padding:16px 20px;font-size:14px;color:var(--fg-2);margin-top:18px;line-height:1.6}
+  .note.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+  .note b{color:var(--fg);font-weight:600}
+
+  /* Funnel-Umbau split */
+  .split2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  @media(max-width:720px){.split2{grid-template-columns:1fr}}
+  .ba{background:var(--panel);border:1px solid var(--ring);border-radius:16px;padding:22px}
+  .ba .ba-tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+  .ba.before .ba-tag{color:var(--muted)} .ba.after .ba-tag{color:var(--good)}
+  .ba ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .ba li{font-size:13.5px;color:var(--fg-2);padding-left:22px;position:relative;line-height:1.45}
+  .ba.before li::before{content:"–";position:absolute;left:2px;color:var(--muted)}
+  .ba.after li::before{content:"✓";position:absolute;left:0;color:var(--good);font-family:var(--mono);font-size:12px}
+
+  /* Projection */
+  .proj-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:22px}
+  .step{background:var(--panel);border:1px solid var(--ring);border-radius:14px;padding:18px}
+  .step .s-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .step .s-val{font-size:24px;font-weight:600;margin-top:5px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .step .s-val.good{color:var(--good)} .step .s-val.blue{color:var(--blue-hi)}
+  .step .s-sub{font-family:var(--mono);font-size:11px;color:var(--fg-2);margin-top:3px;line-height:1.5}
+  .mix{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  @media(max-width:720px){.mix{grid-template-columns:1fr}}
+  .mixc{background:var(--panel);border:1px solid var(--ring);border-radius:14px;padding:18px}
+  .mixc.hot{border-color:rgba(255,193,120,.5);box-shadow:0 0 0 1px var(--warn-soft)}
+  .mixc h4{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .mixc .m-num{font-family:var(--mono);font-size:22px;font-weight:500;color:var(--blue-hi);margin:6px 0 2px}
+  .mixc.hot .m-num{color:var(--warn)}
+  .mixc p{font-size:12.5px;color:var(--fg-2);line-height:1.5;margin-top:4px}
+  .mixc .badge{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:5px;background:var(--warn-soft);color:var(--warn)}
+
+  /* Interactive discussion */
+  .disc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  @media(max-width:720px){.disc-grid{grid-template-columns:1fr}}
+  .disc{background:var(--panel);border:1px solid var(--ring);border-radius:16px;padding:22px;border-top:2px solid var(--blue)}
+  .disc.warm{border-top-color:var(--warn)} .disc.good{border-top-color:var(--good)} .disc.hot{border-top-color:var(--crit)}
+  .disc .d-head{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+  .disc .d-ico{width:34px;height:34px;border-radius:10px;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:17px;flex-shrink:0}
+  .disc.warm .d-ico{background:var(--warn-soft);color:var(--warn)} .disc.good .d-ico{background:var(--good-soft);color:var(--good)} .disc.hot .d-ico{background:var(--crit-soft);color:var(--crit)}
+  .disc h3{font-size:16px;font-weight:600}
+  .disc .d-q{font-size:13.5px;color:var(--muted);margin:2px 0 14px;line-height:1.5}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opt{font-size:13px;font-family:inherit;color:var(--fg-2);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;transition:all .15s;user-select:none;display:inline-flex;align-items:center;gap:7px}
+  .opt::before{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid var(--faint);transition:all .15s;flex-shrink:0}
+  .opt:hover{border-color:var(--blue);color:var(--fg)}
+  .opt.sel{background:var(--blue-soft);border-color:var(--blue);color:var(--blue-hi)}
+  .opt.sel::before{background:var(--blue);border-color:var(--blue);box-shadow:0 0 8px var(--blue)}
+  .disc .hint{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:12px}
+
+  footer{padding:46px 0 70px;border-top:1px solid var(--line);margin-top:60px;color:var(--muted);font-size:13px}
+  footer .mono{color:var(--faint);font-size:11.5px;margin-top:8px}
+  .tooltip{position:fixed;pointer-events:none;background:#05070a;border:1px solid var(--line);color:#fff;font-family:var(--mono);font-size:11.5px;padding:7px 10px;border-radius:8px;opacity:0;transition:opacity .12s;z-index:99;white-space:nowrap}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">NXT YOU · Software- &amp; App-Entwicklung · Team-Workshop</div>
+    <h1>Halbjahres-Review <span class="ital">2026</span> — wo stehen wir, wohin gehen wir.</h1>
+    <p class="sub">Ein ehrlicher Blick auf unser App-Geschäft: Wie kamen die Anfragen rein, was leisten die Ads, wo verdienen wir wirklich Geld — und was es braucht, um das Jahr bei 600k abzuschließen. Alle Zahlen bis einschließlich Juli, tagesaktuell.</p>
+    <div class="meta-chips">
+      <span class="chip">Zeitraum · Jan – Juli 2026</span>
+      <span class="chip">Ad-Budget gesamt · <b>39.539 €</b></span>
+      <span class="chip">Google <b>38.012 €</b> · Meta <b>1.527 €</b></span>
+      <span class="chip">Ads live · Stand 27.07.</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#story" class="active">H1-Story</a>
+    <a href="#ads">Ads in Zahlen</a>
+    <a href="#trend">Der Trend</a>
+    <a href="#funnel">Funnel-Umbau März</a>
+    <a href="#offers">Angebote</a>
+    <a href="#keywords">Keywords</a>
+    <a href="#ziel">Ziel 600k</a>
+    <a href="#diskussion">Diskussion</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- 01 STORY -->
+  <section id="story">
+    <div class="sec-label"><span class="sec-num">01</span></div>
+    <h2>Die Story in <span class="ital">7 Monaten</span>.</h2>
+    <p class="sec-intro">Monat für Monat: wie viele App-Anfragen kamen rein und welche Deals daraus wurden. Die Zahl rechts ist der abgeschlossene Deal-Wert aus den Anfragen des Monats (reift oft erst Monate später).</p>
+    <div class="timeline">
+      <div class="t-row"><div class="t-month">Januar</div><div class="t-body"><div class="t-title">Sauberer Start ins Jahr</div><div class="t-desc">Der Google-App-Funnel läuft rund, konstante Nachfrage nach „App entwickeln lassen".</div></div><div class="t-stat"><b>21</b> Leads<br><span class="win">1 Deal · 7.500 €</span></div></div>
+      <div class="t-row"><div class="t-month">Februar</div><div class="t-body"><div class="t-title">Die späteren Groß-Deals kommen rein <span class="flag blue">Weichenstellung</span></div><div class="t-desc">Buresa &amp; Sport Beat melden sich an — beide werden im Juni zu den größten Abschlüssen des Halbjahres.</div></div><div class="t-stat"><b>24</b> Leads<br><span class="win">3 Deals · 69.600 €</span></div></div>
+      <div class="t-row"><div class="t-month">März</div><div class="t-body"><div class="t-title">Funnel-Umbau &amp; stärkster Ad-Monat <span class="flag blue">Umbau</span></div><div class="t-desc">Wir bauen den App-Funnel um (eigene Sektion unten). Gleichzeitig Google-Höchststand: 32 Conversions.</div></div><div class="t-stat"><b>19</b> Leads<br><span class="win">2 Deals · 76.100 €</span></div></div>
+      <div class="t-row"><div class="t-month">April</div><div class="t-body"><div class="t-title">Budget-Delle · erster Meta-Test</div><div class="t-desc">Nur 2.700 € investiert — entsprechend weniger Anfragen. Zeigt direkt, wie stark Leads am Budget hängen.</div></div><div class="t-stat"><b>13</b> Leads<br><span class="win">2 Deals · 12.800 €</span></div></div>
+      <div class="t-row"><div class="t-month">Mai</div><div class="t-body"><div class="t-title">Bester Lead-Monat</div><div class="t-desc">Budget wieder hoch, 27 Anfragen — Halbjahres-Rekord. Diese Leads reifen jetzt.</div></div><div class="t-stat"><b>27</b> Leads<br><span class="muted">Deals reifen</span></div></div>
+      <div class="t-row"><div class="t-month">Juni</div><div class="t-body"><div class="t-title">Meta skaliert · Groß-Deals closen</div><div class="t-desc">Meta hochgefahren (1.092 €). Buresa &amp; Sport Beat unterschreiben — der große Umsatzmonat.</div></div><div class="t-stat"><b>21</b> Leads<br><span class="win">Buresa + Sport Beat</span></div></div>
+      <div class="t-row live"><div class="t-month">Juli</div><div class="t-body"><div class="t-title">Läuft — Ausgaben ziehen an <span class="flag warn">live</span></div><div class="t-desc">~4.380 € bis heute investiert, Google + Meta laufen. Monat noch offen, Leads &amp; Deals früh.</div></div><div class="t-stat"><b>Stand 27.7.</b><br><span class="muted">Monat läuft</span></div></div>
+    </div>
+  </section>
+
+  <!-- 02 ADS -->
+  <section id="ads">
+    <div class="sec-label"><span class="sec-num">02</span></div>
+    <h2>NXT YOU Ads in <span class="ital">Zahlen</span>.</h2>
+    <p class="sec-intro">Alle Ad-Zahlen live aus Google Ads &amp; Meta, Stand heute (27.07.), inkl. Juli. Das ist der Motor unseres App-Geschäfts.</p>
+    <div class="kpis">
+      <div class="kpi hero"><div class="lbl">Ad-Budget gesamt</div><div class="val blue">39.539 €</div><div class="sub">Google 38.012 · Meta 1.527</div></div>
+      <div class="kpi"><div class="lbl">Anfragen bis Juli</div><div class="val">129</div><div class="sub">~20 / Monat</div></div>
+      <div class="kpi"><div class="lbl">Qualifiziert</div><div class="val">86 %</div><div class="sub">111 ernsthafte</div></div>
+      <div class="kpi"><div class="lbl">Kosten je Lead</div><div class="val">~280 €</div><div class="sub">stabil, Schnitt H1</div></div>
+      <div class="kpi"><div class="lbl">Deals</div><div class="val good">9</div><div class="sub">unterschrieben</div></div>
+      <div class="kpi"><div class="lbl">Umsatz aus Leads</div><div class="val good">171k €</div><div class="sub">≈ 4,3× auf Ad-Budget</div></div>
+    </div>
+    <div class="charts">
+      <div class="chart-card"><h3>Anfragen pro Monat</h3><div class="h-sub">Jan – Juli · Juli läuft noch (heller Balken)</div>
+        <svg id="c-leads" viewBox="0 0 460 220" width="100%">
+        <rect x="8.0" y="76.1" width="40" height="113.9" rx="5" fill="#9ab1d9"/>
+        <text x="28.0" y="69.1" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">21</text>
+        <text x="28.0" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Jan</text>
+        <rect x="75.3" y="59.8" width="40" height="130.2" rx="5" fill="#9ab1d9"/>
+        <text x="95.3" y="52.8" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">24</text>
+        <text x="95.3" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Feb</text>
+        <rect x="142.7" y="87.0" width="40" height="103.0" rx="5" fill="#9ab1d9"/>
+        <text x="162.7" y="80.0" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">19</text>
+        <text x="162.7" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Mär</text>
+        <rect x="210.0" y="119.5" width="40" height="70.5" rx="5" fill="#9ab1d9"/>
+        <text x="230.0" y="112.5" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">13</text>
+        <text x="230.0" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Apr</text>
+        <rect x="277.3" y="43.6" width="40" height="146.4" rx="5" fill="#9ab1d9"/>
+        <text x="297.3" y="36.6" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">27</text>
+        <text x="297.3" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Mai</text>
+        <rect x="344.7" y="76.1" width="40" height="113.9" rx="5" fill="#9ab1d9"/>
+        <text x="364.7" y="69.1" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">21</text>
+        <text x="364.7" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Jun</text>
+        <rect x="412.0" y="168.3" width="40" height="21.7" rx="5" fill="#9ab1d9" opacity="0.4"/>
+        <text x="432.0" y="161.3" text-anchor="middle" font-size="11" font-weight="600" fill="#ffc178">4</text>
+        <text x="432.0" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Jul</text>
+      </svg></div>
+      <div class="chart-card"><h3>Ad-Budget pro Monat</h3><div class="h-sub">Google + Meta · in €, Juli live bis 27.7.</div>
+        <svg id="c-spend" viewBox="0 0 460 220" width="100%">
+        <rect x="8.0" y="80.4" width="40" height="109.6" rx="5" fill="#9ab1d9"/>
+        <text x="28.0" y="73.4" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">5,7k</text>
+        <text x="28.0" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Jan</text>
+        <rect x="75.3" y="68.1" width="40" height="121.9" rx="5" fill="#9ab1d9"/>
+        <text x="95.3" y="61.1" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">6,4k</text>
+        <text x="95.3" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Feb</text>
+        <rect x="142.7" y="43.6" width="40" height="146.4" rx="5" fill="#9ab1d9"/>
+        <text x="162.7" y="36.6" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">7,6k</text>
+        <text x="162.7" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Mär</text>
+        <rect x="210.0" y="138.4" width="40" height="51.6" rx="5" fill="#9ab1d9"/>
+        <text x="230.0" y="131.4" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">2,7k</text>
+        <text x="230.0" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Apr</text>
+        <rect x="277.3" y="80.8" width="40" height="109.2" rx="5" fill="#9ab1d9"/>
+        <text x="297.3" y="73.8" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">5,7k</text>
+        <text x="297.3" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Mai</text>
+        <rect x="344.7" y="54.6" width="40" height="135.4" rx="5" fill="#9ab1d9"/>
+        <text x="364.7" y="47.6" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">7,1k</text>
+        <text x="364.7" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Jun</text>
+        <rect x="412.0" y="105.9" width="40" height="84.1" rx="5" fill="#9ab1d9" opacity="0.4"/>
+        <text x="432.0" y="98.9" text-anchor="middle" font-size="11" font-weight="600" fill="#ffc178">4,4k</text>
+        <text x="432.0" y="208" text-anchor="middle" font-size="10" fill="#7b869a">Jul</text>
+      </svg></div>
+    </div>
+    <div class="note"><b>Kosten je Lead</b> = Werbebudget ÷ alle Anfragen, stabil bei rund <b>280 €</b>. Beim Juli lohnt der Blick genau: Budget ist schon voll live, die Leads laufen ein paar Tage hinterher — die Monatszahl reift also noch nach.</div>
+  </section>
+
+  <!-- 03 TREND -->
+  <section id="trend">
+    <div class="sec-label"><span class="sec-num">03</span></div>
+    <h2>Ehrlich hingeschaut: der Motor <span class="ital">kühlt ab</span>.</h2>
+    <p class="sec-intro">Die reine Lead-Zahl wirkt stabil — aber die Google-Conversions haben im März ihren Höchststand erreicht (32) und gehen seitdem tendenziell zurück, bis auf 8 im startenden Juli. Kein Grund zur Panik, aber ein klares Signal: nicht abwarten, sondern jetzt neue Kanäle aufbauen.</p>
+    <div class="chart-card" style="margin-top:20px">
+      <h3>Google-Conversions pro Monat</h3><div class="h-sub">Peak im März → seitdem abwärts</div>
+      <svg id="c-conv" viewBox="0 0 460 210" width="100%">
+        <rect x="8.0" y="89.8" width="40" height="90.2" rx="5" fill="#9ab1d9"/>
+        <text x="28.0" y="82.8" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">21</text>
+        <text x="28.0" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Jan</text>
+        <rect x="75.3" y="85.5" width="40" height="94.5" rx="5" fill="#9ab1d9"/>
+        <text x="95.3" y="78.5" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">22</text>
+        <text x="95.3" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Feb</text>
+        <rect x="142.7" y="42.5" width="40" height="137.5" rx="5" fill="#5fd48a"/>
+        <text x="162.7" y="35.5" text-anchor="middle" font-size="11" font-weight="600" fill="#5fd48a">32</text>
+        <text x="162.7" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Mär</text>
+        <rect x="210.0" y="132.7" width="40" height="47.3" rx="5" fill="#9ab1d9"/>
+        <text x="230.0" y="125.7" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">11</text>
+        <text x="230.0" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Apr</text>
+        <rect x="277.3" y="55.4" width="40" height="124.6" rx="5" fill="#9ab1d9"/>
+        <text x="297.3" y="48.4" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">29</text>
+        <text x="297.3" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Mai</text>
+        <rect x="344.7" y="85.5" width="40" height="94.5" rx="5" fill="#9ab1d9"/>
+        <text x="364.7" y="78.5" text-anchor="middle" font-size="11" font-weight="600" fill="#eaeef5">22</text>
+        <text x="364.7" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Jun</text>
+        <rect x="412.0" y="145.6" width="40" height="34.4" rx="5" fill="#9ab1d9" opacity="0.4"/>
+        <text x="432.0" y="138.6" text-anchor="middle" font-size="11" font-weight="600" fill="#ffc178">8</text>
+        <text x="432.0" y="198" text-anchor="middle" font-size="10" fill="#7b869a">Jul</text>
+        <text x="162.7" y="18" text-anchor="middle" font-size="9.5" fill="#5fd48a">Peak</text>
+      </svg>
+    </div>
+    <div class="note warn"><b>Was das heißt:</b> Unsere größten Deals kamen aus der starken Februar/März-Phase. Q2 wird dünner, der Juli startet langsam. <b>Wenn wir nur auf Google warten, sinkt die Kurve weiter</b> — deshalb Cold Outreach &amp; Meta als zweites Standbein (siehe Ziel&nbsp;600k).</div>
+  </section>
+
+  <!-- 04 FUNNEL-UMBAU -->
+  <section id="funnel">
+    <div class="sec-label"><span class="sec-num">04</span></div>
+    <h2>Der Funnel-Umbau im <span class="ital">März</span>.</h2>
+    <p class="sec-intro">Der wichtigste operative Hebel des Halbjahres. Im März haben wir den App-Funnel von Grund auf überarbeitet — und die Folgemonate lieferten die höchsten Deal-Werte des Jahres.</p>
+    <div class="split2">
+      <div class="ba before"><div class="ba-tag">Vorher</div><ul>
+        <li>Eine generische Landingpage für alle Suchbegriffe</li>
+        <li>Interessenten fielen früh aus dem Prozess</li>
+        <li>Viele Anfragen, aber unklare Qualität</li>
+        <li>Angebot erst spät im Gespräch sichtbar</li>
+      </ul></div>
+      <div class="ba after"><div class="ba-tag">Nachher (ab März)</div><ul>
+        <li>Klare Funnel-Führung von Klick bis Terminbuchung</li>
+        <li>Angebot &amp; Ablauf früh &amp; verständlich erklärt</li>
+        <li>Stabilere Lead-Qualität in den Folgemonaten</li>
+        <li>Höchste Deal-Werte des Halbjahres (Feb/März-Kohorte)</li>
+      </ul></div>
+    </div>
+    <div class="note"><b>Die Lektion:</b> Arbeit am Funnel schlägt direkt auf den Umsatz durch — stärker als reines Budget-Erhöhen. Genau hier liegt für H2 der nächste Hebel: Der Funnel ist bereit für mehr Volumen aus neuen Kanälen.</div>
+  </section>
+
+  <!-- 05 OFFERS -->
+  <section id="offers">
+    <div class="sec-label"><span class="sec-num">05</span></div>
+    <h2>Was wir <span class="ital">verkaufen</span>.</h2>
+    <p class="sec-intro">Zwei klare Angebote stehen im Zentrum unseres App-Geschäfts.</p>
+    <div class="offers">
+      <div class="offer">
+        <div class="tag">Angebot 1 · Enterprise</div>
+        <h3>Custom Software- &amp; App-Entwicklung</h3>
+        <div class="price">Preis: individuell</div>
+        <p>Maßgeschneiderte Software und Apps für Unternehmen — vom Konzept bis zum fertigen Produkt.</p>
+        <ul>
+          <li>Volle Custom-Entwicklung, kein Baukasten</li>
+          <li>Für Unternehmen mit echtem Software-Bedarf</li>
+          <li>Höchster Deal-Wert (Buresa: 72.600 €)</li>
+        </ul>
+      </div>
+      <div class="offer">
+        <div class="tag">Angebot 2 · Einstieg</div>
+        <h3>Founder Sprint</h3>
+        <div class="price">ab 5.000 €</div>
+        <p>Der schnelle Einstieg: von der Idee zum klickbaren Prototyp. Niedrigere Hürde, Türöffner für größere Projekte.</p>
+        <ul>
+          <li>Klarer Festpreis-Einstieg</li>
+          <li>Leichteres „Ja" für neue Kunden</li>
+          <li>Führt oft in ein Custom-Projekt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bench">
+      <div><div class="b-lbl">Klicks → Lead</div><div class="b-val">~2 %</div></div>
+      <div><div class="b-lbl">Klick Google</div><div class="b-val">~8 €</div></div>
+      <div><div class="b-lbl">Klick Meta</div><div class="b-val">1,20 €</div></div>
+      <div><div class="b-lbl">Call-Quote</div><div class="b-val">~60 %</div></div>
+      <div><div class="b-lbl">Sales-Zyklus</div><div class="b-val">3–4 Mon.</div></div>
+    </div>
+  </section>
+
+  <!-- 06 KEYWORDS -->
+  <section id="keywords">
+    <div class="sec-label"><span class="sec-num">06</span></div>
+    <h2>Google-Keywords — <span class="ital">gemeinsam</span> bewerten.</h2>
+    <p class="sec-intro">Die Suchbegriffe mit dem meisten Budget (live aus Google Ads, Jan–Juli). <b style="color:var(--blue-hi)">Klickt die an, über die ihr sprechen wollt</b> — bewusst ohne Vorgabe. „Conv." = von Google gezählte Conversions, „je Conv." = Kosten pro Conversion.</p>
+    <div class="tbl-scroll">
+      <table id="kwtable">
+        <thead><tr><th>Keyword</th><th class="num">Kosten</th><th class="num">Klicks</th><th class="num">Conv.</th><th class="num">Kosten / Conv.</th></tr></thead>
+        <tbody>
+            <tr><td class="kw"><span class="star">☆</span>app entwickler<span class="mt">BROAD</span></td><td class="num">9.209 €</td><td class="num">1.246</td><td class="num">45</td><td class="num">205 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwickler finden<span class="mt">BROAD</span></td><td class="num">5.581 €</td><td class="num">899</td><td class="num">17</td><td class="num">328 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwickeln lassen<span class="mt">BROAD</span></td><td class="num">2.915 €</td><td class="num">425</td><td class="num">5</td><td class="num">583 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwickler<span class="mt">EXACT</span></td><td class="num">2.552 €</td><td class="num">201</td><td class="num">5</td><td class="num">510 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app bauen lassen<span class="mt">BROAD</span></td><td class="num">2.316 €</td><td class="num">350</td><td class="num">16</td><td class="num">145 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>appentwicklung<span class="mt">PHRASE</span></td><td class="num">2.195 €</td><td class="num">394</td><td class="num">4</td><td class="num">549 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwicklung deutschland<span class="mt">BROAD</span></td><td class="num">1.531 €</td><td class="num">272</td><td class="num">7</td><td class="num">219 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwickeln lassen<span class="mt">EXACT</span></td><td class="num">1.105 €</td><td class="num">67</td><td class="num">6</td><td class="num">184 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwicklung<span class="mt">EXACT</span></td><td class="num">1.017 €</td><td class="num">91</td><td class="num">0</td><td class="num">—</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>wie viel kostet eine app<span class="mt">EXACT</span></td><td class="num">836 €</td><td class="num">178</td><td class="num">2</td><td class="num">418 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>ios app entwickler<span class="mt">BROAD</span></td><td class="num">770 €</td><td class="num">147</td><td class="num">1</td><td class="num">770 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwickler finden<span class="mt">EXACT</span></td><td class="num">766 €</td><td class="num">47</td><td class="num">2</td><td class="num">383 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>mobile app entwickeln lassen<span class="mt">BROAD</span></td><td class="num">520 €</td><td class="num">97</td><td class="num">2</td><td class="num">260 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>appentwicklung<span class="mt">BROAD</span></td><td class="num">402 €</td><td class="num">100</td><td class="num">0</td><td class="num">—</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app agentur<span class="mt">EXACT</span></td><td class="num">366 €</td><td class="num">32</td><td class="num">4</td><td class="num">92 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app bauen lassen<span class="mt">EXACT</span></td><td class="num">359 €</td><td class="num">28</td><td class="num">4</td><td class="num">90 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>app entwickler deutschland<span class="mt">EXACT</span></td><td class="num">351 €</td><td class="num">20</td><td class="num">4</td><td class="num">88 €</td></tr>
+            <tr><td class="kw"><span class="star">☆</span>android app programmieren<span class="mt">BROAD</span></td><td class="num">317 €</td><td class="num">79</td><td class="num">1</td><td class="num">317 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Zum Einordnen — <b>keine Vorgabe, nur Rechenhilfe:</b> Ein Klick kostet im Schnitt gut 7 €, ein Lead rund 280 €. Alles, was pro Conversion deutlich darüber liegt (oder 0 Conversions bei viel Budget), lohnt eine ehrliche Diskussion. Alles darunter ist ein Kandidat zum Ausbauen.</div>
+  </section>
+
+  <!-- 07 ZIEL 600k -->
+  <section id="ziel">
+    <div class="sec-label"><span class="sec-num">07</span></div>
+    <h2>Zielhochrechnung: <span class="ital">600.000 €</span> bis Jahresende.</h2>
+    <p class="sec-intro">Keine Schönrechnerei: Wir halten die Effizienz konstant wie in H1 (Kosten je Lead ~280 €, Abschlussquote ~7 %, Ø Deal ~19.000 €) und rechnen aus, <b style="color:var(--fg)">was es konkret braucht</b>, um bei 600k zu landen.</p>
+    <div class="proj-flow">
+      <div class="step"><div class="s-lbl">Ist bis Juli</div><div class="s-val">171k €</div><div class="s-sub">9 Deals gebucht</div></div>
+      <div class="step"><div class="s-lbl">Noch nötig H2</div><div class="s-val blue">~429k €</div><div class="s-sub">≈ 23 weitere Deals</div></div>
+      <div class="step"><div class="s-lbl">Dafür Leads H2</div><div class="s-val">~320</div><div class="s-sub">bei ~7 % Abschluss</div></div>
+      <div class="step"><div class="s-lbl">Dafür Budget H2</div><div class="s-val">~90k €</div><div class="s-sub">320 × ~280 € CPL</div></div>
+      <div class="step"><div class="s-lbl">Ziel Jahr</div><div class="s-val good">600k €</div><div class="s-sub">Budget ~130k · ROAS ~4,6×</div></div>
+    </div>
+    <div class="note"><b>Die ehrliche Ansage:</b> H2 braucht rund <b>2,5× so viele Anfragen wie H1</b> (~320 statt 125). Mit Google allein — das sahen wir im Trend — ist das nicht drin. Die zusätzlichen Leads müssen aus neuen Kanälen kommen. So könnte der H2-Lead-Mix aussehen:</div>
+    <div class="mix">
+      <div class="mixc"><h4>Google Ads</h4><div class="m-num">~150 Leads</div><p>Der bewährte Motor, leicht über H1-Niveau. Budget auf die Gewinner-Keywords.</p></div>
+      <div class="mixc"><h4>Meta Ads</h4><div class="m-num">~80 Leads</div><p>Klick 5–6× günstiger als Google. Jetzt konsequent hochfahren.</p></div>
+      <div class="mixc hot"><h4>Cold Outreach <span class="badge">neu · Schlüssel</span></h4><div class="m-num">~90 Leads</div><p>E-Mail &amp; LinkedIn, proaktiv an Entscheider. Planbares Volumen, günstig — <b style="color:var(--fg)">der Hebel, der uns unabhängig von der Google-Auktion macht.</b></p></div>
+    </div>
+  </section>
+
+  <!-- 08 DISKUSSION -->
+  <section id="diskussion">
+    <div class="sec-label"><span class="sec-num">08</span></div>
+    <h2>Jetzt <span class="ital">ihr</span> — anklicken &amp; diskutieren.</h2>
+    <p class="sec-intro">Neun ehrliche Fragen an echten Zahlen. Klickt an, was ihr denkt (mehrere möglich) — dann reden wir. Es gibt kein Richtig.</p>
+    <div class="disc-grid">
+
+      <div class="disc hot"><div class="d-head"><div class="d-ico">!</div><h3>Unser Klumpenrisiko</h3></div>
+        <div class="d-q">Buresa (72,6k) + Sport Beat (64,8k) = 80 % unseres H1-Umsatzes. Was, wenn diese zwei Deals nicht gekommen wären?</div>
+        <div class="opts">
+          <button class="opt">Dann wär H1 ein Desaster</button><button class="opt">Kommen immer welche</button>
+          <button class="opt">Wir brauchen mehr mittlere Deals</button><button class="opt">Genau das ist unser Risiko</button>
+        </div></div>
+
+      <div class="disc"><div class="d-head"><div class="d-ico">?</div><h3>Wo verlieren wir die 18?</h3></div>
+        <div class="d-q">~20 Leads pro Monat, 1–2 werden Kunde. Wo gehen die anderen 18 verloren?</div>
+        <div class="opts">
+          <button class="opt">Zu teuer / Budget</button><button class="opt">Kein echter Bedarf</button>
+          <button class="opt">Wir sind zu langsam</button><button class="opt">Falsche Zielgruppe</button>
+          <button class="opt">Angebot überzeugt nicht</button>
+        </div></div>
+
+      <div class="disc hot"><div class="d-head"><div class="d-ico">C</div><h3>Cold Outreach — der ehrliche Check</h3></div>
+        <div class="d-q">Für ~90 Outreach-Leads in H2: Wer schreibt die Nachrichten, wer führt die Calls?</div>
+        <div class="opts">
+          <button class="opt">Haben wir Kapazität</button><button class="opt">Brauchen jemanden neu</button>
+          <button class="opt">Mit KI automatisieren</button><button class="opt">Schaffen wir nicht — kleiner planen</button>
+        </div></div>
+
+      <div class="disc good"><div class="d-head"><div class="d-ico">%</div><h3>Sprint oder Custom — wo ist die Marge?</h3></div>
+        <div class="d-q">Founder Sprint (5k) vs. Custom-Projekt (50k+): Wo verdienen wir <b>pro Stunde</b> mehr?</div>
+        <div class="opts">
+          <button class="opt">Founder Sprint</button><button class="opt">Custom-Projekt</button>
+          <button class="opt">Weiß keiner genau</button><button class="opt">Müssen wir durchrechnen</button>
+        </div></div>
+
+      <div class="disc good"><div class="d-head"><div class="d-ico">P</div><h3>Das eine Produkt</h3></div>
+        <div class="d-q">Wenn wir EIN Produkt bauen müssten, das auch ohne uns Geld verdient — was wäre es?</div>
+        <div class="opts">
+          <button class="opt">SaaS aus unseren Tools</button><button class="opt">Fertige Branchen-App</button>
+          <button class="opt">White-Label für Agenturen</button><button class="opt">Skael OS verkaufen</button>
+          <button class="opt">Kein Produkt — Dienstleister bleiben</button>
+        </div></div>
+
+      <div class="disc warm"><div class="d-head"><div class="d-ico">G</div><h3>Google-Abhängigkeit</h3></div>
+        <div class="d-q">Fast 100 % unserer bezahlten Leads kommen aus Google. Wie fühlt sich das an?</div>
+        <div class="opts">
+          <button class="opt">Gefährlich</button><button class="opt">Läuft ja — passt</button>
+          <button class="opt">Wir müssen dringend diversifizieren</button><button class="opt">Google ist einfach der beste Kanal</button>
+        </div></div>
+
+      <div class="disc"><div class="d-head"><div class="d-ico">€</div><h3>10.000 € frei — wohin?</h3></div>
+        <div class="d-q">Ein extra Budget von 10k steht bereit. Wo rein für den größten Hebel?</div>
+        <div class="opts">
+          <button class="opt">Google</button><button class="opt">Meta</button>
+          <button class="opt">Cold Outreach</button><button class="opt">Neue:r Mitarbeiter:in</button>
+          <button class="opt">Eigenes Produkt</button>
+        </div></div>
+
+      <div class="disc warm"><div class="d-head"><div class="d-ico">6</div><h3>600k — Hand aufs Herz</h3></div>
+        <div class="d-q">Glaubst du wirklich, wir machen dieses Jahr 600k Umsatz?</div>
+        <div class="opts">
+          <button class="opt">Ja, locker</button><button class="opt">Ja, wenn wir Gas geben</button>
+          <button class="opt">Wird knapp</button><button class="opt">Nein, unrealistisch</button>
+          <button class="opt">Hängt an Cold Outreach</button>
+        </div></div>
+
+      <div class="disc"><div class="d-head"><div class="d-ico">KI</div><h3>KI — Chance oder Untergang?</h3></div>
+        <div class="d-q">KI macht App-Entwicklung für alle günstiger. Was heißt das für uns?</div>
+        <div class="opts">
+          <button class="opt">Riesenchance — wir sind schneller</button><button class="opt">Preisdruck kommt</button>
+          <button class="opt">Kunden brauchen uns trotzdem</button><button class="opt">Wir müssen KI aggressiv nutzen</button>
+        </div></div>
+
+    </div>
+    <div style="text-align:center;margin-top:16px"><span class="mono" style="font-size:11px;color:var(--faint)">Klick = Auswahl · gemeinsam sichtbar machen, wo das Team steht</span></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>NXT YOU · Halbjahres-Workshop 2026 — Ad-Zahlen live aus Google Ads &amp; Meta (Stand 27.07.), Leads &amp; Deals aus dem SkaelOS-Dashboard.</div>
+    <div class="mono">Die 600k-Hochrechnung ist ein Zielbild bei konstanter Effizienz (H1-Basis), keine Zusage — sie zeigt, was dafür nötig ist.</div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  // Keyword-Zeilen anklickbar markieren
+  [].forEach.call(document.querySelectorAll('#kwtable tbody tr'),function(tr){
+    tr.addEventListener('click',function(){
+      tr.classList.toggle('marked');
+      var st=tr.querySelector('.star'); if(st) st.textContent=tr.classList.contains('marked')?'★':'☆';
+    });
+  });
+  // Diskussions-Optionen anklickbar
+  [].forEach.call(document.querySelectorAll('.opt'),function(b){
+    b.addEventListener('click',function(){b.classList.toggle('sel');});
+  });
+  // Nav scroll-spy
+  var secs=[].slice.call(document.querySelectorAll('section')), links=[].slice.call(document.querySelectorAll('nav a'));
+  function spy(){var y=window.scrollY+90,cur=secs.length?secs[0].id:'';secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id;});
+    links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});}
+  window.addEventListener('scroll',spy); spy();
+})();
+</script>
+</body>
+</html>
