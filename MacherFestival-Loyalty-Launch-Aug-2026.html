@@ -95,11 +95,11 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 .mailcard{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-bottom:14px;display:grid;grid-template-columns:52px 1fr 200px;gap:20px;align-items:start;}
 .mail-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:var(--blue);line-height:1;}
 .mail-main .msub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);margin-bottom:8px;}
-.subj-line{display:flex;align-items:baseline;gap:9px;margin-bottom:4px;}
-.subj-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);white-space:nowrap;}
+.subj-line{margin-bottom:10px;}
+.subj-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.11em;color:var(--sub);display:block;margin-bottom:3px;}
 .mail-main h3{font-family:'Poppins',sans-serif;font-size:18px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;line-height:1.35;}
-.pre-line{font-size:12.5px;color:var(--muted);margin-bottom:12px;}
-.pre-line b{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);font-weight:400;}
+.pre-line{font-size:12.5px;color:var(--muted);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.pre-line b{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.11em;color:var(--sub);font-weight:400;display:block;margin-bottom:3px;}
 .mail-main p{font-size:13.5px;color:var(--body);line-height:1.7;}
 .mail-main p strong{color:var(--navy);font-weight:500;}
 .mail-side{border-left:1px solid var(--border);padding-left:20px;}
@@ -109,12 +109,12 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 .ms-val{font-size:12.5px;color:var(--navy);font-weight:500;}
 
 /* WhatsApp */
-.wa-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-bottom:14px;display:grid;grid-template-columns:52px 1fr 360px;gap:20px;align-items:start;}
+.wa-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-bottom:14px;display:grid;grid-template-columns:52px 1fr;gap:20px;align-items:start;}
 .wa-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:var(--green);line-height:1;}
 .wa-main h3{font-family:'Poppins',sans-serif;font-size:18px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;margin-bottom:3px;}
 .wa-main .wsub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);margin-bottom:12px;}
 .wa-main p{font-size:13.5px;color:var(--body);line-height:1.7;}
-.wa-bubble{background:#e7f6ea;border:1px solid #bfe6c8;border-radius:12px 12px 12px 4px;padding:14px 16px;font-size:12.5px;color:#14432a;line-height:1.62;white-space:pre-line;}
+.wa-bubble{background:#e7f6ea;border:1px solid #bfe6c8;border-radius:12px 12px 12px 4px;padding:15px 18px;font-size:12.5px;color:#14432a;line-height:1.62;white-space:pre-line;margin-top:14px;max-width:640px;}
 
 /* Ads */
 .ad-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:26px;}
@@ -207,7 +207,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .cell-sub{font-size:7.6px;}.tag{font-size:7.4px;padding:2px 6px;}
   .mailcard,.wa-card{padding:11px 14px;margin-bottom:7px;gap:12px;page-break-inside:avoid;}
   .mailcard{grid-template-columns:34px 1fr 145px;}
-  .wa-card{grid-template-columns:34px 1fr 250px;}
+  .wa-card{grid-template-columns:34px 1fr;}
   .mail-num,.wa-num{font-size:23px;}
   .mail-main h3,.wa-main h3{font-size:12px;}
   .mail-main .msub,.wa-main .wsub{font-size:7.6px;margin-bottom:6px;}
@@ -215,7 +215,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .mail-main p,.wa-main p{font-size:9px;line-height:1.5;}
   .mail-side{padding-left:12px;}.ms-row{margin-bottom:6px;}
   .ms-lbl{font-size:7.2px;}.ms-val{font-size:8.8px;}
-  .wa-bubble{padding:9px 11px;font-size:8.6px;line-height:1.5;}
+  .wa-bubble{padding:9px 11px;font-size:8.6px;line-height:1.5;margin-top:8px;max-width:100%;}
   .ad-strip{grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:12px;page-break-inside:avoid;}
   .ad-thumb .cap{padding:5px 7px;font-size:6.8px;}
   .adcard{grid-template-columns:120px 1fr;margin-bottom:7px;page-break-inside:avoid;}
@@ -238,7 +238,8 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .container{padding:0 20px;}
   .h-hero{font-size:40px;}.h-section{font-size:32px;}
-  .adcard,.mailcard,.wa-card{grid-template-columns:1fr;}
+  .adcard,.mailcard{grid-template-columns:1fr;}
+  .wa-card{grid-template-columns:1fr;}
   .ad-strip{grid-template-columns:repeat(2,1fr);}
   .mail-side{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:14px;}
   .trow{grid-template-columns:84px 18px 1fr;}.ttag{display:none;}
@@ -334,7 +335,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">So 09.08. · 21 Uhr · Rückblick</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>4 Tage, 5.000 Macher, 100 Tiny Häuser ❤️</h3></div>
-      <div class="pre-line"><b>Vorschau</b> &nbsp;Danke, dass ihr Ferropolis auseinandergenommen habt.</div>
+      <div class="pre-line"><b>Vorschau</b>Danke, dass ihr Ferropolis auseinandergenommen habt.</div>
       <p>Der Rückblick auf das Wochenende, wenige Stunden nach Festivalende. Die drei Zahlen aus der Betreffzeile werden aufgemacht, dazu die Ankündigung, dass Fotos und Aftermovie in den nächsten Tagen kommen. Am Ende ein Satz: Die Tickets für 2027 sind ab jetzt online, zum Loyalty-Preis.</p>
     </div>
     <div class="mail-side">
@@ -349,7 +350,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">Mo 10.08. · 18 Uhr · Verkaufsstart</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>🎟️ Deine Tickets für 2027 sind online</h3></div>
-      <div class="pre-line"><b>Vorschau</b> &nbsp;12.–15. August 2027, Ferropolis. Zum Loyalty-Preis.</div>
+      <div class="pre-line"><b>Vorschau</b>12.–15. August 2027, Ferropolis. Zum Loyalty-Preis.</div>
       <p>Der Verkaufsstart. Termin, Preis und Link zur Loyalty-Seite direkt im ersten Drittel. Danach kurz, was 2027 wieder ansteht — über 35 kostenfreie Workshops, mehr als 40 Schweißbänke, 10.000 qm Werkstatt. Am Ende der Hinweis, den Urlaub schon jetzt zu blocken: Ein Jahr Vorlauf bekommt jeder durch.</p>
     </div>
     <div class="mail-side">
@@ -364,7 +365,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">Do 13.08. · 18 Uhr · Fotos &amp; Aftermovie</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Deine Fotos vom Festival sind da 📸</h3></div>
-      <div class="pre-line"><b>Vorschau</b> &nbsp;Aftermovie und Galerie sind online — such dich raus.</div>
+      <div class="pre-line"><b>Vorschau</b>Aftermovie und Galerie sind online — such dich raus.</div>
       <p>Aftermovie und Fotogalerie, jeweils mit eigenem Button. Aufforderung, Bilder zu teilen und das Festival zu markieren. Der Ticket-Hinweis steht am Ende als Nachsatz mit direktem Link — diese Mail liefert zuerst etwas, bevor sie etwas will.</p>
     </div>
     <div class="mail-side">
@@ -378,8 +379,8 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-num">4</div>
     <div class="mail-main">
       <div class="msub">Mi 20.08. · 18 Uhr · Geschichte</div>
-      <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Wo die 100 Tiny Häuser jetzt stehen 🏠</h3></div>
-      <div class="pre-line"><b>Vorschau</b> &nbsp;Was nach dem Wochenende mit ihnen passiert ist.</div>
+      <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Was aus den 100 Tiny Häusern geworden ist 🏠</h3></div>
+      <div class="pre-line"><b>Vorschau</b>Was nach dem Wochenende mit ihnen passiert ist.</div>
       <p>Die Geschichte hinter den Tiny Häusern: wohin sie gegangen sind, an wen, was jetzt mit ihnen passiert — mit zwei oder drei konkreten Beispielen und Fotos. Der Abschluss verbindet das mit 2027: Wer nächstes Jahr wieder mitbauen will, findet den Link darunter.</p>
     </div>
     <div class="mail-side">
@@ -394,7 +395,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">Mi 27.08. · 18 Uhr · Erinnerung</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Am Sonntag ist der Loyalty-Preis weg ⏰</h3></div>
-      <div class="pre-line"><b>Vorschau</b> &nbsp;30.08., 23:59 Uhr. Danach gilt der reguläre Preis.</div>
+      <div class="pre-line"><b>Vorschau</b>30.08., 23:59 Uhr. Danach gilt der reguläre Preis.</div>
       <p>Die Erinnerung mit dem häufigsten Einwand: „Ich weiß noch nicht, ob ich kann." Antwort in der Mail: Der Termin steht seit heute fest, ein Jahr Vorlauf reicht für den Urlaub — und die Entscheidung heute betrifft nicht das Ob, sondern nur den Preis.</p>
     </div>
     <div class="mail-side">
@@ -409,7 +410,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">So 30.08. · 10 Uhr + 20 Uhr · Letzter Tag</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Heute 23:59 Uhr ist Schluss ⏳</h3></div>
-      <div class="pre-line"><b>Vorschau</b> &nbsp;Letzter Tag für den Loyalty-Preis.</div>
+      <div class="pre-line"><b>Vorschau</b>Letzter Tag für den Loyalty-Preis.</div>
       <p>Kurz und ohne Umweg: heute noch der Loyalty-Preis, ab morgen der reguläre. Am Abend geht eine verkürzte Fassung an alle, die die Morgen-Mail nicht geöffnet haben. Keine Verlängerung — das hält die Frist auch für nächstes Jahr glaubwürdig.</p>
     </div>
     <div class="mail-side">
@@ -431,7 +432,6 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
       <h3>Danke &amp; Tickets sind online</h3>
       <div class="wsub">So 09.08. · abends · beide Channels · Amelie</div>
       <p>Rückblick auf das Wochenende, dann der Übergang zu 2027. Braucht den Link zur Loyalty-Seite.</p>
-    </div>
     <div class="wa-bubble">Danke für dieses Wochenende. ❤️
 
 4 Tage. 5.000 Macher. 100 Tiny Häuser. Dazu alles, was ihr geschweißt, gesägt und wieder auseinandergenommen habt — wir sind ehrlich gesagt immer noch platt.
@@ -446,6 +446,7 @@ Und für alle, die jetzt schon wissen, dass sie wiederkommen:
 
 Bis nächstes Jahr!
 Euer Macher Festival Team</div>
+    </div>
   </div>
 
   <div class="wa-card reveal">
@@ -454,7 +455,6 @@ Euer Macher Festival Team</div>
       <h3>Aftermovie-Teaser</h3>
       <div class="wsub">Mi 12.08. · beide Channels · Amelie</div>
       <p>Erster Vorgeschmack auf den Aftermovie, dazu der Hinweis auf die Tickets. Braucht den Teaser-Clip.</p>
-    </div>
     <div class="wa-bubble">Der Aftermovie ist fast fertig. 🎬
 
 Hier schon mal ein erster Vorgeschmack — Gänsehaut garantiert, wenn ihr dabei wart. [Clip]
@@ -464,6 +464,7 @@ Die komplette Fotogalerie kommt in den nächsten Tagen, dann könnt ihr euch rau
 Kleine Erinnerung nebenbei: Die Tickets für 2027 gibt es noch zum Loyalty-Preis, bis zum 30.08.
 
 👉 [Link]</div>
+    </div>
   </div>
 
   <div class="wa-card reveal">
@@ -472,7 +473,6 @@ Kleine Erinnerung nebenbei: Die Tickets für 2027 gibt es noch zum Loyalty-Preis
       <h3>Fotogalerie ist online</h3>
       <div class="wsub">Fr 15.08. · beide Channels · Amelie</div>
       <p>Galerie-Veröffentlichung mit Aufforderung zum Teilen. Braucht den Galerie-Link.</p>
-    </div>
     <div class="wa-bubble">Die Fotogalerie ist online! 📸
 
 Bilder von allen vier Tagen — Werkstatt, Arena, Bühnen, Sauna, Seifenkisten-Rennen. Such dich raus, lad dir runter, was du magst, und markier uns gerne, wenn du was postest.
@@ -482,6 +482,7 @@ Bilder von allen vier Tagen — Werkstatt, Arena, Bühnen, Sauna, Seifenkisten-R
 Und weil uns die Frage gerade oft erreicht: Ja, die Tickets für 2027 sind schon online — zum Loyalty-Preis noch bis zum 30.08.
 
 👉 [Link]</div>
+    </div>
   </div>
 
   <div class="wa-card reveal">
@@ -490,7 +491,6 @@ Und weil uns die Frage gerade oft erreicht: Ja, die Tickets für 2027 sind schon
       <h3>Noch eine Woche</h3>
       <div class="wsub">So 23.08. · beide Channels · Amelie</div>
       <p>Erinnerung an die Frist mit dem Urlaubs-Argument. Alles fertig, keine Zulieferung nötig.</p>
-    </div>
     <div class="wa-bubble">Noch eine Woche, dann ist der Loyalty-Preis Geschichte. ⏰
 
 Nächsten Sonntag um 23:59 Uhr läuft er aus, danach gilt der reguläre Preis.
@@ -500,6 +500,7 @@ Falls du noch überlegst: Der Termin für 2027 steht fest — 12.–15. August, 
 Und ehrlich: Du entscheidest gerade nicht, ob du hinfährst. Nur, was es dich kostet.
 
 👉 [Link]</div>
+    </div>
   </div>
 
   <div class="wa-card reveal">
@@ -508,7 +509,6 @@ Und ehrlich: Du entscheidest gerade nicht, ob du hinfährst. Nur, was es dich ko
       <h3>Letzter Tag</h3>
       <div class="wsub">So 30.08. · vormittags · beide Channels · Amelie</div>
       <p>Der Schlusspost am Vormittag, damit noch der ganze Tag zum Kaufen bleibt.</p>
-    </div>
     <div class="wa-bubble">Heute um 23:59 Uhr endet der Loyalty-Preis. ⏳
 
 Danach gilt der reguläre Preis. Wir verlängern nicht — versprochen ist versprochen.
@@ -518,6 +518,7 @@ Wer also 2027 wieder mit uns bauen will: Jetzt ist der Moment.
 👉 [Link]
 
 Wir sehen uns auf Ferropolis. 12.–15. August 2027. ❤️</div>
+    </div>
   </div>
 </section>
 
@@ -526,7 +527,7 @@ Wir sehen uns auf Ferropolis. 12.–15. August 2027. ❤️</div>
   <h2 class="h-section reveal">Loyalty-Phase <em>Ads</em></h2>
   <p class="sec-sub reveal">Zehn Ads, jede in drei Formaten — Feed 4:5, Post 1:1 und Story 9:16, insgesamt 30 Dateien mit geprüften Sicherheitsabständen für Instagram. Ausgespielt als Retargeting auf die Käufer von 2026 und Website-Besucher, mit <strong>80 € Tagesbudget</strong>. Sieben laufen ab Montag, drei kommen ab dem 24. August dazu. <strong>Klick auf ein Bild zeigt es groß.</strong></p>
 
-  <div class="ad-strip reveal">
+  <div class="ad-strip">
     <div class="ad-thumb" data-src="assets/mf27-loyalty/V1.jpg" data-cap="V1 · Danke-Deal"><img src="assets/mf27-loyalty/V1.jpg" alt="V1"><div class="cap">V1 · Danke-Deal</div></div>
     <div class="ad-thumb" data-src="assets/mf27-loyalty/L8.jpg" data-cap="L8 · Preis"><img src="assets/mf27-loyalty/L8.jpg" alt="L8"><div class="cap">L8 · Preis</div></div>
     <div class="ad-thumb" data-src="assets/mf27-loyalty/L7.jpg" data-cap="L7 · Danke, Macher"><img src="assets/mf27-loyalty/L7.jpg" alt="L7"><div class="cap">L7 · Danke, Macher</div></div>
@@ -539,7 +540,7 @@ Wir sehen uns auf Ferropolis. 12.–15. August 2027. ❤️</div>
     <div class="ad-thumb" data-src="assets/mf27-loyalty/L14.jpg" data-cap="L14 · Countdown 2"><img src="assets/mf27-loyalty/L14.jpg" alt="L14"><div class="cap">L14 · Countdown 2</div></div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/V1.jpg" data-cap="V1 · Danke-Deal"><img src="assets/mf27-loyalty/V1.jpg" alt="V1"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">V1 · Danke-Deal</div>
@@ -553,7 +554,7 @@ Für alle, die 2027 wiederkommen, gibt es die Tickets jetzt zum Loyalty-Preis. N
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L8.jpg" data-cap="L8 · Preis"><img src="assets/mf27-loyalty/L8.jpg" alt="L8"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L8 · Preis</div>
@@ -567,7 +568,7 @@ Gilt für alle, die dieses Jahr dabei waren — nur bis 30.08. →</div></div>
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L7.jpg" data-cap="L7 · Danke, Macher"><img src="assets/mf27-loyalty/L7.jpg" alt="L7"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L7 · Danke, Macher</div>
@@ -581,7 +582,7 @@ Danke, dass ihr das möglich gemacht habt. 2027 bauen wir wieder — wer dabei s
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L6.jpg" data-cap="L6 · See you next year"><img src="assets/mf27-loyalty/L6.jpg" alt="L6"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L6 · See you next year</div>
@@ -595,7 +596,7 @@ Und wenn du schon dabei bist: Als Wiederkommer bekommst du den Loyalty-Preis. �
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L11.jpg" data-cap="L11 · Block den Urlaub"><img src="assets/mf27-loyalty/L11.jpg" alt="L11"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L11 · Block den Urlaub</div>
@@ -609,7 +610,7 @@ Und das Ticket kostet dich heute weniger. →</div></div>
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L12.jpg" data-cap="L12 · Take-Home"><img src="assets/mf27-loyalty/L12.jpg" alt="L12"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L12 · Take-Home</div>
@@ -623,7 +624,7 @@ Und das Ticket kostet dich heute weniger. →</div></div>
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L10.jpg" data-cap="L10 · Bestpreis"><img src="assets/mf27-loyalty/L10.jpg" alt="L10"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L10 · Bestpreis</div>
@@ -635,7 +636,7 @@ Und das Ticket kostet dich heute weniger. →</div></div>
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/V4.jpg" data-cap="V4 · Countdown"><img src="assets/mf27-loyalty/V4.jpg" alt="V4"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">V4 · Countdown</div>
@@ -649,7 +650,7 @@ Es wird nicht verlängert, auch nicht auf Nachfrage. →</div></div>
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L9.jpg" data-cap="L9 · Frist 30.08."><img src="assets/mf27-loyalty/L9.jpg" alt="L9"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L9 · Frist 30.08.</div>
@@ -663,7 +664,7 @@ Wir verlängern nicht — versprochen ist versprochen, auch beim Preis. →</div
     </div>
   </div>
 
-  <div class="adcard reveal">
+  <div class="adcard">
     <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L14.jpg" data-cap="L14 · Countdown 2"><img src="assets/mf27-loyalty/L14.jpg" alt="L14"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
     <div class="adcard-body">
       <div class="ad-name">L14 · Countdown 2</div>
@@ -764,8 +765,12 @@ Danach gilt der reguläre Preis. Keine Verlängerung, keine Ausnahmen. →</div>
 <div class="lb" id="lb"><img id="lb-img" src="" alt=""><div class="lb-cap" id="lb-cap"></div></div>
 
 <script>
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: .08 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const revealAll = () => document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: .05 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  setTimeout(revealAll, 1200);
+} else { revealAll(); }
 
 const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
 document.querySelectorAll('[data-src]').forEach(el => el.addEventListener('click', () => {
