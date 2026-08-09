@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — In Your Corner · Angebotsprüfung Grow Agency</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report — In Your Corner · Angebotsprüfung Grow Agency">
+<meta property="og:description" content="Paid Media · Angebot A26-1673 · Interne Bewertung">
+<meta property="og:url" content="https://reports.skael.de/InYourCorner-Angebot-Grow-Aug-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.hero{padding:72px 0 64px;scroll-margin-top:58px;}
+.section{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+.section-gray{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+
+.h-hero{font-family:'Poppins',sans-serif;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:42px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:32px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:12px;}
+
+.meta-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px 7px 10px;margin-bottom:24px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform 0.2s,box-shadow 0.2s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-card.hi{border:1px solid var(--blue-mid);background:#fafbff;}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,0.22);}
+.sd.b{background:var(--blue);box-shadow:0 0 0 2px rgba(58,110,244,0.22);}
+.sl.b{color:var(--blue);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}
+.sl.y{color:var(--yellow);}
+.sl.r{color:var(--red);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:20px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+.insight-text strong{color:var(--navy);font-weight:500;}
+
+.funnel-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.funnel-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.funnel-row{display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:14px;margin-bottom:16px;}
+.funnel-lbl{font-size:13px;font-weight:500;color:var(--navy);}
+.funnel-track{height:38px;background:#f3f5f9;border-radius:6px;overflow:hidden;}
+.funnel-fill{height:100%;width:0;border-radius:6px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.funnel-right{display:flex;align-items:center;gap:8px;min-width:170px;justify-content:flex-end;}
+.funnel-val{font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+.einordnung-lbl{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:6px;}
+.einordnung-text{font-size:13px;color:var(--muted);line-height:1.6;}
+.einordnung-text strong{color:var(--navy);font-weight:500;}
+
+.side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.side-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.side-row:last-child{border-bottom:none;}
+.side-row-lbl{font-size:12px;color:var(--muted);}
+.side-row-val{font-size:13px;font-weight:500;color:var(--navy);}
+.side-row-val.green{color:var(--green);}
+.side-row-val.red{color:var(--red);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border-color:#fca5a5;}
+.hint-box.red p{color:var(--red);}
+.hint-box.yellow{background:var(--yellow-bg);border-color:#fcd34d;}
+.hint-box.yellow p{color:var(--yellow);}
+
+.kamp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;}
+.kamp-grid.two{grid-template-columns:1fr 1fr;}
+.kamp-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+.kamp-card.star{border:1px solid #86efac;background:#f8fff9;}
+.kamp-card.warn{border:1px solid #fcd34d;background:#fffbf2;}
+.kamp-card.crit{border:1px solid #fca5a5;background:#fff8f8;}
+.kamp-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;line-height:1.35;}
+.kamp-sub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:10px;}
+.kamp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);}
+.kamp-row:last-child{border-bottom:none;}
+.kamp-lbl{font-size:11.5px;color:var(--muted);}
+.kamp-val{font-size:12px;font-weight:500;color:var(--navy);}
+.kamp-val.green{color:var(--green);}
+.kamp-val.red{color:var(--red);}
+.kamp-val.big{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;}
+
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 24px 20px;}
+.chart-card canvas{max-height:220px;}
+
+.table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:12px 16px;text-align:right;border-bottom:1px solid var(--border);}
+thead th:first-child{text-align:left;}
+tbody td{font-size:13px;color:var(--body);padding:11px 16px;border-bottom:1px solid var(--border);text-align:right;}
+tbody td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+tbody tr:last-child td{border-bottom:none;background:#f0f4ff;}
+tbody tr:hover td{background:#f8f9ff;}
+tbody tr:last-child:hover td{background:#e6edff;}
+.table-wrap.plain tbody tr:last-child td{background:transparent;}
+.table-wrap.plain tbody tr:last-child:hover td{background:#f8f9ff;}
+.cell-sub{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--sub);margin-top:3px;letter-spacing:0.04em;text-transform:uppercase;display:block;font-weight:400;}
+.roas-strong{color:var(--green);font-weight:600;}
+.roas-mid{color:var(--yellow);font-weight:600;}
+.roas-bad{color:var(--red);font-weight:600;}
+
+.insight-list-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.ii{padding:16px 0;border-bottom:1px solid var(--border);}
+.ii:last-child{border-bottom:none;padding-bottom:0;}
+.ii:first-child{padding-top:0;}
+.ii-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px;justify-content:space-between;}
+.ii-hdr-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
+.ii-arrow{color:var(--blue);font-size:14px;font-weight:700;}
+.ii-name{font-size:13.5px;font-weight:500;color:var(--navy);}
+.ii-metrics{display:flex;gap:18px;align-items:baseline;}
+.ii-metric{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.ii-metric-val{font-family:'Poppins',sans-serif;font-size:16px;font-weight:500;color:var(--navy);}
+.ii-metric-val.green{color:var(--green);}
+.ii-metric-val.red{color:var(--red);}
+.ii-metric-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.ii-desc{font-size:12.5px;color:var(--muted);line-height:1.6;padding-left:24px;}
+.ii-desc strong{color:var(--navy);font-weight:500;}
+
+.prio-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.prio-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 26px;transition:transform 0.2s,box-shadow 0.2s;}
+.prio-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.prio-card.crit{border:1px solid #fca5a5;background:#fff8f8;}
+.prio-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px;}
+.prio-num{font-family:'Poppins',sans-serif;font-size:32px;font-weight:500;line-height:1;color:var(--blue);}
+.prio-title-text{font-size:14px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.4;}
+.prio-desc{font-size:13px;color:var(--body);line-height:1.65;}
+.prio-desc strong{color:var(--navy);font-weight:500;}
+
+.calc-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.calc{font-family:'DM Mono',monospace;font-size:12.5px;line-height:2;color:var(--body);white-space:pre;overflow-x:auto;display:block;}
+.calc .r{color:var(--red);font-weight:500;}
+.calc .g{color:var(--green);font-weight:500;}
+.calc .n{color:var(--navy);font-weight:500;}
+
+.fazit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 36px;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:22px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-text{font-size:14px;color:var(--body);line-height:1.75;}
+.fazit-text strong{color:var(--navy);font-weight:500;}
+
+.footer{padding:32px 0 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.h-hero{opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+.kpi-r1 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.65s forwards;}
+.kpi-r1 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.73s forwards;}
+.kpi-r1 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.81s forwards;}
+.kpi-r1 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.89s forwards;}
+.kpi-r2 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.97s forwards;}
+.kpi-r2 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.05s forwards;}
+.kpi-r2 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.13s forwards;}
+.kpi-r2 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.21s forwards;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;white-space:nowrap;}
+.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue);color:#fff;}
+.eb-save{background:#fff;color:var(--navy);display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);}
+
+@media(max-width:960px){
+  .container{padding:0 16px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .funnel-grid,.chart-row,.prio-grid,.kamp-grid,.kamp-grid.two{grid-template-columns:1fr;}
+  .h-hero{font-size:36px;}
+  .h-section{font-size:30px;}
+  .hero,.section,.section-gray{padding:48px 0;}
+  .funnel-row{grid-template-columns:120px 1fr auto;}
+  .nav-tabs{display:none;}
+  .ii-metrics{flex-wrap:wrap;gap:10px;}
+  .calc{font-size:10.5px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#angebot">Das Angebot</a>
+    <a class="nav-tab" href="#marge">Unit Economics</a>
+    <a class="nav-tab" href="#bonustest">Bonus-Test</a>
+    <a class="nav-tab" href="#blended">Blended-Problem</a>
+    <a class="nav-tab" href="#luecken">Lücken</a>
+    <a class="nav-tab" href="#anpassungen">Anpassungen</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">Intern · 09.08.2026</span></div>
+</nav>
+
+<!-- HERO -->
+<section id="uebersicht" class="hero">
+  <div class="container">
+    <div class="meta-badge">
+      <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#3a6ef4"/><text x="9" y="12.5" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#fff">I</text></svg>
+      <span>Paid Media · Angebot A26-1673 · Nur intern</span>
+    </div>
+
+    <h1 class="h-hero">Grow Agency<br><em>Angebotsprüfung</em><br>In Your Corner</h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Angebot</span><span class="hero-meta-value">A26-1673 · 07.08.2026 · gültig bis 21.08.2026</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Von / An</span><span class="hero-meta-value">Grow Agency GmbH → Orbita Media GmbH</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Grundlagen</span><span class="hero-meta-value">Angebot · Projekt-Kompendium (30.07.) · Businessplan (04.03.25)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Erstellt</span><span class="hero-meta-value">09. August 2026 · Skael</span></div>
+    </div>
+
+    <!-- KPI Row 1 -->
+    <div class="kpi-grid kpi-r1" style="margin-top:36px;">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ausgewiesen im Angebot</span><div class="sw"><div class="sd y"></div><span class="sl y">Unvollständig</span></div></div>
+        <div class="kpi-value">23.500 €</div>
+        <div class="kpi-sub">netto · Bonus ist mit 0,00 € eingetragen</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Tatsächlich max. bei 250k Spend</span><div class="sw"><div class="sd y"></div><span class="sl y">2,1×</span></div></div>
+        <div class="kpi-value">48.500 €</div>
+        <div class="kpi-sub">Setup 11k + Steuerung 12,5k + Bonus 25k</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Break-even CPS (geplanter Mix)</span><div class="sw"><div class="sd r"></div><span class="sl r">Kritisch</span></div></div>
+        <div class="kpi-value">9,79 $</div>
+        <div class="kpi-sub">Mix 25 % Shop / 75 % Buchhandel lt. Worst Case</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Grows Top-Bonusstufe</span><div class="sw"><div class="sd r"></div><span class="sl r">Über B/E</span></div></div>
+        <div class="kpi-value">bis 10 $</div>
+        <div class="kpi-sub">Voller Bonus liegt über der Schmerzgrenze</div>
+      </div>
+    </div>
+
+    <!-- KPI Row 2 -->
+    <div class="kpi-grid kpi-r2" style="margin-top:14px;">
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Gewinn / Buch · eigener Shop</span><div class="sw"><div class="sd g"></div><span class="sl g">Stark</span></div></div>
+        <div class="kpi-value">20,84 $</div>
+        <div class="kpi-sub">Kompendium 4.7 · vor Werbekosten</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Gewinn / Buch · Amazon (POD)</span><div class="sw"><div class="sd r"></div><span class="sl r">3,4× weniger</span></div></div>
+        <div class="kpi-value">6,11 $</div>
+        <div class="kpi-sub">Zählt trotzdem in dieselbe Bonus-Kennzahl</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Unser eigener Benchmark</span><div class="sw"><div class="sd b"></div><span class="sl b">Referenz</span></div></div>
+        <div class="kpi-value">4–5 $</div>
+        <div class="kpi-sub">Meta lt. Kompendium 8.3 · Amazon 3–4 $</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Startbudget Media</span><div class="sw"><div class="sd g"></div><span class="sl g">Gesetzt</span></div></div>
+        <div class="kpi-value">250.000 €</div>
+        <div class="kpi-sub">„bei positivem ROI bereit zu erhöhen"</div>
+      </div>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Kern-Einordnung</div>
+      <p class="insight-text"><strong>Preisniveau: fair. Struktur: nicht unterschriftsreif.</strong> Grow ist inhaltlich der stärkste Kandidat bisher — sie haben das Kompendium gelesen, die Zielgruppen-Logik im Angebot ist unsere, die Abgrenzung ist ehrlich. Das Setup mit 11.000 € und die 5 % laufende Steuerung sind <strong>unter Marktniveau</strong> (üblich sind 10–15 %). Das Problem liegt ausschließlich in <strong>Position 3, der Bonus-Komponente</strong>: Sie misst Erfolg über einen gemischten CPS, der Shop-Verkäufe (20,84 $ Marge) und Amazon-Verkäufe (6,11 $ Marge) in eine einzige Zahl wirft. In unserem eigenen geplanten Verkaufsmix ist damit selbst die <strong>oberste Bonusstufe bereits am Break-even</strong> — wir zahlen den vollen Bonus für ein Nullsummenspiel. Kommt hinzu: Wenn Grow Amazon mitsteuert, belohnt die Mechanik sie dafür, Budget in den Kanal mit unserer schlechtesten Marge zu schieben. Das ist reparierbar — es sind rund fünf Sätze im Vertrag.</p>
+    </div>
+
+    <div class="hint-box red reveal" style="margin-top:14px;">
+      <p><strong>Vertraulich — nicht an Grow weitergeben.</strong> Dieses Dokument enthält unsere Margen aus dem Businessplan sowie die Verhandlungslinie. Für Grow gibt es eine separate, gekürzte Redline-Fassung von Position 3.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DAS ANGEBOT -->
+<section id="angebot" class="section-gray">
+  <div class="container">
+    <h2 class="h-section">Was drin steht — <em>drei Rechnungen</em></h2>
+
+    <div class="hint-box reveal" style="margin-bottom:20px;">
+      <p><strong>Vorab, damit nichts durcheinandergeht:</strong> Es gibt zwei getrennte Geldtöpfe. <strong>Topf 1 = das Werbebudget</strong> (250.000 €, geht an Meta, Google, TikTok, Amazon) — das ist ausdrücklich <em>nicht</em> Teil des Angebots. <strong>Topf 2 = das Honorar für Grow</strong> — nur darum geht es hier.</p>
+    </div>
+
+    <div class="kamp-grid reveal">
+      <div class="kamp-card">
+        <div class="kamp-name">Position 1 — Setup</div>
+        <div class="kamp-sub">Einmalig · bei Auftrag</div>
+        <div class="kamp-row"><span class="kamp-lbl">Grundeinrichtung</span><span class="kamp-val">10.000 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Projektleitung (10 %)</span><span class="kamp-val">1.000 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Summe</span><span class="kamp-val big">11.000 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Bewertung</span><span class="kamp-val green">Angemessen</span></div>
+      </div>
+      <div class="kamp-card">
+        <div class="kamp-name">Position 2 — Laufende Steuerung</div>
+        <div class="kamp-sub">Monatlich · nachträglich</div>
+        <div class="kamp-row"><span class="kamp-lbl">Satz</span><span class="kamp-val">5 % vom Spend</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">bei 250k Spend</span><span class="kamp-val">12.500 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Mindesthonorar</span><span class="kamp-val">10.000 € gesamt</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Bewertung</span><span class="kamp-val green">Günstig</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Position 3 — Erfolgsbonus</div>
+        <div class="kamp-sub">Quartalsweise · CPS-abhängig</div>
+        <div class="kamp-row"><span class="kamp-lbl">Satz</span><span class="kamp-val">0–10 % vom Spend</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">bei 250k Spend, max.</span><span class="kamp-val">25.000 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Im Angebot beziffert</span><span class="kamp-val red">0,00 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Bewertung</span><span class="kamp-val red">Fehlkonstruiert</span></div>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal" style="margin-top:20px;">
+      <table>
+        <thead>
+          <tr><th>Was Grow tatsächlich liefern muss (Position 1, wörtlich)</th><th>Ergebnis</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sichtung &amp; Bewertung des bestehenden Materials<span class="cell-sub">Foto/Video, Cover, EPK, Social aus dem Umfeld Javier · Khabib · AKA</span></td><td>Asset-Bewertung + „Asset-Wunschliste"</td></tr>
+          <tr><td>Konto- &amp; Tracking-Grundlagen<span class="cell-sub">Meta BM, TikTok Ads, Google Ads inkl. YouTube — Amazon nicht genannt</span></td><td>Pixel/CAPI, Conversion-Ziele, UTM- &amp; Attributionslogik</td></tr>
+          <tr><td>Zielgruppen-Architektur<span class="cell-sub">Mat-Rats · Hardcore-Fans · Casual-Fans, je Markt</span></td><td>Kalt / warm / Retargeting + Lookalikes</td></tr>
+          <tr><td>Kampagnen-Setup je Markt &amp; Kanal<span class="cell-sub">USA, DACH, UAE · Presale (Lead) + Launch (Conversion)</span></td><td>Sprachfassungen EN / DE</td></tr>
+          <tr><td>Qualitätssicherung &amp; Teststart<span class="cell-sub">Anzeige → Landingpage → Checkout → Conversion-Messung</span></td><td>Freigabe + Teststart mit reduziertem Budget</td></tr>
+          <tr><td>Ausdrücklich <strong>nicht</strong> enthalten<span class="cell-sub">Wörtliches Zitat aus dem Angebot</span></td><td>Creative-Produktion · Landingpage-Dev · Affiliate-Management</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="funnel-grid reveal" style="margin-top:20px;">
+      <div class="funnel-card">
+        <div class="card-label">Gesamtkosten je Szenario · Honorar Grow</div>
+        <div class="table-wrap plain" style="border:none;">
+          <table>
+            <thead><tr><th>Media-Budget</th><th>Setup</th><th>Steuerung 5 %</th><th>Bonus max. 10 %</th><th>Honorar gesamt</th><th>% vom Spend</th></tr></thead>
+            <tbody>
+              <tr><td>250.000 €</td><td>11.000 €</td><td>12.500 €</td><td>25.000 €</td><td><strong>48.500 €</strong></td><td class="roas-mid">19,4 %</td></tr>
+              <tr><td>500.000 €</td><td>11.000 €</td><td>25.000 €</td><td>50.000 €</td><td><strong>86.000 €</strong></td><td class="roas-mid">17,2 %</td></tr>
+              <tr><td>1.000.000 €</td><td>11.000 €</td><td>50.000 €</td><td>100.000 €</td><td><strong>161.000 €</strong></td><td class="roas-mid">16,1 %</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:14px;">
+          <div class="einordnung-lbl">Einordnung</div>
+          <p class="einordnung-text">Das Niveau liegt im Marktkorridor (10–20 % all-in) und ist für ein Projekt mit 2,8 Mio. $ Worst-Case-Ergebnis <strong>kein Kostenproblem</strong>. Kritisch ist nur, dass im Angebot <strong>23.500 €</strong> steht — Shareholder, die nur die Summenzeile lesen, unterschätzen die Kosten um mehr als das Doppelte.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card">
+          <div class="card-label">Mindesthonorar — Klarstellung</div>
+          <div class="side-row"><span class="side-row-lbl">Art</span><span class="side-row-val">Einmal gesamt</span></div>
+          <div class="side-row"><span class="side-row-lbl">Nicht</span><span class="side-row-val red">pro Monat</span></div>
+          <div class="side-row"><span class="side-row-lbl">Greift bis</span><span class="side-row-val">200.000 € Spend</span></div>
+          <div class="side-row"><span class="side-row-lbl">Monat 1 @ 30k Spend</span><span class="side-row-val green">1.500 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Relevanz für uns</span><span class="side-row-val">Keine</span></div>
+        </div>
+        <div class="hint-box" style="margin-top:14px;">
+          <p>Wortlaut: „Über die gesamte Kampagnenlaufzeit gilt dabei ein Mindesthonorar von <strong>insgesamt</strong> 10.000 Euro." Abgerechnet am Kampagnenende. Bei 250k+ Spend greift es nie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UNIT ECONOMICS -->
+<section id="marge" class="section">
+  <div class="container">
+    <h2 class="h-section">Was uns ein Buch <em>wirklich</em> einbringt</h2>
+
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">Gewinn pro Buch nach Kanal · vor Werbekosten</div>
+        <canvas id="chartMarge"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Was nach Werbung übrig bleibt · bei CPS 10 $</div>
+        <canvas id="chartRest"></canvas>
+      </div>
+    </div>
+
+    <div class="kamp-grid reveal">
+      <div class="kamp-card star">
+        <div class="kamp-name">Eigener Shop · Premiumausgabe</div>
+        <div class="kamp-sub">29,99 $ / 26,90 €</div>
+        <div class="kamp-row"><span class="kamp-lbl">Gewinn je Buch</span><span class="kamp-val big green">20,84 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Break-even CPS</span><span class="kamp-val">20,84 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Anteil lt. Worst Case</span><span class="kamp-val">25 %</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Buchhandel / Print-on-Demand · Amazon</div>
+        <div class="kamp-sub">24,99 $ · Softcover s/w</div>
+        <div class="kamp-row"><span class="kamp-lbl">Gewinn je Buch</span><span class="kamp-val big red">6,11 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Break-even CPS</span><span class="kamp-val red">6,11 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Anteil lt. Worst Case</span><span class="kamp-val">75 %</span></div>
+      </div>
+      <div class="kamp-card warn">
+        <div class="kamp-name">E-Book / Hörbuch</div>
+        <div class="kamp-sub">18,99 $ / 19,99 $</div>
+        <div class="kamp-row"><span class="kamp-lbl">Gewinn je Einheit</span><span class="kamp-val big">5,60 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Break-even CPS</span><span class="kamp-val">5,60 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Lt. Kompendium</span><span class="kamp-val">+16 % ohne Marketing</span></div>
+      </div>
+    </div>
+
+    <div class="funnel-grid reveal" style="margin-top:20px;">
+      <div class="calc-card">
+        <div class="card-label">Gegenprobe — sind die Werbekosten schon abgezogen?</div>
+        <p class="einordnung-text" style="margin-bottom:14px;">Die entscheidende Frage: Wenn die Werbung in den 20,84 $ schon drin wäre, könnten wir nicht damit rechnen. Gegengeprüft am Worst-Case-Szenario des Kompendiums (Kap. 4.8):</p>
+        <code class="calc"> 75.000 Bücher × 20,84 $  = 1.563.000 $   (Shop)
+225.000 Bücher ×  6,11 $  = 1.374.750 $   (Buchhandel)
+ 36.000 Einh.  ×  5,60 $  =   201.600 $   (Digital)
+                            ────────────
+                            <span class="n">3.139.350 $</span>   ← exakt „Gewinn gesamt"</code>
+        <div style="margin-top:14px;">
+          <div class="einordnung-lbl">Ergebnis</div>
+          <p class="einordnung-text">Die Zahl stimmt auf den Cent mit unserem eigenen Papier überein — und das Media-Budget von 250.000 € taucht darin <strong>nirgends</strong> auf. <strong>Die Werbekosten sind nicht abgezogen.</strong> Aus diesen 20,84 $ bzw. 6,11 $ muss der CPS bezahlt werden. Damit ist die Marge der richtige Maßstab für die Bonus-Staffel.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card">
+          <div class="card-label">Break-even je Verkaufsmix</div>
+          <div class="side-row"><span class="side-row-lbl">100 % Shop</span><span class="side-row-val green">20,84 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">75 / 25</span><span class="side-row-val green">17,16 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">50 / 50</span><span class="side-row-val">13,48 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">25 / 75 <em>(unser Plan)</em></span><span class="side-row-val red">9,79 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">100 % Amazon</span><span class="side-row-val red">6,11 $</span></div>
+        </div>
+        <div class="hint-box yellow" style="margin-top:14px;">
+          <p><strong>Achtung Prüfauftrag:</strong> Die 20,84 $ stammen aus dem Businessplan vom 04.03.2025. Ob die 5 % Affiliate-Provision und die Staffelrabatte (−5 % / −10 % / −15 %) schon abgezogen sind, steht nicht dabei. Wenn nicht, liegt die reale Shop-Marge eher bei <strong>17–19 $</strong> — dann wird alles Folgende noch enger, nicht weiter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BONUS-TEST -->
+<section id="bonustest" class="section-gray">
+  <div class="container">
+    <h2 class="h-section">Die Bonus-Staffel im <em>Margen-Test</em></h2>
+
+    <div class="funnel-grid reveal">
+      <div class="funnel-card" id="funnelCard">
+        <div class="card-label">Grows Staffel gegen unseren geplanten Mix (Break-even 9,79 $)</div>
+        <div class="funnel-row">
+          <span class="funnel-lbl">CPS bis 10 $</span>
+          <div class="funnel-track"><div class="funnel-fill" data-width="100%" style="background:linear-gradient(90deg,#ef4444,#f87171);"></div></div>
+          <div class="funnel-right"><span class="funnel-val">10 % Bonus</span><span class="tag r">unter B/E</span></div>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-lbl">CPS 10 – 13 $</span>
+          <div class="funnel-track"><div class="funnel-fill" data-width="75%" style="background:linear-gradient(90deg,#ef4444,#f87171);"></div></div>
+          <div class="funnel-right"><span class="funnel-val">7,5 % Bonus</span><span class="tag r">Verlust</span></div>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-lbl">CPS 13 – 16 $</span>
+          <div class="funnel-track"><div class="funnel-fill" data-width="50%" style="background:linear-gradient(90deg,#ef4444,#f87171);"></div></div>
+          <div class="funnel-right"><span class="funnel-val">5 % Bonus</span><span class="tag r">Verlust</span></div>
+        </div>
+        <div class="funnel-row">
+          <span class="funnel-lbl">CPS 16 – 18 $</span>
+          <div class="funnel-track"><div class="funnel-fill" data-width="25%" style="background:linear-gradient(90deg,#ef4444,#f87171);"></div></div>
+          <div class="funnel-right"><span class="funnel-val">2,5 % Bonus</span><span class="tag r">Verlust</span></div>
+        </div>
+        <div class="funnel-row" style="margin-bottom:0;">
+          <span class="funnel-lbl">CPS über 18 $</span>
+          <div class="funnel-track"><div class="funnel-fill" data-width="6%" style="background:#d0d3de;"></div></div>
+          <div class="funnel-right"><span class="funnel-val">kein Bonus</span><span class="tag y">korrekt</span></div>
+        </div>
+        <div style="margin-top:20px;">
+          <div class="einordnung-lbl">Befund</div>
+          <p class="einordnung-text">Die Staffel ist <strong>an der Shop-Marge gebaut</strong>: Sie endet bei 18 $, die Shop-Schmerzgrenze liegt bei 20,84 $ — das passt fast perfekt. Nur stehen in derselben Rechnung auch die Amazon-Verkäufe mit 6,11 $. In unserem geplanten Verkaufsmix (25 / 75) liegt der Break-even bei <strong>9,79 $</strong> — also unterhalb der obersten Bonusstufe. <strong>Jede Stufe der Staffel zahlt Bonus in den Verlustbereich.</strong></p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card">
+          <div class="card-label">Staffel gegen eigenen Benchmark</div>
+          <div class="side-row"><span class="side-row-lbl">Meta lt. Kompendium 8.3</span><span class="side-row-val green">4–5 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">Amazon lt. Kompendium 8.3</span><span class="side-row-val green">3–4 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">Grows volle Bonusstufe</span><span class="side-row-val red">bis 10 $</span></div>
+          <div class="side-row"><span class="side-row-lbl">Faktor</span><span class="side-row-val red">≈ 2×</span></div>
+        </div>
+        <div class="hint-box red" style="margin-top:14px;">
+          <p>Grow bekommt die <strong>Maximalprämie</strong> für eine Leistung, die unser eigener Businessplan als deutliche Untererfüllung einordnet. Fair bleiben: Unser Kompendium schreibt selbst, die Werte seien von März 2025 und „sollten neu validiert werden". Aber der Sprung von 4–5 auf 10 muss <strong>schriftlich begründet</strong> werden.</p>
+        </div>
+        <div class="hint-box yellow" style="margin-top:14px;">
+          <p><strong>Fehlendes Dokument:</strong> Grow beruft sich auf die „CPA- &amp; CPS-Schätzung für Paid Media" (Stand 05.08.2026), „deren Kennzahlen-Korridore als Referenz für die Bonus-Staffel dienen". Dieses Papier liegt uns nicht vor. Es ist die wichtigste offene Unterlage.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-card reveal" style="margin-top:20px;">
+      <div class="card-label">Die Rechnung im Detail — 100 Bücher im geplanten Mix</div>
+      <code class="calc">Mix 25 % Shop / 75 % Amazon (= Worst-Case-Szenario Kompendium 4.8)
+
+  25 Bücher × 20,84 $ =   521,00 $
+  75 Bücher ×  6,11 $ =   458,25 $
+                        ──────────
+ 100 Bücher           =   979,25 $  →  Ø <span class="n">9,79 $ Gewinn pro Buch</span>
+
+Jetzt Grows OBERSTE Bonusstufe — CPS 10 $, voller Bonus:
+
+ Werbung  100 × 10 $   = 1.000,00 $
+ Gewinn                =   979,25 $
+                         ──────────
+                         <span class="r">−  20,75 $</span>   ← schon im Minus
+ Bonus 10 % von 1.000  =   100,00 $
+                         ──────────
+                         <span class="r">− 120,75 $</span>   ← Endstand
+
+ Setup und die 5 % laufende Steuerung sind hier NICHT enthalten.</code>
+    </div>
+  </div>
+</section>
+
+<!-- BLENDED-PROBLEM -->
+<section id="blended" class="section">
+  <div class="container">
+    <h2 class="h-section">Das Kernproblem: <em>Blended</em> ist die falsche Kennzahl</h2>
+
+    <div class="insight-card reveal" style="margin-top:0;">
+      <div class="card-label">Warum das mehr ist als ein Rechenfehler</div>
+      <p class="insight-text">Ein Blended CPS mischt zwei Produkte mit <strong>3,4-fach unterschiedlicher Marge</strong> zu einer Zahl. Solange Grow nur Meta, TikTok, YouTube und Google steuert, ist das ungenau. <strong>Sobald Grow auch Amazon steuert — wovon wir ausgehen — wird daraus ein aktiver Fehlanreiz.</strong> Denn Amazon ist laut unserem eigenen Benchmark der <strong>billigste</strong> Kanal (3–4 $ pro Buch) und gleichzeitig der mit der <strong>schlechtesten Marge</strong> (6,11 $). Jeder Euro, den Grow von Shop-Kampagnen nach Amazon umschichtet, senkt den Blended CPS, hebt sie eine Bonusstufe hoch — und kostet uns 14,73 $ Marge pro Buch. Und im Angebot steht wörtlich, dass die Budget-Allokation „im Ermessen der Agentur" liegt.</p>
+    </div>
+
+    <div class="chart-row reveal" style="margin-top:20px;">
+      <div class="chart-card">
+        <div class="card-label">Steuerungsszenario · Ergebnis für IYC vs. Honorar Grow</div>
+        <canvas id="chartSteuerung"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Break-even-CPS in Abhängigkeit vom Verkaufsmix</div>
+        <canvas id="chartMix"></canvas>
+      </div>
+    </div>
+
+    <div class="kamp-grid two reveal">
+      <div class="kamp-card star">
+        <div class="kamp-name">Variante A — Budget läuft auf Shop-Verkäufe</div>
+        <div class="kamp-sub">Meta / Google / TikTok → eigener Shop</div>
+        <div class="kamp-row"><span class="kamp-lbl">Blended CPS</span><span class="kamp-val">15 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Verkaufte Bücher</span><span class="kamp-val">18.000</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Rohertrag (× 20,84 $)</span><span class="kamp-val">375.120 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Bonusstufe</span><span class="kamp-val">5 % → 12.500 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Ergebnis für IYC</span><span class="kamp-val big green">+ 91.620 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Honorar Grow (Bonus)</span><span class="kamp-val">12.500 €</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Variante B — Budget wandert auf Amazon</div>
+        <div class="kamp-sub">Billigster CPS, schlechteste Marge</div>
+        <div class="kamp-row"><span class="kamp-lbl">Blended CPS</span><span class="kamp-val green">6 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Verkaufte Bücher</span><span class="kamp-val">45.000</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Rohertrag (× 6,11 $)</span><span class="kamp-val">274.950 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Bonusstufe</span><span class="kamp-val red">10 % → 25.000 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Ergebnis für IYC</span><span class="kamp-val big red">− 22.050 $</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Honorar Grow (Bonus)</span><span class="kamp-val red">25.000 €</span></div>
+      </div>
+    </div>
+
+    <div class="hint-box red reveal">
+      <p><strong>Das ist der Satz für den Jour Fixe:</strong> Zwischen Variante A und B kippt unser Ergebnis von <strong>+91.620 $ auf −22.050 $</strong> — und Grows Bonus <strong>verdoppelt sich dabei</strong>. Beide Varianten sehen im Reporting nach Erfolg aus, weil der Blended CPS in B sogar deutlich <em>besser</em> ist. Nicht weil Grow etwas Unredliches tut, sondern weil die Kennzahl sie exakt dorthin steuert. Wer nach Blended CPS bezahlt wird, optimiert auf Blended CPS. <em>(Illustratives Rechenbeispiel bei 250.000 € Spend, ca. 270.000 $; ob Amazon in dieser Größenordnung 6 $ CPS hält, ist offen — die Richtung des Anreizes bleibt identisch.)</em></p>
+    </div>
+
+    <div class="insight-list-card reveal" style="margin-top:20px;">
+      <div class="card-label">Amazon — vier Punkte, die geklärt werden müssen</div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Amazon steht nicht im Leistungsumfang</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">1×</span><span class="ii-metric-lbl">Erwähnung</span></div></div></div>
+        <p class="ii-desc">Position 1 zählt die Konten einzeln auf: <strong>Meta Business Manager, TikTok Ads Manager, Google Ads inkl. YouTube.</strong> Amazon fehlt. Im gesamten Angebot kommt Amazon <strong>genau einmal</strong> vor — in der Bonus-Formel. Wenn Grow Amazon betreut, gehört es in Position 1 und 2 hinein, sonst schulden sie eine Leistung nicht, für die sie bezahlt werden.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Zählt der Amazon-Spend oben in der Formel mit?</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">offen</span><span class="ii-metric-lbl">Beide Lesarten schlecht</span></div></div></div>
+        <p class="ii-desc">Die Formel lautet „gesamtes verausgabtes Media-Budget geteilt durch zurechenbare Buchverkäufe". Kommen Amazon-Verkäufe unten rein, muss der Amazon-Spend oben rein. <strong>Fehlt er:</strong> Der CPS sinkt künstlich, Grow rutscht eine Stufe hoch. <strong>Ist er drin, ohne dass Amazon beauftragt ist:</strong> Wir zahlen 5 % + Bonus auf einen Kanal ohne vertragliche Leistungspflicht.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Amazons Zählweise ist die großzügigste am Markt</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">7 Tage</span><span class="ii-metric-lbl">Standardfenster</span></div></div></div>
+        <p class="ii-desc">Wer eine Anzeige klickt und binnen einer Woche kauft, zählt als Werbeverkauf — auch wenn er sowieso gekauft hätte. Bei uns passiert genau das ständig: Jemand hört den Podcast, sieht die Promo-Tour, tippt „In Your Corner" bei Amazon ein und klickt auf unsere eigene Markenanzeige ganz oben. Für Amazon: Werbeverkauf. In Wahrheit: <strong>unsere PR</strong> — 230 verschickte Pressemappen, Deutschland-Tour, OKTAGON, Grow Night, Tim-Gabel-Podcast, Makhachev-Titelkampf.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Ungleichbehandlung im Vertragstext</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">asymmetrisch</span><span class="ii-metric-lbl">Beweislast</span></div></div></div>
+        <p class="ii-desc">Für den Shop steht „nach dem <strong>vereinbarten</strong> Attributionsmodell" — darüber soll man sich also noch einigen. Für Amazon steht „laut <strong>Plattform-Reporting</strong>" — dort wird ungefragt die großzügigste verfügbare Zahl genommen. Das gehört symmetrisch gemacht.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LÜCKEN -->
+<section id="luecken" class="section-gray">
+  <div class="container">
+    <h2 class="h-section">Was wir angefragt haben — und <em>was fehlt</em></h2>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Anforderung aus dem Kompendium</th><th>Quelle</th><th>Im Angebot</th><th>Bewertung</th></tr></thead>
+        <tbody>
+          <tr><td>Kanäle inkl. <strong>LinkedIn</strong><span class="cell-sub">Passt exakt auf Segment „Casual-Fans / Leadership"</span></td><td>Kap. 8.2</td><td>Meta, TikTok, YouTube, Google</td><td class="roas-bad">Fehlt</td></tr>
+          <tr><td><strong>Affiliate-Marketing</strong> als Aufgabe des Partners<span class="cell-sub">Rolle „WANTED: Paid Media" im Kernteam</span></td><td>Kap. 5.1</td><td>Ausdrücklich ausgeschlossen</td><td class="roas-bad">Fehlt</td></tr>
+          <tr><td>Sprachen: 75 % EN · <strong>20 % ES</strong> · 5 % RU<span class="cell-sub">Ein Fünftel der erwarteten Verkäufe</span></td><td>Kap. 4.5</td><td>Nur EN / DE</td><td class="roas-bad">Fehlt</td></tr>
+          <tr><td>Tier-1-Märkte USA, <strong>Kanada, Brasilien, Mexiko</strong><span class="cell-sub">UAE ist in der Kanalstrategie Tier 3</span></td><td>Kap. 4.3</td><td>USA, DACH, UAE</td><td class="roas-mid">Abweichung</td></tr>
+          <tr><td>Ein <strong>proaktiver, kein reaktiver</strong> Partner<span class="cell-sub">Wörtliche Formulierung im Briefing</span></td><td>Kap. 8</td><td>Monatsreport + 1 Abstimmungstermin</td><td class="roas-mid">Zu dünn</td></tr>
+          <tr><td>Verkaufs-Dashboard als Bonus-Grundlage<span class="cell-sub">Tier-1-Aufgabe, offen, bei Clemens Kauschke</span></td><td>Kap. 7.4</td><td>Zusätzlich eigenes Tool „orbit"</td><td class="roas-mid">Ungeklärt</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="funnel-grid reveal" style="margin-top:20px;">
+      <div class="insight-list-card">
+        <div class="card-label">Vertragliche Leerstellen</div>
+        <div class="ii">
+          <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Kein Fixpreis, obwohl Fixpreis draufsteht</span></div></div>
+          <p class="ii-desc">Zur Projektleitung: „vorläufige Schätzung … Gesamtaufwand wird zum Ende des Projekts eruiert". Dazu die AGB: „zusätzlicher Aufwand … wird gesondert nach tatsächlichem Aufwand berechnet. <strong>Kostenschätzungen sind unverbindlich.</strong>" Damit ist Position 1 nach oben offen.</p>
+        </div>
+        <div class="ii">
+          <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Keine Laufzeit, keine Kündigung, kein Exit</span></div></div>
+          <p class="ii-desc">Das Mindesthonorar bezieht sich auf eine „Kampagnenlaufzeit", die nirgends definiert ist. Kein Startdatum, kein Enddatum, keine Kündigungsfrist, kein Ausstieg bei Zielverfehlung.</p>
+        </div>
+        <div class="ii">
+          <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Kein AVV, keine Regelung zum Konten-Eigentum</span></div></div>
+          <p class="ii-desc">Bei Conversion-API und Custom Audiences fließen Kundendaten. Ein Auftragsverarbeitungsvertrag fehlt komplett. Ebenso fehlt, wem Werbekonten, Pixel, Audiences und Katalog gehören und was bei Vertragsende herausgegeben wird.</p>
+        </div>
+        <div class="ii">
+          <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Retouren und Stornos sind nicht geregelt</span></div></div>
+          <p class="ii-desc">Nach aktuellem Wortlaut zählt ein storniertes Vorbestellungs-Buch für den Bonus. Bei einer Pre-Sale-Phase von September bis November ist das kein Randthema.</p>
+        </div>
+        <div class="ii">
+          <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Welche Einheit unterschreibt?</span></div></div>
+          <p class="ii-desc">Adressat ist die <strong>Orbita Media GmbH</strong>. Vertragspartnerin der Endkunden ist laut Kompendium 5.2 aber die <strong>Dubai Company LLC</strong>, die Zahlungsabwicklung läuft über <strong>Orbita Payments Limited</strong>. Die Verkaufsdaten, an denen der Bonus hängt, liegen in anderen Einheiten als der unterzeichnenden.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card">
+          <div class="card-label">Zeitplan-Risiko</div>
+          <div class="side-row"><span class="side-row-lbl">Angebot gültig bis</span><span class="side-row-val">21.08.2026</span></div>
+          <div class="side-row"><span class="side-row-lbl">Pre-Sale Start</span><span class="side-row-val red">01.09.2026</span></div>
+          <div class="side-row"><span class="side-row-lbl">Puffer</span><span class="side-row-val red">10 Tage</span></div>
+          <div class="side-row"><span class="side-row-lbl">Release</span><span class="side-row-val">20.10.2026</span></div>
+          <div class="side-row"><span class="side-row-lbl">Launch (Makhachev)</span><span class="side-row-val">Nov 2026</span></div>
+          <div class="side-row"><span class="side-row-lbl">Startdatum im Angebot</span><span class="side-row-val red">fehlt</span></div>
+        </div>
+        <div class="hint-box red" style="margin-top:14px;">
+          <p>In 10 Tagen: Konten aufsetzen, Pixel/CAPI implementieren, Zielgruppen für drei Märkte bauen, Kampagnen auf vier Kanälen in zwei Sprachen anlegen, Funktionstest, Teststart. Zusätzlich ist die „Approval Media-Konzept" laut Kompendium 7.1 noch eine <strong>offene Tier-1-Aufgabe bei Janni</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANPASSUNGEN -->
+<section id="anpassungen" class="section">
+  <div class="container">
+    <h2 class="h-section">Was wir <em>ändern</em> müssen</h2>
+
+    <div class="hint-box reveal" style="margin-bottom:20px;">
+      <p><strong>Nicht absagen.</strong> Grow ist inhaltlich der stärkste Kandidat nach zwei gescheiterten Anläufen, und der Zeitdruck spricht gegen eine vierte Runde. Es geht um rund fünf Sätze in Position 3 plus einen ordentlichen Vertragsrahmen — nicht um ein neues Angebot.</p>
+    </div>
+
+    <div class="prio-grid reveal">
+      <div class="prio-card crit">
+        <div class="prio-header"><span class="prio-num">1</span><span class="prio-title-text">CPS getrennt nach Kanal — kein Blended <span class="tag r">Dealbreaker</span></span></div>
+        <p class="prio-desc">Shop und Amazon/Buchhandel haben <strong>3,4-fach unterschiedliche Margen</strong>. Eine gemeinsame Kennzahl ist sachlich falsch und steuert in den falschen Kanal. Entweder <strong>zwei getrennte Staffeln</strong> mit eigenen Schwellen, oder eine Staffel ausschließlich auf Shop-Verkäufe. Das ist der wichtigste Punkt des ganzen Papiers.</p>
+      </div>
+      <div class="prio-card crit">
+        <div class="prio-header"><span class="prio-num">2</span><span class="prio-title-text">Staffel an der echten Marge kalibrieren <span class="tag r">Dealbreaker</span></span></div>
+        <p class="prio-desc">Voller Bonus deutlich <strong>unter</strong> Break-even, null Bonus <strong>ab</strong> Break-even. Vorschlag für Shop-Verkäufe: 10 % bis 8 $, 5 % bis 12 $, 0 % ab 15 $. Für Amazon-Verkäufe müsste die Grenze bei ~4 $ liegen — was faktisch heißt: Amazon gehört nicht in eine Bonus-Staffel, sondern in eine eigene Zielgröße.</p>
+      </div>
+      <div class="prio-card crit">
+        <div class="prio-header"><span class="prio-num">3</span><span class="prio-title-text">Bonusbasis: Umsatz statt Media-Budget <span class="tag r">Dealbreaker</span></span></div>
+        <p class="prio-desc">Aktuell ist auch der „erfolgsabhängige" Teil ein Prozentsatz vom Spend. Bei gleich guter Arbeit verdoppelt sich der Bonus, wenn wir das Budget verdoppeln — und wir haben im Kompendium selbst geschrieben, dass wir „bei positivem ROI bereit" sind zu erhöhen. Umstellen auf <strong>% des paid-attribuierten Netto-Umsatzes</strong> oder einen festen Euro-Betrag je verkauftem Buch, plus absoluter Quartalsdeckel.</p>
+      </div>
+      <div class="prio-card crit">
+        <div class="prio-header"><span class="prio-num">4</span><span class="prio-title-text">Amazon vertraglich sauber stellen <span class="tag r">Dealbreaker</span></span></div>
+        <p class="prio-desc">Wenn Grow Amazon steuert: <strong>rein in Position 1 und 2</strong>, Amazon-Spend zählt in der CPS-Formel oben mit, eigene Zielgröße für den Kanal. Wenn nicht: <strong>raus aus dem Bonus</strong>. Beides ist vertretbar — der jetzige Zustand (zählt für den Bonus, steht aber nicht im Leistungsumfang) ist es nicht.</p>
+      </div>
+      <div class="prio-card">
+        <div class="prio-header"><span class="prio-num">5</span><span class="prio-title-text">Attribution schriftlich definieren</span></div>
+        <p class="prio-desc">Zeitfenster festlegen (z. B. 7-Tage-Klick / 1-Tag-View), <strong>Brand-Search ausschließen</strong>, Retouren und Stornos abziehen, digitale Formate klar rein oder raus. Und: einen <strong>Grundumsatz ohne Werbung</strong> festlegen, gemessen in den Wochen vor Kampagnenstart und an Tagen ohne PR-Termin. Alles darunter zählt nicht als Werbeleistung — sonst zahlen wir Bonus für unsere eigene Pressearbeit.</p>
+      </div>
+      <div class="prio-card">
+        <div class="prio-header"><span class="prio-num">6</span><span class="prio-title-text">Unser Dashboard ist die einzige Quelle</span></div>
+        <p class="prio-desc">Der Bonus wird „auf Basis des gemeinsam eingesehenen Verkaufs-Dashboards" abgerechnet — das Dashboard existiert aber noch nicht und ist eine offene Tier-1-Aufgabe bei Clemens. <strong>Wer die Zahl baut, definiert die Zahl.</strong> Festschreiben, dass ausschließlich unser Dashboard maßgeblich ist, mit unseren Definitionen. Grows „orbit" ist ein Zusatztool, keine Abrechnungsgrundlage.</p>
+      </div>
+      <div class="prio-card">
+        <div class="prio-header"><span class="prio-num">7</span><span class="prio-title-text">Budgetkontrolle und Honorar-Degression</span></div>
+        <p class="prio-desc">Monatlicher Budgetplan mit unserer Freigabe; Ermessen der Agentur nur <em>innerhalb</em> des freigegebenen Plans; harter Monatsdeckel. Zusätzlich Mengenstaffel beim Honorar: <strong>5 % bis 300k, 4 % bis 600k, 3 % darüber</strong> — bei diesen Volumina Marktstandard.</p>
+      </div>
+      <div class="prio-card">
+        <div class="prio-header"><span class="prio-num">8</span><span class="prio-title-text">Konten, Geld und Daten gehören uns</span></div>
+        <p class="prio-desc">Alle Werbekonten, Pixel, Audiences, Katalog und GTM auf unsere Einheit; Media direkt an die Plattformen gezahlt; <strong>kein Aufschlag, keine einbehaltenen Plattform-Rebates</strong>; vollständiger Datenexport bei Vertragsende. Dazu AVV nach Art. 28 DSGVO.</p>
+      </div>
+      <div class="prio-card">
+        <div class="prio-header"><span class="prio-num">9</span><span class="prio-title-text">Scope nachziehen: LinkedIn, Spanisch, Affiliate</span></div>
+        <p class="prio-desc">Spanisch ist der schwerste Punkt — <strong>20 % der erwarteten Verkäufe</strong> ohne eine einzige Anzeige. Entweder rein in Position 1, oder wir streichen die Annahme aus dem Businessplan. LinkedIn ebenfalls nachverhandeln. Beim Affiliate entscheiden: machen wir selbst oder beauftragen wir es separat.</p>
+      </div>
+      <div class="prio-card">
+        <div class="prio-header"><span class="prio-num">10</span><span class="prio-title-text">Vertragsrahmen und Service-Zusagen</span></div>
+        <p class="prio-desc">Position 1 als <strong>echter Festpreis</strong> (11.000 € gedeckelt, 50 % bei Auftrag / 50 % bei Teststart), Laufzeit fest bis 31.01.2027, danach 30 Tage Kündigung, Performance-Exit bei zwei verfehlten Monaten. Namentlicher Lead und Media Buyer, <strong>wöchentliches Reporting</strong> in Pre-Sale und Launch, War-Room an den Key-Terminen, 24h-Reaktionszeit, Terminplan mit Daten für Kick-off, Tracking-live und Kampagnen-live.</p>
+      </div>
+    </div>
+
+    <div class="insight-list-card reveal">
+      <div class="card-label">Was wir selbst liefern müssen — sonst fällt es auf uns zurück</div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Verkaufs-Dashboard fertigstellen</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">Tier 1</span><span class="ii-metric-lbl">Clemens</span></div></div></div>
+        <p class="ii-desc">Ohne das Dashboard ist die Bonus-Abrechnung nicht durchführbar — und wir verlieren die Deutungshoheit über die Zahl. Sollte vor Vertragsunterschrift zumindest in der Struktur stehen: Trennung Shop / Amazon, Attributionsfenster, Retouren-Logik, Grundumsatz-Baseline.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Creative-Produktion sicherstellen</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val">4 × 3</span><span class="ii-metric-lbl">Kanäle × Märkte</span></div></div></div>
+        <p class="ii-desc">Grow schließt die Produktion neuer Foto- und Video-Creatives ausdrücklich aus und liefert nur eine Wunschliste. Werbemittel sind bei einer Kampagne dieser Größe der <strong>wichtigste Performance-Hebel</strong>. Wer produziert in welcher Taktung — und was kostet das zusätzlich?</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Marge neu validieren</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">04.03.25</span><span class="ii-metric-lbl">Stand</span></div></div></div>
+        <p class="ii-desc">Sind in den 20,84 $ die 5 % Affiliate-Provision und die Staffelrabatte (−5 / −10 / −15 %) enthalten? Sind Druck-, Versand- und Zollkosten für USA und UAE aktuell? Ohne belastbare Marge lässt sich keine Bonus-Staffel verhandeln.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">CPA-/CPS-Schätzung vom 05.08. anfordern</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val red">fehlt</span><span class="ii-metric-lbl">bei uns</span></div></div></div>
+        <p class="ii-desc">Grow leitet die Bonus-Staffel daraus ab. Solange wir das Papier nicht haben, können wir nicht beurteilen, ob die 10–18 $ sauber hergeleitet oder frei gesetzt sind. <strong>Anfordern, bevor über Zahlen gesprochen wird.</strong></p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr"><div class="ii-hdr-left"><span class="ii-arrow">→</span><span class="ii-name">Mediaplan mit Forecast einfordern</span></div><div class="ii-metrics"><div class="ii-metric"><span class="ii-metric-val">vor Signing</span><span class="ii-metric-lbl">Bedingung</span></div></div></div>
+        <p class="ii-desc">Budget je Markt, Kanal und Phase mit erwarteten CPM, CTR, CVR und CPS. Grows komplette Vergütung hängt an Zahlen, zu denen sie sich bisher nicht committen. Dazu 2–3 Referenzen mit vergleichbarem internationalem Spend und der Name des Menschen, der täglich am Konto sitzt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAZIT -->
+<section class="section-gray">
+  <div class="container">
+    <div class="fazit-card reveal">
+      <div class="fazit-heading">Fazit — <span>guter Partner, falsch gebauter Bonus</span></div>
+      <p class="fazit-text">Grow ist inhaltlich überzeugend und preislich fair. Setup und laufende Steuerung sind angemessen bis günstig, die Scope-Abgrenzung ist ehrlich, und sie haben das Kompendium erkennbar gelesen. <strong>Das Honorar ist bei einem Projekt mit 2,8 Mio. $ Worst-Case-Ergebnis nicht das Thema.</strong><br><br>
+      Das Thema ist Position 3. Die Bonus-Staffel ist an der Shop-Marge gebaut und wirft Amazon-Verkäufe mit einem Drittel der Marge in dieselbe Kennzahl. In unserem eigenen geplanten Verkaufsmix liegt der Break-even bei <strong>9,79 $</strong> — die oberste Bonusstufe beginnt bei 10 $. Damit zahlt <strong>jede Stufe der Staffel Bonus in den Verlustbereich</strong>. Und wenn Grow Amazon mitsteuert, belohnt die Mechanik sie dafür, Budget in den Kanal mit unserer schlechtesten Marge zu verschieben — im Beispiel kippt unser Ergebnis von +91.620 $ auf −22.050 $, während sich Grows Bonus verdoppelt.<br><br>
+      <strong>Empfehlung: nicht absagen, nachverhandeln.</strong> Vier Dealbreaker (getrennte CPS-Staffeln, Kalibrierung an der echten Marge, Bonusbasis Umsatz statt Spend, Amazon vertraglich sauber), dazu Attribution, Dashboard-Hoheit und ein ordentlicher Vertragsrahmen. Zwei Unterlagen fehlen uns vorher: die <strong>CPA-/CPS-Schätzung vom 05.08.</strong> von Grow, und eine <strong>aktualisierte Margenrechnung</strong> von uns. Ohne beides sollte im Jour Fixe keine Zusage fallen.</p>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-brand">Skael <span>Reports</span> · In Your Corner · Intern</span>
+      <span class="footer-date">Erstellt am 09. August 2026 · Angebot A26-1673 vom 07.08.2026 · Kompendium Stand 30.07.2026</span>
+    </footer>
+  </div>
+</section>
+
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+
+new Chart(document.getElementById('chartMarge'), {
+  data: {
+    labels: ['Eigener Shop', 'Amazon / POD', 'E-Book / Audio'],
+    datasets: [
+      { type:'bar', label:'Gewinn je Buch $', data:[20.84, 6.11, 5.60], backgroundColor:['#3a6ef4','#ef4444','#f59e0b'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Grows volle Bonusstufe (10 $)', data:[10,10,10], borderColor:'#0f1b2d', borderDash:[6,4], backgroundColor:'transparent', borderWidth:2, pointRadius:0, yAxisID:'y' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{beginAtZero:true, grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>v.toFixed(0)+' $'}} } }
+});
+
+new Chart(document.getElementById('chartRest'), {
+  type:'bar',
+  data: {
+    labels: ['Eigener Shop', 'Amazon / POD', 'E-Book / Audio'],
+    datasets: [
+      { label:'Rest nach Werbung $', data:[10.84, -3.89, -4.40], backgroundColor:['#22c55e','#ef4444','#ef4444'], borderRadius:5 }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>v.toFixed(0)+' $'}} } }
+});
+
+new Chart(document.getElementById('chartSteuerung'), {
+  data: {
+    labels: ['Variante A · Shop-Fokus', 'Variante B · Amazon-Fokus'],
+    datasets: [
+      { type:'bar', label:'Ergebnis IYC $', data:[91620, -22050], backgroundColor:['#22c55e','#ef4444'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Bonus Grow €', data:[12500, 25000], borderColor:'#3a6ef4', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#3a6ef4', pointRadius:6, tension:0, yAxisID:'y2' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k $'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}} } }
+});
+
+new Chart(document.getElementById('chartMix'), {
+  data: {
+    labels: ['100 % Shop', '75/25', '50/50', '25/75', '100 % Amazon'],
+    datasets: [
+      { type:'bar', label:'Break-even CPS $', data:[20.84, 17.16, 13.48, 9.79, 6.11], backgroundColor:['#22c55e','#22c55e','#f59e0b','#ef4444','#ef4444'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Grows volle Bonusstufe', data:[10,10,10,10,10], borderColor:'#0f1b2d', borderDash:[6,4], backgroundColor:'transparent', borderWidth:2, pointRadius:0, yAxisID:'y' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{beginAtZero:true, grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>v.toFixed(0)+' $'}} } }
+});
+
+const ro = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+const fo = new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.funnel-fill').forEach((f,i)=>setTimeout(()=>{f.style.width=f.dataset.width;},i*130));fo.disconnect();}},{threshold:0.2});
+fo.observe(document.getElementById('funnelCard'));
+
+document.querySelectorAll('.nav-tab').forEach(tab=>{tab.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+document.querySelectorAll('section[id]').forEach(s=>{new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.nav-tab[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:0.3}).observe(s);});
+
+const ES=['.h-hero','.h-hero em','.meta-badge span','.hero-meta-value','.hero-meta-label','.nav-pill','.kpi-label','.kpi-value','.kpi-sub','.sl','.insight-text','.card-label','.h-section','.h-section em','.funnel-lbl','.funnel-val','.tag','.einordnung-lbl','.einordnung-text','.side-row-lbl','.side-row-val','.hint-box p','.kamp-name','.kamp-sub','.kamp-lbl','.kamp-val','tbody td','thead th','.ii-name','.ii-desc','.ii-metric-val','.ii-metric-lbl','.prio-title-text','.prio-desc','.fazit-heading','.fazit-text','.footer-brand','.footer-date'].join(',');
+let editing=false;
+function toggleEdit(){editing=!editing;const btn=document.getElementById('ebEdit'),save=document.getElementById('ebSave');if(editing){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';}}
+function downloadHTML(){const bar=document.getElementById('editBar'),was=editing;document.body.classList.remove('editing');document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));bar.style.display='none';const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;bar.style.display='';if(was){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));}try{const enc=new TextEncoder(),bytes=enc.encode(html),blob=new Blob([bytes],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='InYourCorner-Angebot-Grow-Aug-2026.html';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){alert('Download fehlgeschlagen.');}}
+</script>
+
+</body>
+</html>
