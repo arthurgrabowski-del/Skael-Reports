@@ -30,7 +30,7 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Poppins',sans-serif;font-size:16px;letter-spacing:-0.012em;line-height:1.78;background:var(--bg);color:var(--body);}
 
-nav{position:sticky;top:0;z-index:200;height:56px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+nav.topbar{position:sticky;top:0;z-index:200;height:56px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
 .nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
 .nav-logo-text span{color:var(--blue);}
 .nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
@@ -178,7 +178,7 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
 </head>
 <body>
 
-<nav>
+<nav class="topbar">
   <span class="nav-logo-text">Skael <span>Reports</span></span>
   <div class="nav-sep"></div>
   <span class="nav-title">In Your Corner · Das Grow-Angebot erklärt</span>
@@ -210,7 +210,7 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
     <p><strong>Nicht an Grow weitergeben.</strong> Dieser Text enthält unsere Gewinnmargen aus dem Businessplan und unsere Verhandlungslinie. Für Grow gibt es eine separate, gekürzte Fassung.</p>
   </div>
 
-  <nav class="toc">
+  <div class="toc">
     <div class="toc-label">Kapitel</div>
     <ol>
       <li><a href="#k1">Worum es überhaupt geht</a></li>
@@ -232,7 +232,7 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
       <li><a href="#k17">Was wir selbst liefern müssen</a></li>
       <li><a href="#k18">Was noch fehlt</a></li>
     </ol>
-  </nav>
+  </div>
 </header>
 
 <!-- 1 -->
