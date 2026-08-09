@@ -101,6 +101,8 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 .pre-line{font-size:12.5px;color:var(--muted);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);}
 .pre-line b{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.11em;color:var(--sub);font-weight:400;display:block;margin-bottom:3px;}
 .mail-main p{font-size:13.5px;color:var(--body);line-height:1.7;}
+.mail-body{background:#fafbfd;border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:20px 24px;font-size:13.5px;color:var(--body);line-height:1.75;white-space:pre-line;}
+.mb-btn{display:inline-block;background:#F56F21;color:#161616;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;letter-spacing:-0.01em;padding:10px 26px 10px 22px;border-radius:7px;margin:4px 0;white-space:nowrap;}
 .mail-main p strong{color:var(--navy);font-weight:500;}
 .mail-side{border-left:1px solid var(--border);padding-left:20px;}
 .ms-row{margin-bottom:10px;}
@@ -211,6 +213,8 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .mail-side{padding-left:12px;}.ms-row{margin-bottom:6px;}
   .ms-lbl{font-size:7.2px;}.ms-val{font-size:8.8px;}
   .wa-bubble{padding:9px 11px;font-size:8.6px;line-height:1.5;margin-top:8px;max-width:100%;}
+  .mail-body{padding:9px 11px;font-size:8.6px;line-height:1.5;}
+  .mb-btn{font-size:7.6px;padding:5px 12px;}
   .motivbox{grid-template-columns:120px 1fr;margin-bottom:7px;page-break-inside:avoid;}
   .motivbox-media{padding:9px;min-height:0;}.vwrap img{width:104px;}
   .vwrap .fmt{font-size:6.4px;padding:2px 5px;}
@@ -264,7 +268,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 <section class="hero" id="uebersicht">
   <div class="meta-badge"><span class="dot"></span><span>Loyalty-Phase · Tickets 2027 · Für Daniel</span></div>
   <h1 class="h-hero">Macherfestival<br><em>Loyalty Plan 2027</em></h1>
-  <p class="hero-sub">Direkt nach dem Festival ist die Kaufbereitschaft am höchsten — die Leute sind noch im Erlebnis, und genau dieses Fenster nutzen wir für die ersten Tickets 2027. Angesprochen werden ausschließlich die <strong>2.224 Käufer von 2026</strong>: Ihre Adressen kommen aus dem Weeztix-Ticketverkauf und liegen sauber getrennt in Brevo, deshalb erreicht diese Strecke genau die Leute, die dieses Jahr dabei waren — und niemand sonst. Insgesamt gehen sechs E-Mails, fünf WhatsApp-Posts und zehn Ads in je drei Formaten raus, verteilt über drei Wochen.</p>
+  <p class="hero-sub">Direkt nach dem Festival ist die Kaufbereitschaft am höchsten — die Leute sind noch im Erlebnis, und genau dieses Fenster nutzen wir für die ersten Tickets 2027. Angesprochen werden ausschließlich die <strong>2.224 Käufer von 2026</strong>: Ihre Adressen kommen aus dem Weeztix-Ticketverkauf und liegen sauber getrennt in Brevo, deshalb erreicht diese Strecke genau die Leute, die dieses Jahr dabei waren — und niemand sonst. Insgesamt gehen sechs E-Mails, vier WhatsApp-Posts und zehn Ads in je drei Formaten raus, verteilt über drei Wochen.</p>
   <div class="hero-meta">
     <div class="hero-meta-item"><span class="hero-meta-label">Kampagne</span><span class="hero-meta-value">Loyalty-Phase Tickets 2027</span></div>
     <div class="hero-meta-item"><span class="hero-meta-label">Laufzeit</span><span class="hero-meta-value">10.08. – 30.08.2026 (21 Tage)</span></div>
@@ -274,7 +278,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   <div class="kpi-grid">
     <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">E-Mails</span></div><div class="kpi-value">6</div><div class="kpi-sub">Über drei Wochen verteilt</div></div>
     <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">Ads</span></div><div class="kpi-value">10</div><div class="kpi-sub">Je 3 Formate = 30 Dateien</div></div>
-    <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">WhatsApp-Posts</span></div><div class="kpi-value">5</div><div class="kpi-sub">Beide Community-Channels</div></div>
+    <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">WhatsApp-Posts</span></div><div class="kpi-value">4</div><div class="kpi-sub">Beide Community-Channels</div></div>
     <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Empfänger</span></div><div class="kpi-value">2.224</div><div class="kpi-sub">Käufer 2026 aus Weeztix</div></div>
   </div>
 </section>
@@ -329,8 +333,24 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">So 09.08. · 21 Uhr · Rückblick</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>4 Tage, 5.000 Macher, 100 Tiny Häuser ❤️</h3></div>
-      <div class="pre-line"><b>Vorschau</b>Danke, dass ihr Ferropolis auseinandergenommen habt.</div>
-      <p>Der Rückblick auf das Wochenende, wenige Stunden nach Festivalende. Die drei Zahlen aus der Betreffzeile werden aufgemacht, dazu die Ankündigung, dass die Fotos in den nächsten Tagen kommen. Am Ende ein Satz: Die Tickets für 2027 sind ab jetzt online, zum Loyalty-Preis.</p>
+      <div class="pre-line"><b>Vorschau</b>Vier Tage, die wir nicht so schnell vergessen.</div>
+      <div class="mail-body">Ihr seid wahrscheinlich gerade erst zu Hause. Mit Muskelkater, Sägespänen in der Tasche und irgendwas Selbstgebautem auf der Rückbank.
+
+Wir stehen noch auf dem Gelände und versuchen zu begreifen, was hier gerade passiert ist:
+
+4 Tage
+5.000 Macher
+100 Tiny Häuser
+
+Dazu alles, was ihr geschweißt, gesägt, verschraubt und zwischendurch wieder auseinandergenommen habt.
+
+Danke dafür. Ohne euch ist Ferropolis nur ein Haufen alter Bagger. ❤️
+
+Euer Macher Festival Team
+
+PS: Für alle, die jetzt schon wissen, dass sie 2027 wieder dabei sind: Die Tickets sind ab sofort online. Als Dankeschön bekommst du sie zum Loyalty-Preis von 159 € statt regulär 179 € — nur bis zum 30.08.
+
+<span class="mb-btn">Zu den Tickets 👋🏼</span></div>
     </div>
     <div class="mail-side">
       <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">2.224 Käufer 2026</span></div>
@@ -345,7 +365,27 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
       <div class="msub">Mo 10.08. · 18 Uhr · Verkaufsstart</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Sichere dir dein Ticket für 2027 🎟️</h3></div>
       <div class="pre-line"><b>Vorschau</b>12.–15. August 2027, Ferropolis. Zum Loyalty-Preis.</div>
-      <p>Der Verkaufsstart. Termin, Preis und Link zur Loyalty-Seite direkt im ersten Drittel. Danach kurz, was 2027 wieder ansteht — über 35 kostenfreie Workshops, mehr als 40 Schweißbänke, 10.000 qm Werkstatt. Am Ende der Hinweis, den Urlaub schon jetzt zu blocken: Ein Jahr Vorlauf bekommt jeder durch.</p>
+      <div class="mail-body">Kurz und ohne Umwege, weil du es eh schon ahnst:
+
+🎟️ Macher Festival 2027 · 12.–15. August · Ferropolis
+
+159 €
+regulär 179 €
+nur bis 30.08.
+
+Warum günstiger? Weil dieses Festival von den Leuten lebt, die wiederkommen. Der Loyalty-Preis ist unser Danke an genau die. Danach kostet dasselbe Ticket 179 € — und ja, das ist ernst gemeint, wir verlängern nicht.
+
+<span class="mb-btn">Zu den Tickets 👋🏼</span>
+
+🛠️ Was dich 2027 erwartet
+
+Das Gleiche wie dieses Jahr, nur größer gedacht: über 35 kostenfreie Workshops, mehr als 40 Schweißbänke, 10.000 qm Werkstatt. Und alles, was du dort baust, nimmst du mit nach Hause.
+
+Ein Tipp noch: Trag dir den 12.–15. August 2027 direkt in den Kalender ein und blocke den Urlaub. Ein Jahr im Voraus bekommt den noch jeder durch.
+
+<span class="mb-btn">Ticket sichern 👋🏼</span>
+
+Euer Macher Festival Team</div>
     </div>
     <div class="mail-side">
       <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">2.224 Käufer 2026</span></div>
@@ -360,7 +400,17 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
       <div class="msub">Do 13.08. · 18 Uhr · Fotogalerie</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Deine Fotos vom Festival sind da 📸</h3></div>
       <div class="pre-line"><b>Vorschau</b>Die Galerie ist online — such dich raus.</div>
-      <p>Die Fotogalerie mit einem Button. Aufforderung, Bilder zu teilen und das Festival zu markieren. Der Ticket-Hinweis steht am Ende als Nachsatz mit direktem Link — diese Mail liefert zuerst etwas, bevor sie etwas will.</p>
+      <div class="mail-body">Es ist alles drin: der erste Schweißfunke, die Tiny-House-Straße am Samstagmorgen, die Seifenkisten-Rennen. Und ihr, überall.
+
+<span class="mb-btn">Zur Fotogalerie 📸</span>
+
+Sucht euch raus, ladet runter, markiert uns, wenn ihr was postet. Die besten Momente teilen wir auf unseren Kanälen.
+
+Euer Macher Festival Team
+
+PS: Der Loyalty-Preis für 2027 läuft noch bis zum 30.08.: 159 € statt regulär 179 €.
+
+<span class="mb-btn">Zu den Tickets 👋🏼</span></div>
     </div>
     <div class="mail-side">
       <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">2.224 Käufer 2026</span></div>
@@ -375,7 +425,21 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
       <div class="msub">Mi 20.08. · 18 Uhr · Geschichte</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Was aus den 100 Tiny Häusern geworden ist 🏠</h3></div>
       <div class="pre-line"><b>Vorschau</b>Was nach dem Wochenende mit ihnen passiert ist.</div>
-      <p>Die Geschichte hinter den Tiny Häusern: wohin sie gegangen sind, an wen, was jetzt mit ihnen passiert — mit zwei oder drei konkreten Beispielen und Fotos. Der Abschluss verbindet das mit 2027: Wer nächstes Jahr wieder mitbauen will, findet den Link darunter.</p>
+      <div class="mail-body">⚠️ GERÜST — vor dem Versand ergänzen: Wohin sind die Häuser gegangen, an wen? 2–3 konkrete Beispiele mit Foto. Ohne echte Fakten diese Mail nicht senden.
+
+100 Tiny Häuser in vier Tagen. Gebaut von Leuten, von denen viele vorher noch nie eine Kreissäge in der Hand hatten.
+
+Aber die eigentliche Geschichte fängt erst nach dem Festival an: [BEISPIEL 1]. [BEISPIEL 2].
+
+Das ist für uns der Unterschied zwischen einem Festival, auf dem man feiert, und einem, auf dem am Ende etwas stehen bleibt.
+
+🔨 2027 bauen wir weiter
+
+Wer dabei sein will: Der Loyalty-Preis von 159 € gilt noch bis zum 30.08., danach sind es 179 €.
+
+<span class="mb-btn">Ich bin 2027 dabei 👋🏼</span>
+
+Euer Macher Festival Team</div>
     </div>
     <div class="mail-side">
       <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">2.224 Käufer 2026</span></div>
@@ -390,7 +454,23 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
       <div class="msub">Mi 27.08. · 18 Uhr · Erinnerung</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Noch 3 Tage für deinen Loyalty-Preis ⏰</h3></div>
       <div class="pre-line"><b>Vorschau</b>30.08., 23:59 Uhr. Danach gilt der reguläre Preis.</div>
-      <p>Die Erinnerung mit dem häufigsten Einwand: „Ich weiß noch nicht, ob ich kann." Antwort in der Mail: Der Termin steht seit heute fest, ein Jahr Vorlauf reicht für den Urlaub — und die Entscheidung heute betrifft nicht das Ob, sondern nur den Preis.</p>
+      <div class="mail-body">Ganz kurz, weil es sonst leicht untergeht: Am Sonntag um 23:59 Uhr endet der Loyalty-Preis fürs Macher Festival 2027.
+
+159 €
+danach 179 €
+nur noch bis 30.08.
+
+🤔 „Ich weiß noch nicht, ob ich kann&quot;
+
+Das hören wir gerade oft, und es ist ein fairer Punkt. Zwei Gedanken dazu:
+
+Der Termin steht fest: 12.–15. August 2027. Ein Jahr Vorlauf reicht, um den Urlaub durchzubekommen.
+
+Und du entscheidest heute nicht, ob du hinfährst, sondern nur, zu welchem Preis. Die eigentliche Entscheidung kannst du dir lassen, so lange du willst — das Ticket kostet dann nur nie wieder 159 €.
+
+<span class="mb-btn">Ticket für 159 € sichern 👋🏼</span>
+
+Euer Macher Festival Team</div>
     </div>
     <div class="mail-side">
       <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">Noch ohne Ticket 2027</span></div>
@@ -405,7 +485,19 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
       <div class="msub">So 30.08. · 10 Uhr + 20 Uhr · Letzter Tag</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Letzte Chance auf den Loyalty-Preis ⏳</h3></div>
       <div class="pre-line"><b>Vorschau</b>Heute um 23:59 Uhr ist Schluss.</div>
-      <p>Kurz und ohne Umweg: heute noch der Loyalty-Preis, ab morgen der reguläre. Am Abend geht eine verkürzte Fassung an alle, die die Morgen-Mail nicht geöffnet haben. Keine Verlängerung — das hält die Frist auch für nächstes Jahr glaubwürdig.</p>
+      <div class="mail-body">Heute Nacht um 23:59 Uhr endet der Loyalty-Preis fürs Macher Festival 2027.
+
+159 € heute
+179 € ab morgen
+Es wird nicht verlängert
+
+Versprochen ist versprochen, auch beim Preis. Wenn wir jetzt verlängern, glaubt uns nächstes Jahr niemand mehr.
+
+<span class="mb-btn">Jetzt sichern 👋🏼</span>
+
+Wir sehen uns auf Ferropolis. 12.–15. August 2027. ❤️
+
+Euer Macher Festival Team</div>
     </div>
     <div class="mail-side">
       <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">Noch ohne Ticket 2027</span></div>
@@ -417,8 +509,8 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 
 <!-- WHATSAPP -->
 <section class="section" id="whatsapp">
-  <h2 class="h-section reveal">Fünf Posts in den <em>Community-Channels</em></h2>
-  <p class="sec-sub reveal">Alle fünf Posts gehen in beide Channels — Macherfestival und Real Life Guys. <strong>Amelie postet sie</strong>, die Texte sind fertig und können direkt übernommen werden. Weil sich in einem Channel niemand einzeln ansprechen lässt, sind sie so geschrieben, dass sie auch für Leute funktionieren, die dieses Jahr nicht dabei waren.</p>
+  <h2 class="h-section reveal">Vier Posts in den <em>Community-Channels</em></h2>
+  <p class="sec-sub reveal">Alle vier Posts gehen in beide Channels — Macherfestival und Real Life Guys. <strong>Amelie postet sie</strong>, die Texte sind fertig und können direkt übernommen werden. Weil sich in einem Channel niemand einzeln ansprechen lässt, sind sie so geschrieben, dass sie auch für Leute funktionieren, die dieses Jahr nicht dabei waren.</p>
 
   <div class="wa-card reveal">
     <div class="wa-num">1</div>
@@ -429,8 +521,6 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="wa-bubble">Danke für dieses Wochenende. ❤️
 
 4 Tage. 5.000 Macher. 100 Tiny Häuser. Dazu alles, was ihr geschweißt, gesägt und wieder auseinandergenommen habt — wir sind ehrlich gesagt immer noch platt.
-
-Die Fotos vom Wochenende sind schon in Arbeit, sie kommen diese Woche.
 
 Und für alle, die jetzt schon wissen, dass sie wiederkommen:
 🎟️ Die Tickets für 2027 sind ab sofort online.
@@ -445,22 +535,6 @@ Euer Macher Festival Team</div>
 
   <div class="wa-card reveal">
     <div class="wa-num">2</div>
-    <div class="wa-main">
-      <h3>Fotos kommen</h3>
-      <div class="wsub">Mi 12.08. · beide Channels · Amelie</div>
-      <p>Zwischenkontakt: Ankündigung der Fotogalerie, dazu der Hinweis auf die Tickets.</p>
-    <div class="wa-bubble">Die Fotos vom Wochenende kommen. 📸
-
-Wir sortieren gerade — in den nächsten Tagen ist die komplette Galerie online, dann könnt ihr euch raussuchen.
-
-Kleine Erinnerung nebenbei: Die Tickets für 2027 gibt es noch zum Loyalty-Preis, bis zum 30.08.
-
-👉 [Link]</div>
-    </div>
-  </div>
-
-  <div class="wa-card reveal">
-    <div class="wa-num">3</div>
     <div class="wa-main">
       <h3>Fotogalerie ist online</h3>
       <div class="wsub">Fr 15.08. · beide Channels · Amelie</div>
@@ -478,7 +552,7 @@ Und weil uns die Frage gerade oft erreicht: Ja, die Tickets für 2027 sind schon
   </div>
 
   <div class="wa-card reveal">
-    <div class="wa-num">4</div>
+    <div class="wa-num">3</div>
     <div class="wa-main">
       <h3>Noch eine Woche</h3>
       <div class="wsub">So 23.08. · beide Channels · Amelie</div>
@@ -496,7 +570,7 @@ Und ehrlich: Du entscheidest gerade nicht, ob du hinfährst. Nur, was es dich ko
   </div>
 
   <div class="wa-card reveal">
-    <div class="wa-num">5</div>
+    <div class="wa-num">4</div>
     <div class="wa-main">
       <h3>Letzter Tag</h3>
       <div class="wsub">So 30.08. · vormittags · beide Channels · Amelie</div>
@@ -666,7 +740,6 @@ Danach gilt der reguläre Preis. Keine Verlängerung, keine Ausnahmen. →</div>
   <div class="tline reveal">
     <div class="trow key"><div class="tdate">So 09.08.<span>Festivalende</span></div><div class="tdot s"></div><div class="twhat"><strong>Loyalty-Seite geht live</strong> mit frischen Festival-Fotos · <strong>Rückblick-Mail um 21 Uhr</strong> · WhatsApp-Post am Abend in beiden Channels</div><div class="ttag"><span class="tag n">Setup</span></div></div>
     <div class="trow key"><div class="tdate">Mo 10.08.<span>Start</span></div><div class="tdot m"></div><div class="twhat"><strong>Verkaufsstart:</strong> Mail um 18 Uhr an alle 2.224 Käufer · sieben Ads gehen live mit 80 € Tagesbudget</div><div class="ttag"><span class="tag b">Mail + Ads</span></div></div>
-    <div class="trow"><div class="tdate">Mi 12.08.</div><div class="tdot w"></div><div class="twhat">Fotogalerie angekündigt, beide Channels</div><div class="ttag"><span class="tag g">WhatsApp</span></div></div>
     <div class="trow"><div class="tdate">Do 13.08.</div><div class="tdot m"></div><div class="twhat"><strong>Fotogalerie per Mail</strong></div><div class="ttag"><span class="tag b">Mail</span></div></div>
     <div class="trow"><div class="tdate">Fr 15.08.</div><div class="tdot w"></div><div class="twhat">Fotogalerie im Channel</div><div class="ttag"><span class="tag g">WhatsApp</span></div></div>
     <div class="trow"><div class="tdate">Mi 20.08.</div><div class="tdot m"></div><div class="twhat"><strong>Tiny-Häuser-Geschichte per Mail</strong></div><div class="ttag"><span class="tag b">Mail</span></div></div>
@@ -686,41 +759,14 @@ Danach gilt der reguläre Preis. Keine Verlängerung, keine Ausnahmen. →</div>
 <!-- OFFENE PUNKTE -->
 <section class="section" id="offen">
   <h2 class="h-section reveal">Was wir <em>noch brauchen</em></h2>
-  <p class="sec-sub reveal">Alles rund um E-Mails, WhatsApp und Ads ist gebaut und eingestellt. Diese Inhalte kommen vom Festival selbst und brauchen wir zu den jeweiligen Terminen.</p>
+  <p class="sec-sub reveal">Alles rund um E-Mails, WhatsApp und Ads ist gebaut und eingestellt. Ein Inhalt fehlt uns noch, und der kommt vom Festival selbst.</p>
 
   <div class="reco-card reveal">
     <div class="reco-num">1</div>
     <div>
-      <div class="reco-title"><h3>Fotos vom Wochenende</h3><span class="tag r">Sonntag</span></div>
-      <p>Für die Loyalty-Seite. Nichts überzeugt so stark wie Bilder, die erkennbar von genau diesem Wochenende sind — die Leute sehen sich selbst und ihre Projekte wieder.</p>
-      <div class="reco-who">Team vor Ort</div>
-    </div>
-  </div>
-
-  <div class="reco-card reveal">
-    <div class="reco-num">2</div>
-    <div>
-      <div class="reco-title"><h3>Fotogalerie</h3><span class="tag y">Do 13.08.</span></div>
-      <p>Für die Mail am Donnerstag und den Channel-Post am Freitag. Falls die Galerie länger braucht, <strong>sagt uns früh Bescheid</strong> — dann verschieben wir beide Termine nach hinten.</p>
-      <div class="reco-who">Content-Team</div>
-    </div>
-  </div>
-
-  <div class="reco-card reveal">
-    <div class="reco-num">3</div>
-    <div>
       <div class="reco-title"><h3>Tiny-Häuser-Geschichten</h3><span class="tag y">Mi 20.08.</span></div>
       <p>Zwei oder drei konkrete Beispiele mit Foto: Wohin ist das Haus gegangen, an wen, was passiert damit? <strong>Ohne echte Geschichten senden wir diese Mail nicht</strong> — erfundene Beispiele wären das Gegenteil von dem, was sie leisten soll.</p>
       <div class="reco-who">Daniel / Team</div>
-    </div>
-  </div>
-
-  <div class="reco-card reveal">
-    <div class="reco-num">4</div>
-    <div>
-      <div class="reco-title"><h3>Tracking-Freigabe</h3><span class="tag n">laufend</span></div>
-      <p>Damit wir sehen, welche Ad tatsächlich Tickets verkauft. Aktuell melden die Kampagnen keine Käufe zurück, seit der Shop gewechselt hat. <strong>David ist dran</strong> — je früher das steht, desto besser kann Meta auf Käufer optimieren.</p>
-      <div class="reco-who">David</div>
     </div>
   </div>
 </section>
