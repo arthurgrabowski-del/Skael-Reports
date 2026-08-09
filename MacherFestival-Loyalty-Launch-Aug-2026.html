@@ -117,23 +117,23 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 .wa-bubble{background:#e7f6ea;border:1px solid #bfe6c8;border-radius:12px 12px 12px 4px;padding:20px 24px;font-size:13.5px;color:#14432a;line-height:1.75;white-space:pre-line;margin-top:16px;width:100%;}
 
 /* Ads */
-.ad-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:34px;}
-.ad-thumb{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:zoom-in;transition:transform .18s,box-shadow .18s;}
-.ad-thumb:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(15,27,45,0.12);}
-.ad-thumb img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;background:#e8ecf3;}
-.ad-thumb .cap{padding:9px 11px;font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border-top:1px solid var(--border);}
+.motiv-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:34px;}
+.motiv-thumb{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:zoom-in;transition:transform .18s,box-shadow .18s;}
+.motiv-thumb:hover{transform:translateY(-3px);box-shadow:0 8px 26px rgba(15,27,45,0.12);}
+.motiv-thumb img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;background:#e8ecf3;}
+.motiv-thumb .cap{padding:9px 11px;font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border-top:1px solid var(--border);}
 
-.adcard{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:400px 1fr;margin-bottom:22px;}
-.adcard-media{background:#f3f5f9;display:flex;align-items:center;justify-content:center;padding:34px;min-height:460px;}
+.motivbox{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:400px 1fr;margin-bottom:22px;}
+.motivbox-media{background:#f3f5f9;display:flex;align-items:center;justify-content:center;padding:34px;min-height:460px;}
 .vwrap{position:relative;cursor:zoom-in;}
 .vwrap img{display:block;width:320px;aspect-ratio:4/5;object-fit:cover;background:#e8ecf3;border-radius:10px;border:1px solid var(--border2);box-shadow:0 10px 30px rgba(15,27,45,0.14);transition:transform .18s;}
 .vwrap:hover img{transform:scale(1.03);}
 .vwrap .fmt{position:absolute;right:-8px;bottom:-8px;background:var(--white);border:1px solid var(--border2);border-radius:20px;padding:3px 9px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);box-shadow:0 2px 8px rgba(15,27,45,0.08);}
-.adcard-body{padding:30px 34px;align-self:center;}
-.ad-name{font-family:'Poppins',sans-serif;font-size:19px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;margin-bottom:2px;}
-.ad-run{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:16px;}
-.ad-field{margin-bottom:13px;}
-.ad-field:last-child{margin-bottom:0;}
+.motivbox-body{padding:30px 34px;align-self:center;}
+.motiv-name{font-family:'Poppins',sans-serif;font-size:19px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;margin-bottom:2px;}
+.motiv-run{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:16px;}
+.motiv-field{margin-bottom:13px;}
+.motiv-field:last-child{margin-bottom:0;}
 .af-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);display:block;margin-bottom:4px;}
 .af-primary{background:#fafbfd;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 16px;font-size:12.5px;color:var(--body);white-space:pre-line;line-height:1.6;}
 .af-val{font-size:14px;color:var(--navy);font-weight:500;}
@@ -195,7 +195,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .container{padding:0;max-width:100%;}
   .hero{padding:0 0 12px;}
   .section{padding:14px 0;}
-  #zielgruppe,#mails,#whatsapp,#ads,#ablauf,#offen{page-break-before:always;}
+  #zielgruppe,#mails,#whatsapp,#motive,#ablauf,#offen{page-break-before:always;}
   .h-hero{font-size:30px;}
   .h-section{font-size:20px;margin-bottom:12px;}
   .hero-sub,.sec-sub{font-size:9.4px;line-height:1.55;margin-bottom:12px;max-width:100%;}
@@ -216,14 +216,14 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .mail-side{padding-left:12px;}.ms-row{margin-bottom:6px;}
   .ms-lbl{font-size:7.2px;}.ms-val{font-size:8.8px;}
   .wa-bubble{padding:9px 11px;font-size:8.6px;line-height:1.5;margin-top:8px;max-width:100%;}
-  .ad-strip{grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:12px;page-break-inside:avoid;}
-  .ad-thumb .cap{padding:5px 7px;font-size:6.8px;}
-  .adcard{grid-template-columns:120px 1fr;margin-bottom:7px;page-break-inside:avoid;}
-  .adcard-media{padding:9px;min-height:0;}.vwrap img{width:104px;}
+  .motiv-strip{grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:12px;page-break-inside:avoid;}
+  .motiv-thumb .cap{padding:5px 7px;font-size:6.8px;}
+  .motivbox{grid-template-columns:120px 1fr;margin-bottom:7px;page-break-inside:avoid;}
+  .motivbox-media{padding:9px;min-height:0;}.vwrap img{width:104px;}
   .vwrap .fmt{font-size:6.4px;padding:2px 5px;}
-  .adcard-body{padding:11px 14px;}
-  .ad-name{font-size:12.5px;}.ad-run{font-size:7.6px;margin-bottom:8px;}
-  .ad-field{margin-bottom:7px;}.af-lbl{font-size:7.2px;margin-bottom:2px;}
+  .motivbox-body{padding:11px 14px;}
+  .motiv-name{font-size:12.5px;}.motiv-run{font-size:7.6px;margin-bottom:8px;}
+  .motiv-field{margin-bottom:7px;}.af-lbl{font-size:7.2px;margin-bottom:2px;}
   .af-primary{padding:7px 10px;font-size:8.4px;line-height:1.45;}
   .af-val{font-size:9.4px;}.af-val.mono{font-size:8.4px;}
   .trow{padding:7px 12px;grid-template-columns:80px 16px 1fr 84px;gap:9px;}
@@ -238,11 +238,11 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
   .container{padding:0 20px;}
   .h-hero{font-size:40px;}.h-section{font-size:32px;}
-  .adcard,.mailcard{grid-template-columns:1fr;}
-  .adcard-media{min-height:0;padding:22px;}
+  .motivbox,.mailcard{grid-template-columns:1fr;}
+  .motivbox-media{min-height:0;padding:22px;}
   .vwrap img{width:100%;max-width:280px;}
   .wa-card{grid-template-columns:1fr;}
-  .ad-strip{grid-template-columns:repeat(2,1fr);}
+  .motiv-strip{grid-template-columns:repeat(2,1fr);}
   .mail-side{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:14px;}
   .trow{grid-template-columns:84px 18px 1fr;}.ttag{display:none;}
   .nav-tabs{display:none;}
@@ -259,7 +259,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <a class="nav-tab" href="#zielgruppe">Zielgruppe</a>
     <a class="nav-tab" href="#mails">E-Mails</a>
     <a class="nav-tab" href="#whatsapp">WhatsApp</a>
-    <a class="nav-tab" href="#ads">Ads</a>
+    <a class="nav-tab" href="#motive">Ads</a>
     <a class="nav-tab" href="#ablauf">Ablauf</a>
     <a class="nav-tab" href="#offen">Offene Punkte</a>
   </div>
@@ -525,158 +525,158 @@ Wir sehen uns auf Ferropolis. 12.–15. August 2027. ❤️</div>
 </section>
 
 <!-- ADS -->
-<section class="section" id="ads">
+<section class="section" id="motive">
   <h2 class="h-section reveal">Loyalty-Phase <em>Ads</em></h2>
   <p class="sec-sub reveal">Zehn Ads, jede in drei Formaten — Feed 4:5, Post 1:1 und Story 9:16, insgesamt 30 Dateien mit geprüften Sicherheitsabständen für Instagram. Ausgespielt als Retargeting auf die Käufer von 2026 und Website-Besucher, mit <strong>80 € Tagesbudget</strong>. Sieben laufen ab Montag, drei kommen ab dem 24. August dazu. <strong>Klick auf ein Bild zeigt es groß.</strong></p>
 
-  <div class="ad-strip">
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/V1.jpg" data-cap="V1 · Danke-Deal"><img src="assets/mf27-loyalty/V1.jpg" alt="V1"><div class="cap">V1 · Danke-Deal</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L8.jpg" data-cap="L8 · Preis"><img src="assets/mf27-loyalty/L8.jpg" alt="L8"><div class="cap">L8 · Preis</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L7.jpg" data-cap="L7 · Danke, Macher"><img src="assets/mf27-loyalty/L7.jpg" alt="L7"><div class="cap">L7 · Danke, Macher</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L6.jpg" data-cap="L6 · See you next year"><img src="assets/mf27-loyalty/L6.jpg" alt="L6"><div class="cap">L6 · See you next year</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L11.jpg" data-cap="L11 · Block den Urlaub"><img src="assets/mf27-loyalty/L11.jpg" alt="L11"><div class="cap">L11 · Urlaub blocken</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L12.jpg" data-cap="L12 · Take-Home"><img src="assets/mf27-loyalty/L12.jpg" alt="L12"><div class="cap">L12 · Take-Home</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L10.jpg" data-cap="L10 · Bestpreis"><img src="assets/mf27-loyalty/L10.jpg" alt="L10"><div class="cap">L10 · Bestpreis</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/V4.jpg" data-cap="V4 · Countdown"><img src="assets/mf27-loyalty/V4.jpg" alt="V4"><div class="cap">V4 · Countdown</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L9.jpg" data-cap="L9 · Frist 30.08."><img src="assets/mf27-loyalty/L9.jpg" alt="L9"><div class="cap">L9 · Frist 30.08.</div></div>
-    <div class="ad-thumb" data-src="assets/mf27-loyalty/L14.jpg" data-cap="L14 · Countdown 2"><img src="assets/mf27-loyalty/L14.jpg" alt="L14"><div class="cap">L14 · Countdown 2</div></div>
+  <div class="motiv-strip">
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/V1.jpg" data-cap="V1 · Danke-Deal"><img src="assets/mf27-loyalty/V1.jpg" alt="V1"><div class="cap">V1 · Danke-Deal</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L8.jpg" data-cap="L8 · Preis"><img src="assets/mf27-loyalty/L8.jpg" alt="L8"><div class="cap">L8 · Preis</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L7.jpg" data-cap="L7 · Danke, Macher"><img src="assets/mf27-loyalty/L7.jpg" alt="L7"><div class="cap">L7 · Danke, Macher</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L6.jpg" data-cap="L6 · See you next year"><img src="assets/mf27-loyalty/L6.jpg" alt="L6"><div class="cap">L6 · See you next year</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L11.jpg" data-cap="L11 · Block den Urlaub"><img src="assets/mf27-loyalty/L11.jpg" alt="L11"><div class="cap">L11 · Urlaub blocken</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L12.jpg" data-cap="L12 · Take-Home"><img src="assets/mf27-loyalty/L12.jpg" alt="L12"><div class="cap">L12 · Take-Home</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L10.jpg" data-cap="L10 · Bestpreis"><img src="assets/mf27-loyalty/L10.jpg" alt="L10"><div class="cap">L10 · Bestpreis</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/V4.jpg" data-cap="V4 · Countdown"><img src="assets/mf27-loyalty/V4.jpg" alt="V4"><div class="cap">V4 · Countdown</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L9.jpg" data-cap="L9 · Frist 30.08."><img src="assets/mf27-loyalty/L9.jpg" alt="L9"><div class="cap">L9 · Frist 30.08.</div></div>
+    <div class="motiv-thumb" data-src="assets/mf27-loyalty/L14.jpg" data-cap="L14 · Countdown 2"><img src="assets/mf27-loyalty/L14.jpg" alt="L14"><div class="cap">L14 · Countdown 2</div></div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/V1.jpg" data-cap="V1 · Danke-Deal"><img src="assets/mf27-loyalty/V1.jpg" alt="V1"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">V1 · Danke-Deal</div>
-      <div class="ad-run">Läuft 10.08. – 23.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">5.000 Macher waren gerade auf Ferropolis — und du warst einer davon.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/V1.jpg" data-cap="V1 · Danke-Deal"><img src="assets/mf27-loyalty/V1.jpg" alt="V1"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">V1 · Danke-Deal</div>
+      <div class="motiv-run">Läuft 10.08. – 23.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">5.000 Macher waren gerade auf Ferropolis — und du warst einer davon.
 
 Für alle, die 2027 wiederkommen, gibt es die Tickets jetzt zum Loyalty-Preis. Nur bis 30.08. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Loyalty-Preis bis 30.08.</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Macher Festival 2027 · 12.–15. August · Ferropolis</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Loyalty-Preis bis 30.08.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Macher Festival 2027 · 12.–15. August · Ferropolis</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L8.jpg" data-cap="L8 · Preis"><img src="assets/mf27-loyalty/L8.jpg" alt="L8"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L8 · Preis</div>
-      <div class="ad-run">Läuft 10.08. – 30.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Der Loyalty-Preis. Mehr muss man dazu nicht sagen.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L8.jpg" data-cap="L8 · Preis"><img src="assets/mf27-loyalty/L8.jpg" alt="L8"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L8 · Preis</div>
+      <div class="motiv-run">Läuft 10.08. – 30.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Der Loyalty-Preis. Mehr muss man dazu nicht sagen.
 
 Gilt für alle, die dieses Jahr dabei waren — nur bis 30.08. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Loyalty-Ticket 2027</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Nur bis 30.08. · danach regulärer Preis</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Loyalty-Ticket 2027</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Nur bis 30.08. · danach regulärer Preis</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L7.jpg" data-cap="L7 · Danke, Macher"><img src="assets/mf27-loyalty/L7.jpg" alt="L7"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L7 · Danke, Macher</div>
-      <div class="ad-run">Läuft 10.08. – 23.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">4 Tage. 5.000 Macher. 100 Tiny Häuser.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L7.jpg" data-cap="L7 · Danke, Macher"><img src="assets/mf27-loyalty/L7.jpg" alt="L7"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L7 · Danke, Macher</div>
+      <div class="motiv-run">Läuft 10.08. – 23.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">4 Tage. 5.000 Macher. 100 Tiny Häuser.
 
 Danke, dass ihr das möglich gemacht habt. 2027 bauen wir wieder — wer dabei sein will, bekommt jetzt den Loyalty-Preis. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">2027 bauen wir weiter</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Loyalty-Preis nur bis 30.08.</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">2027 bauen wir weiter</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Loyalty-Preis nur bis 30.08.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L6.jpg" data-cap="L6 · See you next year"><img src="assets/mf27-loyalty/L6.jpg" alt="L6"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L6 · See you next year</div>
-      <div class="ad-run">Läuft 10.08. – 23.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">12.–15. August 2027. Schreib es dir jetzt in den Kalender.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L6.jpg" data-cap="L6 · See you next year"><img src="assets/mf27-loyalty/L6.jpg" alt="L6"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L6 · See you next year</div>
+      <div class="motiv-run">Läuft 10.08. – 23.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">12.–15. August 2027. Schreib es dir jetzt in den Kalender.
 
 Und wenn du schon dabei bist: Als Wiederkommer bekommst du den Loyalty-Preis. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">See you next year.</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">12.–15. August 2027 · Ferropolis</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">See you next year.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">12.–15. August 2027 · Ferropolis</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L11.jpg" data-cap="L11 · Block den Urlaub"><img src="assets/mf27-loyalty/L11.jpg" alt="L11"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L11 · Block den Urlaub</div>
-      <div class="ad-run">Läuft 10.08. – 30.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">12.–15. August 2027. Ein Jahr Vorlauf — den Urlaub bekommst du jetzt noch problemlos durch.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L11.jpg" data-cap="L11 · Block den Urlaub"><img src="assets/mf27-loyalty/L11.jpg" alt="L11"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L11 · Block den Urlaub</div>
+      <div class="motiv-run">Läuft 10.08. – 30.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">12.–15. August 2027. Ein Jahr Vorlauf — den Urlaub bekommst du jetzt noch problemlos durch.
 
 Und das Ticket kostet dich heute weniger. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Block den Urlaub.</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">12.–15. August 2027 · Loyalty-Preis</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Block den Urlaub.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">12.–15. August 2027 · Loyalty-Preis</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L12.jpg" data-cap="L12 · Take-Home"><img src="assets/mf27-loyalty/L12.jpg" alt="L12"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L12 · Take-Home</div>
-      <div class="ad-run">Läuft 10.08. – 30.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Bauen, fahren, mitnehmen. Alles, was du auf dem Macher Festival baust, gehört dir.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L12.jpg" data-cap="L12 · Take-Home"><img src="assets/mf27-loyalty/L12.jpg" alt="L12"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L12 · Take-Home</div>
+      <div class="motiv-run">Läuft 10.08. – 30.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Bauen, fahren, mitnehmen. Alles, was du auf dem Macher Festival baust, gehört dir.
 
 35+ Workshops, 40+ Schweißbänke, ab 12 Jahren. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Bau's. Fahr's. Nimm's mit.</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">35+ Workshops · alles Selbstgebaute gehört dir</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Bau's. Fahr's. Nimm's mit.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">35+ Workshops · alles Selbstgebaute gehört dir</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L10.jpg" data-cap="L10 · Bestpreis"><img src="assets/mf27-loyalty/L10.jpg" alt="L10"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L10 · Bestpreis</div>
-      <div class="ad-run">Läuft 10.08. – 30.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Der Loyalty-Preis ist der niedrigste Preis, den es für 2027 geben wird. Danach geht es nur noch nach oben. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">So günstig wie nie wieder</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Ticket 2027 · Loyalty-Preis bis 30.08.</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L10.jpg" data-cap="L10 · Bestpreis"><img src="assets/mf27-loyalty/L10.jpg" alt="L10"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L10 · Bestpreis</div>
+      <div class="motiv-run">Läuft 10.08. – 30.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Der Loyalty-Preis ist der niedrigste Preis, den es für 2027 geben wird. Danach geht es nur noch nach oben. →</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">So günstig wie nie wieder</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Ticket 2027 · Loyalty-Preis bis 30.08.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/V4.jpg" data-cap="V4 · Countdown"><img src="assets/mf27-loyalty/V4.jpg" alt="V4"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">V4 · Countdown</div>
-      <div class="ad-run">Läuft ab 24.08. · Tageszahl im Bild wird wöchentlich getauscht</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Noch wenige Tage, dann endet der Loyalty-Preis.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/V4.jpg" data-cap="V4 · Countdown"><img src="assets/mf27-loyalty/V4.jpg" alt="V4"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">V4 · Countdown</div>
+      <div class="motiv-run">Läuft ab 24.08. · Tageszahl im Bild wird wöchentlich getauscht</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Noch wenige Tage, dann endet der Loyalty-Preis.
 
 Es wird nicht verlängert, auch nicht auf Nachfrage. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Der Loyalty-Preis endet bald</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Danach gilt der reguläre Preis</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Der Loyalty-Preis endet bald</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Danach gilt der reguläre Preis</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L9.jpg" data-cap="L9 · Frist 30.08."><img src="assets/mf27-loyalty/L9.jpg" alt="L9"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L9 · Frist 30.08.</div>
-      <div class="ad-run">Läuft ab 24.08.</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Der Loyalty-Preis gilt bis zum 30.08., 23:59 Uhr. Danach kostet dasselbe Ticket den regulären Preis.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L9.jpg" data-cap="L9 · Frist 30.08."><img src="assets/mf27-loyalty/L9.jpg" alt="L9"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L9 · Frist 30.08.</div>
+      <div class="motiv-run">Läuft ab 24.08.</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Der Loyalty-Preis gilt bis zum 30.08., 23:59 Uhr. Danach kostet dasselbe Ticket den regulären Preis.
 
 Wir verlängern nicht — versprochen ist versprochen, auch beim Preis. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Nur noch bis 30.08.</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Danach regulärer Preis · keine Verlängerung</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Nur noch bis 30.08.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Danach regulärer Preis · keine Verlängerung</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 
-  <div class="adcard">
-    <div class="adcard-media"><div class="vwrap" data-src="assets/mf27-loyalty/L14.jpg" data-cap="L14 · Countdown 2"><img src="assets/mf27-loyalty/L14.jpg" alt="L14"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
-    <div class="adcard-body">
-      <div class="ad-name">L14 · Countdown 2</div>
-      <div class="ad-run">Läuft ab 24.08. · wechselt sich mit V4 ab</div>
-      <div class="ad-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Noch wenige Tage Loyalty-Preis.
+  <div class="motivbox">
+    <div class="motivbox-media"><div class="vwrap" data-src="assets/mf27-loyalty/L14.jpg" data-cap="L14 · Countdown 2"><img src="assets/mf27-loyalty/L14.jpg" alt="L14"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="motivbox-body">
+      <div class="motiv-name">L14 · Countdown 2</div>
+      <div class="motiv-run">Läuft ab 24.08. · wechselt sich mit V4 ab</div>
+      <div class="motiv-field"><span class="af-lbl">Anzeigentext</span><div class="af-primary">Noch wenige Tage Loyalty-Preis.
 
 Danach gilt der reguläre Preis. Keine Verlängerung, keine Ausnahmen. →</div></div>
-      <div class="ad-field"><span class="af-lbl">Titel</span><div class="af-val">Der Countdown läuft</div></div>
-      <div class="ad-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Loyalty-Preis endet am 30.08.</div></div>
-      <div class="ad-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
+      <div class="motiv-field"><span class="af-lbl">Titel</span><div class="af-val">Der Countdown läuft</div></div>
+      <div class="motiv-field"><span class="af-lbl">Beschreibung</span><div class="af-val mono">Loyalty-Preis endet am 30.08.</div></div>
+      <div class="motiv-field"><span class="af-lbl">Button</span><div class="af-val mono">Tickets kaufen</div></div>
     </div>
   </div>
 </section>
