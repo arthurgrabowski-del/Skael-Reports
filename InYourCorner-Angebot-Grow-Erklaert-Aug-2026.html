@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — In Your Corner · Das Grow-Angebot erklärt</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report — In Your Corner · Das Grow-Angebot erklärt">
+<meta property="og:description" content="Paid Media · Angebot A26-1673 · Ausführliche Erklärung für das Team">
+<meta property="og:url" content="https://reports.skael.de/InYourCorner-Angebot-Grow-Erklaert-Aug-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:16px;letter-spacing:-0.012em;line-height:1.78;background:var(--bg);color:var(--body);}
+
+nav{position:sticky;top:0;z-index:200;height:56px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-title{font-size:12.5px;color:var(--muted);}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+.wrap{max-width:768px;margin:0 auto;padding:0 32px;}
+.hero{padding:80px 0 12px;}
+.meta-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px 7px 10px;margin-bottom:28px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.h-hero{font-family:'Poppins',sans-serif;font-size:54px;font-weight:500;letter-spacing:-0.04em;line-height:1.08;color:var(--navy);opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.standfirst{font-size:19px;line-height:1.68;color:var(--muted);margin-top:26px;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+.standfirst strong{color:var(--navy);font-weight:500;}
+
+.hero-meta{display:flex;gap:30px;flex-wrap:wrap;margin-top:32px;padding-top:26px;border-top:1px solid var(--border);opacity:0;animation:fadeUp 0.6s ease 0.6s forwards;}
+.hero-meta-item{display:flex;flex-direction:column;gap:1px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);line-height:1.5;}
+
+.toc{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin:44px 0 8px;}
+.toc-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:14px;}
+.toc ol{list-style:none;counter-reset:toc;}
+.toc li{counter-increment:toc;padding:5px 0;border-bottom:1px solid var(--border);}
+.toc li:last-child{border-bottom:none;}
+.toc a{font-size:14px;color:var(--body);text-decoration:none;display:flex;gap:12px;transition:color 0.15s;}
+.toc a:hover{color:var(--blue);}
+.toc a::before{content:counter(toc);font-family:'DM Mono',monospace;font-size:11px;color:var(--sub);min-width:18px;padding-top:2px;}
+
+section.chapter{padding:52px 0 0;scroll-margin-top:70px;}
+.kicker{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:12px;}
+h2{font-family:'Poppins',sans-serif;font-size:34px;font-weight:500;letter-spacing:-0.035em;line-height:1.16;color:var(--navy);margin-bottom:24px;}
+h2 em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+h3{font-family:'Poppins',sans-serif;font-size:19px;font-weight:500;letter-spacing:-0.02em;line-height:1.35;color:var(--navy);margin:36px 0 14px;}
+p{margin-bottom:20px;}
+p strong{color:var(--navy);font-weight:500;}
+p em{font-style:italic;}
+.chapter ul{margin:0 0 22px 0;padding-left:0;list-style:none;}
+.chapter ul li{position:relative;padding-left:22px;margin-bottom:11px;}
+.chapter ul li::before{content:'';position:absolute;left:2px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--blue-mid);}
+.chapter ul li strong{color:var(--navy);font-weight:500;}
+
+.pull{border-left:3px solid var(--blue);padding:4px 0 4px 24px;margin:32px 0;}
+.pull p{font-family:'Instrument Serif',serif;font-size:25px;font-style:italic;line-height:1.42;color:var(--navy);margin:0;letter-spacing:-0.01em;}
+
+.quote-box{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 24px;margin:26px 0;}
+.quote-box .ql{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:10px;}
+.quote-box p{font-size:15px;line-height:1.7;color:var(--body);margin:0;font-style:italic;}
+.quote-box p strong{font-style:normal;}
+
+.note{border-radius:10px;padding:18px 22px;margin:26px 0;border:1px solid var(--blue-mid);background:var(--blue-bg);}
+.note p{font-size:14.5px;line-height:1.7;color:var(--blue);margin:0;}
+.note p + p{margin-top:12px;}
+.note strong{color:var(--blue);font-weight:600;}
+.note.red{background:var(--red-bg);border-color:#fca5a5;}
+.note.red p, .note.red strong{color:var(--red);}
+.note.yellow{background:var(--yellow-bg);border-color:#fcd34d;}
+.note.yellow p, .note.yellow strong{color:var(--yellow);}
+.note.green{background:var(--green-bg);border-color:#86efac;}
+.note.green p, .note.green strong{color:var(--green);}
+.note-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:8px;display:block;opacity:0.75;}
+
+.calc-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 26px;margin:26px 0;}
+.calc-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:14px;}
+.calc{font-family:'DM Mono',monospace;font-size:13px;line-height:2;color:var(--body);white-space:pre;overflow-x:auto;display:block;letter-spacing:0;}
+.calc .r{color:var(--red);font-weight:500;}
+.calc .g{color:var(--green);font-weight:500;}
+.calc .n{color:var(--navy);font-weight:500;}
+.calc .c{color:var(--sub);}
+
+.table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:26px 0;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.13em;color:var(--sub);padding:12px 18px;text-align:right;border-bottom:1px solid var(--border);}
+thead th:first-child{text-align:left;}
+tbody td{font-size:14px;color:var(--body);padding:12px 18px;border-bottom:1px solid var(--border);text-align:right;}
+tbody td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover td{background:#f8f9ff;}
+tbody tr.hl td{background:#f0f4ff;font-weight:500;}
+tbody tr.hl:hover td{background:#e6edff;}
+.cell-sub{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--sub);margin-top:3px;letter-spacing:0.04em;text-transform:uppercase;display:block;font-weight:400;}
+.good{color:var(--green);font-weight:600;}
+.mid{color:var(--yellow);font-weight:600;}
+.bad{color:var(--red);font-weight:600;}
+
+.step{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 26px;margin:14px 0;display:flex;gap:20px;align-items:flex-start;}
+.step-num{font-family:'Poppins',sans-serif;font-size:26px;font-weight:500;line-height:1.1;color:var(--blue);min-width:30px;}
+.step-body h4{font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:var(--navy);margin-bottom:6px;line-height:1.4;}
+.step-body p{font-size:14.5px;line-height:1.7;margin:0;color:var(--body);}
+.step.crit{border-color:#fca5a5;background:#fff8f8;}
+.step.crit .step-num{color:var(--red);}
+
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;margin-left:8px;vertical-align:middle;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+
+.divider{height:1px;background:var(--border);margin:56px 0 0;}
+
+.fazit-card{background:var(--white);border:1px solid var(--blue-mid);border-radius:10px;padding:32px 34px;margin:28px 0;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:23px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:16px;line-height:1.3;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-card p{font-size:15.5px;line-height:1.8;}
+
+.footer{padding:36px 0 56px;margin-top:56px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);gap:16px;flex-wrap:wrap;}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);text-align:right;line-height:1.7;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;white-space:nowrap;}
+.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue);color:#fff;}
+.eb-save{background:#fff;color:var(--navy);display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);}
+
+@media(max-width:760px){
+  body{font-size:15px;}
+  .wrap{padding:0 18px;}
+  .hero{padding:48px 0 8px;}
+  .h-hero{font-size:33px;}
+  .standfirst{font-size:16.5px;}
+  h2{font-size:26px;}
+  h3{font-size:17px;}
+  .pull p{font-size:20px;}
+  .calc{font-size:10.5px;}
+  section.chapter{padding:40px 0 0;}
+  .step{flex-direction:column;gap:8px;}
+  thead th, tbody td{padding:10px 12px;font-size:13px;}
+  .nav-title{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <span class="nav-title">In Your Corner · Das Grow-Angebot erklärt</span>
+  <div class="nav-right"><span class="nav-pill">Intern · 09.08.2026</span></div>
+</nav>
+
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="meta-badge">
+    <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#3a6ef4"/><text x="9" y="12.5" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#fff">I</text></svg>
+    <span>Paid Media · Angebot A26-1673 · Nur intern</span>
+  </div>
+
+  <h1 class="h-hero">Das Grow-Angebot,<br><em>komplett erklärt</em></h1>
+
+  <p class="standfirst">Grow Agency will unser Paid-Media-Partner werden. Das Angebot liegt seit dem 07. August vor. Dieser Text erklärt Schritt für Schritt, <strong>was Grow für uns tut, was uns das kostet und wo das Angebot ein echtes Problem hat</strong> — ohne Fachsprache, so dass jeder im Team mitreden kann.</p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-label">Angebot</span><span class="hero-meta-value">A26-1673 · 07.08.2026<br>gültig bis 21.08.2026</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Von / An</span><span class="hero-meta-value">Grow Agency GmbH<br>→ Orbita Media GmbH</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Grundlagen</span><span class="hero-meta-value">Angebot · Kompendium (30.07.)<br>Businessplan (04.03.2025)</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Erstellt</span><span class="hero-meta-value">09. August 2026<br>Skael</span></div>
+  </div>
+
+  <div class="note red" style="margin-top:32px;">
+    <span class="note-label">Vertraulich</span>
+    <p><strong>Nicht an Grow weitergeben.</strong> Dieser Text enthält unsere Gewinnmargen aus dem Businessplan und unsere Verhandlungslinie. Für Grow gibt es eine separate, gekürzte Fassung.</p>
+  </div>
+
+  <nav class="toc">
+    <div class="toc-label">Kapitel</div>
+    <ol>
+      <li><a href="#k1">Worum es überhaupt geht</a></li>
+      <li><a href="#k2">Die Begriffe, die man braucht</a></li>
+      <li><a href="#k3">Was Grow macht — die drei Rechnungen</a></li>
+      <li><a href="#k4">Wie der Bonus genau funktioniert</a></li>
+      <li><a href="#k5">Was das insgesamt kostet</a></li>
+      <li><a href="#k6">Was uns ein Buch wirklich einbringt</a></li>
+      <li><a href="#k7">Die Kernrechnung</a></li>
+      <li><a href="#k8">Warum der Durchschnitt uns täuscht</a></li>
+      <li><a href="#k9">Das Amazon-Problem</a></li>
+      <li><a href="#k10">Die Staffel gegen unseren eigenen Benchmark</a></li>
+      <li><a href="#k11">Der Konstruktionsfehler in einem Satz</a></li>
+      <li><a href="#k12">Was wir angefragt haben und was fehlt</a></li>
+      <li><a href="#k13">Das Dashboard-Problem</a></li>
+      <li><a href="#k14">Vertrag und Zeitplan</a></li>
+      <li><a href="#k15">Das Urteil</a></li>
+      <li><a href="#k16">Was wir ändern müssen</a></li>
+      <li><a href="#k17">Was wir selbst liefern müssen</a></li>
+      <li><a href="#k18">Was noch fehlt</a></li>
+    </ol>
+  </nav>
+</header>
+
+<!-- 1 -->
+<section class="chapter" id="k1">
+  <div class="kicker">Kapitel 1</div>
+  <h2>Worum es überhaupt geht</h2>
+  <p>Wir bringen ein Buch raus: „In Your Corner" von Javier Mendez. Der Pre-Sale startet am 1. September, das Buch erscheint am 20. Oktober, und der große Launch hängt am Titelkampf von Islam Makhachev im November.</p>
+  <p>Damit Leute das Buch kaufen, brauchen wir Werbung — auf Instagram, TikTok, YouTube, Google und Amazon. Jemand muss diese Werbung bauen und dann täglich steuern. Diesen Jemand suchen wir seit Monaten. Zwei Anläufe sind gescheitert. Grow Agency aus Hamburg ist der dritte Kandidat, und das hier ist deren Angebot.</p>
+
+  <h3>Zwei Geldtöpfe, die man nie verwechseln darf</h3>
+  <p>Bevor irgendeine Zahl Sinn ergibt, muss eine Sache klar sein. Es gibt zwei völlig getrennte Töpfe:</p>
+  <ul>
+    <li><strong>Topf 1 — das Werbebudget.</strong> Das Geld, das an Instagram, Google, TikTok und Amazon geht, damit sie unsere Anzeigen ausspielen. Bei uns: 250.000 € zum Start. Dieses Geld ist ausdrücklich <em>nicht</em> Teil des Angebots.</li>
+    <li><strong>Topf 2 — das Honorar für Grow.</strong> Was Grow für ihre Arbeit bekommt. Nur darum geht es in dem Papier, das uns vorliegt.</li>
+  </ul>
+  <p>Grow schreibt das selbst in den Angebotskopf: <em>„Das Media-Budget ist nicht Bestandteil dieses Kostenvoranschlags und wird separat abgerechnet. Dieses Angebot umfasst ausschließlich die Agentur-Eigenleistungen."</em></p>
+  <p>Fast alle Missverständnisse bei so einem Vertrag entstehen dadurch, dass jemand die beiden Töpfe vermischt. Also: 250.000 € sind Werbung. Das Angebot ist das Honorar. Zwei Paar Schuhe.</p>
+</section>
+
+<!-- 2 -->
+<section class="chapter" id="k2">
+  <div class="kicker">Kapitel 2</div>
+  <h2>Die Begriffe, die man <em>braucht</em></h2>
+  <p>Vier Wörter, dann können wir loslegen. Ich erkläre sie einmal und benutze sie danach.</p>
+
+  <h3>CPS — Cost per Sale</h3>
+  <p>Zu Deutsch: <strong>Werbekosten pro verkauftem Buch.</strong> Man nimmt das Werbebudget und teilt es durch die Zahl der verkauften Bücher.</p>
+  <p>Beispiel: 100.000 € Werbung ausgegeben, 10.000 Bücher verkauft. Macht 10 € Werbekosten pro Buch. Ein niedriger CPS ist gut, ein hoher ist schlecht. Das ist die zentrale Zahl im ganzen Angebot.</p>
+
+  <h3>Blended CPS</h3>
+  <p>„Blended" heißt schlicht <strong>vermischt</strong>. Also nicht „was hat ein Buch über TikTok gekostet" und getrennt davon „was über Amazon", sondern alles in einen Topf und eine einzige Durchschnittszahl daraus. Klingt harmlos. Ist es in unserem Fall nicht — dazu kommen wir in Kapitel 8.</p>
+
+  <h3>Attribution — die Zuordnung</h3>
+  <p>Die Frage dahinter: Welcher Verkauf ist wegen welcher Anzeige passiert? Das lässt sich nie exakt messen, deshalb einigt man sich auf Regeln. Zum Beispiel: „Wer auf eine Anzeige klickt und innerhalb von sieben Tagen kauft, zählt als Werbeverkauf." Wer diese Regeln festlegt, bestimmt am Ende, wie erfolgreich die Werbung aussieht.</p>
+
+  <h3>Gewinn pro Buch</h3>
+  <p>Was von einem verkauften Buch bei uns übrig bleibt, nachdem Druck, Versand, Verpackung und Zahlungsgebühren bezahlt sind — aber <strong>bevor</strong> die Werbung bezahlt ist. Diese Unterscheidung ist entscheidend, und wir prüfen sie in Kapitel 6 nach.</p>
+</section>
+
+<!-- 3 -->
+<section class="chapter" id="k3">
+  <div class="kicker">Kapitel 3</div>
+  <h2>Was Grow macht — <em>drei Rechnungen</em></h2>
+  <p>Grow stellt uns drei verschiedene Rechnungen. Sie funktionieren völlig unterschiedlich, und deshalb lohnt es sich, jede einzeln anzuschauen.</p>
+
+  <h3>Rechnung 1 — Setup: 11.000 € einmalig</h3>
+  <p>Aufgeteilt in 10.000 € für den eigentlichen Aufbau und 1.000 € „Projektleitung" — das sind zehn Prozent vom Setup obendrauf.</p>
+  <p>Dafür bauen sie, wie sie es nennen, „die komplette Paid-Media-Infrastruktur für drei Kernmärkte über vier Kanäle auf, von der Materialsichtung bis zum Teststart". Konkret sind das fünf Arbeitsschritte:</p>
+  <ul>
+    <li><strong>Material sichten.</strong> Sie gehen alle vorhandenen Fotos, Videos, das Cover und die Social-Media-Inhalte aus dem Umfeld von Javier, Khabib und der AKA durch und bewerten, was sich als Werbemittel eignet. Am Ende steht eine Liste mit dem, was noch fehlt — sie nennen es „Asset-Wunschliste".</li>
+    <li><strong>Werbekonten einrichten.</strong> Meta Business Manager, TikTok Ads Manager und Google Ads inklusive YouTube anlegen oder prüfen und mit unserem Shopify-Shop verbinden. <em>Amazon steht in dieser Aufzählung nicht.</em></li>
+    <li><strong>Messung einbauen.</strong> Pixel, Conversion-API, Conversion-Ziele und eine saubere UTM-Logik. Grow schreibt selbst dazu, das sei die „Voraussetzung dafür, dass CPA, CPS und die Bonus-Staffel überhaupt messbar sind".</li>
+    <li><strong>Zielgruppen bauen.</strong> Pro Markt eine Struktur entlang unserer drei Käufersegmente — Mat-Rats, Hardcore-Fans, Casual-Fans. Dazu kalte Interessensgruppen wie UFC, Khabib, Makhachev, MMA und Mindset, warme Gruppen wie Video-Zuschauer und Seitenbesucher, plus Retargeting und Lookalikes.</li>
+    <li><strong>Kampagnen anlegen und testen.</strong> Getrennte Strukturen für die Pre-Sale-Phase und die Launch-Phase, in den USA, DACH und den Emiraten, auf Englisch und Deutsch. Danach ein technischer Funktionstest der ganzen Strecke — Anzeige, Landingpage, Checkout, Messung — und ein kontrollierter Teststart mit kleinem Budget.</li>
+  </ul>
+  <p>Genauso wichtig ist, was sie ausdrücklich <strong>nicht</strong> machen. Wörtlich: <em>„Nicht enthalten sind die Produktion neuer Foto- und Video-Creatives, die Landingpage-Entwicklung über das bestehende Shopify-Setup hinaus sowie das Affiliate-Programm-Management."</em> Diese drei Dinge müssen wir also selbst stellen oder separat beauftragen.</p>
+
+  <h3>Rechnung 2 — Laufende Betreuung: 5 % vom Werbebudget, monatlich</h3>
+  <p>Wenn wir im September 80.000 € Werbebudget ausgeben, stellt Grow 4.000 € in Rechnung. Immer fünf Prozent von dem, was tatsächlich rausgegangen ist, abgerechnet auf Basis der Plattform-Abrechnungen.</p>
+  <p>Dafür überwachen sie täglich die Kampagnen, schichten Budget zwischen Kanälen um, testen Werbemittel gegeneinander, liefern einmal im Monat einen Bericht, nehmen an einem regelmäßigen Abstimmungstermin teil und stellen ein Auswertungs-Tool namens „orbit" bereit.</p>
+  <p>Zu diesem Punkt gab es intern eine Verwechslung, deshalb ausdrücklich: <strong>Es gibt keinen monatlichen Retainer.</strong> Im Angebot steht ein Mindesthonorar von 10.000 € — aber, wörtlich, „über die gesamte Kampagnenlaufzeit … von <strong>insgesamt</strong> 10.000 Euro", abgerechnet am Kampagnenende.</p>
+  <p>Praktisch heißt das: Wenn wir insgesamt mehr als 200.000 € Werbebudget ausgeben, liegen die fünf Prozent von selbst über 10.000 € und der Boden ist bedeutungslos. Wir planen 250.000 € allein zum Start. Er wird uns also nie treffen. Und ein Monat mit nur 30.000 € Werbebudget kostet uns 1.500 € — nicht 10.000 €.</p>
+
+  <h3>Rechnung 3 — Der Erfolgsbonus: 0 bis 10 % vom Werbebudget</h3>
+  <p>Das ist der komplizierte Teil und gleichzeitig der problematische. Ihm gehört das nächste Kapitel.</p>
+</section>
+
+<!-- 4 -->
+<section class="chapter" id="k4">
+  <div class="kicker">Kapitel 4</div>
+  <h2>Wie der Bonus <em>genau</em> funktioniert</h2>
+  <p>Der Bonus wird quartalsweise abgerechnet und in vier Schritten berechnet.</p>
+
+  <div class="step"><span class="step-num">1</span><div class="step-body"><h4>Wie viel Werbebudget wurde im Quartal ausgegeben?</h4><p>Der gesamte Betrag, der an die Plattformen geflossen ist.</p></div></div>
+  <div class="step"><span class="step-num">2</span><div class="step-body"><h4>Wie viele Bücher gehen auf die Werbung zurück?</h4><p>Zwei Töpfe werden addiert: Verkäufe über unseren eigenen Shop nach dem — Zitat — „vereinbarten Attributionsmodell", plus Verkäufe über Amazon Ads „laut Plattform-Reporting".</p></div></div>
+  <div class="step"><span class="step-num">3</span><div class="step-body"><h4>Budget geteilt durch Bücher = der CPS</h4><p>Eine einzige Durchschnittszahl über alle Kanäle und Märkte hinweg.</p></div></div>
+  <div class="step"><span class="step-num">4</span><div class="step-body"><h4>In der Staffel nachschlagen</h4><p>Je niedriger der CPS, desto höher der Prozentsatz.</p></div></div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Ein Buch hat an Werbung gekostet</th><th>Grow bekommt Bonus</th><th>bei 250.000 € Budget</th></tr></thead>
+      <tbody>
+        <tr><td>bis 10 $</td><td>10 % vom Werbebudget</td><td>25.000 €</td></tr>
+        <tr><td>über 10 bis 13 $</td><td>7,5 %</td><td>18.750 €</td></tr>
+        <tr><td>über 13 bis 16 $</td><td>5 %</td><td>12.500 €</td></tr>
+        <tr><td>über 16 bis 18 $</td><td>2,5 %</td><td>6.250 €</td></tr>
+        <tr><td>über 18 $</td><td>kein Bonus</td><td>0 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Ein Durchgang mit echten Zahlen</h3>
+  <p>Nehmen wir an, im Quartal wurden 250.000 € Werbebudget ausgegeben. Dann sieht es je nach Absatz so aus:</p>
+  <ul>
+    <li><strong>Läuft gut — 25.000 Bücher:</strong> 250.000 geteilt durch 25.000 sind 10 € pro Buch. Oberste Stufe, voller Bonus: 25.000 €.</li>
+    <li><strong>Läuft mittel — 20.000 Bücher:</strong> 12,50 € pro Buch. Zweite Stufe: 18.750 €.</li>
+    <li><strong>Läuft mäßig — 15.000 Bücher:</strong> 16,67 € pro Buch. Vierte Stufe: 6.250 €.</li>
+    <li><strong>Läuft schlecht — 12.000 Bücher:</strong> 20,83 € pro Buch. Kein Bonus.</li>
+  </ul>
+  <p>So weit ist das eine ganz normale, nachvollziehbare Mechanik. Ob sie zu unserem Geschäft passt, ist eine andere Frage — und die beantworten Kapitel 6 bis 8.</p>
+</section>
+
+<!-- 5 -->
+<section class="chapter" id="k5">
+  <div class="kicker">Kapitel 5</div>
+  <h2>Was das <em>insgesamt</em> kostet</h2>
+  <p>Wenn man die drei Rechnungen zusammenzählt, kommt bei 250.000 € Werbebudget und guter Performance das hier raus:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Position</th><th>Betrag</th></tr></thead>
+      <tbody>
+        <tr><td>Setup, einmalig</td><td>11.000 €</td></tr>
+        <tr><td>Laufende Betreuung, 5 % von 250.000 €</td><td>12.500 €</td></tr>
+        <tr><td>Bonus, wenn es gut läuft</td><td>25.000 €</td></tr>
+        <tr class="hl"><td>Honorar für Grow gesamt</td><td>48.500 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Im Angebot selbst steht unten aber eine andere Zahl: <strong>„Total netto EUR 23.500,00".</strong> Das kommt daher, dass Grow den Bonus in der Positionszeile mit <strong>0,00 €</strong> eingetragen hat. Wenn die Kampagne gut läuft, kostet sie also ungefähr das Doppelte dessen, was auf der Summenzeile steht.</p>
+
+  <div class="note yellow">
+    <span class="note-label">Punkt für den Jour Fixe</span>
+    <p>Wer nur auf die Summenzeile schaut — und das machen bei einem Angebot fast alle — unterschätzt die Kosten um mehr als das Doppelte. Das ist kein Betrug, der Bonus ist ja beschrieben. Aber es gehört so korrigiert, dass ein realistischer Kostenkorridor im Papier steht.</p>
+  </div>
+
+  <h3>Ist das viel?</h3>
+  <p>Nein. Bei einem Projekt, das im schlechtesten geplanten Szenario 2,8 Millionen Dollar Ergebnis macht, sind 48.500 € Honorar Kleingeld. Die fünf Prozent für die laufende Steuerung sind sogar <strong>unter</strong> Marktniveau — üblich sind bei dieser Größenordnung zehn bis fünfzehn Prozent. Und 11.000 € Setup für drei Märkte und vier Kanäle ist ein fairer Preis.</p>
+  <p>Der Preis ist nicht unser Problem. Das Problem ist die Art, wie der Bonus berechnet wird. Und um das zu zeigen, brauchen wir jetzt unsere eigenen Zahlen.</p>
+</section>
+
+<!-- 6 -->
+<section class="chapter" id="k6">
+  <div class="kicker">Kapitel 6</div>
+  <h2>Was uns ein Buch <em>wirklich</em> einbringt</h2>
+  <p>Im Projekt-Kompendium, Kapitel 4.7, stehen die Kennzahlen aus unserem Businessplan. Drei Zahlen sind entscheidend:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Verkauft über</th><th>Preis</th><th>Gewinn pro Buch</th></tr></thead>
+      <tbody>
+        <tr><td>Unseren eigenen Shop<span class="cell-sub">Premiumausgabe</span></td><td>29,99 $</td><td class="good">20,84 $</td></tr>
+        <tr><td>Buchhandel / Print-on-Demand<span class="cell-sub">Das ist unter anderem Amazon</span></td><td>24,99 $</td><td class="bad">6,11 $</td></tr>
+        <tr><td>E-Book / Hörbuch</td><td>18,99 / 19,99 $</td><td class="mid">5,60 $</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Über unseren eigenen Shop verdienen wir also <strong>mehr als das Dreifache</strong> gegenüber Amazon. Das ist logisch — Amazon behält einen großen Teil ein, und beim Print-on-Demand ist die Produktion pro Stück teurer. Aber es ist ein gewaltiger Unterschied, und er ist der Schlüssel zu diesem ganzen Text.</p>
+
+  <h3>Sind die Werbekosten da schon abgezogen?</h3>
+  <p>Das ist die entscheidende Frage. Wenn die Werbung in den 20,84 $ schon drinsteckt, kann man damit nicht weiterrechnen. Also habe ich es an unserem eigenen Worst-Case-Szenario gegengeprüft. Dort stehen 75.000 Shop-Verkäufe, 225.000 Buchhandel-Verkäufe, 36.000 digitale Einheiten und ein „Gewinn gesamt" von 3.139.350 $.</p>
+
+  <div class="calc-card">
+    <div class="calc-label">Gegenprobe am Worst-Case-Szenario (Kompendium 4.8)</div>
+    <code class="calc"> 75.000 Bücher × 20,84 $  = 1.563.000 $   <span class="c">(Shop)</span>
+225.000 Bücher ×  6,11 $  = 1.374.750 $   <span class="c">(Buchhandel)</span>
+ 36.000 Einh.  ×  5,60 $  =   201.600 $   <span class="c">(Digital)</span>
+                            ────────────
+                            <span class="n">3.139.350 $</span>   <span class="c">← exakt „Gewinn gesamt"</span></code>
+  </div>
+
+  <p>Die Zahl stimmt auf den Cent mit unserem eigenen Papier überein. Und in dieser Rechnung taucht das Werbebudget von 250.000 € <strong>nirgends</strong> auf.</p>
+
+  <div class="pull"><p>Die Werbekosten sind nicht abgezogen. Aus diesen 20,84 $ beziehungsweise 6,11 $ muss der CPS bezahlt werden.</p></div>
+
+  <p>Damit haben wir den richtigen Maßstab: Die Gewinnmarge pro Buch ist die Grenze, bis zu der sich Werbung lohnt.</p>
+
+  <div class="note yellow">
+    <span class="note-label">Prüfauftrag an uns selbst</span>
+    <p>Die 20,84 $ stammen aus dem Businessplan vom 04.03.2025. Ob darin die 5 % Affiliate-Provision und unsere Staffelrabatte (−5 %, −10 %, −15 % ab zwei, drei und vier Büchern) schon abgezogen sind, steht nicht dabei. Wenn nicht, liegt die reale Shop-Marge eher bei <strong>17 bis 19 $</strong>. Dann wird alles, was jetzt kommt, noch enger — nicht weiter.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="chapter" id="k7">
+  <div class="kicker">Kapitel 7</div>
+  <h2>Die <em>Kernrechnung</em></h2>
+  <p>Ab hier wird es einfach. Die ganze Bewertung des Angebots hängt an einer einzigen Formel:</p>
+
+  <div class="pull"><p>Gewinn pro Buch minus Werbekosten pro Buch — das ist, was bei uns bleibt.</p></div>
+
+  <p>Und „Werbekosten pro Buch" ist genau das, was CPS bedeutet. Rechnen wir es für Grows oberste Bonusstufe durch, also einen CPS von 10 $.</p>
+
+  <div class="calc-card">
+    <div class="calc-label">Ein Buch, verkauft über unseren Shop</div>
+    <code class="calc"> 20,84 $  <span class="c">Gewinn</span>
+−10,00 $  <span class="c">Werbung</span>
+ ───────
+ <span class="g">10,84 $</span>  <span class="c">bleiben bei uns  ✓</span></code>
+  </div>
+
+  <div class="calc-card">
+    <div class="calc-label">Dasselbe Buch, verkauft über Amazon</div>
+    <code class="calc">  6,11 $  <span class="c">Gewinn</span>
+−10,00 $  <span class="c">Werbung</span>
+ ───────
+ <span class="r">−3,89 $</span>  <span class="c">Verlust  ✗</span></code>
+  </div>
+
+  <p>Gleicher CPS. Gleiche Bonusstufe für Grow. Einmal verdienen wir Geld, einmal zahlen wir drauf.</p>
+  <p>Das ist der zentrale Konstruktionsfehler des Angebots — und es wird noch deutlicher, wenn man beide Kanäle zusammen betrachtet.</p>
+</section>
+
+<!-- 8 -->
+<section class="chapter" id="k8">
+  <div class="kicker">Kapitel 8</div>
+  <h2>Warum der <em>Durchschnitt</em> uns täuscht</h2>
+  <p>Grow rechnet mit dem Blended CPS, also mit allen Verkäufen in einem Topf. Schauen wir, was dabei passiert.</p>
+  <p>Rechnen wir mit hundert Büchern, verteilt in genau dem Verhältnis, das unser eigenes Worst-Case-Szenario vorsieht: ein Viertel über den Shop, drei Viertel über den Buchhandel beziehungsweise Amazon.</p>
+
+  <div class="calc-card">
+    <div class="calc-label">100 Bücher im geplanten Verkaufsmix</div>
+    <code class="calc">25 Bücher × 20,84 $ = 521,00 $
+75 Bücher ×  6,11 $ = 458,25 $
+                      ─────────
+100 Bücher          = 979,25 $
+
+<span class="c">Durchschnitt:</span> 979,25 ÷ 100 = <span class="n">9,79 $ Gewinn pro Buch</span></code>
+  </div>
+
+  <p>9,79 $ ist damit unsere Schmerzgrenze. Geben wir mehr als das pro Buch für Werbung aus, machen wir Verlust.</p>
+  <p>Und jetzt legen wir Grows <strong>beste</strong> Bonusstufe daneben — einen CPS von 10 $, für den der volle Bonus fällig wird:</p>
+
+  <div class="calc-card">
+    <div class="calc-label">Grows oberste Stufe, angewendet auf dieselben 100 Bücher</div>
+    <code class="calc">Werbung  100 × 10 $   = 1.000,00 $
+Unser Gewinn          =   979,25 $
+                        ──────────
+                        <span class="r">−  20,75 $</span>   <span class="c">← schon im Minus</span>
+Bonus 10 % von 1.000  =   100,00 $
+                        ──────────
+                        <span class="r">− 120,75 $</span>   <span class="c">← Endstand</span></code>
+  </div>
+
+  <p>Das sollte man zweimal lesen. Bei der Leistung, die Grows eigenes Angebot als die beste einstuft, machen wir Verlust — und zahlen dafür den vollen Bonus. Setup und die fünf Prozent laufende Betreuung sind in dieser Rechnung noch nicht einmal enthalten.</p>
+
+  <h3>Und wenn der Verkaufsmix besser wird?</h3>
+  <p>Berechtigter Einwand. Vielleicht verkaufen wir mehr über den eigenen Shop als geplant. Nehmen wir also halbe-halbe:</p>
+
+  <div class="calc-card">
+    <div class="calc-label">100 Bücher bei 50 % Shop / 50 % Amazon</div>
+    <code class="calc">50 × 20,84 $ = 1.042,00 $
+50 ×  6,11 $ =   305,50 $
+               ──────────
+               1.347,50 $   →   <span class="n">13,48 $ pro Buch</span>
+
+<span class="c">Grows zweite Stufe, CPS 13 $, Bonus 7,5 %:</span>
+
+Werbung 100 × 13 $      = 1.300,00 $
+Unser Gewinn            = 1.347,50 $
+                          ──────────
+                          <span class="g">+  47,50 $</span>   <span class="c">← knapp im Plus</span>
+Bonus 7,5 % von 1.300   =    97,50 $
+                          ──────────
+                          <span class="r">−  50,00 $</span>   <span class="c">← der Bonus kippt es</span></code>
+  </div>
+
+  <p>Wir waren gerade so im Plus. Der Bonus schiebt uns ins Minus.</p>
+
+  <h3>Die Schmerzgrenze hängt komplett am Mix</h3>
+  <p>Wenn man das für alle denkbaren Verkaufsmischungen durchrechnet, ergibt sich diese Tabelle. Der Durchschnittsgewinn ist dabei automatisch die Grenze, bis zu der Werbung sich lohnt:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Verkaufsmix</th><th>Rechnung</th><th>Schmerzgrenze</th></tr></thead>
+      <tbody>
+        <tr><td>Nur Shop</td><td>20,84</td><td class="good">20,84 $</td></tr>
+        <tr><td>75 % Shop / 25 % Amazon</td><td>0,75 × 20,84 + 0,25 × 6,11</td><td class="good">17,16 $</td></tr>
+        <tr><td>Halbe-halbe</td><td>0,50 × 20,84 + 0,50 × 6,11</td><td class="mid">13,48 $</td></tr>
+        <tr class="hl"><td>25 % Shop / 75 % Amazon <em>(unser Plan)</em></td><td>0,25 × 20,84 + 0,75 × 6,11</td><td class="bad">9,79 $</td></tr>
+        <tr><td>Nur Amazon</td><td>6,11</td><td class="bad">6,11 $</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Je mehr Amazon im Topf ist, desto niedriger muss der CPS sein, damit wir überhaupt verdienen. Grows Staffel steht aber fest — sie passt sich dem Mix nicht an.</p>
+  <p>Wenn man genau hinschaut, erkennt man, woran die Staffel gebaut ist: Sie endet bei 18 $, und unsere Shop-Marge liegt bei 20,84 $. Das passt fast perfekt. <strong>Die Staffel ist an unserer guten Marge kalibriert</strong> — und wirft die schlechte Marge in dieselbe Kennzahl. Deshalb sieht sie auf den ersten Blick vernünftig aus und rechnet sich in unserem geplanten Verkaufsmix trotzdem nicht.</p>
+</section>
+
+<!-- 9 -->
+<section class="chapter" id="k9">
+  <div class="kicker">Kapitel 9</div>
+  <h2>Das <em>Amazon</em>-Problem</h2>
+  <p>Bisher ging es nur um die Marge. Jetzt kommt der Teil, der aus einem Rechenfehler einen echten Fehlanreiz macht.</p>
+  <p>Wir gehen davon aus, dass Grow Amazon mitbetreut. Im Angebot steht das allerdings nicht: Position 1 zählt die Konten einzeln auf — Meta Business Manager, TikTok Ads Manager, Google Ads inklusive YouTube. Amazon fehlt. Im gesamten Papier kommt Amazon <strong>genau einmal</strong> vor, nämlich in der Bonus-Formel.</p>
+
+  <h3>Warum das gefährlich ist</h3>
+  <p>In unserem eigenen Kompendium, Kapitel 8.3, stehen die Erfahrungswerte aus der früheren Planung: Meta kostet etwa 4 bis 5 $ pro verkauftem Buch, <strong>Amazon nur 3 bis 4 $</strong>. Amazon ist also unser billigster Kanal — und gleichzeitig der mit der schlechtesten Marge.</p>
+  <p>Wer nach Blended CPS bezahlt wird, optimiert auf Blended CPS. Und der sinkt am schnellsten, wenn man Budget nach Amazon schiebt. Dazu kommt, dass im Angebot wörtlich steht, die Verteilung des Budgets über Märkte und Kanäle liege „im Ermessen der Agentur".</p>
+  <p>Rechnen wir zwei Wege durch, jeweils mit 250.000 € Werbebudget, was ungefähr 270.000 $ entspricht.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th></th><th>Variante A · Shop-Fokus</th><th>Variante B · Amazon-Fokus</th></tr></thead>
+      <tbody>
+        <tr><td>Blended CPS</td><td>15 $</td><td class="good">6 $</td></tr>
+        <tr><td>Verkaufte Bücher</td><td>18.000</td><td>45.000</td></tr>
+        <tr><td>Gewinn pro Buch</td><td>20,84 $</td><td>6,11 $</td></tr>
+        <tr><td>Rohertrag</td><td>375.120 $</td><td>274.950 $</td></tr>
+        <tr><td>Bonusstufe</td><td>5 %</td><td class="bad">10 %</td></tr>
+        <tr class="hl"><td>Ergebnis für uns</td><td class="good">+ 91.620 $</td><td class="bad">− 22.050 $</td></tr>
+        <tr class="hl"><td>Bonus für Grow</td><td>12.500 €</td><td class="bad">25.000 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pull"><p>Unser Ergebnis kippt um 113.000 Dollar. Grows Bonus verdoppelt sich. Und im Reporting sieht Variante B nach der besseren Arbeit aus.</p></div>
+
+  <p>Das ist kein Vorwurf an Grow. Niemand muss dafür unredlich handeln — die Kennzahl steuert einfach genau dorthin. Genau deshalb ist sie die falsche Kennzahl.</p>
+
+  <div class="note">
+    <span class="note-label">Zur Ehrlichkeit</span>
+    <p>Das ist ein illustratives Rechenbeispiel. Ob Amazon bei einem Budget dieser Größenordnung tatsächlich einen CPS von 6 $ halten kann, ist offen — vermutlich eher nicht. Die Richtung des Anreizes bleibt aber identisch, egal welche Zahlen man einsetzt.</p>
+  </div>
+
+  <h3>Und wie will man überhaupt nachweisen, welche Amazon-Verkäufe von der Werbung kommen?</h3>
+  <p>Amazon liefert eine Zahl. Die Ads-Berichte weisen Verkäufe nach einem Anzeigenklick aus, das ist keine Erfindung. Aber sie taugt als Bonusgrundlage nichts, und zwar aus zwei Gründen.</p>
+  <p><strong>Erstens zählt Amazon extrem großzügig.</strong> Der Standard sind sieben Tage nach dem Klick. Jeder, der irgendwann auf eine Anzeige klickt und binnen einer Woche kauft, zählt als Werbeverkauf — auch wenn er das Buch sowieso gekauft hätte.</p>
+  <p><strong>Zweitens passiert bei uns genau das ständig.</strong> Jemand hört Javier im Podcast, sieht die Promo-Tour, liest die Presse. Dann tippt er bei Amazon „In Your Corner" ein. Ganz oben steht unsere eigene gesponserte Anzeige auf unseren eigenen Markennamen. Er klickt drauf, weil sie oben steht, und kauft. Für Amazon ist das ein Werbeverkauf. In Wahrheit hat unsere PR ihn gebracht.</p>
+  <p>Und unsere PR ist erheblich: 230 verschickte Pressemappen, die Deutschland-Tour, OKTAGON 94 in Frankfurt, die Grow Night in Mannheim, der Tim-Gabel-Podcast, dazu der Makhachev-Titelkampf als Aufmerksamkeitsspitze. Dieser Anteil ist nicht klein. Er ist wahrscheinlich der größere Teil.</p>
+
+  <div class="quote-box">
+    <div class="ql">Die Ungleichbehandlung steht im Vertragstext</div>
+    <p>Für unseren Shop heißt es: „nach dem <strong>vereinbarten</strong> Attributionsmodell" — darüber soll man sich also erst noch einigen. Für Amazon heißt es: „laut <strong>Plattform-Reporting</strong>" — dort wird ungefragt die großzügigste verfügbare Zahl genommen.</p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="chapter" id="k10">
+  <div class="kicker">Kapitel 10</div>
+  <h2>Die Staffel gegen unseren <em>eigenen Benchmark</em></h2>
+  <p>Noch ein Blick auf Kapitel 8.3 unseres Kompendiums. Dort stehen die Richtwerte, mit denen wir selbst geplant haben:</p>
+  <ul>
+    <li><strong>Meta:</strong> etwa 4 bis 5 $ Kosten pro verkauftem Buch</li>
+    <li><strong>Amazon:</strong> etwa 3 bis 4 $</li>
+  </ul>
+  <p>Grow zahlt sich den vollen Bonus bei einem CPS von bis zu <strong>10 $</strong> aus. Das ist ungefähr das Doppelte unserer eigenen Planungsannahme. Anders gesagt: die Höchstprämie für eine Leistung, die unser Businessplan als deutliche Untererfüllung einordnen würde.</p>
+  <p>Fair bleiben muss man trotzdem. Unser Kompendium schreibt selbst dazu, diese Werte stammten aus einer früheren Planungsphase vom März 2025 und „sollten mit dem neuen Partner anhand aktueller Marktbedingungen neu validiert werden". 4 bis 5 $ pro Buch in den USA über Meta ist heute wahrscheinlich zu optimistisch. Aber der Sprung von 4–5 auf 10 ist zu groß, um ihn unbegründet stehen zu lassen.</p>
+
+  <div class="note yellow">
+    <span class="note-label">Fehlende Unterlage</span>
+    <p>Grow schreibt im Angebotskopf, Grundlage seien das Kompendium und das Dokument <strong>„CPA- &amp; CPS-Schätzung für Paid Media" (Stand 05.08.2026)</strong>, „dessen Kennzahlen-Korridore als Referenz für die Bonus-Staffel dienen". Die Staffel kommt also nicht aus unserem Kompendium, sondern aus diesem Papier. <strong>Uns liegt es nicht vor.</strong> Es ist die wichtigste offene Unterlage — ohne sie lässt sich nicht beurteilen, ob die 10 bis 18 $ sauber hergeleitet oder frei gesetzt sind.</p>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="chapter" id="k11">
+  <div class="kicker">Kapitel 11</div>
+  <h2>Der Konstruktionsfehler in <em>einem Satz</em></h2>
+  <div class="pull"><p>Alles, was Grow verdient, ist ein Prozentsatz vom Werbebudget. Auch der erfolgsabhängige Teil.</p></div>
+  <p>Ob es überhaupt Bonus gibt, entscheidet die Leistung. <strong>Wie hoch</strong> der Bonus ausfällt, entscheidet die Höhe des Budgets. Bei gleich guter Arbeit verdoppelt sich Grows Bonus, wenn wir das Budget verdoppeln.</p>
+  <p>Und wir haben in unserem eigenen Kompendium, Kapitel 8.1, geschrieben: Die 250.000 € seien ein Startbudget, und „bei nachweislich positivem ROI ist das Projekt bereit, das Budget kontinuierlich zu erhöhen". Grow hat das gelesen, bevor sie das Angebot geschrieben haben. Das ist ihr gutes Recht — aber es erklärt, warum die Vergütung so gebaut ist, wie sie gebaut ist.</p>
+</section>
+
+<!-- 12 -->
+<section class="chapter" id="k12">
+  <div class="kicker">Kapitel 12</div>
+  <h2>Was wir angefragt haben — und <em>was fehlt</em></h2>
+  <p>Unabhängig vom Bonus lohnt ein Abgleich zwischen dem, was wir im Kompendium als Anforderung formuliert haben, und dem, was im Angebot tatsächlich steht.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Unsere Anforderung</th><th>Quelle</th><th>Im Angebot</th></tr></thead>
+      <tbody>
+        <tr><td>Kanäle inklusive <strong>LinkedIn</strong></td><td>Kap. 8.2</td><td class="bad">LinkedIn fehlt</td></tr>
+        <tr><td><strong>Affiliate-Marketing</strong> als Aufgabe des Partners</td><td>Kap. 5.1</td><td class="bad">Ausdrücklich ausgeschlossen</td></tr>
+        <tr><td>Sprachen: 75 % Englisch, <strong>20 % Spanisch</strong>, 5 % Russisch</td><td>Kap. 4.5</td><td class="bad">Nur Englisch und Deutsch</td></tr>
+        <tr><td>Tier-1-Märkte USA, Kanada, Brasilien, Mexiko</td><td>Kap. 4.3</td><td class="mid">USA, DACH, UAE</td></tr>
+        <tr><td>Ein <strong>proaktiver, kein reaktiver</strong> Partner</td><td>Kap. 8</td><td class="mid">Monatsbericht, ein Termin</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Spanisch ist der schwerste Punkt.</strong> Wir erwarten ein Fünftel unserer Verkäufe aus spanischsprachigen Märkten — Mexiko, Spanien, Lateinamerika. Dafür ist im Setup keine einzige Anzeige vorgesehen. Entweder das kommt in Position 1 rein, oder wir streichen die Annahme aus dem Businessplan. Beides ist vertretbar, aber es muss eine Entscheidung geben.</p>
+  <p><strong>LinkedIn</strong> steht nicht zufällig auf unserer Liste. Es passt exakt auf unser drittes Käufersegment, die Casual-Fans, die im Kompendium als „Brücke zur Leadership-/Coaching-Zielgruppe außerhalb des MMA-Kerns" beschrieben sind.</p>
+  <p>Bei den <strong>Märkten</strong> gibt es eine Unstimmigkeit, die wir ansprechen sollten. Grow baut USA, DACH und die Emirate. Das deckt sich mit den „Kernmärkten" aus unserem Projekt-Setup in Kapitel 4.2. Unsere <em>Paid-Media-Kanalstrategie</em> in Kapitel 4.3 tiert die Märkte aber anders: Tier 1 sind USA, Kanada, Brasilien und Mexiko; die Emirate stehen dort erst in Tier 3. Kanada, Brasilien und Mexiko kommen im Angebot gar nicht vor. Das kann eine bewusste Entscheidung sein — die Antwort auf diese Frage zeigt uns aber, wie tief Grow tatsächlich im Material steckt.</p>
+</section>
+
+<!-- 13 -->
+<section class="chapter" id="k13">
+  <div class="kicker">Kapitel 13</div>
+  <h2>Das <em>Dashboard</em>-Problem</h2>
+  <p>Im Angebot steht, der Bonus werde abgerechnet „quartalsweise auf Basis des gemeinsam eingesehenen Verkaufs-Dashboards".</p>
+  <p>In unserem Kompendium, Kapitel 7.4, steht dazu: <em>„Reporting/Dashboard für Buchverkäufe einrichten — Offen — Tier 1 — Clemens Kauschke."</em></p>
+  <p>Die Grundlage für eine fünfstellige Bonuszahlung ist also ein Dashboard, <strong>das es noch gar nicht gibt</strong> — und das unser eigener Mann baut. Gleichzeitig bringt Grow ein zweites Auswertungstool mit, „orbit". Damit hätten wir zwei Zahlenquellen, und im Vertrag steht nicht, welche im Streitfall gilt.</p>
+
+  <div class="pull"><p>Wer die Zahl baut, definiert die Zahl. Das ist unser größter Hebel in dieser Verhandlung.</p></div>
+
+  <p>Wir sollten festschreiben, dass ausschließlich unser Verkaufs-Dashboard maßgeblich ist — mit unseren Definitionen: Trennung nach Shop und Amazon, Attributionsfenster, Ausschluss von Marken-Suchanzeigen, Behandlung von Retouren und Stornos.</p>
+  <p>Der letzte Punkt fehlt im Angebot übrigens komplett. Nach aktuellem Wortlaut zählt ein storniertes Vorbestellungs-Buch für den Bonus. Bei einer Pre-Sale-Phase, die von September bis in den November läuft, ist das kein Randthema.</p>
+</section>
+
+<!-- 14 -->
+<section class="chapter" id="k14">
+  <div class="kicker">Kapitel 14</div>
+  <h2>Vertrag und <em>Zeitplan</em></h2>
+
+  <h3>Der Festpreis ist kein Festpreis</h3>
+  <p>Zur Projektleitung steht im Angebot: „vorläufige Schätzung … der Gesamtaufwand wird zum Ende des Projekts eruiert". Und in den AGB: „zusätzlicher Aufwand … wird gesondert nach tatsächlichem Aufwand berechnet. <strong>Kostenschätzungen sind unverbindlich.</strong>" Damit ist Position 1 nach oben offen.</p>
+
+  <h3>Es gibt keinen Vertragsrahmen</h3>
+  <p>Keine Laufzeit, kein Startdatum, keine Kündigungsfrist, kein Ausstieg bei Zielverfehlung. Das Mindesthonorar bezieht sich auf eine „Kampagnenlaufzeit", die nirgends definiert ist. Dazu fehlt ein Auftragsverarbeitungsvertrag nach DSGVO — und der ist Pflicht, sobald über die Conversion-API Kundendaten an Meta und Google fließen. Ebenso ungeregelt: Wem gehören Werbekonten, Pixel, Zielgruppen und Katalog, und was passiert damit bei Vertragsende?</p>
+
+  <h3>Wer unterschreibt eigentlich?</h3>
+  <p>Das Angebot ist an die <strong>Orbita Media GmbH</strong> adressiert. Laut Kompendium 5.2 ist die Vertragspartnerin unserer Endkunden aber die <strong>Dubai Company LLC</strong>, und die Zahlungen laufen über <strong>Orbita Payments Limited</strong>. Die Verkaufsdaten, an denen der Bonus gemessen wird, liegen also in anderen Einheiten als der, die unterschreibt. Das gehört geklärt, auch datenschutzrechtlich.</p>
+
+  <h3>Der Zeitplan ist sehr eng</h3>
+  <p>Das Angebot gilt bis zum 21. August. Der Pre-Sale startet am 1. September. Das sind zehn Tage, um Konten aufzusetzen, die Messung zu implementieren, Zielgruppen für drei Märkte zu bauen, Kampagnen auf vier Kanälen in zwei Sprachen anzulegen, alles zu testen und einen Teststart zu fahren. Ein Startdatum, Meilensteine oder eine Zusage, wann was live ist, enthält das Angebot nicht. Zusätzlich steht in unserem eigenen Kompendium die „Approval Media-Konzept" noch als offene Tier-1-Aufgabe bei Janni.</p>
+</section>
+
+<!-- 15 -->
+<section class="chapter" id="k15">
+  <div class="kicker">Kapitel 15</div>
+  <h2>Das <em>Urteil</em></h2>
+  <p>Der Preis ist in Ordnung. Die Struktur ist es nicht.</p>
+
+  <h3>Was gut ist</h3>
+  <ul>
+    <li>Fünf Prozent für die laufende Steuerung ist <strong>günstig</strong> — üblich sind zehn bis fünfzehn Prozent bei diesem Volumen.</li>
+    <li>11.000 € Setup für drei Märkte und vier Kanäle ist angemessen.</li>
+    <li>Die Abgrenzung ist sauber und ehrlich. Sie sagen klar, was sie nicht machen, statt es zu verstecken.</li>
+    <li>Sie haben unser Kompendium erkennbar gelesen. Die Zielgruppen-Logik im Angebot ist unsere.</li>
+  </ul>
+
+  <h3>Was nicht geht</h3>
+  <ul>
+    <li>Die Bonus-Staffel zahlt bis in den Verlustbereich hinein.</li>
+    <li>Shop-Verkäufe mit 20,84 $ Marge und Amazon-Verkäufe mit 6,11 $ Marge stehen in einer einzigen Kennzahl. Das ist sachlich falsch.</li>
+    <li>Wenn Grow Amazon steuert, belohnt die Mechanik sie dafür, Budget in unseren margenschwächsten Kanal zu schieben.</li>
+    <li>Auch der erfolgsabhängige Teil hängt am Budget statt am Umsatz.</li>
+    <li>Kein Laufzeitende, keine Kündigung, kein Datenschutzvertrag, kein Terminplan.</li>
+  </ul>
+
+  <div class="note green">
+    <span class="note-label">Empfehlung</span>
+    <p><strong>Nicht unterschreiben, wie es ist — aber auch nicht absagen.</strong> Grow ist inhaltlich der stärkste Kandidat nach zwei gescheiterten Anläufen, und der Zeitdruck spricht klar gegen eine vierte Runde. Es geht um rund fünf Sätze in Position 3 plus einen ordentlichen Vertragsrahmen. Das ist reparierbar, und zwar schnell.</p>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="chapter" id="k16">
+  <div class="kicker">Kapitel 16</div>
+  <h2>Was wir <em>ändern</em> müssen</h2>
+  <p>Vier Punkte sind aus meiner Sicht Bedingung für eine Unterschrift. Sechs weitere sollten wir nachverhandeln.</p>
+
+  <h3>Bedingung für eine Unterschrift</h3>
+  <div class="step crit"><span class="step-num">1</span><div class="step-body"><h4>CPS getrennt nach Kanal — kein Blended<span class="tag r">Dealbreaker</span></h4><p>Shop und Amazon haben dreieinhalbfach unterschiedliche Margen. Eine gemeinsame Kennzahl ist sachlich falsch und steuert in den falschen Kanal. Entweder zwei getrennte Staffeln mit eigenen Schwellen, oder eine Staffel ausschließlich auf Shop-Verkäufe. Das ist der wichtigste Punkt dieses ganzen Textes.</p></div></div>
+  <div class="step crit"><span class="step-num">2</span><div class="step-body"><h4>Die Staffel an unserer echten Marge kalibrieren<span class="tag r">Dealbreaker</span></h4><p>Voller Bonus deutlich <em>unter</em> der Schmerzgrenze, null Bonus <em>ab</em> der Schmerzgrenze. Für Shop-Verkäufe wäre das etwa: 10 % bis 8 $, 5 % bis 12 $, ab 15 $ nichts mehr. Für Amazon-Verkäufe müsste die Grenze bei rund 4 $ liegen — was praktisch bedeutet, dass Amazon nicht in eine Bonus-Staffel gehört, sondern eine eigene Zielgröße braucht.</p></div></div>
+  <div class="step crit"><span class="step-num">3</span><div class="step-body"><h4>Bonusbasis: Umsatz statt Werbebudget<span class="tag r">Dealbreaker</span></h4><p>Damit die Vergütung an Verkäufen hängt und nicht an Ausgaben. Entweder ein Prozentsatz des zugerechneten Netto-Umsatzes oder ein fester Eurobetrag je verkauftem Buch, jeweils mit einem absoluten Deckel pro Quartal.</p></div></div>
+  <div class="step crit"><span class="step-num">4</span><div class="step-body"><h4>Amazon vertraglich sauber stellen<span class="tag r">Dealbreaker</span></h4><p>Wenn Grow Amazon steuert: rein in Position 1 und 2, der Amazon-Spend zählt in der CPS-Formel oben mit, und der Kanal bekommt eine eigene Zielgröße. Wenn nicht: raus aus dem Bonus. Beides ist vertretbar. Der jetzige Zustand — zählt für den Bonus, steht aber nicht im Leistungsumfang — ist es nicht.</p></div></div>
+
+  <h3>Stark nachverhandeln</h3>
+  <div class="step"><span class="step-num">5</span><div class="step-body"><h4>Attribution schriftlich definieren</h4><p>Zeitfenster festlegen, etwa sieben Tage nach Klick und ein Tag nach Ansicht. Suchanzeigen auf unseren eigenen Markennamen ausschließen. Retouren und Stornos abziehen. Klären, ob E-Book und Hörbuch mitzählen — unser Kompendium sagt, die bringen 16 % zusätzliche Verkäufe „ohne zusätzliches Marketing". Und einen Grundumsatz ohne Werbung festlegen, gemessen in den Wochen vor Kampagnenstart und an Tagen ohne PR-Termin. Sonst zahlen wir Bonus für unsere eigene Pressearbeit.</p></div></div>
+  <div class="step"><span class="step-num">6</span><div class="step-body"><h4>Unser Dashboard ist die einzige Abrechnungsgrundlage</h4><p>Mit unseren Definitionen. Grows „orbit" ist ein Zusatztool, kein Maßstab.</p></div></div>
+  <div class="step"><span class="step-num">7</span><div class="step-body"><h4>Budgetkontrolle und Honorar-Degression</h4><p>Monatlicher Budgetplan mit unserer Freigabe, Ermessen der Agentur nur innerhalb dieses Plans, harter Monatsdeckel. Dazu eine Mengenstaffel beim Honorar: 5 % bis 300.000 €, 4 % bis 600.000 €, 3 % darüber. Bei diesen Volumina ist das Marktstandard.</p></div></div>
+  <div class="step"><span class="step-num">8</span><div class="step-body"><h4>Konten, Geld und Daten gehören uns</h4><p>Alle Werbekonten, Pixel, Zielgruppen, Katalog und GTM laufen auf unsere Einheit. Das Werbebudget zahlen wir direkt an die Plattformen. Kein Aufschlag, keine einbehaltenen Plattform-Rabatte. Vollständiger Datenexport bei Vertragsende. Plus AVV nach Artikel 28 DSGVO.</p></div></div>
+  <div class="step"><span class="step-num">9</span><div class="step-body"><h4>Scope nachziehen: LinkedIn, Spanisch, Affiliate</h4><p>Spanisch entweder rein oder die Annahme im Businessplan streichen. LinkedIn nachverhandeln. Beim Affiliate entscheiden, ob wir es selbst machen oder separat beauftragen.</p></div></div>
+  <div class="step"><span class="step-num">10</span><div class="step-body"><h4>Vertragsrahmen und Service-Zusagen</h4><p>Position 1 als echter Festpreis, gedeckelt auf 11.000 €, zahlbar zur Hälfte bei Auftrag und zur Hälfte bei erfolgreichem Teststart. Laufzeit fest bis 31.01.2027, danach 30 Tage Kündigungsfrist, Ausstieg bei zwei verfehlten Monaten in Folge. Namentlicher Ansprechpartner und der Mensch, der täglich am Konto sitzt. Wöchentliches Reporting in Pre-Sale und Launch statt monatlich. Erreichbarkeit an den Key-Terminen. Terminplan mit Daten für Kick-off, Tracking-live und Kampagnen-live.</p></div></div>
+</section>
+
+<!-- 17 -->
+<section class="chapter" id="k17">
+  <div class="kicker">Kapitel 17</div>
+  <h2>Was <em>wir selbst</em> liefern müssen</h2>
+  <p>Es wäre zu einfach, nur auf Grow zu zeigen. Vier Dinge liegen bei uns — und wenn wir sie nicht liefern, fällt es auf uns zurück.</p>
+
+  <h3>Das Verkaufs-Dashboard</h3>
+  <p>Tier-1-Aufgabe, offen, bei Clemens. Ohne das Dashboard ist die Bonus-Abrechnung technisch nicht durchführbar, und wir verlieren die Deutungshoheit über die Zahl. Es sollte vor Vertragsunterschrift zumindest in der Struktur stehen: Trennung nach Shop und Amazon, Attributionsfenster, Retouren-Logik, Grundumsatz-Baseline.</p>
+
+  <h3>Die Werbemittel</h3>
+  <p>Grow schließt die Produktion neuer Foto- und Video-Creatives ausdrücklich aus und liefert nur eine Wunschliste. Bei vier Kanälen, drei Märkten und drei Käufersegmenten ist das eine erhebliche Menge — und Werbemittel sind bei einer Kampagne dieser Größe der wichtigste Performance-Hebel überhaupt. Wer produziert in welcher Taktung, und was kostet das zusätzlich? Das muss geklärt sein, bevor der Pre-Sale läuft, sonst wird es später zur Ausrede für schwache Zahlen.</p>
+
+  <h3>Die Marge neu validieren</h3>
+  <p>Sind in den 20,84 $ die 5 % Affiliate-Provision und die Staffelrabatte enthalten? Sind Druck-, Versand- und Zollkosten für die USA und die Emirate aktuell? Ohne eine belastbare Marge lässt sich keine Bonus-Staffel verhandeln — sie ist der Maßstab für alles.</p>
+
+  <h3>Die CPA-/CPS-Schätzung anfordern</h3>
+  <p>Grow leitet die Bonus-Staffel daraus ab. Solange wir das Papier nicht haben, können wir nicht beurteilen, ob die Zahlen begründet oder gesetzt sind. Anfordern, bevor über Konditionen gesprochen wird.</p>
+</section>
+
+<!-- 18 -->
+<section class="chapter" id="k18">
+  <div class="kicker">Kapitel 18</div>
+  <h2>Was noch <em>fehlt</em></h2>
+  <p>Zwei Einschränkungen zu allem, was hier steht — damit sie von uns kommen und nicht von Grow.</p>
+  <p><strong>Die Währung.</strong> Unsere Gewinne stehen in Dollar, das Werbebudget in Euro, Grows Staffel wieder in Dollar. Bei einem Kurs von etwa 1 € zu 1,08 $ verschiebt das alle Zahlen um rund acht Prozent. An der Richtung ändert das nichts, aber im Vertrag muss ein fester Umrechnungskurs stehen oder die Staffel in Euro.</p>
+  <p><strong>Der Verkaufsmix ist eine Annahme.</strong> Ich habe mit unserem eigenen Worst-Case gerechnet, also einem Viertel Shop und drei Vierteln Buchhandel. Fällt der Shop-Anteil höher aus, wird das Bild deutlich besser. Nur weiß das vorher niemand — und genau deshalb darf die Bonus-Staffel nicht auf einem angenommenen Mix beruhen, sondern muss nach Kanal getrennt sein. Das ist im Kern dasselbe Argument wie in Kapitel 16, Punkt 1.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAZIT -->
+<section class="chapter">
+  <div class="fazit-card">
+    <div class="fazit-heading">Zusammengefasst — <span>guter Partner, falsch gebauter Bonus</span></div>
+    <p>Grow überzeugt inhaltlich und ist preislich fair. Setup und laufende Steuerung sind angemessen bis günstig, die Abgrenzung ist ehrlich, und sie haben unser Material gelesen. Bei einem Projekt mit 2,8 Millionen Dollar Ergebnis im schlechtesten Szenario ist das Honorar nicht das Thema.</p>
+    <p>Das Thema ist Position 3. Die Bonus-Staffel ist an unserer Shop-Marge gebaut und wirft Amazon-Verkäufe mit einem Drittel dieser Marge in dieselbe Kennzahl. In unserem geplanten Verkaufsmix liegt die Schmerzgrenze bei <strong>9,79 $</strong> — Grows oberste Bonusstufe beginnt bei 10 $. Damit zahlt <strong>jede Stufe der Staffel Bonus in den Verlustbereich</strong>. Und wenn Grow Amazon mitsteuert, belohnt die Mechanik sie dafür, Budget in unseren margenschwächsten Kanal zu verschieben.</p>
+    <p><strong>Empfehlung: nicht absagen, nachverhandeln.</strong> Vier Dealbreaker — getrennte CPS-Staffeln, Kalibrierung an der echten Marge, Bonusbasis Umsatz statt Budget, Amazon vertraglich sauber. Dazu Attribution, Dashboard-Hoheit und ein ordentlicher Vertragsrahmen. Zwei Unterlagen brauchen wir vorher: die CPA-/CPS-Schätzung vom 05.08. von Grow und eine aktualisierte Margenrechnung von uns. Ohne beides sollte im Jour Fixe keine Zusage fallen.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-brand">Skael <span>Reports</span> · In Your Corner · Intern</span>
+  <span class="footer-date">Erstellt am 09. August 2026<br>Angebot A26-1673 vom 07.08.2026 · Kompendium Stand 30.07.2026</span>
+</footer>
+
+</div>
+
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+const ro = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+document.querySelectorAll('.toc a').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+
+const ES=['.h-hero','.h-hero em','.standfirst','.meta-badge span','.hero-meta-value','.hero-meta-label','.nav-pill','.nav-title','h2','h2 em','h3','h4','p','li','.kicker','.calc-label','.toc a','.note-label','.ql','.tag','td','th','.cell-sub','.fazit-heading','.footer-brand','.footer-date'].join(',');
+let editing=false;
+function toggleEdit(){editing=!editing;const btn=document.getElementById('ebEdit'),save=document.getElementById('ebSave');if(editing){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';}}
+function downloadHTML(){const bar=document.getElementById('editBar'),was=editing;document.body.classList.remove('editing');document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));bar.style.display='none';const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;bar.style.display='';if(was){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));}try{const enc=new TextEncoder(),bytes=enc.encode(html),blob=new Blob([bytes],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='InYourCorner-Angebot-Grow-Erklaert-Aug-2026.html';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){alert('Download fehlgeschlagen.');}}
+</script>
+
+</body>
+</html>
