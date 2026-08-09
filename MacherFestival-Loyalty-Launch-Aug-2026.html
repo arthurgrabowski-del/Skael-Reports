@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — Macher Festival · Loyalty-Launch 2027</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report — Macher Festival · Loyalty-Launch 2027">
+<meta property="og:description" content="Was ab Montag rausgeht: 6 E-Mails, 5 WhatsApp-Posts, 10 Werbemotive">
+<meta property="og:url" content="https://reports.skael.de/MacherFestival-Loyalty-Launch-Aug-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+.container{max-width:1180px;margin:0 auto;padding:0 40px;}
+.hero{padding:64px 0 56px;scroll-margin-top:58px;}
+.section{padding:64px 0;scroll-margin-top:58px;}
+
+.h-hero{font-family:'Poppins',sans-serif;font-size:58px;font-weight:500;letter-spacing:-0.04em;line-height:1.06;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:42px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:32px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.hero-sub{font-size:14.5px;color:var(--body);line-height:1.78;max-width:880px;margin-top:20px;}
+.hero-sub strong{color:var(--navy);font-weight:500;}
+.sec-sub{font-size:14px;color:var(--body);line-height:1.75;margin-bottom:28px;max-width:880px;}
+.sec-sub strong{color:var(--navy);font-weight:500;}
+
+.meta-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px;margin-bottom:22px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.meta-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:26px;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.kpi-card.hi{border:1px solid var(--blue-mid);background:#fafbff;}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;display:inline-block;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,0.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}.sl.y{color:var(--yellow);}.sl.r{color:var(--red);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:3px 9px;white-space:nowrap;display:inline-block;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+.tag.n{background:#eef0f4;color:var(--muted);}
+
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:20px;}
+.card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:12px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+.insight-text strong{color:var(--navy);font-weight:500;}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;margin-top:16px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border-color:#fca5a5;}
+.hint-box.red p{color:var(--red);}
+.hint-box.green{background:var(--green-bg);border-color:#86efac;}
+.hint-box.green p{color:var(--green);}
+
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow-x:auto;}
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);background:#fafbfd;white-space:nowrap;font-weight:400;}
+.tbl td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--body);vertical-align:middle;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl td strong{color:var(--navy);font-weight:500;}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums;}
+.cell-sub{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--sub);letter-spacing:0.04em;text-transform:uppercase;display:block;margin-top:3px;}
+
+/* Konzept-Cards mit Creative */
+.concept{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:250px 1fr;margin-bottom:16px;}
+.concept.star{border-color:#86efac;}
+.concept.late{border-color:var(--blue-mid);}
+.concept-media{background:#f3f5f9;display:flex;align-items:center;justify-content:center;padding:20px;}
+.vwrap{position:relative;}
+.vwrap img{display:block;width:190px;border-radius:10px;border:1px solid var(--border2);box-shadow:0 8px 24px rgba(15,27,45,0.12);}
+.vwrap .fmt{position:absolute;right:-8px;bottom:-8px;background:var(--white);border:1px solid var(--border2);border-radius:20px;padding:3px 9px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);box-shadow:0 2px 8px rgba(15,27,45,0.08);}
+.concept-body{padding:24px 28px;}
+.concept-hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:2px;}
+.concept-name{font-family:'Poppins',sans-serif;font-size:19px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;}
+.concept-sub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:14px;}
+.copy-quote{background:#fafbfd;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 16px;font-size:12.5px;color:var(--body);white-space:pre-line;line-height:1.6;margin:10px 0;}
+.concept-analysis{font-size:13.5px;color:var(--body);line-height:1.7;}
+.concept-analysis strong{color:var(--navy);font-weight:500;}
+.metric-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.metric-chip{background:#fafbfd;border:1px solid var(--border);border-radius:8px;padding:6px 12px;display:flex;flex-direction:column;}
+.metric-chip b{font-size:14px;font-weight:500;color:var(--navy);}
+.metric-chip.green b{color:var(--green);}
+.metric-chip.blue b{color:var(--blue);}
+.metric-chip span{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);}
+
+/* Mail-Cards (Konzept-Logik ohne Media) */
+.mailcard{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 26px;margin-bottom:14px;display:grid;grid-template-columns:52px 1fr 210px;gap:18px;align-items:start;}
+.mail-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:var(--blue);line-height:1;}
+.mail-main .mh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+.mail-main h3{font-family:'Poppins',sans-serif;font-size:17px;font-weight:500;color:var(--navy);letter-spacing:-0.02em;}
+.mail-main .msub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:12px;}
+.mail-main p{font-size:13.5px;color:var(--body);line-height:1.7;}
+.mail-main p strong{color:var(--navy);font-weight:500;}
+.mail-side{border-left:1px solid var(--border);padding-left:18px;}
+.ms-row{margin-bottom:10px;}
+.ms-row:last-child{margin-bottom:0;}
+.ms-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);display:block;}
+.ms-val{font-size:12.5px;color:var(--navy);font-weight:500;}
+
+/* Timeline */
+.tline{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.trow{display:grid;grid-template-columns:110px 22px 1fr 110px;gap:16px;align-items:start;padding:15px 22px;border-bottom:1px solid var(--border);}
+.trow:last-child{border-bottom:none;}
+.trow.key{background:#fafbff;}
+.tdate{font-family:'DM Mono',monospace;font-size:11px;color:var(--navy);font-weight:500;}
+.tdate span{display:block;font-size:8.5px;color:var(--sub);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px;}
+.tdot{width:9px;height:9px;border-radius:50%;margin-top:5px;}
+.tdot.m{background:var(--blue);}
+.tdot.w{background:var(--green-dot);}
+.tdot.a{background:var(--yellow-dot);}
+.tdot.s{background:var(--sub);}
+.twhat{font-size:13px;color:var(--body);line-height:1.6;}
+.twhat strong{color:var(--navy);font-weight:500;}
+.ttag{text-align:right;}
+
+/* Empfehlungen */
+.reco-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px 26px;margin-bottom:14px;display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start;}
+.reco-card.urgent{border-color:#fca5a5;}
+.reco-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:34px;color:var(--blue);line-height:1;}
+.reco-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.reco-title h3{font-family:'Poppins',sans-serif;font-size:16.5px;font-weight:500;color:var(--navy);}
+.reco-card p{font-size:13.5px;color:var(--body);line-height:1.7;}
+.reco-card p strong{color:var(--navy);font-weight:500;}
+.reco-who{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);margin-top:10px;}
+
+.fazit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 36px;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:22px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-text{font-size:14px;color:var(--body);line-height:1.75;}
+.fazit-text strong{color:var(--navy);font-weight:500;}
+.fazit-text p{margin-bottom:12px;}
+.fazit-text p:last-child{margin-bottom:0;}
+
+.footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding:28px 0 48px;border-top:1px solid var(--border);margin-top:40px;}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.h-hero{opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+.hero-sub,.hero-meta{opacity:0;animation:fadeUp 0.6s ease 0.4s forwards;}
+.kpi-grid .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.62s forwards;}
+.kpi-grid .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.70s forwards;}
+.kpi-grid .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.78s forwards;}
+.kpi-grid .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.86s forwards;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media print{
+  @page{size:A4;margin:11mm 10mm;}
+  nav{display:none;}
+  .h-hero,.hero-sub,.hero-meta,.kpi-card{opacity:1!important;animation:none!important;}
+  .reveal{opacity:1!important;transform:none!important;}
+  body{font-size:9.4px;line-height:1.5;background:#fff;}
+  .container{padding:0;max-width:100%;}
+  .hero{padding:0 0 12px;}
+  .section{padding:14px 0;}
+  #setup,#zielgruppen,#mails,#whatsapp,#creatives,#ablauf,#offen{page-break-before:always;}
+  .h-hero{font-size:30px;}
+  .h-section{font-size:20px;margin-bottom:12px;}
+  .hero-sub,.sec-sub{font-size:9.4px;line-height:1.55;margin-bottom:12px;max-width:100%;}
+  .kpi-grid{gap:7px;margin-top:14px;}
+  .kpi-card{padding:10px 12px;}.kpi-value{font-size:19px;}.kpi-sub{font-size:8px;}
+  .hero-meta{gap:16px;margin-top:12px;}
+  .insight-card{padding:12px 15px;margin-top:9px;}.insight-text{font-size:9.4px;line-height:1.55;}
+  .hint-box{padding:9px 12px;margin-top:8px;}.hint-box p{font-size:8.6px;line-height:1.5;}
+  .tbl th{padding:6px 9px;font-size:8px;}.tbl td{padding:6px 9px;font-size:9.2px;}
+  .cell-sub{font-size:7.6px;}.tag{font-size:7.4px;padding:2px 6px;}
+  .concept{grid-template-columns:132px 1fr;margin-bottom:7px;page-break-inside:avoid;}
+  .concept-media{padding:9px;}.vwrap img{width:112px;}
+  .vwrap .fmt{font-size:6.6px;padding:2px 6px;}
+  .concept-body{padding:11px 14px;}
+  .concept-name{font-size:12.5px;}.concept-sub{font-size:7.6px;margin-bottom:7px;}
+  .copy-quote{padding:7px 10px;font-size:8.4px;line-height:1.45;margin:6px 0;}
+  .concept-analysis{font-size:9px;line-height:1.5;}
+  .metric-row{gap:6px;margin-top:7px;}
+  .metric-chip{padding:4px 8px;}.metric-chip b{font-size:10px;}.metric-chip span{font-size:6.8px;}
+  .mailcard{padding:11px 14px;margin-bottom:7px;grid-template-columns:36px 1fr 150px;gap:12px;page-break-inside:avoid;}
+  .mail-num{font-size:23px;}
+  .mail-main h3{font-size:12px;}.mail-main .msub{font-size:7.6px;margin-bottom:6px;}
+  .mail-main p{font-size:9px;line-height:1.5;}
+  .mail-side{padding-left:12px;}.ms-row{margin-bottom:6px;}
+  .ms-lbl{font-size:7.2px;}.ms-val{font-size:8.8px;}
+  .trow{padding:7px 12px;grid-template-columns:80px 16px 1fr 84px;gap:9px;}
+  .tdate{font-size:8.8px;}.tdate span{font-size:7px;}.twhat{font-size:8.8px;line-height:1.45;}
+  .reco-card{padding:11px 14px;margin-bottom:7px;grid-template-columns:34px 1fr;gap:12px;page-break-inside:avoid;}
+  .reco-num{font-size:22px;}.reco-title h3{font-size:11px;}
+  .reco-card p{font-size:9px;line-height:1.5;}.reco-who{font-size:7.2px;margin-top:6px;}
+  .fazit-card{padding:16px 20px;page-break-inside:avoid;}
+  .fazit-heading{font-size:15px;margin-bottom:7px;}
+  .fazit-text{font-size:9.2px;line-height:1.6;}.fazit-text p{margin-bottom:6px;}
+  .footer{padding:12px 0 0;margin-top:16px;}
+  .tbl-wrap,.tline{page-break-inside:avoid;}
+}
+@media(max-width:900px){
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .container{padding:0 20px;}
+  .h-hero{font-size:40px;}.h-section{font-size:32px;}
+  .concept{grid-template-columns:1fr;}
+  .mailcard{grid-template-columns:1fr;}
+  .mail-side{border-left:none;border-top:1px solid var(--border);padding-left:0;padding-top:14px;}
+  .trow{grid-template-columns:84px 18px 1fr;}.ttag{display:none;}
+  .nav-tabs{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#setup">Setup</a>
+    <a class="nav-tab" href="#zielgruppen">Zielgruppen</a>
+    <a class="nav-tab" href="#mails">E-Mails</a>
+    <a class="nav-tab" href="#whatsapp">WhatsApp</a>
+    <a class="nav-tab" href="#creatives">Creatives</a>
+    <a class="nav-tab" href="#ablauf">Ablauf</a>
+    <a class="nav-tab" href="#offen">Offene Punkte</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">Macher Festival · August 2026</span></div>
+</nav>
+
+<div class="container">
+
+<!-- HERO -->
+<section class="hero" id="uebersicht">
+  <div class="meta-badge"><span class="dot"></span><span>Loyalty-Launch · Tickets 2027 · Für Daniel</span></div>
+  <h1 class="h-hero">Was ab Montag rausgeht:<br><em>alles auf einen Blick.</em></h1>
+  <p class="hero-sub">Direkt nach dem Festival ist die Kaufbereitschaft am höchsten — die Leute sind noch im Erlebnis. Diese drei Wochen nutzen wir, um <strong>den Grundstock für 2027 zu verkaufen</strong>, bevor der Alltag zurückkommt. Angesprochen werden ausschließlich die <strong>2.224 Käufer von 2026</strong>: Der Loyalty-Preis ist ein Dankeschön, kein öffentlicher Rabatt. Sechs E-Mails, fünf WhatsApp-Posts und zehn Werbemotive in je drei Formaten sind gebaut, getextet und eingestellt — es fehlen nur der Link zur neuen Subpage und die Bestätigung des Preises.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hero-meta-label">Kampagne</span><span class="hero-meta-value">Loyalty-Phase Tickets 2027</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Laufzeit</span><span class="hero-meta-value">10.08. – 30.08.2026 (21 Tage)</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Kanäle</span><span class="hero-meta-value">E-Mail · WhatsApp · Meta Retargeting</span></div>
+    <div class="hero-meta-item"><span class="hero-meta-label">Stand</span><span class="hero-meta-value">9. August 2026</span></div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">E-Mails</span><span class="sw"><span class="sd g"></span><span class="sl g">Fertig</span></span></div><div class="kpi-value">6</div><div class="kpi-sub">Getextet, terminiert in Brevo</div></div>
+    <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">Werbemotive</span><span class="sw"><span class="sd g"></span><span class="sl g">Fertig</span></span></div><div class="kpi-value">10</div><div class="kpi-sub">Je 3 Formate = 30 Dateien</div></div>
+    <div class="kpi-card hi"><div class="kpi-header"><span class="kpi-label">WhatsApp-Posts</span><span class="sw"><span class="sd g"></span><span class="sl g">Fertig</span></span></div><div class="kpi-value">5</div><div class="kpi-sub">Für beide Channels</div></div>
+    <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Zielgruppe Phase 1</span><span class="sw"><span class="sd y"></span><span class="sl y">Exklusiv</span></span></div><div class="kpi-value">2.224</div><div class="kpi-sub">Käufer 2026 · sonst niemand</div></div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<section class="section" id="setup">
+  <h2 class="h-section reveal">Vom Gutscheincode <em>zur eigenen Subpage</em></h2>
+  <p class="sec-sub reveal">Ursprünglich war ein Rabattcode für den normalen Shop geplant. Nach Daniels Idee vom Freitagabend läuft es jetzt über eine eigene Seite, auf der ausschließlich das Loyalty-Ticket angeboten wird — die Hauptseite sammelt stattdessen E-Mails für den Earlybird-Start. <strong>Das ist der bessere Weg</strong>, und die Kampagne ist bereits vollständig darauf umgestellt.</p>
+
+  <div class="tbl-wrap reveal">
+    <table class="tbl">
+      <thead><tr><th>Dimension</th><th>Vorher — Gutscheincode</th><th>Jetzt — eigene Subpage</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Zugang</strong></td><td>Code eingeben im normalen Shop</td><td>Exklusiver Link, direkt zum richtigen Preis</td></tr>
+        <tr><td><strong>Risiko</strong></td><td>Code landet in Sparportalen und Foren</td><td>Link kursiert nur in der Zielgruppe</td></tr>
+        <tr><td><strong>Textaufwand</strong></td><td>Jede Mail muss den Code erklären</td><td>Ein Klick, keine Erklärung nötig</td></tr>
+        <tr><td><strong>Checkout</strong></td><td>Zusätzliche Hürde beim Bezahlen</td><td>Direkter Weg, weniger Abbrüche</td></tr>
+        <tr><td><strong>Hauptseite</strong></td><td>Shop sichtbar, Preisverwirrung möglich</td><td>Sammelt E-Mails für den Earlybird</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hint-box reveal">
+    <p><strong>Konsequenz für die Texte:</strong> Alle sechs E-Mails, fünf WhatsApp-Posts und zehn Werbemotive sind umgeschrieben — statt „Code eingeben" heißt es jetzt „dein Link". Die Kommunikation wird dadurch kürzer und der Weg zum Kauf direkter.</p>
+  </div>
+
+  <div class="hint-box reveal">
+    <p><strong>Emres Einwand ist berechtigt:</strong> Weil Auto-Camping, Parkplatz und Shuttle auf der Subpage fehlen, verschiebt sich dieser Umsatz nach hinten. Wir fassen die Loyalty-Käufer einige Wochen später gezielt nach, sobald die Upgrades verfügbar sind — als eigene kurze Strecke, damit die Botschaft jetzt klar bleibt.</p>
+  </div>
+</section>
+
+<!-- ZIELGRUPPEN -->
+<section class="section" id="zielgruppen">
+  <h2 class="h-section reveal">Wer <em>was</em> bekommt</h2>
+  <p class="sec-sub reveal">Der Kontaktbestand ist aufgeräumt und in drei überschneidungsfreie Gruppen sortiert — geprüft, niemand ist doppelt drin. Die Loyalty-Phase spricht bewusst <strong>nur Gruppe A</strong> an.</p>
+
+  <div class="tbl-wrap reveal">
+    <table class="tbl">
+      <thead><tr><th>Gruppe</th><th>Wer drin ist</th><th class="num">Kontakte</th><th>Wann angesprochen</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong><span class="cell-sub">Loyalty</span></td>
+          <td><strong>Käufer 2026</strong><span class="cell-sub">Alle mit Ticket für dieses Jahr</span></td>
+          <td class="num"><strong>2.224</strong></td>
+          <td><span class="tag b">Jetzt · 10.–30.08.</span></td>
+        </tr>
+        <tr>
+          <td><strong>B</strong><span class="cell-sub">Rückgewinnung</span></td>
+          <td><strong>Frühere Festivalgäste</strong><span class="cell-sub">2024 und 2025, aber nicht 2026</span></td>
+          <td class="num">2.843</td>
+          <td><span class="tag n">Nach dem 30.08.</span></td>
+        </tr>
+        <tr>
+          <td><strong>C</strong><span class="cell-sub">Neukunden</span></td>
+          <td><strong>Real-Life-Guys-Shopkunden</strong><span class="cell-sub">Nie ein Festivalticket gekauft</span></td>
+          <td class="num">30.427</td>
+          <td><span class="tag n">Ab September</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Neu dazugekommen</div>
+    <p class="insight-text">Der Kundenexport aus dem Real-Life-Guys-Shop ist eingespielt: <strong>53.487 Kontakte</strong>, getrennt nach Newsletter-Zustimmung. 31.390 haben zugestimmt, 22.096 nicht — letztere sind technisch gesperrt und können nicht versehentlich angeschrieben werden. Bestehende Abmeldungen wurden dabei nicht überschrieben: Wer sich je abgemeldet hat, bleibt abgemeldet. Damit wächst der erreichbare Bestand von rund 5.500 auf etwa 36.000 Kontakte — <strong>der größte Hebel für später</strong>, aber erst nach der Loyalty-Phase, weil diese Leute das Festival noch nicht kennen und eine eigene Ansprache brauchen.</p>
+  </div>
+
+  <div class="hint-box green reveal">
+    <p><strong>Zustellung ist abgesichert:</strong> macherfestival.io ist vollständig authentifiziert — DKIM, DMARC und Brevo-Code alle bestätigt. Absender bleibt orga@macherfestival.io. Technisch steht dem Versand nichts entgegen.</p>
+  </div>
+</section>
+
+<!-- MAILS -->
+<section class="section" id="mails">
+  <h2 class="h-section reveal">Die sechs <em>E-Mails</em></h2>
+  <p class="sec-sub reveal">Bewusst auf sechs reduziert und über drei Wochen verteilt — lieber wenige starke Sendungen als viele, die abstumpfen. Zum Vergleich: Eure Festival-Mails wurden zuletzt von <strong>rund 75 % der Empfänger geöffnet</strong> und erreichten über 1.000 Klicks. Das ist außergewöhnlich hoch und die Basis, auf der diese Strecke geplant ist.</p>
+
+  <div class="mailcard reveal">
+    <div class="mail-num">1</div>
+    <div class="mail-main">
+      <div class="mh"><h3>Das wart ihr ❤️</h3><span class="tag g">Vorterminiert</span></div>
+      <div class="msub">So 09.08. · 21 Uhr · Danke-Mail</div>
+      <p>Reine Danke-Mail wenige Stunden nach Festivalende: vier Tage, 5.000 Macher, 100 Tiny Häuser — und die Ankündigung, dass Fotos und Aftermovie folgen. <strong>Kein Verkaufsdruck</strong>, der Hinweis auf 2027 steht als einzelner Satz am Ende. Diese Mail öffnet erfahrungsgemäß am besten, weil sie genau im Festival-Hoch ankommt.</p>
+    </div>
+    <div class="mail-side">
+      <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">Segment A · 2.224</span></div>
+      <div class="ms-row"><span class="ms-lbl">Ziel</span><span class="ms-val">Bindung, nicht Verkauf</span></div>
+      <div class="ms-row"><span class="ms-lbl">Braucht</span><span class="ms-val">Subpage-Link</span></div>
+    </div>
+  </div>
+
+  <div class="mailcard reveal">
+    <div class="mail-num">2</div>
+    <div class="mail-main">
+      <div class="mh"><h3>Dein Ticket für 2027 🎟️</h3><span class="tag b">Hauptumsatz</span></div>
+      <div class="msub">Mo 10.08. · 18 Uhr · Launch</div>
+      <p>Der eigentliche Startschuss. Preis, Termin und Link zur Subpage — ohne Umwege. Enthält den Hinweis, <strong>jetzt schon Urlaub zu blocken</strong>: Ein Jahr Vorlauf ist das stärkste Argument gegen „ich weiß noch nicht, ob ich kann". Der günstigere Preis wird als Dankeschön begründet, nicht als Rabattaktion.</p>
+    </div>
+    <div class="mail-side">
+      <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">Segment A · 2.224</span></div>
+      <div class="ms-row"><span class="ms-lbl">Ziel</span><span class="ms-val">Hauptumsatz der Phase</span></div>
+      <div class="ms-row"><span class="ms-lbl">Braucht</span><span class="ms-val">Subpage-Link + Preis</span></div>
+    </div>
+  </div>
+
+  <div class="mailcard reveal">
+    <div class="mail-num">3</div>
+    <div class="mail-main">
+      <div class="mh"><h3>Deine Fotos vom Festival sind da 📸</h3><span class="tag g">Beste Klickrate</span></div>
+      <div class="msub">Do 13.08. · 18 Uhr · Content</div>
+      <p>Aftermovie und Fotogalerie. Das Wort „deine" im Betreff macht den Unterschied — diese Mail bekommt erfahrungsgemäß <strong>die höchste Klickrate der ganzen Strecke</strong>. Verkauft wird nur im Nachsatz, dafür mit direktem Link. Wer hier klickt, ist emotional wieder im Festival und kauft anschließend deutlich leichter.</p>
+    </div>
+    <div class="mail-side">
+      <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">Segment A · 2.224</span></div>
+      <div class="ms-row"><span class="ms-lbl">Ziel</span><span class="ms-val">Reaktivierung über Content</span></div>
+      <div class="ms-row"><span class="ms-lbl">Braucht</span><span class="ms-val">Galerie + Aftermovie</span></div>
+    </div>
+  </div>
+
+  <div class="mailcard reveal">
+    <div class="mail-num">4</div>
+    <div class="mail-main">
+      <div class="mh"><h3>Was aus den 100 Tiny Häusern geworden ist 🏠</h3><span class="tag y">Braucht Inhalt</span></div>
+      <div class="msub">Mi 20.08. · 18 Uhr · Story</div>
+      <p>Die stärkste Geschichte des Festivals weitererzählt: Wohin sind die Häuser gegangen, an wen? Diese Mail verkauft <strong>über Zugehörigkeit statt über den Preis</strong> — sie zeigt, dass beim Macher Festival etwas bleibt, das über das Wochenende hinausgeht. Genau das rechtfertigt, ein Ticket ein Jahr im Voraus zu kaufen.</p>
+    </div>
+    <div class="mail-side">
+      <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">Segment A · 2.224</span></div>
+      <div class="ms-row"><span class="ms-lbl">Ziel</span><span class="ms-val">Emotionale Bindung</span></div>
+      <div class="ms-row"><span class="ms-lbl">Braucht</span><span class="ms-val">2–3 Beispiele + Foto</span></div>
+    </div>
+  </div>
+
+  <div class="mailcard reveal">
+    <div class="mail-num">5</div>
+    <div class="mail-main">
+      <div class="mh"><h3>Noch ein paar Tage ⏰</h3><span class="tag g">Terminiert</span></div>
+      <div class="msub">Mi 27.08. · 18 Uhr · Erinnerung</div>
+      <p>Erinnerung mit Einwandbehandlung. Greift den häufigsten Satz auf und dreht ihn: <strong>„Du entscheidest heute nicht, ob du fährst — nur, zu welchem Preis."</strong> Dazu der Hinweis, dass der Termin feststeht und ein Jahr Vorlauf für die Urlaubsplanung reicht.</p>
+    </div>
+    <div class="mail-side">
+      <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">A ohne Käufer 2027</span></div>
+      <div class="ms-row"><span class="ms-lbl">Ziel</span><span class="ms-val">Unentschlossene abholen</span></div>
+      <div class="ms-row"><span class="ms-lbl">Braucht</span><span class="ms-val">—</span></div>
+    </div>
+  </div>
+
+  <div class="mailcard reveal">
+    <div class="mail-num">6</div>
+    <div class="mail-main">
+      <div class="mh"><h3>Heute um 23:59 Uhr ist Schluss ⏳</h3><span class="tag r">Zwei Versände</span></div>
+      <div class="msub">So 30.08. · 10 Uhr + 20 Uhr · Last Call</div>
+      <p>Letzter Tag, mit kurzem Nachfassen am Abend an alle, die morgens nicht geöffnet haben. Dieser zweite Versand holt erfahrungsgemäß fast so viel wie die Morgen-Mail und ist der <strong>stärkste Einzelhebel der Schlussphase</strong>. Entscheidend: Wir verlängern nicht — sonst ist die Deadline nächstes Jahr wertlos.</p>
+    </div>
+    <div class="mail-side">
+      <div class="ms-row"><span class="ms-lbl">Empfänger</span><span class="ms-val">A ohne Käufer 2027</span></div>
+      <div class="ms-row"><span class="ms-lbl">Ziel</span><span class="ms-val">Letzte Entscheidungen</span></div>
+      <div class="ms-row"><span class="ms-lbl">Volumen</span><span class="ms-val">~3.400 Sendungen</span></div>
+    </div>
+  </div>
+
+  <div class="hint-box reveal">
+    <p><strong>Kontingent passt:</strong> Sechs Sendungen an Segment A ergeben rund 13.000 E-Mails. Das Brevo-Paket deckt 15.540 pro Monat — kein Upgrade nötig, mit Puffer für Testversände.</p>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<section class="section" id="whatsapp">
+  <h2 class="h-section reveal">Die fünf <em>WhatsApp-Posts</em></h2>
+  <p class="sec-sub reveal">Für beide Channels — Macherfestival und Real Life Guys. Wichtig: In einem Channel lässt sich <strong>nicht segmentieren</strong>, dort sitzen auch Leute, die dieses Jahr nicht dabei waren. Die Texte sind deshalb so formuliert, dass sie für beide Gruppen funktionieren, und sind bewusst länger gehalten als klassische Kurz-Posts.</p>
+
+  <div class="tbl-wrap reveal">
+    <table class="tbl">
+      <thead><tr><th>Wann</th><th>Inhalt</th><th>Braucht</th><th>Wer postet</th></tr></thead>
+      <tbody>
+        <tr><td><strong>So 09.08.</strong><span class="cell-sub">abends</span></td><td><strong>Danke &amp; Tickets sind online</strong><span class="cell-sub">Rückblick auf das Wochenende, dann der Ausblick auf 2027</span></td><td><span class="tag y">Subpage-Link</span></td><td>Amelie</td></tr>
+        <tr><td><strong>Mi 12.08.</strong></td><td><strong>Aftermovie-Teaser</strong><span class="cell-sub">Erster Vorgeschmack plus Preis-Erinnerung</span></td><td><span class="tag y">Teaser-Clip</span></td><td>Amelie</td></tr>
+        <tr><td><strong>Fr 15.08.</strong></td><td><strong>Fotogalerie ist online</strong><span class="cell-sub">Aufforderung zum Raussuchen und Markieren</span></td><td><span class="tag y">Galerie-Link</span></td><td>Amelie</td></tr>
+        <tr><td><strong>So 23.08.</strong></td><td><strong>Noch eine Woche</strong><span class="cell-sub">Deadline plus das Urlaubs-Argument</span></td><td><span class="tag g">Fertig</span></td><td>Amelie</td></tr>
+        <tr><td><strong>So 30.08.</strong><span class="cell-sub">vormittags</span></td><td><strong>Last Call</strong><span class="cell-sub">Heute endet der Preis, keine Verlängerung</span></td><td><span class="tag g">Fertig</span></td><td>Amelie</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hint-box red reveal">
+    <p><strong>Offene Frage:</strong> Wer postet am Sonntagabend? Amelie und Arthur sind beide auf dem Gelände. Die E-Mail läuft vorterminiert automatisch, der WhatsApp-Post braucht aber eine Person am Handy. Bitte einmal verbindlich festlegen.</p>
+  </div>
+</section>
+
+<!-- CREATIVES -->
+<section class="section" id="creatives">
+  <h2 class="h-section reveal">Zehn Motive, <em>drei Formate</em></h2>
+  <p class="sec-sub reveal">Jedes Motiv liegt als Feed (4:5), Post (1:1) und Story (9:16) vor — insgesamt 30 Dateien, alle mit geprüften Sicherheitsabständen für Instagram. Ausgespielt wird als <strong>Retargeting</strong> auf die Käufer von 2026 und Website-Besucher, mit <strong>80 € Tagesbudget</strong>. Sieben Motive starten am Montag, drei Countdown-Motive kommen ab dem 24. August dazu. Unten die Feed-Variante mit der jeweiligen Anzeigen-Copy im Original-Wortlaut.</p>
+
+  <div class="concept star reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/V1.jpg" alt="Danke-Deal"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">V1 · Danke-Deal</span><span class="tag g">Haupt-Motiv</span><span class="tag b">Dankbarkeit + Angebot</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 23.08.</div>
+      <div class="copy-quote">5.000 Macher waren gerade auf Ferropolis — und du warst einer davon.
+
+Für alle, die 2027 wiederkommen, gibt es jetzt den Loyalty-Preis. Nur bis 30.08. →</div>
+      <p class="concept-analysis">Das Trägermotiv der Phase: Es verbindet den emotionalen Rückblick mit dem Angebot, ohne aufdringlich zu werden. Der Preis steht groß im Bild, damit die Botschaft auch ohne Text funktioniert — <strong>in Story und Reels lesen die meisten keine Caption.</strong></p>
+      <div class="metric-row"><div class="metric-chip blue"><b>Kalt-Start</b><span>Rolle</span></div><div class="metric-chip"><b>Feed + Story</b><span>Placement</span></div><div class="metric-chip"><b>10.–23.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L8.jpg" alt="Preis pur"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L8 · Preis pur</span><span class="tag b">Direkt</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 30.08.</div>
+      <div class="copy-quote">Der Loyalty-Preis. Mehr muss man dazu nicht sagen.
+
+Gilt für alle, die dieses Jahr dabei waren — nur bis 30.08. →</div>
+      <p class="concept-analysis">Der direkteste Angle ohne Umweg. Funktioniert besonders gut als <strong>Zweitkontakt</strong>, wenn das Angebot durch Mail oder ein anderes Motiv schon bekannt ist — dann braucht es keine Erklärung mehr, nur noch die Zahl.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Zweitkontakt</b><span>Rolle</span></div><div class="metric-chip"><b>Alle Placements</b><span>Placement</span></div><div class="metric-chip"><b>10.–30.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L7.jpg" alt="Danke, Macher"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L7 · Danke, Macher</span><span class="tag g">Niedrigster Druck</span><span class="tag b">Community</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 23.08.</div>
+      <div class="copy-quote">4 Tage. 5.000 Macher. 100 Tiny Häuser.
+
+Danke, dass ihr das möglich gemacht habt. 2027 bauen wir wieder — wer dabei sein will, bekommt jetzt den Loyalty-Preis. →</div>
+      <p class="concept-analysis">Die Zahlen tragen dieses Motiv: Sie sind konkret, überprüfbar und erzeugen Stolz bei denen, die dabei waren. <strong>Der niedrigste Verkaufsdruck aller zehn Motive</strong> — genau richtig für die ersten Tage, wenn die Leute noch nicht in Kauflaune, aber in Erinnerungslaune sind.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Warm-up</b><span>Rolle</span></div><div class="metric-chip green"><b>Hohe Relevanz</b><span>Zielgruppe A</span></div><div class="metric-chip"><b>10.–23.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L6.jpg" alt="See you next year"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L6 · See you next year</span><span class="tag b">Termin-Fokus</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 23.08.</div>
+      <div class="copy-quote">12.–15. August 2027. Schreib es dir jetzt in den Kalender.
+
+Und wenn du schon dabei bist: Als Wiederkommer bekommst du den Loyalty-Preis. →</div>
+      <p class="concept-analysis">Spricht die Planer an — Leute, die Urlaub abstimmen müssen und für die das Datum wichtiger ist als der Preis. <strong>Der Termin steht groß im Bild</strong>, damit er auch beim Durchscrollen hängen bleibt.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Planer</b><span>Zielgruppe</span></div><div class="metric-chip"><b>Datum im Bild</b><span>Hook</span></div><div class="metric-chip"><b>10.–23.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L11.jpg" alt="Block den Urlaub"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L11 · Block den Urlaub</span><span class="tag y">Einwand-Angle</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 30.08.</div>
+      <div class="copy-quote">12.–15. August 2027. Ein Jahr Vorlauf — den Urlaub bekommst du jetzt noch problemlos durch.
+
+Und das Ticket kostet dich heute weniger. →</div>
+      <p class="concept-analysis">Nimmt den Haupteinwand direkt vorweg. „Ich weiß noch nicht, ob ich kann" ist der häufigste Grund, nicht zu kaufen — <strong>ein Jahr Vorlauf entkräftet ihn vollständig</strong>, man muss es nur aussprechen.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Unentschlossene</b><span>Zielgruppe</span></div><div class="metric-chip"><b>Einwand</b><span>Mechanik</span></div><div class="metric-chip"><b>10.–30.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L12.jpg" alt="Take-Home"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L12 · Bau's. Fahr's. Nimm's mit.</span><span class="tag b">USP</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 30.08.</div>
+      <div class="copy-quote">Bauen, fahren, mitnehmen. Alles, was du auf dem Macher Festival baust, gehört dir.
+
+35+ Workshops, 40+ Schweißbänke, ab 12 Jahren. →</div>
+      <p class="concept-analysis">Das einzige Motiv, das <strong>erklärt, was das Festival eigentlich ist</strong>. Wichtig für alle, die 2026 dabei waren, aber vielleicht nur einen Teil erlebt haben — und später der Grundstein für die Ansprache der Shopkunden, die das Festival noch nicht kennen.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Erklärend</b><span>Rolle</span></div><div class="metric-chip"><b>Take-Home</b><span>USP</span></div><div class="metric-chip"><b>10.–30.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L10.jpg" alt="Nie wieder günstiger"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L10 · So günstig wie nie wieder</span><span class="tag b">Bestpreis</span></div>
+      <div class="concept-sub">Start 10.08. · läuft bis 30.08.</div>
+      <div class="copy-quote">Der Loyalty-Preis ist der niedrigste Preis, den es für 2027 geben wird. Danach geht es nur noch nach oben. →</div>
+      <p class="concept-analysis">Bestpreis-Garantie als Argument. Wirkt vor allem bei Leuten, die grundsätzlich kaufen wollen, aber <strong>auf einen besseren Moment warten</strong> — den es hier nachweislich nicht geben wird.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Aufschieber</b><span>Zielgruppe</span></div><div class="metric-chip"><b>Bestpreis</b><span>Mechanik</span></div><div class="metric-chip"><b>10.–30.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept late reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/V4.jpg" alt="Countdown"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">V4 · Countdown</span><span class="tag y">Ab 24.08.</span><span class="tag b">Dringlichkeit</span></div>
+      <div class="concept-sub">Phase 2 · ersetzt die ruhigeren Motive</div>
+      <div class="copy-quote">Noch wenige Tage, dann endet der Loyalty-Preis.
+
+Es wird nicht verlängert, auch nicht auf Nachfrage. →</div>
+      <p class="concept-analysis">Kommt in der Schlussphase dazu. <strong>Die Tagesangabe im Bild tauschen wir wöchentlich</strong>, damit der Countdown echt bleibt und nicht wie eine Dauerschleife wirkt — ein statischer Countdown verliert nach drei Tagen jede Wirkung.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Schlussphase</b><span>Rolle</span></div><div class="metric-chip"><b>wöchentlich</b><span>Zahl tauschen</span></div><div class="metric-chip"><b>ab 24.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept late reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L9.jpg" alt="Deadline"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L9 · Nur noch bis 30.08.</span><span class="tag y">Ab 24.08.</span></div>
+      <div class="concept-sub">Phase 2 · klare Frist</div>
+      <div class="copy-quote">Der Loyalty-Preis gilt bis zum 30.08., 23:59 Uhr. Danach kostet dasselbe Ticket den regulären Preis.
+
+Wir verlängern nicht — versprochen ist versprochen, auch beim Preis. →</div>
+      <p class="concept-analysis">Setzt das Datum ins Zentrum statt einer Restlaufzeit. Der Zusatz „wir verlängern nicht" ist wichtiger, als er klingt: <strong>Deadlines wirken nur, wenn sie glaubwürdig sind.</strong> Wird einmal verlängert, glaubt die Zielgruppe die nächste Frist nicht mehr.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Datum</b><span>Hook</span></div><div class="metric-chip"><b>Glaubwürdigkeit</b><span>Mechanik</span></div><div class="metric-chip"><b>ab 24.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="concept late reveal">
+    <div class="concept-media"><div class="vwrap"><img src="assets/mf27-loyalty/L14.jpg" alt="Countdown-Stack"><div class="fmt">4:5 · 1:1 · 9:16</div></div></div>
+    <div class="concept-body">
+      <div class="concept-hdr"><span class="concept-name">L14 · Countdown-Stack</span><span class="tag y">Ab 24.08.</span><span class="tag n">Rotation</span></div>
+      <div class="concept-sub">Phase 2 · Alternative zu V4</div>
+      <div class="copy-quote">Noch wenige Tage Loyalty-Preis.
+
+Danach gilt der reguläre Preis. Keine Verlängerung, keine Ausnahmen. →</div>
+      <p class="concept-analysis">Zweite Countdown-Variante, damit wir in der Schlussphase abwechseln können. <strong>Bei einer kleinen Zielgruppe ist Rotation entscheidend</strong> — sonst sieht jeder dasselbe Bild fünfmal und die Klickrate bricht ein.</p>
+      <div class="metric-row"><div class="metric-chip"><b>Rotation</b><span>Rolle</span></div><div class="metric-chip"><b>Anti-Ermüdung</b><span>Mechanik</span></div><div class="metric-chip"><b>ab 24.08.</b><span>Laufzeit</span></div></div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Warum zehn Motive und nicht drei</div>
+    <p class="insight-text">Die Zielgruppe ist klein — rund 2.200 Käufer plus Website-Besucher. Bei kleinen Zielgruppen ist <strong>Anzeigenmüdigkeit</strong> das Hauptproblem: Nach wenigen Tagen hat jeder dasselbe Bild mehrfach gesehen, die Klickrate fällt und der Klickpreis steigt. Genau das ist bei der 90-%-Kampagne im Sommer passiert — dort lag die Kontaktfrequenz am Ende bei <strong>4,86</strong> und die Klickrate war auf <strong>0,63 %</strong> gefallen, während die parallele Prospecting-Kampagne bei 1,96 % lag. Mit zehn Motiven in unterschiedlichen Tonlagen können wir rotieren, ohne die Botschaft zu verwässern.</p>
+  </div>
+
+  <div class="hint-box red reveal">
+    <p><strong>Tracking — der offene Punkt:</strong> Die Sommerkampagnen haben bei 3.253 € Werbekosten keinen einzigen Kauf zurückgemeldet. Nicht, weil nichts verkauft wurde, sondern weil die Kaufmeldung seit dem Shop-Wechsel nicht mehr bei Meta ankommt. Ohne diese Rückmeldung kann Meta nicht auf Käufer optimieren und wir sehen nicht, welches Motiv tatsächlich verkauft. David arbeitet daran.</p>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section class="section" id="ablauf">
+  <h2 class="h-section reveal">Der Ablauf <em>Tag für Tag</em></h2>
+  <p class="sec-sub reveal">Drei Wochen, klar getaktet. Blau sind E-Mails, grün WhatsApp, gelb Werbung, grau alles Technische.</p>
+
+  <div class="tline reveal">
+    <div class="trow key"><div class="tdate">So 09.08.<span>Festivalende</span></div><div class="tdot s"></div><div class="twhat"><strong>Subpage geht live</strong> mit frischen Festival-Fotos · <strong>Danke-Mail um 21 Uhr</strong> · WhatsApp-Post am Abend in beiden Channels</div><div class="ttag"><span class="tag n">Setup</span></div></div>
+    <div class="trow key"><div class="tdate">Mo 10.08.<span>Start</span></div><div class="tdot m"></div><div class="twhat"><strong>Kampagnenstart:</strong> Loyalty-Mail um 18 Uhr an alle 2.224 Käufer · sieben Werbemotive gehen live mit 80 € Tagesbudget</div><div class="ttag"><span class="tag b">Mail + Ads</span></div></div>
+    <div class="trow"><div class="tdate">Mi 12.08.</div><div class="tdot w"></div><div class="twhat">Aftermovie-Teaser in beiden Channels</div><div class="ttag"><span class="tag g">WhatsApp</span></div></div>
+    <div class="trow"><div class="tdate">Do 13.08.</div><div class="tdot m"></div><div class="twhat"><strong>Fotos und Aftermovie per Mail</strong> — die Sendung mit der besten Klickrate</div><div class="ttag"><span class="tag b">Mail</span></div></div>
+    <div class="trow"><div class="tdate">Fr 15.08.</div><div class="tdot w"></div><div class="twhat">Fotogalerie im Channel</div><div class="ttag"><span class="tag g">WhatsApp</span></div></div>
+    <div class="trow"><div class="tdate">Mi 20.08.</div><div class="tdot m"></div><div class="twhat"><strong>Tiny-Houses-Geschichte per Mail</strong> — verkauft über Zugehörigkeit</div><div class="ttag"><span class="tag b">Mail</span></div></div>
+    <div class="trow"><div class="tdate">So 23.08.</div><div class="tdot w"></div><div class="twhat">Deadline-Erinnerung im Channel: noch eine Woche</div><div class="ttag"><span class="tag g">WhatsApp</span></div></div>
+    <div class="trow"><div class="tdate">Mo 24.08.</div><div class="tdot a"></div><div class="twhat">Werbemotive wechseln auf <strong>Countdown</strong> — drei neue Motive, die ruhigen Varianten pausieren</div><div class="ttag"><span class="tag y">Ads</span></div></div>
+    <div class="trow"><div class="tdate">Mi 27.08.</div><div class="tdot m"></div><div class="twhat"><strong>Erinnerung mit Einwandbehandlung</strong> an alle, die noch nicht gekauft haben</div><div class="ttag"><span class="tag b">Mail</span></div></div>
+    <div class="trow key"><div class="tdate">So 30.08.<span>Letzter Tag</span></div><div class="tdot m"></div><div class="twhat"><strong>Last Call:</strong> Mail um 10 Uhr, Nachfassen um 20 Uhr, WhatsApp vormittags · <strong>um 23:59 Uhr endet der Loyalty-Preis</strong></div><div class="ttag"><span class="tag r">Finale</span></div></div>
+    <div class="trow"><div class="tdate">Mo 31.08.</div><div class="tdot s"></div><div class="twhat">Umstellung auf den regulären Preis · Werbung pausiert · Auswertung der Phase</div><div class="ttag"><span class="tag n">Setup</span></div></div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Und danach</div>
+    <p class="insight-text">Ab September sprechen wir <strong>Gruppe B</strong> an — die früheren Festivalgäste, die dieses Jahr nicht dabei waren. Danach die <strong>30.427 Shopkunden</strong>, die noch nie ein Festivalticket gekauft haben. Das ist die größte ungenutzte Gruppe im Bestand, braucht aber eine eigene Ansprache: Diese Leute kennen die Real Life Guys, aber nicht das Festival. Wir müssen ihnen erst erklären, was vier Tage Ferropolis bedeuten, bevor wir ein Ticket anbieten — deshalb eigene Texte, eigene Motive und ein Warm-up, damit die Zustellbarkeit nicht leidet.</p>
+  </div>
+</section>
+
+<!-- OFFENE PUNKTE -->
+<section class="section" id="offen">
+  <h2 class="h-section reveal">Was wir <em>von euch brauchen</em></h2>
+  <p class="sec-sub reveal">Alles andere ist gebaut, getextet und eingestellt. Diese Punkte fehlen noch — die ersten drei sind zeitkritisch, weil sie in allen Mails, Posts und Motiven stecken.</p>
+
+  <div class="reco-card urgent reveal">
+    <div class="reco-num">1</div>
+    <div>
+      <div class="reco-title"><h3>Der Link zur Loyalty-Subpage</h3><span class="tag r">Sonntag</span></div>
+      <p>Steckt in jeder Mail, jedem WhatsApp-Post und allen zehn Werbemotiven. <strong>Ohne ihn kann nichts rausgehen.</strong> Sobald er da ist, tauschen wir ihn überall in einem Durchgang aus — das dauert bei uns wenige Minuten.</p>
+      <div class="reco-who">Emre / Daniel</div>
+    </div>
+  </div>
+
+  <div class="reco-card urgent reveal">
+    <div class="reco-num">2</div>
+    <div>
+      <div class="reco-title"><h3>Bestätigung des Loyalty-Preises</h3><span class="tag r">Sonntag</span></div>
+      <p>Weil die Subpage ein eigenes Ticket bekommt, kannst du den Preis frei setzen. Wir brauchen die finale Zahl vor dem Versand — <strong>sie steht in allen zehn Motiven im Bild</strong> und lässt sich danach nur mit neuem Rendern ändern.</p>
+      <div class="reco-who">Daniel</div>
+    </div>
+  </div>
+
+  <div class="reco-card urgent reveal">
+    <div class="reco-num">3</div>
+    <div>
+      <div class="reco-title"><h3>Fotos vom Wochenende</h3><span class="tag r">Sonntag</span></div>
+      <p>Für die Subpage. Nichts überzeugt so stark wie Bilder, die erkennbar von genau diesem Wochenende sind — die Leute sehen sich selbst und ihre Projekte wieder.</p>
+      <div class="reco-who">Team vor Ort</div>
+    </div>
+  </div>
+
+  <div class="reco-card reveal">
+    <div class="reco-num">4</div>
+    <div>
+      <div class="reco-title"><h3>Aftermovie-Teaser</h3><span class="tag y">Mi 12.08.</span></div>
+      <p>Ein kurzer Clip für den WhatsApp-Post. Muss nicht der fertige Film sein — ein Vorgeschmack reicht und baut Spannung für die Mail am Donnerstag auf.</p>
+      <div class="reco-who">Content-Team</div>
+    </div>
+  </div>
+
+  <div class="reco-card reveal">
+    <div class="reco-num">5</div>
+    <div>
+      <div class="reco-title"><h3>Fotogalerie und Aftermovie</h3><span class="tag y">Do 13.08.</span></div>
+      <p>Für die Mail mit der höchsten Klickrate der Strecke. Falls der Aftermovie länger braucht, verschieben wir ihn und senden die Galerie allein — <strong>sagt uns nur früh Bescheid</strong>, dann passen wir Betreff und Text an.</p>
+      <div class="reco-who">Content-Team</div>
+    </div>
+  </div>
+
+  <div class="reco-card reveal">
+    <div class="reco-num">6</div>
+    <div>
+      <div class="reco-title"><h3>Tiny-House-Geschichten</h3><span class="tag y">Mi 20.08.</span></div>
+      <p>Zwei oder drei konkrete Beispiele mit Foto: Wohin ist das Haus gegangen, an wen, was passiert damit? <strong>Ohne echte Geschichten senden wir diese Mail nicht</strong> — erfundene Beispiele wären das Gegenteil von dem, was sie leisten soll.</p>
+      <div class="reco-who">Daniel / Team</div>
+    </div>
+  </div>
+
+  <div class="reco-card reveal">
+    <div class="reco-num">7</div>
+    <div>
+      <div class="reco-title"><h3>Tracking-Freigabe</h3><span class="tag n">laufend</span></div>
+      <p>Damit wir sehen, welche Werbung tatsächlich Tickets verkauft. Aktuell melden die Kampagnen keine Käufe zurück, seit der Shop gewechselt hat. <strong>David ist dran</strong> — je früher das steht, desto besser kann Meta auf Käufer optimieren.</p>
+      <div class="reco-who">David</div>
+    </div>
+  </div>
+
+  <div class="reco-card reveal">
+    <div class="reco-num">8</div>
+    <div>
+      <div class="reco-title"><h3>Wer postet Sonntagabend</h3><span class="tag y">Sonntag</span></div>
+      <p>Die E-Mail läuft vorterminiert von allein. Der WhatsApp-Post braucht eine Person am Handy — und Amelie und Arthur sind beide auf dem Gelände. Bitte einmal verbindlich klären.</p>
+      <div class="reco-who">Amelie / Daniel</div>
+    </div>
+  </div>
+
+  <div class="hint-box reveal">
+    <p><strong>Eine Kleinigkeit noch:</strong> Alle Motive tragen das Logo von 2026. Falls es für 2027 schon eine Version gibt, tauschen wir sie in wenigen Minuten. Wenn nicht, bleibt es dabei — inhaltlich stört es nicht, weil Datum und Jahr überall korrekt stehen.</p>
+  </div>
+</section>
+
+<!-- FAZIT -->
+<section class="section">
+  <div class="fazit-card reveal">
+    <h3 class="fazit-heading">Kurz gesagt: <span>Alles steht, es fehlt nur der Link.</span></h3>
+    <div class="fazit-text">
+      <p>Sechs E-Mails, fünf WhatsApp-Posts und zehn Werbemotive in drei Formaten sind gebaut, getextet und eingestellt. Die Zustellung ist technisch abgesichert, die Zielgruppen sind sauber getrennt, die Kampagne liegt vorbereitet im Werbekonto.</p>
+      <p>Angesprochen werden in dieser Phase <strong>ausschließlich die 2.224 Käufer von 2026</strong>. Das ist eine bewusste Entscheidung: Der Loyalty-Preis soll ein Dankeschön bleiben und kein öffentlicher Rabatt werden. Die größeren Gruppen — frühere Gäste und die 30.427 Shopkunden — kommen im September dran, dann zum regulären Preis.</p>
+      <p>Was jetzt zählt: <strong>Subpage-Link und Preisbestätigung bis Sonntag.</strong> Sobald beides da ist, läuft die Strecke von allein an. Alles Weitere — Fotos, Aftermovie, die Tiny-House-Geschichten — braucht ihr erst in den Tagen danach.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Skael <span>Reports</span></span>
+    <span class="footer-date">Macher Festival · Loyalty-Launch 2027 · 9. August 2026</span>
+  </div>
+</section>
+
+</div>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const secs = [...document.querySelectorAll('section[id]')];
+const tabs = [...document.querySelectorAll('.nav-tab')];
+window.addEventListener('scroll', () => {
+  let cur = secs[0].id;
+  for (const s of secs) if (window.scrollY >= s.offsetTop - 130) cur = s.id;
+  tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === '#' + cur));
+}, { passive: true });
+</script>
+</body>
+</html>
