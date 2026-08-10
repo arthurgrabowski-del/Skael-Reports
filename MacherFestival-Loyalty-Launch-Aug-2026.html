@@ -136,6 +136,14 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
 .af-val{font-size:14px;color:var(--navy);font-weight:500;}
 .af-val.mono{font-family:'DM Mono',monospace;font-size:12px;font-weight:400;color:var(--body);}
 
+.take-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:26px 30px;margin-bottom:14px;}
+.take-head{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding-bottom:16px;margin-bottom:4px;border-bottom:1px solid var(--border);}
+.take{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--border);}
+.take:last-child{border-bottom:none;padding-bottom:0;}
+.take-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:26px;color:var(--blue);line-height:1;}
+.take p{font-size:13.5px;color:var(--body);line-height:1.7;}
+.take b{color:var(--navy);font-weight:500;}
+
 /* Lightbox */
 .lb{position:fixed;inset:0;background:rgba(15,27,45,0.88);backdrop-filter:blur(6px);z-index:900;display:none;align-items:center;justify-content:center;padding:40px;cursor:zoom-out;}
 .lb.on{display:flex;}
@@ -214,6 +222,10 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   .ms-lbl{font-size:7.2px;}.ms-val{font-size:8.8px;}
   .wa-bubble{padding:9px 11px;font-size:8.6px;line-height:1.5;margin-top:8px;max-width:100%;}
   .mail-body{padding:9px 11px;font-size:8.6px;line-height:1.5;}
+  .take-card{padding:12px 14px;margin-bottom:7px;page-break-inside:avoid;}
+  .take{padding:7px 0;grid-template-columns:26px 1fr;gap:10px;}
+  .take-num{font-size:17px;}.take p{font-size:8.8px;line-height:1.5;}
+  .take-head{font-size:7.2px;padding-bottom:9px;}
   .mb-btn{font-size:7.6px;padding:5px 12px;}
   .motivbox{grid-template-columns:120px 1fr;margin-bottom:7px;page-break-inside:avoid;}
   .motivbox-media{padding:9px;min-height:0;}.vwrap img{width:104px;}
@@ -253,6 +265,7 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   <div class="nav-tabs">
     <a class="nav-tab active" href="#uebersicht">Übersicht</a>
     <a class="nav-tab" href="#zielgruppe">Zielgruppe</a>
+    <a class="nav-tab" href="#vorlage">Vorlage 2025</a>
     <a class="nav-tab" href="#mails">E-Mails</a>
     <a class="nav-tab" href="#whatsapp">WhatsApp</a>
     <a class="nav-tab" href="#motive">Ads</a>
@@ -323,6 +336,62 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
   </div>
 </section>
 
+<!-- VORLAGE 2025 -->
+<section class="section" id="vorlage">
+  <h2 class="h-section reveal">Woran wir uns <em>orientiert haben</em></h2>
+  <p class="sec-sub reveal">Ihr habt die Loyalty-Phase 2025 schon einmal gefahren — zwei Mails, am Tag nach dem Festival und am letzten Tag. Die haben wir aus Brevo geholt und als Vorlage genommen. Hier stehen sie im Original, damit ihr direkt vergleichen könnt.</p>
+
+  <div class="wa-card reveal">
+    <div class="wa-num">1</div>
+    <div class="wa-main">
+      <h3>10€ Rabatt auf den Early Bird Preis!</h3>
+      <div class="wsub">Versendet So 10.08.2025 · 21:50 · an Käufer 2025</div>
+    <div class="mail-body">Hey Macher,
+
+was war das bitte für ein verrücktes Festival - Sooo so cool, dass du mit dabei warst! Jetzt kommt das krasseste: Nächstes Jahr geht es direkt weiter. Vom 6-9 August findet das Macher Festival 2026 statt!
+
+HOL DIR DEIN LOYALTY TICKET
+
+Bis zum 24.08.25 bekommst du mit dem Code: LOYALTY nochmal 10€ Rabatt auf den regulären Early-Bird Preis! Damit wollen wir einfach für deinen krassen krassen Support bedanken! Bis zum nächsten Jahr!
+
+<span class="mb-btn">⚠️ Zum Ticketshop // CODE: LOYALTY</span>
+
+❤️ HIER GEHTS ZUR BILDERGALERIE
+
+Während dem gesamten Festival hat unser Media Team reichlich Videos und Fotos gemacht! Auf den Aftermovie musst du noch etwas warten - Allerdings kannst du dir jetzt schon die Bilder von diesem Jahr anschauen. Findest du dich wieder?
+
+<span class="mb-btn">🏞️ Bildergalerie 2025</span>
+
+Euer Macher Festival Team</div>
+    </div>
+  </div>
+
+  <div class="wa-card reveal">
+    <div class="wa-num">2</div>
+    <div class="wa-main">
+      <h3>🚨 Nur noch heute: LOYALTY Code sichern</h3>
+      <div class="wsub">Versendet So 24.08.2025 · 12:19 · an Käufer 2025</div>
+    <div class="mail-body">DEIN CODE ENDET HEUTE NACHT
+
+Bis heute Nacht erhältst du mit dem Code: LOYALTY nochmal 10€ Rabatt auf den regulären Early-Bird Preis! Damit wollen wir uns einfach für deinen krassen krassen Support bedanken! Bis zum nächsten Jahr! ❤️
+
+<span class="mb-btn">⚠️ Zum Ticketshop // CODE: LOYALTY</span>
+
+Euer Macher Festival Team</div>
+    </div>
+  </div>
+
+  <div class="take-card reveal">
+    <div class="take-head">Was wir daraus übernommen haben</div>
+    <div class="take"><span class="take-num">01</span><p><b>Kurz halten.</b> Die zweite Mail von 2025 hat 45 Wörter. Unsere letzte Mail hat jetzt 49 — vorher waren es 120.</p></div>
+    <div class="take"><span class="take-num">02</span><p><b>Überschriften in Großbuchstaben mit Emoji.</b> „HOL DIR DEIN LOYALTY TICKET", „❤️ HIER GEHT’S ZUR BILDERGALERIE" — die Struktur ist eins zu eins übernommen.</p></div>
+    <div class="take"><span class="take-num">03</span><p><b>Der Preis steht im Fließtext</b>, nicht in einem gestalteten Kasten. Genau wie bei euch: „Bis zum 30.08. bekommst du dein Ticket für 159 € statt 179 €!"</p></div>
+    <div class="take"><span class="take-num">04</span><p><b>Eure Formulierungen.</b> „Was war das bitte für ein Wochenende", „Sooo so cool, dass du dabei warst", „krassen krassen Support", „Findest du dich wieder?", „Bis zum nächsten Jahr!" — alles aus euren eigenen Mails.</p></div>
+    <div class="take"><span class="take-num">05</span><p><b>Der Button heißt „⚠️ Zum Ticketshop".</b> Ohne den Code-Zusatz, weil es diesmal einen eigenen Loyalty-Shop gibt statt eines Gutscheincodes.</p></div>
+    <div class="take"><span class="take-num">06</span><p><b>Kein Nachdenken, nur Ansage.</b> Reflexionssätze wie „wir kriegen es selbst nicht ganz sortiert" sind raus — 2025 gab es keinen einzigen davon.</p></div>
+  </div>
+</section>
+
 <!-- MAILS -->
 <section class="section" id="mails">
   <h2 class="h-section reveal">Sechs <em>E-Mails</em> über drei Wochen</h2>
@@ -333,28 +402,16 @@ nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:cente
     <div class="mail-main">
       <div class="msub">So 09.08. · 21 Uhr · Rückblick</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Was war das bitte für ein Wochenende ❤️</h3></div>
-      <div class="pre-line"><b>Vorschau</b>4 Tage, 5.000 Macher, 100 Tiny Häuser.</div>
+      <div class="pre-line"><b>Vorschau</b>Sooo so cool, dass du dabei warst!</div>
       <div class="mail-body">Hey Macher,
 
-was war das bitte für ein Wochenende. Wir stehen noch auf dem Gelände und kriegen es selbst nicht ganz sortiert:
+was war das bitte für ein Wochenende – Sooo so cool, dass du dabei warst! Jetzt kommt das Beste: Nächstes Jahr geht es direkt weiter. Vom 12.–15. August findet das Macher Festival 2027 statt!
 
-4 Tage
-5.000 Macher
-100 Tiny Häuser
+HOL DIR DEIN LOYALTY TICKET
 
-Dazu alles, was ihr geschweißt, gesägt, verschraubt und zwischendurch wieder auseinandergenommen habt. So so cool, dass du dabei warst. ❤️
+Bis zum 30.08. bekommst du dein Ticket für 159 € statt 179 €! Damit wollen wir uns einfach für deinen krassen krassen Support bedanken. Bis zum nächsten Jahr!
 
-🎟️ Und jetzt kommt das Beste
-
-Nächstes Jahr geht es direkt weiter: 12.–15. August 2027, wieder auf Ferropolis. Die Tickets sind ab sofort online — und weil du dieses Jahr dabei warst, bekommst du sie zum Loyalty-Preis.
-
-159 €
-regulär 179 €
-nur bis 30.08.
-
-<span class="mb-btn">Zu den Tickets 👋🏼</span>
-
-Bis zum nächsten Jahr!
+<span class="mb-btn">⚠️ Zum Ticketshop</span>
 
 Euer Macher Festival Team</div>
     </div>
@@ -371,23 +428,17 @@ Euer Macher Festival Team</div>
       <div class="msub">Mo 10.08. · 18 Uhr · Verkaufsstart</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Sichere dir dein Ticket für 2027 🎟️</h3></div>
       <div class="pre-line"><b>Vorschau</b>159 € statt 179 €. Nur bis zum 30.08.</div>
-      <div class="mail-body">Kurz und ohne Umwege, weil du es eh schon ahnst:
+      <div class="mail-body">🎟️ DEIN LOYALTY TICKET FÜR 2027
 
-Macher Festival 2027 — 12.–15. August, Ferropolis.
+Macher Festival 2027: 12.–15. August, wieder auf Ferropolis. Bis zum 30.08. bekommst du dein Ticket für 159 € statt 179 € – danach kostet genau dasselbe Ticket 20 € mehr. Und ja, das ist ernst gemeint, wir verlängern nicht.
 
-159 €
-regulär 179 €
-nur bis 30.08.
+<span class="mb-btn">⚠️ Zum Ticketshop</span>
 
-Warum günstiger? Weil dieses Festival von den Leuten lebt, die wiederkommen. Danach kostet genau dasselbe Ticket 179 € — und ja, das ist ernst gemeint, wir verlängern nicht.
-
-<span class="mb-btn">Zu den Tickets 👋🏼</span>
-
-🛠️ Was dich 2027 erwartet
+🛠️ WAS DICH 2027 ERWARTET
 
 Das Gleiche wie dieses Jahr, nur größer gedacht: über 35 kostenfreie Workshops, mehr als 40 Schweißbänke, 10.000 qm Werkstatt. Und alles, was du da baust, nimmst du mit nach Hause.
 
-Und bevor du dir denkst „ja ja, mach ich später&quot;: später kostet es halt wirklich 20 € mehr. Trag dir den Termin direkt in den Kalender ein und blocke den Urlaub — ein Jahr Vorlauf bekommt jeder durch.
+Und bevor du dir denkst „ja ja, mach ich später&quot;: später kostet es halt wirklich mehr. Trag dir den Termin ein und blocke den Urlaub – ein Jahr Vorlauf bekommt jeder durch.
 
 <span class="mb-btn">Ticket sichern 👋🏼</span>
 
@@ -406,19 +457,17 @@ Euer Macher Festival Team</div>
       <div class="msub">Do 13.08. · 18 Uhr · Fotogalerie</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Deine Fotos vom Festival sind da 📸</h3></div>
       <div class="pre-line"><b>Vorschau</b>Findest du dich wieder?</div>
-      <div class="mail-body">Unser Media Team war vier Tage lang unterwegs und hat alles mitgenommen: den ersten Schweißfunken, die Tiny-House-Straße am Samstagmorgen, die Seifenkisten-Rennen. Und euch, überall.
+      <div class="mail-body">❤️ HIER GEHT’S ZUR BILDERGALERIE
 
-❤️ HIER GEHT’S ZUR BILDERGALERIE
+Während dem gesamten Festival hat unser Media Team reichlich Fotos gemacht! Alle Bilder von diesem Jahr sind jetzt online. Findest du dich wieder?
 
-Alle Bilder von diesem Jahr sind online. Findest du dich wieder?
+<span class="mb-btn">🏞️ Bildergalerie 2026</span>
 
-<span class="mb-btn">🏞️ Zur Bildergalerie</span>
+Such dich raus, lad dir runter, was du magst, und markier uns gerne, wenn du was postest!
 
-Sucht euch raus, ladet runter, markiert uns, wenn ihr was postet. Die besten Momente teilen wir auf unseren Kanälen.
+Und weil die Frage oft kommt: Ja, die Tickets für 2027 sind schon online – bis zum 30.08. noch für 159 € statt 179 €.
 
-PS: Der Loyalty-Preis für 2027 läuft noch bis zum 30.08.: 159 € statt regulär 179 €.
-
-<span class="mb-btn">Zu den Tickets 👋🏼</span>
+<span class="mb-btn">⚠️ Zum Ticketshop</span>
 
 Euer Macher Festival Team</div>
     </div>
@@ -437,19 +486,17 @@ Euer Macher Festival Team</div>
       <div class="pre-line"><b>Vorschau</b>Wo sie jetzt stehen.</div>
       <div class="mail-body">⚠️ GERÜST — vor dem Versand ergänzen: Wohin sind die Häuser gegangen, an wen? 2–3 konkrete Beispiele mit Foto. Ohne echte Fakten diese Mail nicht senden.
 
-100 Tiny Häuser in vier Tagen. Gebaut von Leuten, von denen viele vorher noch nie eine Kreissäge in der Hand hatten. Ziemlich krass, wenn man mal drüber nachdenkt.
+🏠 100 TINY HÄUSER IN VIER TAGEN
 
-Aber die eigentliche Geschichte fängt erst nach dem Festival an — die Häuser stehen nämlich nicht bei uns rum:
+Gebaut von Leuten, von denen viele vorher noch nie eine Kreissäge in der Hand hatten. Ziemlich krass. Und die Häuser stehen jetzt nicht bei uns rum:
 
 [BEISPIEL 1]
 
 [BEISPIEL 2]
 
-Das ist für uns der Unterschied zwischen einem Festival, auf dem man feiert, und einem, auf dem am Ende etwas stehen bleibt.
+🔨 2027 BAUEN WIR WEITER
 
-🔨 2027 bauen wir weiter
-
-Wer dabei sein will: Der Loyalty-Preis von 159 € gilt noch bis zum 30.08., danach sind es 179 €.
+Wer dabei sein will: Bis zum 30.08. gibt es dein Ticket für 159 € statt 179 €.
 
 <span class="mb-btn">Ich bin 2027 dabei 👋🏼</span>
 
@@ -468,19 +515,17 @@ Euer Macher Festival Team</div>
       <div class="msub">Mi 27.08. · 18 Uhr · Erinnerung</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>Noch 3 Tage für deinen Loyalty-Preis ⏰</h3></div>
       <div class="pre-line"><b>Vorschau</b>Am Sonntag um 23:59 Uhr ist Schluss.</div>
-      <div class="mail-body">Ganz kurz, weil es sonst leicht untergeht: Am Sonntag um 23:59 Uhr endet der Loyalty-Preis fürs Macher Festival 2027.
+      <div class="mail-body">⏰ NOCH 3 TAGE
 
-159 €
-danach 179 €
-nur noch bis 30.08.
+Am Sonntag um 23:59 Uhr endet der Loyalty-Preis fürs Macher Festival 2027. Bis dahin bekommst du dein Ticket für 159 € statt 179 €.
 
-🤔 „Ich weiß noch nicht, ob ich kann&quot;
+<span class="mb-btn">⚠️ Zum Ticketshop</span>
 
-Das hören wir gerade oft, und der Punkt ist fair. Zwei Gedanken dazu:
+🤔 „ICH WEISS NOCH NICHT, OB ICH KANN&quot;
 
-Der Termin steht fest — 12.–15. August 2027. Ein Jahr Vorlauf reicht, um den Urlaub durchzubekommen.
+Hören wir gerade oft, und der Punkt ist fair. Der Termin steht aber fest: 12.–15. August 2027. Ein Jahr Vorlauf reicht, um den Urlaub durchzubekommen.
 
-Und du entscheidest heute nicht, ob du hinfährst. Du entscheidest nur, zu welchem Preis. Den Rest kannst du dir lassen, so lange du willst — das Ticket kostet dann halt nie wieder 159 €.
+Und du entscheidest heute nicht, ob du hinfährst. Du entscheidest nur, zu welchem Preis.
 
 <span class="mb-btn">Ticket für 159 € sichern 👋🏼</span>
 
@@ -498,20 +543,14 @@ Euer Macher Festival Team</div>
     <div class="mail-main">
       <div class="msub">So 30.08. · 10 Uhr + 20 Uhr · Letzter Tag</div>
       <div class="subj-line"><span class="subj-lbl">Betreff</span><h3>🚨 Nur noch heute: Loyalty-Preis sichern</h3></div>
-      <div class="pre-line"><b>Vorschau</b>Heute Nacht um 23:59 Uhr ist Schluss.</div>
-      <div class="mail-body">HEUTE NACHT IST SCHLUSS
+      <div class="pre-line"><b>Vorschau</b>Dein Loyalty-Preis endet heute Nacht.</div>
+      <div class="mail-body">DEIN LOYALTY-PREIS ENDET HEUTE NACHT
 
-Bis 23:59 Uhr bekommst du dein Ticket fürs Macher Festival 2027 noch zum Loyalty-Preis.
+Bis 23:59 Uhr bekommst du dein Ticket fürs Macher Festival 2027 noch für 159 € statt 179 €. Wir verlängern nicht – versprochen ist versprochen. Bis zum nächsten Jahr! ❤️
 
-159 € heute
-179 € ab morgen
-Es wird nicht verlängert
+<span class="mb-btn">⚠️ Zum Ticketshop</span>
 
-Versprochen ist versprochen, auch beim Preis. Wenn wir jetzt verlängern, glaubt uns nächstes Jahr keiner mehr.
-
-<span class="mb-btn">Jetzt sichern 👋🏼</span>
-
-Wir sehen uns auf Ferropolis. 12.–15. August 2027. ❤️
+Wir sehen uns auf Ferropolis. 12.–15. August 2027.
 
 Euer Macher Festival Team</div>
     </div>
@@ -536,18 +575,14 @@ Euer Macher Festival Team</div>
       <p>Rückblick auf das Wochenende, dann der Übergang zu 2027. Braucht den Link zur Loyalty-Seite.</p>
     <div class="wa-bubble">Was war das bitte für ein Wochenende. ❤️
 
-4 Tage. 5.000 Macher. 100 Tiny Häuser. Dazu alles, was ihr geschweißt, gesägt und zwischendurch wieder auseinandergenommen habt — wir sind ehrlich gesagt immer noch platt.
+Sooo so cool, dass ihr alle dabei wart! Und jetzt kommt das Beste: Nächstes Jahr geht es direkt weiter.
 
-Und jetzt kommt das Beste: Nächstes Jahr geht es direkt weiter.
-
-🎟️ Die Tickets für 2027 sind ab sofort online
-📅 12.–15. August 2027, wieder auf Ferropolis
+🎟️ Macher Festival 2027: 12.–15. August, wieder auf Ferropolis
 ❤️ Für alle, die dieses Jahr dabei waren: 159 € statt 179 €, nur bis zum 30.08.
 
 👉 [Link]
 
-Bis zum nächsten Jahr!
-Euer Macher Festival Team</div>
+Bis zum nächsten Jahr!</div>
     </div>
   </div>
 
@@ -557,15 +592,15 @@ Euer Macher Festival Team</div>
       <h3>Bildergalerie ist online</h3>
       <div class="wsub">Fr 15.08. · beide Channels · Amelie</div>
       <p>Galerie-Veröffentlichung mit Aufforderung zum Teilen. Braucht den Galerie-Link.</p>
-    <div class="wa-bubble">Die Bildergalerie ist online! 📸
+    <div class="wa-bubble">❤️ Die Bildergalerie ist online!
 
-Unser Media Team war vier Tage unterwegs — Werkstatt, Arena, Bühnen, Sauna, Seifenkisten-Rennen. Findest du dich wieder?
-
-Such dich raus, lad dir runter, was du magst, und markier uns, wenn du was postest.
+Während dem gesamten Festival hat unser Media Team reichlich Fotos gemacht. Findest du dich wieder?
 
 👉 [Galerie-Link]
 
-Und weil die Frage gerade oft kommt: Ja, die Tickets für 2027 sind schon online. Zum Loyalty-Preis von 159 € statt 179 €, noch bis zum 30.08.
+Such dich raus, lad dir runter, was du magst, und markier uns gerne, wenn du was postest!
+
+Und weil die Frage oft kommt: Die Tickets für 2027 sind schon online — bis zum 30.08. für 159 € statt 179 €.
 
 👉 [Link]</div>
     </div>
@@ -577,13 +612,11 @@ Und weil die Frage gerade oft kommt: Ja, die Tickets für 2027 sind schon online
       <h3>Noch eine Woche</h3>
       <div class="wsub">So 23.08. · beide Channels · Amelie</div>
       <p>Erinnerung an die Frist mit dem Urlaubs-Argument. Alles fertig, keine Zulieferung nötig.</p>
-    <div class="wa-bubble">Noch eine Woche, dann ist der Loyalty-Preis Geschichte. ⏰
+    <div class="wa-bubble">⏰ Noch eine Woche, dann ist der Loyalty-Preis Geschichte.
 
 Nächsten Sonntag um 23:59 Uhr läuft er aus — danach kostet dasselbe Ticket 179 € statt 159 €.
 
-Falls du noch überlegst: Der Termin steht fest, 12.–15. August 2027, wieder Ferropolis. Ein Jahr im Voraus bekommt man den Urlaub eigentlich immer durch. 😉
-
-Und ehrlich, du entscheidest gerade nicht, ob du hinfährst. Nur, was es dich kostet.
+Der Termin steht fest: 12.–15. August 2027, wieder Ferropolis. Ein Jahr im Voraus bekommt man den Urlaub eigentlich immer durch. 😉
 
 👉 [Link]</div>
     </div>
@@ -595,11 +628,9 @@ Und ehrlich, du entscheidest gerade nicht, ob du hinfährst. Nur, was es dich ko
       <h3>Heute Nacht ist Schluss</h3>
       <div class="wsub">So 30.08. · vormittags · beide Channels · Amelie</div>
       <p>Der Schlusspost am Vormittag, damit noch der ganze Tag zum Kaufen bleibt.</p>
-    <div class="wa-bubble">🚨 Heute Nacht ist Schluss.
+    <div class="wa-bubble">🚨 Heute Nacht ist Schluss!
 
 Um 23:59 Uhr endet der Loyalty-Preis: 159 € heute, 179 € ab morgen. Wir verlängern nicht — versprochen ist versprochen.
-
-Wer 2027 also wieder mit uns bauen will, jetzt ist der Moment.
 
 👉 [Link]
 
