@@ -275,6 +275,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
   <div class="nav-sep"></div>
   <div class="nav-tabs">
     <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#weekly">Weekly</a>
     <a class="nav-tab" href="#vergleich">3-Monats-Vergleich</a>
     <a class="nav-tab" href="#cltv">CLTV</a>
     <a class="nav-tab" href="#google">Google Ads</a>
@@ -324,9 +325,35 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <hr class="section-divider">
 
+<section id="weekly" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">02 · Weekly Report · Montag bis Sonntag</div>
+    <h2 class="h-section reveal">Die letzten 3 vollen Wochen: <em>Effizienz steigt, Volumen sinkt</em>.</h2>
+    <p class="section-sub reveal">Wochenlogik jeweils Montag bis Sonntag. Quelle: Google-Ads-Kostensync und Production-DB. Hauptmetrik bleibt Neukunden-Umsatz: gezählt werden nur Kunden, deren erste nicht gelöschte Bestellung über Google Ads kam.</p>
+
+    <div class="chart-row reveal">
+      <div class="chart-card"><div class="card-label">Weekly · Google Spend vs. Neukunden-Umsatz</div><div class="chart-wrap"><canvas id="chartWeeklyRevenue"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Weekly · Direct ROAS &amp; CPO Neukunde</div><div class="chart-wrap"><canvas id="chartWeeklyEfficiency"></canvas></div></div>
+    </div>
+
+    <div class="table-card reveal"><div class="card-label">Weekly Performance · Google Neukunden · Mo–So</div><table><thead><tr><th>Woche</th><th class="num">Spend</th><th class="num">Klicks</th><th class="num">Ø CPC</th><th class="num">Neukunden</th><th class="num">Neukunden-Umsatz</th><th class="num">AOV</th><th class="num">Direct ROAS</th><th class="num">CPO Neukunde</th></tr></thead><tbody>
+      <tr><td><div class="cell-name">03.–09.08.</div><div class="cell-sub">Woche 1</div></td><td class="num">€17.840</td><td class="num">823</td><td class="num">€21,68</td><td class="num">104</td><td class="num">€10.575</td><td class="num">€101,68</td><td class="num"><span class="tag r">0,59×</span></td><td class="num">€171,54</td></tr>
+      <tr><td><div class="cell-name">10.–16.08.</div><div class="cell-sub">Woche 2 · vor Rollout-Ende</div></td><td class="num">€13.610</td><td class="num">664</td><td class="num">€20,50</td><td class="num">108</td><td class="num">€11.107</td><td class="num">€102,84</td><td class="num"><span class="tag y">0,82×</span></td><td class="num">€126,02</td></tr>
+      <tr class="hl-row"><td><div class="cell-name">17.–23.08.</div><div class="cell-sub">Woche 3 · nach Preisanpassung</div></td><td class="num">€10.482</td><td class="num">641</td><td class="num">€16,35</td><td class="num">75</td><td class="num">€8.560</td><td class="num">€114,13</td><td class="num"><span class="tag y">0,82×</span></td><td class="num">€139,76</td></tr>
+    </tbody></table></div>
+
+    <div class="grid-2 reveal" style="margin-top:14px;">
+      <div class="hint-box"><div class="card-label">Was gut ist</div><p>Von Woche 1 auf Woche 3 steigt der Direct ROAS von 0,59× auf 0,82× — also <strong>+37,8 %</strong>. Gleichzeitig fällt der CPO Neukunde von €171,54 auf €139,76. Die Preisanpassungswoche hält die Effizienz trotz deutlich geringerem Spend.</p></div>
+      <div class="hint-box"><div class="card-label">Was kritisch bleibt</div><p>Das Volumen bricht in Woche 3 sichtbar weg: Spend -23,0 % vs. Woche 2, Neukunden -30,6 %, Neukunden-Umsatz -22,9 %. Interpretation: Google kauft weniger Volumen ein, aber die gekauften Kunden sind wertvoller — AOV steigt in Woche 3 auf €114,13.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <section id="vergleich" class="section-gray">
   <div class="wrap">
-    <div class="section-eyebrow reveal">02 · 3-Monats-Vergleich</div>
+    <div class="section-eyebrow reveal">03 · 3-Monats-Vergleich</div>
     <h2 class="h-section reveal">Juni → Juli → August: <em>Skalierung kippt in Ineffizienz</em>.</h2>
     <p class="section-sub reveal">Der Vergleich nutzt die synchronisierten Google-Ads-Kosten und die Production-DB. Hauptlogik ist konservativ nach Marin: <strong>direkter Neukunden-Umsatz</strong> von Kunden, deren erste nicht gelöschte Bestellung über Google Ads kam. Recurring wird nicht in diese Übersicht gemischt, sondern nur in der CLTV-Sektion gezeigt.</p>
 
@@ -353,7 +380,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="cltv" class="section">
   <div class="wrap">
-    <div class="section-eyebrow reveal">03 · Recurring Umsatz · CLTV</div>
+    <div class="section-eyebrow reveal">04 · Recurring Umsatz · CLTV</div>
     <h2 class="h-section reveal">Folgekäufe helfen — <em>aber sie retten August noch nicht</em>.</h2>
     <p class="section-sub reveal">CLTV wird hier cohort-basiert gerechnet: Ein Google-Neukunde ist ein User, dessen erste nicht gelöschte Bestellung über Google Ads kam. Recurring Umsatz sind alle späteren Bestellungen dieses Users bis zum letzten synchronisierten Datenstand 23.08.2026.</p>
 
@@ -380,7 +407,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="google" class="section">
   <div class="wrap">
-    <div class="section-eyebrow reveal">04 · Google Ads</div>
+    <div class="section-eyebrow reveal">05 · Google Ads</div>
     <h2 class="h-section reveal">€45.460 Spend bis 23.08. — <em>ROAS unter Break-even</em>.</h2>
     <p class="section-sub reveal">„Search | Cold-Google max conv. value (Preisanpassung 17.8.2026)“ bleibt die aktive Hauptkampagne. Gegenüber Juli ist der Spend zwar niedriger, aber August ist nur ein Teilmonat — die Spend-Run-Rate liegt weiter bei rund €61k.</p>
 
@@ -409,7 +436,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="sales" class="section-gray">
   <div class="wrap">
-    <div class="section-eyebrow reveal">05 · Sales · CRM-Sicht</div>
+    <div class="section-eyebrow reveal">06 · Sales · CRM-Sicht</div>
     <h2 class="h-section reveal">Google bleibt größter Kanal — <em>Bing ist als Nebenkanal sichtbar</em>.</h2>
     <p class="section-sub reveal">CRM ist die authoritative Quelle für Bestellungen und Umsatz. Für Google zählt im Report nur Neukunden-Umsatz. Bing ist zusätzlich sichtbar, wird aber nicht als Haupthebel bewertet; Spend/Klicks/CTR stammen nur aus Screenshots, Umsatz/Orders aus der DB.</p>
 
@@ -430,7 +457,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="empfehlungen" class="section">
   <div class="wrap">
-    <div class="section-eyebrow reveal">06 · Empfehlungen · September</div>
+    <div class="section-eyebrow reveal">07 · Empfehlungen · September</div>
     <h2 class="h-section reveal">Nicht weiter skalieren — <em>erst Kontrolle zurückholen</em>.</h2>
     <p class="section-sub reveal">Die Reihenfolge ist wichtig: Erst Budgetdruck rausnehmen und Messung stabilisieren, dann Struktur/Keywords optimieren, danach wieder testen.</p>
     <div class="prio-grid">
@@ -451,6 +478,25 @@ Chart.defaults.font.family = "'Poppins', sans-serif";
 Chart.defaults.color = '#9ca3af';
 Chart.defaults.font.size = 11;
 const months = ['Juni', 'Juli', 'August MTD'];
+
+const weekLabels = ['03.–09.08.', '10.–16.08.', '17.–23.08.'];
+new Chart(document.getElementById('chartWeeklyRevenue'), {
+  type: 'bar',
+  data: { labels: weekLabels, datasets: [
+    { label: 'Google Spend (€)', data: [17840, 13610, 10482], backgroundColor: 'rgba(58,110,244,0.22)', borderRadius: 5 },
+    { label: 'Neukunden-Umsatz (€)', data: [10575, 11107, 8560], backgroundColor: '#3a6ef4', borderRadius: 5 }
+  ] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, padding: 16 } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => '€' + (v / 1000) + 'k' } } } }
+});
+new Chart(document.getElementById('chartWeeklyEfficiency'), {
+  type: 'bar',
+  data: { labels: weekLabels, datasets: [
+    { label: 'CPO Neukunde (€)', data: [171.54, 126.02, 139.76], backgroundColor: 'rgba(239,68,68,0.18)', borderRadius: 5, yAxisID: 'y' },
+    { label: 'Direct ROAS', data: [0.59, 0.82, 0.82], type: 'line', borderColor: '#22c55e', backgroundColor: '#22c55e', borderWidth: 2, pointRadius: 4, tension: .3, yAxisID: 'y1' }
+  ] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, padding: 16 } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => '€' + v } }, y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v.toFixed(1).replace('.', ',') + '×' } } } }
+});
+
 new Chart(document.getElementById('chartSpend'), {
   type: 'bar',
   data: {
