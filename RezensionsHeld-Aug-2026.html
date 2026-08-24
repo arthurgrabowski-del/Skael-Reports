@@ -276,6 +276,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
   <div class="nav-tabs">
     <a class="nav-tab active" href="#uebersicht">Übersicht</a>
     <a class="nav-tab" href="#vergleich">3-Monats-Vergleich</a>
+    <a class="nav-tab" href="#cltv">CLTV</a>
     <a class="nav-tab" href="#google">Google Ads</a>
     <a class="nav-tab" href="#sales">Sales</a>
     <a class="nav-tab" href="#empfehlungen">Empfehlungen</a>
@@ -305,10 +306,10 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Spend</span><div class="sw"><div class="sd r"></div><span class="sl r">Hoch</span></div></div><div class="kpi-value">€45.460</div><div class="kpi-sub">23 Tage · Run-Rate ca. €61k</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Erstumsatz CRM</span><div class="sw"><div class="sd y"></div><span class="sl y">MTD</span></div></div><div class="kpi-value">€32.808</div><div class="kpi-sub">312 neue Google-Kunden</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google ROAS direkt</span><div class="sw"><div class="sd r"></div><span class="sl r">Unter 1</span></div></div><div class="kpi-value">0,72×</div><div class="kpi-sub">Juni 1,11× · Juli 0,83×</div></div>
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google ROAS Pixel</span><div class="sw"><div class="sd r"></div><span class="sl r">Schwach</span></div></div><div class="kpi-value">0,63×</div><div class="kpi-sub">€28.599 Conv.-Wert</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Observed CLTV</span><div class="sw"><div class="sd y"></div><span class="sl y">Jung</span></div></div><div class="kpi-value">€119</div><div class="kpi-sub">August-Kohorte bis 23.08.</div></div>
     </div>
     <div class="kpi-grid row2">
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Umsatz gesamt</span><div class="sw"><div class="sd y"></div><span class="sl y">inkl. Folge</span></div></div><div class="kpi-value">€42.211</div><div class="kpi-sub">alle Google-markierten Orders</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Recurring Umsatz</span><div class="sw"><div class="sd y"></div><span class="sl y">Kohorte</span></div></div><div class="kpi-value">€4.151</div><div class="kpi-sub">40 Folgeorders · 10,3 % Repeat</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Orders gesamt</span><div class="sw"><div class="sd g"></div><span class="sl g">CRM</span></div></div><div class="kpi-value">432</div><div class="kpi-sub">davon 312 erste Google-Orders</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Ø CPC Google</span><div class="sw"><div class="sd r"></div><span class="sl r">Peak</span></div></div><div class="kpi-value">€19,61</div><div class="kpi-sub">Juni €13,59 · Juli €18,62</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">CPO Google CRM</span><div class="sw"><div class="sd r"></div><span class="sl r">Teuer</span></div></div><div class="kpi-value">€105,23</div><div class="kpi-sub">Juni €73,14 · Juli €111,85</div></div>
@@ -316,7 +317,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
     <div class="insight-card reveal">
       <div class="card-label">Einordnung · August 2026</div>
-      <p class="insight-text">Der August bestätigt den Trend aus Juli: <strong>mehr Budget kauft weiterhin Volumen, aber nicht mehr genug Deckung</strong>. Nach konservativer Marin-Logik — nur erste Bestellungen von über Google gewonnenen Kunden — liegt Google MTD bei €45.460 Spend und €32.808 Erstumsatz, also nur <strong>0,72× direktem ROAS</strong>. Zählt man alle Google-markierten Orders inklusive Folgesales, sind es €42.211 Umsatz bzw. 0,93×. Beide Sichten liegen unter Break-even.</p>
+      <p class="insight-text">Der August bestätigt den Trend aus Juli: <strong>mehr Budget kauft weiterhin Volumen, aber nicht mehr genug Deckung</strong>. Hauptmetrik ist ab jetzt Neukunden-Umsatz: Google liegt MTD bei €45.460 Spend und €32.808 Erstumsatz, also nur <strong>0,72× direktem ROAS</strong>. Recurring hilft, aber noch nicht genug: Die August-Kohorte hat bis 23.08. zusätzlich €4.151 Folgeumsatz erzeugt und kommt observed auf 0,82× LTV-ROAS.</p>
     </div>
   </div>
 </section>
@@ -336,15 +337,42 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
     <div class="table-card reveal">
       <div class="card-label">Monatsvergleich · Google Ads · direkte Erstkunden vs. alle Google-Orders</div>
-      <table><thead><tr><th>Monat</th><th class="num">Spend</th><th class="num">Klicks</th><th class="num">Ø CPC</th><th class="num">Erstorders</th><th class="num">Erstumsatz</th><th class="num">ROAS direkt</th><th class="num">Alle Google-Orders</th><th class="num">ROAS alle</th><th class="num">ROAS Google</th></tr></thead><tbody>
-        <tr><td><div class="cell-name">Juni 2026</div><div class="cell-sub">Vollmonat · noch knapp positiv</div></td><td class="num">€33.865</td><td class="num">2.492</td><td class="num">€13,59</td><td class="num">364</td><td class="num">€37.605</td><td class="num"><span class="tag y">1,11×</span></td><td class="num">463 · €49.762</td><td class="num">1,47×</td><td class="num">1,10×</td></tr>
-        <tr><td><div class="cell-name">Juli 2026</div><div class="cell-sub">Budgetsprung · direkt klar negativ</div></td><td class="num">€69.793</td><td class="num">3.748</td><td class="num">€18,62</td><td class="num">491</td><td class="num">€57.860</td><td class="num"><span class="tag r">0,83×</span></td><td class="num">624 · €70.761</td><td class="num">1,01×</td><td class="num">0,84×</td></tr>
-        <tr class="hl-row"><td><div class="cell-name">August 2026 MTD</div><div class="cell-sub">01.–23.08. · unter Break-even</div></td><td class="num">€45.460</td><td class="num">2.318</td><td class="num">€19,61</td><td class="num">312</td><td class="num">€32.808</td><td class="num"><span class="tag r">0,72×</span></td><td class="num">432 · €42.211</td><td class="num">0,93×</td><td class="num">0,63×</td></tr>
+      <table><thead><tr><th>Monat</th><th class="num">Spend</th><th class="num">Klicks</th><th class="num">Ø CPC</th><th class="num">Erstorders</th><th class="num">Erstumsatz</th><th class="num">ROAS direkt</th><th class="num">Recurring</th><th class="num">Observed CLTV</th><th class="num">LTV-ROAS</th></tr></thead><tbody>
+        <tr><td><div class="cell-name">Juni 2026</div><div class="cell-sub">Vollmonat · noch knapp positiv</div></td><td class="num">€33.865</td><td class="num">2.492</td><td class="num">€13,59</td><td class="num">364</td><td class="num">€37.605</td><td class="num"><span class="tag y">1,11×</span></td><td class="num">€13.688</td><td class="num">€140,92</td><td class="num">1,51×</td></tr>
+        <tr><td><div class="cell-name">Juli 2026</div><div class="cell-sub">Budgetsprung · direkt klar negativ</div></td><td class="num">€69.793</td><td class="num">3.748</td><td class="num">€18,62</td><td class="num">491</td><td class="num">€57.860</td><td class="num"><span class="tag r">0,83×</span></td><td class="num">€17.784</td><td class="num">€154,06</td><td class="num">1,08×</td></tr>
+        <tr class="hl-row"><td><div class="cell-name">August 2026 MTD</div><div class="cell-sub">01.–23.08. · unter Break-even</div></td><td class="num">€45.460</td><td class="num">2.318</td><td class="num">€19,61</td><td class="num">312</td><td class="num">€32.808</td><td class="num"><span class="tag r">0,72×</span></td><td class="num">€4.151</td><td class="num">€118,97</td><td class="num">0,82×</td></tr>
       </tbody></table>
       <div class="method-note">Hinweis: Juni-Werte können leicht vom bereits veröffentlichten Juni-Report abweichen, weil hier die aktuelle Production-DB-Abfrage verwendet wird.</div>
     </div>
 
-    <div class="insight-card reveal"><div class="card-label">Was der Vergleich zeigt</div><p class="insight-text">Von Juni auf Juli wurde Google von €33,9k auf €69,8k hochgefahren. Nach direkter Erstkunden-Logik fiel der ROAS dabei von 1,11× auf 0,83×; August liegt MTD nur noch bei 0,72×. Selbst die großzügigere alte Report-Logik mit allen Google-markierten Orders kommt im August nur auf 0,93×. <strong>Die zusätzliche Skalierung kauft aktuell teure Grenz-Conversions</strong>, nicht profitables Wachstum.</p></div>
+    <div class="insight-card reveal"><div class="card-label">Was der Vergleich zeigt</div><p class="insight-text">Von Juni auf Juli wurde Google von €33,9k auf €69,8k hochgefahren. Nach direkter Erstkunden-Logik fiel der ROAS dabei von 1,11× auf 0,83×; August liegt MTD nur noch bei 0,72×. Recurring rettet Juni observed auf 1,51× und Juli gerade noch auf 1,08×, aber August liegt trotz Folgeumsatz erst bei 0,82×. <strong>Die zusätzliche Skalierung kauft aktuell teure Grenz-Conversions</strong>, nicht profitables Wachstum.</p></div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section id="cltv" class="section">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">03 · Recurring Umsatz · CLTV</div>
+    <h2 class="h-section reveal">Folgekäufe helfen — <em>aber sie retten August noch nicht</em>.</h2>
+    <p class="section-sub reveal">CLTV wird hier cohort-basiert gerechnet: Ein Google-Neukunde ist ein User, dessen erste nicht gelöschte Bestellung über Google Ads kam. Recurring Umsatz sind alle späteren Bestellungen dieses Users bis zum letzten synchronisierten Datenstand 23.08.2026.</p>
+
+    <div class="chart-row reveal">
+      <div class="chart-card"><div class="card-label">Neukunden-Umsatz + Recurring Umsatz · Jun–Aug</div><div class="chart-wrap"><canvas id="chartCltvRevenue"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Observed CLTV &amp; Repeat Rate · Jun–Aug</div><div class="chart-wrap"><canvas id="chartCltvRate"></canvas></div></div>
+    </div>
+
+    <div class="table-card reveal">
+      <div class="card-label">Google-Kohorten · Neukundenumsatz, Recurring und observed CLTV</div>
+      <table><thead><tr><th>Kohorte</th><th class="num">Spend</th><th class="num">Neukunden</th><th class="num">Erstumsatz</th><th class="num">Direct ROAS</th><th class="num">Repeat Kunden</th><th class="num">Recurring Umsatz</th><th class="num">Observed CLTV</th><th class="num">Observed LTV-ROAS</th></tr></thead><tbody>
+        <tr><td><div class="cell-name">Juni 2026</div><div class="cell-sub">älteste Kohorte · meiste Zeit für Folgekäufe</div></td><td class="num">€33.865</td><td class="num">364</td><td class="num">€37.605</td><td class="num">1,11×</td><td class="num">79 · 21,7 %</td><td class="num">€13.688</td><td class="num">€140,92</td><td class="num"><span class="tag g">1,51×</span></td></tr>
+        <tr><td><div class="cell-name">Juli 2026</div><div class="cell-sub">hoher Spend · Recurring gleicht nur teilweise aus</div></td><td class="num">€69.793</td><td class="num">491</td><td class="num">€57.860</td><td class="num">0,83×</td><td class="num">86 · 17,5 %</td><td class="num">€17.784</td><td class="num">€154,06</td><td class="num"><span class="tag y">1,08×</span></td></tr>
+        <tr class="hl-row"><td><div class="cell-name">August 2026 MTD</div><div class="cell-sub">junge Kohorte · noch wenig Reifezeit</div></td><td class="num">€45.460</td><td class="num">312</td><td class="num">€32.808</td><td class="num">0,72×</td><td class="num">32 · 10,3 %</td><td class="num">€4.151</td><td class="num">€118,97</td><td class="num"><span class="tag r">0,82×</span></td></tr>
+        <tr class="total-row"><td>Jun–Aug gesamt</td><td class="num">€149.118</td><td class="num">1.167</td><td class="num">€128.274</td><td class="num">0,86×</td><td class="num">197 · 16,9 %</td><td class="num">€35.624</td><td class="num">€140,58</td><td class="num">1,10×</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="insight-card reveal"><div class="card-label">Einordnung · CLTV</div><p class="insight-text">Recurring ist real und wichtig: Über die drei Google-Kohorten kamen bis 23.08. <strong>€35.624 Folgeumsatz</strong> dazu. Aber die Reifezeit zählt: Juni hatte fast drei Monate Zeit und erreicht observed 1,51× LTV-ROAS; Juli kommt trotz €17.784 Folgeumsatz nur auf 1,08×; August ist mit 0,82× noch klar negativ. Deshalb sollte CLTV im Report gezeigt werden — aber nicht als Ausrede, um aktuellen Spend blind weiterlaufen zu lassen.</p></div>
   </div>
 </section>
 
@@ -352,7 +380,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="google" class="section">
   <div class="wrap">
-    <div class="section-eyebrow reveal">03 · Google Ads</div>
+    <div class="section-eyebrow reveal">04 · Google Ads</div>
     <h2 class="h-section reveal">€45.460 Spend bis 23.08. — <em>ROAS unter Break-even</em>.</h2>
     <p class="section-sub reveal">„Search | Cold-Google max conv. value (Preisanpassung 17.8.2026)“ bleibt die aktive Hauptkampagne. Gegenüber Juli ist der Spend zwar niedriger, aber August ist nur ein Teilmonat — die Spend-Run-Rate liegt weiter bei rund €61k.</p>
 
@@ -378,7 +406,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="sales" class="section-gray">
   <div class="wrap">
-    <div class="section-eyebrow reveal">04 · Sales · CRM-Sicht</div>
+    <div class="section-eyebrow reveal">05 · Sales · CRM-Sicht</div>
     <h2 class="h-section reveal">Google bleibt größter Kanal — <em>Bing auffällig, aber Spend fehlt</em>.</h2>
     <p class="section-sub reveal">CRM ist die authoritative Quelle für Bestellungen und Umsatz. Google macht 83 % des Ads-attribuierten Umsatzes aus. Bing zeigt im CRM €8.469 Umsatz bei 24 Orders, aber ohne aktuellen Walter-Report fehlt der Spend und damit der ROAS.</p>
 
@@ -389,7 +417,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
     </div>
 
     <div class="table-card reveal"><div class="card-label">ROAS pro Kanal · August MTD</div><table><thead><tr><th>Kanal</th><th class="num">Spend</th><th class="num">Orders</th><th class="num">Umsatz CRM</th><th class="num">Ø Order-Wert</th><th class="num">ROAS</th><th class="num">CPO</th></tr></thead><tbody><tr><td><div class="cell-name">Google Ads</div></td><td class="num">€45.460,05</td><td class="num">432</td><td class="num">€42.210,82</td><td class="num">€97,71</td><td class="num"><span class="tag r">0,93×</span></td><td class="num">€105,23</td></tr><tr><td><div class="cell-name">Bing Ads</div><div class="cell-sub">Spend nicht automatisiert verfügbar</div></td><td class="num">ausstehend</td><td class="num">24</td><td class="num">€8.469,00</td><td class="num">€352,88</td><td class="num">n/a</td><td class="num">n/a</td></tr><tr><td><div class="cell-name">Meta Ads · inkl. Instagram</div></td><td class="num">€584,83</td><td class="num">1</td><td class="num">€124,50</td><td class="num">€124,50</td><td class="num"><span class="tag r">0,21×</span></td><td class="num">€584,83</td></tr><tr class="total-row"><td>Gesamt bekannt</td><td class="num">€46.044,88 + Bing</td><td class="num">457</td><td class="num">€50.804,32</td><td class="num">€111,17</td><td class="num">nicht final</td><td class="num">nicht final</td></tr></tbody></table></div>
-    <div class="insight-card reveal"><div class="card-label">Anmerkung · Datenbasis</div><p class="insight-text">Google-Kosten und Google-Conversion-Werte kommen aus der synchronisierten Google-Ads-Tabelle. CRM-Umsatz und Orders kommen aus der Production-DB. Meta-Spend ist live über Pipeboard erhoben; CRM sieht im selben Zeitraum nur eine Meta/Instagram-Order. Bing hat keine automatisierte Spend-Quelle — deshalb wird der Kanal im Umsatz gezeigt, aber nicht als ROAS bewertet.</p></div>
+    <div class="insight-card reveal"><div class="card-label">Anmerkung · Datenbasis</div><p class="insight-text">Google-Kosten kommen aus der synchronisierten Google-Ads-Tabelle. Neukunden-, Recurring- und CLTV-Umsatz kommen aus der Production-DB. Meta-Spend ist live über Pipeboard erhoben; CRM sieht im selben Zeitraum nur eine Meta/Instagram-Order. Bing hat keine automatisierte Spend-Quelle — deshalb wird der Kanal im Umsatz gezeigt, aber nicht als ROAS bewertet.</p></div>
   </div>
 </section>
 
@@ -397,12 +425,12 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <section id="empfehlungen" class="section">
   <div class="wrap">
-    <div class="section-eyebrow reveal">05 · Empfehlungen · September</div>
+    <div class="section-eyebrow reveal">06 · Empfehlungen · September</div>
     <h2 class="h-section reveal">Nicht weiter skalieren — <em>erst Kontrolle zurückholen</em>.</h2>
     <p class="section-sub reveal">Die Reihenfolge ist wichtig: Erst Budgetdruck rausnehmen und Messung stabilisieren, dann Struktur/Keywords optimieren, danach wieder testen.</p>
     <div class="prio-grid">
-      <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">Google-Budget senken <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Bei 0,72× direktem CRM-ROAS, 0,93× inkl. aller Google-markierten Orders und 0,63× Google-ROAS ist das aktuelle Spend-Level nicht tragfähig. Empfehlung: Budget deutlich zurücknehmen, bis CPO und ROAS wieder in einem kontrollierten Korridor sind.</div></div>
-      <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">02</div><div><div class="prio-title-text">tROAS / Bidding-Schutz setzen <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Maximize Conversion Value ohne belastbares Mindestziel lässt Google bei schwacher Signalqualität weiter ausgeben. Erst Conversion-Pipeline validieren, dann Ziel-ROAS als Schutzplanke setzen.</div></div>
+      <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">Google-Budget senken <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Bei 0,72× direktem Neukunden-ROAS und 0,82× observed LTV-ROAS ist das aktuelle Spend-Level nicht tragfähig. Empfehlung: Budget deutlich zurücknehmen, bis CPO und ROAS wieder in einem kontrollierten Korridor sind.</div></div>
+      <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">02</div><div><div class="prio-title-text">Bidding-Schutz auf Neukundenwert setzen <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Wenn optimiert wird, dann auf einen Wert, der Neukundenqualität und nicht nur Plattform-Conversions abbildet. Erst Conversion-Pipeline validieren, dann Ziel-ROAS/CAC-Schutzplanke setzen.</div></div>
       <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">03</div><div><div class="prio-title-text">Brand und Cold trennen <span class="tag y">Hoch</span></div></div></div><div class="prio-desc">Eigener Brand-Traffic gehört in eine kleine kontrollierte Exact-Kampagne; Cold-Suchbegriffe getrennt strukturieren. Gewinner-Suchanfragen als Exact/Phrase testen, teure generische Begriffe und Informationssuchen negativeren.</div></div>
       <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">04</div><div><div class="prio-title-text">Bing-Report nachziehen <span class="tag y">Hoch</span></div></div></div><div class="prio-desc">Bing zeigt im CRM im August €8.469 Umsatz — das könnte ein guter Kanal sein, aber ohne Spend ist jede Bewertung blind. Walter-Report oder API-Anbindung nachziehen.</div></div>
     </div>
@@ -457,6 +485,37 @@ new Chart(document.getElementById('chartEfficiency'), {
       y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => '€' + v } },
       y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v.toFixed(1).replace('.', ',') + '×' } }
     }
+  }
+});
+
+new Chart(document.getElementById('chartCltvRevenue'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Erstumsatz (€)', data: [37605, 57860, 32808], backgroundColor: '#3a6ef4', borderRadius: 5 },
+      { label: 'Recurring Umsatz (€)', data: [13688, 17784, 4151], backgroundColor: 'rgba(34,197,94,0.35)', borderRadius: 5 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, padding: 16 } } },
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => '€' + (v / 1000) + 'k' } } }
+  }
+});
+new Chart(document.getElementById('chartCltvRate'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      { label: 'Observed CLTV (€)', data: [140.92, 154.06, 118.97], backgroundColor: 'rgba(58,110,244,0.22)', borderRadius: 5, yAxisID: 'y' },
+      { label: 'Repeat Rate', data: [21.7, 17.5, 10.3], type: 'line', borderColor: '#22c55e', backgroundColor: '#22c55e', borderWidth: 2, pointRadius: 4, tension: .3, yAxisID: 'y1' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, boxHeight: 10, padding: 16 } } },
+    scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: v => '€' + v } }, y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } } }
   }
 });
 const ro = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } }); }, { threshold: 0.1 });
