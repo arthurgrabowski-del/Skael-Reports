@@ -279,6 +279,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
     <a class="nav-tab" href="#cltv">CLTV</a>
     <a class="nav-tab" href="#google">Google Ads</a>
     <a class="nav-tab" href="#sales">Sales</a>
+    <a class="nav-tab" href="#activity">Änderungen</a>
     <a class="nav-tab" href="#empfehlungen">Empfehlungen</a>
   </div>
   <div class="nav-right"><span class="nav-pill">August 2026 · MTD</span></div>
@@ -362,7 +363,7 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
       <div class="chart-card"><div class="card-label">Observed CLTV &amp; Repeat Rate · Jun–Aug</div><div class="chart-wrap"><canvas id="chartCltvRate"></canvas></div></div>
     </div>
 
-    <div class="table-card reveal">
+    <div class="table-card cohort-table reveal">
       <div class="card-label">Google-Kohorten · Neukundenumsatz, Recurring und observed CLTV</div>
       <table><thead><tr><th>Kohorte</th><th class="num">Spend</th><th class="num">Neukunden</th><th class="num">Erstumsatz</th><th class="num">Direct ROAS</th><th class="num">Repeat Kunden</th><th class="num">Recurring Umsatz</th><th class="num">Observed CLTV</th><th class="num">Observed LTV-ROAS</th></tr></thead><tbody>
         <tr><td><div class="cell-name">Juni 2026</div><div class="cell-sub">älteste Kohorte · meiste Zeit für Folgekäufe</div></td><td class="num">€33.865</td><td class="num">364</td><td class="num">€37.605</td><td class="num">1,11×</td><td class="num">79 · 21,7 %</td><td class="num">€13.688</td><td class="num">€140,92</td><td class="num"><span class="tag g">1,51×</span></td></tr>
@@ -423,9 +424,38 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
 <hr class="section-divider">
 
+<section id="activity" class="section-gray">
+  <div class="wrap">
+    <div class="section-eyebrow reveal">06 · Was wurde angepasst?</div>
+    <h2 class="h-section reveal">August hatte mehrere Eingriffe — <em>Preis, Landingpage, Tracking und Ads</em>.</h2>
+    <p class="section-sub reveal">Diese Timeline bündelt die belastbaren Quellen, die aktuell erreichbar sind: Production-DB, WhatsApp-Verlauf und Google-Ads-Change-History aus dem Pipeboard/API-Kontext. Slack ist im System als MCP konfiguriert, aber in dieser Runtime sind keine Slack-Suchtools verfügbar — dafür bräuchte ich entweder den konkreten Channel/Export oder ein freigeschaltetes Slack-Search-Tool.</p>
+
+    <div class="table-card reveal">
+      <div class="card-label">Änderungslog · letzte 3 Monate / Fokus August</div>
+      <table><thead><tr><th>Datum</th><th>Bereich</th><th>Quelle</th><th>Was passiert ist</th><th class="num">Auswirkung / Metrik</th></tr></thead><tbody>
+        <tr><td><div class="cell-name">11.08.</div></td><td>Preiskommunikation</td><td>WhatsApp</td><td>Finale Copy zur „Preisanpassung ab 17.08.2026“ wurde geteilt.</td><td class="num">Rollout vorbereitet</td></tr>
+        <tr><td><div class="cell-name">13.–17.08.</div></td><td>Landingpage</td><td>WhatsApp</td><td>Neue Hero-/Website-Sektion aus Figma, Staging unter staging3.rezensionsheld.de, Feedback- und Live-Hinweise.</td><td class="num">Funnel-Änderung</td></tr>
+        <tr><td><div class="cell-name">17.08. 10:58</div></td><td>Pricing</td><td>DB · price_tiers</td><td>Aktiver Regular-Preis von 2-Stufen-Modell auf 4-Stufen-Modell geändert: 1–5 Bewertungen €49,90; 6–10 €41,90; 11–29 €34,90; ab 30 €24,90.</td><td class="num">Google AOV danach €106,86 vs. €95,47 davor</td></tr>
+        <tr><td><div class="cell-name">17.08.</div></td><td>Google Ads</td><td>Change History</td><td>Kampagne umbenannt auf „Preisanpassung 17.8.2026“; mehrere Criterion-Updates im Konto.</td><td class="num">Struktur-/Signaländerung</td></tr>
+        <tr><td><div class="cell-name">17.08.</div></td><td>Tracking</td><td>DB · Data Manager</td><td>Ein Data-Manager-Request mit PARTIAL_SUCCESS; danach Lücke in Requests bis 23.08., anschließend Backfill/Erholung.</td><td class="num">Tracking-Risiko</td></tr>
+        <tr><td><div class="cell-name">20.08.</div></td><td>Pricing-Dokument</td><td>WhatsApp</td><td>Dokument „Preistabelle …“ wurde geteilt.</td><td class="num">Preis-Alignment</td></tr>
+        <tr><td><div class="cell-name">20.08.</div></td><td>Google Ads</td><td>Change History</td><td>Target-ROAS/Bidding-Setting und Kampagnenname erneut angepasst.</td><td class="num">Bidding-Eingriff</td></tr>
+        <tr><td><div class="cell-name">23.08.</div></td><td>Landingpage</td><td>WhatsApp</td><td>Link bleibt laut Nachricht: staging3.rezensionsheld.de.</td><td class="num">Staging-Stand bestätigt</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="grid-2 reveal" style="margin-top:14px;">
+      <div class="hint-box"><div class="card-label">Bing Ads · was ich brauche</div><p>Aktuell gibt es <strong>keinen Bing/Microsoft-Ads-MCP</strong> in der Hermes-Catalog-Liste. Im Catalog sind nur Pipeboard Google Ads und Pipeboard Meta Ads aktiviert. Für einen echten Bing-Block brauche ich aus Walter/Microsoft Ads für 01.–23.08.: Spend, Impressions, Clicks, CTR, CPC, Kampagnenstatus und optional Conversions/Conv.-Value. CRM-seitig sehe ich schon 24 Bing-Orders und €8.469 Umsatz — ohne Spend kann ich daraus aber keinen ROAS machen.</p></div>
+      <div class="hint-box"><div class="card-label">Slack · aktueller Stand</div><p>Slack ist zwar als MCP in Hermes konfiguriert, aber in dieser Runtime sind keine Slack-Suchtools verfügbar. Ich habe deshalb WhatsApp und DB bereits ausgewertet. Wenn du mir den relevanten Slack-Channel nennst oder Slack-Search freischaltest, ergänze ich die Timeline um Slack-Belege.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
 <section id="empfehlungen" class="section">
   <div class="wrap">
-    <div class="section-eyebrow reveal">06 · Empfehlungen · September</div>
+    <div class="section-eyebrow reveal">07 · Empfehlungen · September</div>
     <h2 class="h-section reveal">Nicht weiter skalieren — <em>erst Kontrolle zurückholen</em>.</h2>
     <p class="section-sub reveal">Die Reihenfolge ist wichtig: Erst Budgetdruck rausnehmen und Messung stabilisieren, dann Struktur/Keywords optimieren, danach wieder testen.</p>
     <div class="prio-grid">
