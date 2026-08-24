@@ -303,20 +303,20 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
 
     <div class="kpi-grid row1">
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Spend</span><div class="sw"><div class="sd r"></div><span class="sl r">Hoch</span></div></div><div class="kpi-value">€45.460</div><div class="kpi-sub">23 Tage · Run-Rate ca. €61k</div></div>
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Umsatz CRM</span><div class="sw"><div class="sd y"></div><span class="sl y">MTD</span></div></div><div class="kpi-value">€42.211</div><div class="kpi-sub">432 Google-Orders</div></div>
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google ROAS CRM</span><div class="sw"><div class="sd r"></div><span class="sl r">Unter 1</span></div></div><div class="kpi-value">0,93×</div><div class="kpi-sub">Juni 1,47× · Juli 1,01×</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Erstumsatz CRM</span><div class="sw"><div class="sd y"></div><span class="sl y">MTD</span></div></div><div class="kpi-value">€32.808</div><div class="kpi-sub">312 neue Google-Kunden</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google ROAS direkt</span><div class="sw"><div class="sd r"></div><span class="sl r">Unter 1</span></div></div><div class="kpi-value">0,72×</div><div class="kpi-sub">Juni 1,11× · Juli 0,83×</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google ROAS Pixel</span><div class="sw"><div class="sd r"></div><span class="sl r">Schwach</span></div></div><div class="kpi-value">0,63×</div><div class="kpi-sub">€28.599 Conv.-Wert</div></div>
     </div>
     <div class="kpi-grid row2">
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">CRM Ads-Umsatz</span><div class="sw"><div class="sd y"></div><span class="sl y">Ohne Bing Spend</span></div></div><div class="kpi-value">€50.804</div><div class="kpi-sub">Google + Bing + Meta CRM</div></div>
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Orders Ads</span><div class="sw"><div class="sd g"></div><span class="sl g">CRM</span></div></div><div class="kpi-value">457</div><div class="kpi-sub">Google 432 · Bing 24 · Meta 1</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Umsatz gesamt</span><div class="sw"><div class="sd y"></div><span class="sl y">inkl. Folge</span></div></div><div class="kpi-value">€42.211</div><div class="kpi-sub">alle Google-markierten Orders</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Google Orders gesamt</span><div class="sw"><div class="sd g"></div><span class="sl g">CRM</span></div></div><div class="kpi-value">432</div><div class="kpi-sub">davon 312 erste Google-Orders</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Ø CPC Google</span><div class="sw"><div class="sd r"></div><span class="sl r">Peak</span></div></div><div class="kpi-value">€19,61</div><div class="kpi-sub">Juni €13,59 · Juli €18,62</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">CPO Google CRM</span><div class="sw"><div class="sd r"></div><span class="sl r">Teuer</span></div></div><div class="kpi-value">€105,23</div><div class="kpi-sub">Juni €73,14 · Juli €111,85</div></div>
     </div>
 
     <div class="insight-card reveal">
       <div class="card-label">Einordnung · August 2026</div>
-      <p class="insight-text">Der August bestätigt den Trend aus Juli: <strong>mehr Budget kauft weiterhin Volumen, aber nicht mehr genug Deckung</strong>. Google liegt MTD bei €45.460 Spend und €42.211 CRM-Umsatz — also <strong>0,93× ROAS</strong>. Gegenüber Juni ist der CPC von €13,59 auf €19,61 gestiegen (+44 %), während der CRM-ROAS von 1,47× auf 0,93× gefallen ist. Das ist kein kleiner Tracking-Effekt, sondern ein Effizienzproblem bei sehr hohem Cash-Abfluss.</p>
+      <p class="insight-text">Der August bestätigt den Trend aus Juli: <strong>mehr Budget kauft weiterhin Volumen, aber nicht mehr genug Deckung</strong>. Nach konservativer Marin-Logik — nur erste Bestellungen von über Google gewonnenen Kunden — liegt Google MTD bei €45.460 Spend und €32.808 Erstumsatz, also nur <strong>0,72× direktem ROAS</strong>. Zählt man alle Google-markierten Orders inklusive Folgesales, sind es €42.211 Umsatz bzw. 0,93×. Beide Sichten liegen unter Break-even.</p>
     </div>
   </div>
 </section>
@@ -327,24 +327,24 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
   <div class="wrap">
     <div class="section-eyebrow reveal">02 · 3-Monats-Vergleich</div>
     <h2 class="h-section reveal">Juni → Juli → August: <em>Skalierung kippt in Ineffizienz</em>.</h2>
-    <p class="section-sub reveal">Der Vergleich nutzt die synchronisierten Google-Ads-Kosten und CRM-Orders aus der Production-DB. August ist bewusst nur bis zum letzten Google-Sync-Tag 23.08. abgegrenzt, damit Umsatz nicht gegen fehlende Werbekosten gerechnet wird.</p>
+    <p class="section-sub reveal">Der Vergleich nutzt die synchronisierten Google-Ads-Kosten und CRM-Orders aus der Production-DB. Hauptlogik ist konservativ nach Marin: <strong>direkter Erstumsatz</strong> von Kunden, deren erste nicht gelöschte Bestellung über Google Ads kam. Zusätzlich wird die alte Report-Logik als „alle Google-markierten Orders“ gezeigt.</p>
 
     <div class="chart-row reveal">
-      <div class="chart-card"><div class="card-label">Google Spend vs. CRM-Umsatz · Jun–Aug</div><div class="chart-wrap"><canvas id="chartSpend"></canvas></div></div>
+      <div class="chart-card"><div class="card-label">Google Spend vs. direkter Erstumsatz · Jun–Aug</div><div class="chart-wrap"><canvas id="chartSpend"></canvas></div></div>
       <div class="chart-card"><div class="card-label">Google ROAS &amp; CPO · Jun–Aug</div><div class="chart-wrap"><canvas id="chartEfficiency"></canvas></div></div>
     </div>
 
     <div class="table-card reveal">
-      <div class="card-label">Monatsvergleich · Google Ads · CRM-basiert</div>
-      <table><thead><tr><th>Monat</th><th class="num">Spend</th><th class="num">Klicks</th><th class="num">Ø CPC</th><th class="num">CRM Orders</th><th class="num">CRM-Umsatz</th><th class="num">CPO</th><th class="num">ROAS CRM</th><th class="num">ROAS Google</th></tr></thead><tbody>
-        <tr><td><div class="cell-name">Juni 2026</div><div class="cell-sub">Vollmonat · Effizienz noch profitabel</div></td><td class="num">€33.865</td><td class="num">2.492</td><td class="num">€13,59</td><td class="num">463</td><td class="num">€49.762</td><td class="num">€73,14</td><td class="num"><span class="tag g">1,47×</span></td><td class="num">1,10×</td></tr>
-        <tr><td><div class="cell-name">Juli 2026</div><div class="cell-sub">Budgetsprung · ROAS fast Break-even</div></td><td class="num">€69.793</td><td class="num">3.748</td><td class="num">€18,62</td><td class="num">624</td><td class="num">€70.761</td><td class="num">€111,85</td><td class="num"><span class="tag y">1,01×</span></td><td class="num">0,84×</td></tr>
-        <tr class="hl-row"><td><div class="cell-name">August 2026 MTD</div><div class="cell-sub">01.–23.08. · unter Break-even</div></td><td class="num">€45.460</td><td class="num">2.318</td><td class="num">€19,61</td><td class="num">432</td><td class="num">€42.211</td><td class="num">€105,23</td><td class="num"><span class="tag r">0,93×</span></td><td class="num">0,63×</td></tr>
+      <div class="card-label">Monatsvergleich · Google Ads · direkte Erstkunden vs. alle Google-Orders</div>
+      <table><thead><tr><th>Monat</th><th class="num">Spend</th><th class="num">Klicks</th><th class="num">Ø CPC</th><th class="num">Erstorders</th><th class="num">Erstumsatz</th><th class="num">ROAS direkt</th><th class="num">Alle Google-Orders</th><th class="num">ROAS alle</th><th class="num">ROAS Google</th></tr></thead><tbody>
+        <tr><td><div class="cell-name">Juni 2026</div><div class="cell-sub">Vollmonat · noch knapp positiv</div></td><td class="num">€33.865</td><td class="num">2.492</td><td class="num">€13,59</td><td class="num">364</td><td class="num">€37.605</td><td class="num"><span class="tag y">1,11×</span></td><td class="num">463 · €49.762</td><td class="num">1,47×</td><td class="num">1,10×</td></tr>
+        <tr><td><div class="cell-name">Juli 2026</div><div class="cell-sub">Budgetsprung · direkt klar negativ</div></td><td class="num">€69.793</td><td class="num">3.748</td><td class="num">€18,62</td><td class="num">491</td><td class="num">€57.860</td><td class="num"><span class="tag r">0,83×</span></td><td class="num">624 · €70.761</td><td class="num">1,01×</td><td class="num">0,84×</td></tr>
+        <tr class="hl-row"><td><div class="cell-name">August 2026 MTD</div><div class="cell-sub">01.–23.08. · unter Break-even</div></td><td class="num">€45.460</td><td class="num">2.318</td><td class="num">€19,61</td><td class="num">312</td><td class="num">€32.808</td><td class="num"><span class="tag r">0,72×</span></td><td class="num">432 · €42.211</td><td class="num">0,93×</td><td class="num">0,63×</td></tr>
       </tbody></table>
       <div class="method-note">Hinweis: Juni-Werte können leicht vom bereits veröffentlichten Juni-Report abweichen, weil hier die aktuelle Production-DB-Abfrage verwendet wird.</div>
     </div>
 
-    <div class="insight-card reveal"><div class="card-label">Was der Vergleich zeigt</div><p class="insight-text">Von Juni auf Juli wurde Google von €33,9k auf €69,8k hochgefahren. Der CRM-Umsatz stieg zwar von €49,8k auf €70,8k, aber nicht proportional — der ROAS fiel auf fast exakt Break-even. August verbessert das nicht: Der CPC bleibt auf Rekordniveau und der ROAS liegt darunter. <strong>Die zusätzliche Skalierung kauft aktuell teure Grenz-Conversions</strong>, nicht profitables Wachstum.</p></div>
+    <div class="insight-card reveal"><div class="card-label">Was der Vergleich zeigt</div><p class="insight-text">Von Juni auf Juli wurde Google von €33,9k auf €69,8k hochgefahren. Nach direkter Erstkunden-Logik fiel der ROAS dabei von 1,11× auf 0,83×; August liegt MTD nur noch bei 0,72×. Selbst die großzügigere alte Report-Logik mit allen Google-markierten Orders kommt im August nur auf 0,93×. <strong>Die zusätzliche Skalierung kauft aktuell teure Grenz-Conversions</strong>, nicht profitables Wachstum.</p></div>
   </div>
 </section>
 
@@ -366,11 +366,11 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">Pixel-Conv.</span><div class="sw"><div class="sd y"></div><span class="sl y">Untertrackt</span></div></div><div class="kpi-value">304,25</div><div class="kpi-sub">Google-Wert €28.599</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">CRM Orders</span><div class="sw"><div class="sd g"></div><span class="sl g">Authoritative</span></div></div><div class="kpi-value">432</div><div class="kpi-sub">Faktor 1,42 vs. Pixel</div></div>
       <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">CPO (CRM)</span><div class="sw"><div class="sd r"></div><span class="sl r">Teuer</span></div></div><div class="kpi-value">€105,23</div><div class="kpi-sub">Juni €73,14 · Juli €111,85</div></div>
-      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">ROAS (CRM)</span><div class="sw"><div class="sd r"></div><span class="sl r">Negativ</span></div></div><div class="kpi-value">0,93×</div><div class="kpi-sub">€42.211 Umsatz</div></div>
+      <div class="kpi-card"><div class="kpi-header"><span class="kpi-label">ROAS direkt</span><div class="sw"><div class="sd r"></div><span class="sl r">Negativ</span></div></div><div class="kpi-value">0,72×</div><div class="kpi-sub">€32.808 Erstumsatz</div></div>
     </div>
 
     <div class="table-card reveal"><div class="card-label">Kampagnen-Performance · Google Ads · 01.–23. August 2026</div><table><thead><tr><th>Kampagne</th><th class="num">Impr.</th><th class="num">Klicks</th><th class="num">CTR</th><th class="num">Ø CPC</th><th class="num">Spend</th><th class="num">Pixel-Conv.</th><th class="num">CPA Pixel</th><th>Status</th></tr></thead><tbody><tr><td><div class="cell-name">Search | Cold-Google max conv. value</div><div class="cell-sub">Preisanpassung 17.8.2026 · DE</div></td><td class="num">26.518</td><td class="num">2.318</td><td class="num">8,74 %</td><td class="num">€19,61</td><td class="num">€45.460,05</td><td class="num">304,25</td><td class="num">€149,42</td><td><span class="tag g">Aktiv</span></td></tr><tr class="total-row"><td>Gesamt</td><td class="num">26.518</td><td class="num">2.318</td><td class="num">8,74 %</td><td class="num">€19,61</td><td class="num">€45.460,05</td><td class="num">304,25</td><td class="num">€149,42</td><td></td></tr></tbody></table></div>
-    <div class="insight-card reveal"><div class="card-label">Einordnung · Google Ads</div><p class="insight-text">Der Knackpunkt ist nicht, dass keine Nachfrage da wäre: 2.318 Klicks und 432 CRM-Orders zeigen weiterhin Volumen. Der Knackpunkt ist der Preis. Bei €19,61 CPC und €105 CPO braucht der Warenkorb deutlich mehr Wert oder mehr Folgesales, um das Spend-Level zu rechtfertigen. Solange Google selbst nur 0,63× Conversion-Value sieht, optimiert der Algorithmus außerdem auf ein schwächeres Signal als das CRM.</p></div>
+    <div class="insight-card reveal"><div class="card-label">Einordnung · Google Ads</div><p class="insight-text">Der Knackpunkt ist nicht, dass keine Nachfrage da wäre: 2.318 Klicks und 432 Google-markierte CRM-Orders zeigen weiterhin Volumen. Der Knackpunkt ist der Preis. Bei konservativer Erstkunden-Logik entstehen nur 312 neue Google-Kunden und €32.808 Erstumsatz — also 0,72× ROAS. Selbst inklusive späterer/weiterer Google-markierter Orders reicht es nur für 0,93×. Solange Google selbst nur 0,63× Conversion-Value sieht, optimiert der Algorithmus außerdem auf ein schwächeres Signal als das CRM.</p></div>
   </div>
 </section>
 
@@ -401,12 +401,12 @@ body.editing [contenteditable="true"]:focus { outline: 2px solid var(--blue); ou
     <h2 class="h-section reveal">Nicht weiter skalieren — <em>erst Kontrolle zurückholen</em>.</h2>
     <p class="section-sub reveal">Die Reihenfolge ist wichtig: Erst Budgetdruck rausnehmen und Messung stabilisieren, dann Struktur/Keywords optimieren, danach wieder testen.</p>
     <div class="prio-grid">
-      <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">Google-Budget senken <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Bei 0,93× CRM-ROAS und 0,63× Google-ROAS ist das aktuelle Spend-Level nicht tragfähig. Empfehlung: Budget deutlich zurücknehmen, bis CPO und ROAS wieder in einem kontrollierten Korridor sind.</div></div>
+      <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">Google-Budget senken <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Bei 0,72× direktem CRM-ROAS, 0,93× inkl. aller Google-markierten Orders und 0,63× Google-ROAS ist das aktuelle Spend-Level nicht tragfähig. Empfehlung: Budget deutlich zurücknehmen, bis CPO und ROAS wieder in einem kontrollierten Korridor sind.</div></div>
       <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">02</div><div><div class="prio-title-text">tROAS / Bidding-Schutz setzen <span class="tag r">Kritisch</span></div></div></div><div class="prio-desc">Maximize Conversion Value ohne belastbares Mindestziel lässt Google bei schwacher Signalqualität weiter ausgeben. Erst Conversion-Pipeline validieren, dann Ziel-ROAS als Schutzplanke setzen.</div></div>
       <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">03</div><div><div class="prio-title-text">Brand und Cold trennen <span class="tag y">Hoch</span></div></div></div><div class="prio-desc">Eigener Brand-Traffic gehört in eine kleine kontrollierte Exact-Kampagne; Cold-Suchbegriffe getrennt strukturieren. Gewinner-Suchanfragen als Exact/Phrase testen, teure generische Begriffe und Informationssuchen negativeren.</div></div>
       <div class="prio-card reveal"><div class="prio-header"><div class="prio-num">04</div><div><div class="prio-title-text">Bing-Report nachziehen <span class="tag y">Hoch</span></div></div></div><div class="prio-desc">Bing zeigt im CRM im August €8.469 Umsatz — das könnte ein guter Kanal sein, aber ohne Spend ist jede Bewertung blind. Walter-Report oder API-Anbindung nachziehen.</div></div>
     </div>
-    <div class="fazit-card reveal"><div class="fazit-heading">Fazit · August 2026</div><p class="fazit-text">Der Report zeigt eine klare Verschiebung: RezensionsHeld hat Nachfrage, aber Google wird mit wachsendem Budget immer teurer. Juni war noch profitabel, Juli fast Break-even, August fällt unter 1× ROAS. In der aktuellen finanziellen Lage ist die rationale Entscheidung, nicht weiter aggressiv zu skalieren, sondern Budget zu reduzieren, Tracking/Bidding sauber abzusichern und die Search-Struktur feiner aufzubauen. Erst wenn der CRM-ROAS wieder stabil über dem Ziel liegt, sollte das Budget erneut hochgefahren werden.</p></div>
+    <div class="fazit-card reveal"><div class="fazit-heading">Fazit · August 2026</div><p class="fazit-text">Der Report zeigt eine klare Verschiebung: RezensionsHeld hat Nachfrage, aber Google wird mit wachsendem Budget immer teurer. Juni war nach direkter Logik nur noch knapp positiv, Juli bereits negativ, August fällt deutlich unter 1× ROAS. In der aktuellen finanziellen Lage ist die rationale Entscheidung, nicht weiter aggressiv zu skalieren, sondern Budget zu reduzieren, Tracking/Bidding sauber abzusichern und die Search-Struktur feiner aufzubauen. Erst wenn der CRM-ROAS wieder stabil über dem Ziel liegt, sollte das Budget erneut hochgefahren werden.</p></div>
     <footer class="footer"><span class="footer-brand">Skael <span>Reports</span></span><span class="footer-date">Erstellt am 24. August 2026 · Datenstand Google/CRM bis 23.08.2026</span></footer>
   </div>
 </section>
@@ -424,7 +424,7 @@ new Chart(document.getElementById('chartSpend'), {
     labels: months,
     datasets: [
       { label: 'Google Spend (€)', data: [33865, 69793, 45460], backgroundColor: 'rgba(58,110,244,0.22)', borderRadius: 5 },
-      { label: 'Google CRM-Umsatz (€)', data: [49762, 70761, 42211], backgroundColor: '#3a6ef4', borderRadius: 5 }
+      { label: 'Direkter Erstumsatz (€)', data: [37605, 57860, 32808], backgroundColor: '#3a6ef4', borderRadius: 5 }
     ]
   },
   options: {
@@ -443,8 +443,8 @@ new Chart(document.getElementById('chartEfficiency'), {
   data: {
     labels: months,
     datasets: [
-      { label: 'CPO CRM (€)', data: [73.14, 111.85, 105.23], backgroundColor: 'rgba(239,68,68,0.18)', borderRadius: 5, yAxisID: 'y' },
-      { label: 'ROAS CRM', data: [1.47, 1.01, 0.93], type: 'line', borderColor: '#22c55e', backgroundColor: '#22c55e', borderWidth: 2, pointRadius: 4, tension: .3, yAxisID: 'y1' }
+      { label: 'CPO Erstorder (€)', data: [93.04, 142.14, 145.71], backgroundColor: 'rgba(239,68,68,0.18)', borderRadius: 5, yAxisID: 'y' },
+      { label: 'ROAS direkt', data: [1.11, 0.83, 0.72], type: 'line', borderColor: '#22c55e', backgroundColor: '#22c55e', borderWidth: 2, pointRadius: 4, tension: .3, yAxisID: 'y1' }
     ]
   },
   options: {
