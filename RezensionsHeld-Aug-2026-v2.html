@@ -6,37 +6,36 @@
 <title>Skael Report — RezensionsHeld August 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{
   --bg:#fbfcfd;
   --white:#ffffff;
-  --border:#e8eaf0;
-  --border2:#dbdee8;
-  --navy:#12203a;
+  --border:#e6e8ee;
+  --border2:#d7dae4;
+  --navy:#0f1b2d;
   --blue:#3a6ef4;
-  --blue-2:#5b86f7;
   --blue-bg:#eef2ff;
   --blue-mid:#c7d4fd;
   --muted:#6b7280;
-  --sub:#9aa1ad;
-  --body:#414a59;
+  --sub:#9ca3af;
+  --body:#3b4453;
   --green:#16a34a;
   --green-bg:#dcfce7;
   --red:#dc2626;
   --red-bg:#fee2e2;
   --amber:#b45309;
   --amber-bg:#fef3c7;
-  --shadow:0 1px 2px rgba(18,32,58,.03), 0 6px 24px rgba(18,32,58,.045);
-  --shadow-lg:0 14px 46px rgba(18,32,58,.08);
+  --shadow:0 1px 2px rgba(15,27,45,.04), 0 8px 30px rgba(15,27,45,.05);
+  --shadow-lg:0 12px 44px rgba(15,27,45,.09);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
-  font-family:'Poppins',sans-serif;font-size:14px;font-weight:400;letter-spacing:-0.01em;
+  font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.011em;font-weight:400;
   line-height:1.68;color:var(--body);background:var(--bg);
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 ::selection{background:var(--blue);color:#fff;}
@@ -49,14 +48,14 @@ nav{
   border-bottom:1px solid var(--border);
 }
 .nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
-.nav-logo-mark{width:24px;height:24px;border-radius:7px;background:linear-gradient(145deg,var(--blue),#2b57d6);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 4px 12px rgba(58,110,244,.32);}
+.nav-logo-mark{width:24px;height:24px;border-radius:7px;background:linear-gradient(145deg,var(--blue),#2b57d6);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 4px 12px rgba(58,110,244,.35);}
 .nav-logo-text{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-0.02em;white-space:nowrap;}
 .nav-logo-text span{color:var(--blue);}
 .nav-sep{width:1px;height:22px;background:var(--border2);}
 .nav-tabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;}
 .nav-tabs::-webkit-scrollbar{display:none;}
-.nav-tab{font-size:12.5px;font-weight:400;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:9px;white-space:nowrap;transition:all .16s;cursor:pointer;}
-.nav-tab:hover{color:var(--navy);background:rgba(18,32,58,.05);}
+.nav-tab{font-size:12.5px;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:9px;white-space:nowrap;transition:all .16s;cursor:pointer;font-weight:400;}
+.nav-tab:hover{color:var(--navy);background:rgba(15,27,45,.05);}
 .nav-tab.active{background:var(--navy);color:#fff;font-weight:500;}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:9px;}
 .nav-pill{
@@ -65,10 +64,10 @@ nav{
   letter-spacing:0.1em;color:var(--muted);border:1px solid var(--border);
   border-radius:20px;padding:6px 14px;white-space:nowrap;background:var(--white);
 }
-.nav-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(58,110,244,.14);}
+.nav-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(58,110,244,.15);}
 
 /* ── LAYOUT ── */
-.wrap{max-width:1140px;margin:0 auto;padding:0 40px;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px;}
 .page{display:none;padding:60px 0 96px;}
 .page.active{display:block;animation:fadeUp .5s cubic-bezier(.22,.68,0,1.05);}
 .eyebrow{
@@ -79,17 +78,17 @@ nav{
 .eyebrow.plain::before{display:none;}
 
 /* ── PAGE HEAD ── */
-.page-head{margin-bottom:38px;max-width:840px;}
-.page-h{font-size:clamp(30px,3.6vw,46px);font-weight:600;letter-spacing:-0.035em;line-height:1.08;margin:18px 0 14px;color:var(--navy);}
+.page-head{margin-bottom:40px;max-width:840px;}
+.page-h{font-size:clamp(30px,3.8vw,46px);font-weight:600;letter-spacing:-0.035em;line-height:1.06;margin:18px 0 14px;color:var(--navy);}
 .page-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--blue);letter-spacing:0;}
-.page-sub{font-size:14.5px;font-weight:300;color:var(--muted);max-width:730px;}
+.page-sub{font-size:14.5px;color:var(--muted);max-width:720px;}
 .page-sub strong{color:var(--navy);font-weight:500;}
 
 /* ── HERO (übersicht) ── */
 .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:36px;}
-.hero-h{font-size:clamp(40px,5.4vw,72px);font-weight:600;letter-spacing:-0.04em;line-height:1.0;margin:16px 0 16px;color:var(--navy);}
+.hero-h{font-size:clamp(40px,5.4vw,74px);font-weight:600;letter-spacing:-0.04em;line-height:1.0;margin:16px 0 16px;color:var(--navy);}
 .hero-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;color:var(--blue);}
-.hero-sub{font-size:14.5px;font-weight:300;color:var(--muted);max-width:540px;}
+.hero-sub{font-size:14.5px;color:var(--muted);max-width:540px;}
 .hero-badge{border:1px solid var(--border);border-radius:14px;padding:14px 20px;text-align:right;background:var(--white);box-shadow:var(--shadow);min-width:190px;}
 .hero-badge .k{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
 .hero-badge .v{font-size:14px;font-weight:500;color:var(--navy);margin-top:4px;}
@@ -98,92 +97,87 @@ nav{
 .card{background:var(--white);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);}
 .hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:18px;}
 .hero-main{padding:36px 40px 34px;position:relative;overflow:hidden;}
-.hero-main::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 8%,rgba(58,110,244,.05),transparent 42%);pointer-events:none;}
-.hero-side{padding:32px 34px;display:flex;flex-direction:column;background:linear-gradient(160deg,#fff,#f4f7ff);}
+.hero-main::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 8%,rgba(58,110,244,.06),transparent 42%);pointer-events:none;}
+.hero-side{padding:30px 32px;display:flex;flex-direction:column;background:linear-gradient(160deg,#fff,#f6f8ff);}
 .hm-eyebrows{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px;}
 .hm-date{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
 .hm-tag{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);}
 .hm-title{font-size:clamp(23px,2.5vw,31px);font-weight:600;letter-spacing:-0.03em;line-height:1.14;margin-bottom:16px;color:var(--navy);}
-.hm-body{font-size:13.5px;font-weight:300;color:var(--muted);max-width:560px;}
+.hm-body{font-size:13.5px;color:var(--muted);max-width:560px;}
 .hm-divider{height:1px;background:var(--border);margin:26px 0 24px;}
 .hm-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
-.bignum{font-size:clamp(46px,5.4vw,74px);font-weight:600;letter-spacing:-0.05em;line-height:0.9;color:var(--navy);}
-.bignum-lbl{font-size:12.5px;font-weight:300;color:var(--muted);max-width:230px;margin-top:10px;}
+.bignum{font-size:clamp(46px,5.4vw,74px);font-weight:600;letter-spacing:-0.045em;line-height:0.92;color:var(--navy);}
+.bignum-lbl{font-size:12.5px;color:var(--muted);max-width:230px;margin-top:10px;}
 .callout{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:14px;padding:16px 22px;min-width:150px;}
-.callout .big{font-size:28px;font-weight:600;letter-spacing:-0.04em;color:var(--blue);}
-.callout .small{font-size:11px;font-weight:300;color:var(--muted);margin-top:4px;line-height:1.4;}
+.callout .big{font-size:28px;font-weight:600;letter-spacing:-0.03em;color:var(--blue);}
+.callout .small{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4;}
 
 /* hero side */
-.side-title{font-size:19px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;margin:16px 0 18px;color:var(--navy);}
-.side-chart{position:relative;height:148px;margin-bottom:18px;}
+.side-title{font-size:18.5px;font-weight:600;letter-spacing:-0.025em;line-height:1.22;margin:16px 0 18px;color:var(--navy);}
+.side-chart{position:relative;height:146px;margin-bottom:18px;}
 .side-hi{margin-top:auto;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);}
 .side-hi .row{display:flex;align-items:center;justify-content:space-between;}
-.side-hi .pct{font-size:34px;font-weight:600;letter-spacing:-0.035em;color:var(--red);line-height:1;}
-.side-hi .note{font-size:11px;font-weight:300;color:var(--muted);margin-top:4px;}
+.side-hi .pct{font-size:34px;font-weight:600;letter-spacing:-0.03em;color:var(--red);line-height:1;}
+.side-hi .note{font-size:11px;color:var(--muted);margin-top:4px;}
 .side-hi .icon{width:40px;height:40px;border-radius:11px;background:var(--red-bg);display:flex;align-items:center;justify-content:center;color:var(--red);}
-
-/* ── KPI STRIP ── */
-.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px;}
-.kpi-tile{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
-.kpi-tile .ki{position:absolute;top:16px;right:16px;color:var(--blue-mid);opacity:.9;}
-.kpi-tile .kl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.13em;color:var(--sub);margin-bottom:10px;}
-.kpi-tile .kv{font-size:27px;font-weight:600;letter-spacing:-0.04em;color:var(--navy);line-height:1;}
-.kpi-tile .kd{font-size:11px;font-weight:300;color:var(--muted);margin-top:7px;}
-.kpi-tile .kd b{font-weight:500;}
 
 /* ── STAT CARDS ── */
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:8px;}
-.stat-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
 .stat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.stat-mlabel{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:14px;}
-.stat-num{font-size:clamp(34px,3.4vw,46px);font-weight:600;letter-spacing:-0.045em;line-height:0.95;color:var(--navy);}
+.stat-ico{width:38px;height:38px;border-radius:10px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;color:var(--blue);margin-bottom:16px;}
+.stat-mlabel{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:10px;}
+.stat-num{font-size:clamp(34px,3.4vw,44px);font-weight:600;letter-spacing:-0.04em;line-height:0.98;color:var(--navy);}
 .stat-h{font-size:15px;font-weight:500;margin:12px 0 6px;color:var(--navy);}
-.stat-desc{font-size:12.5px;font-weight:300;color:var(--muted);}
+.stat-desc{font-size:12.5px;color:var(--muted);}
 
-/* ── BRAND BAND (visual) ── */
-.brandband{margin-top:20px;background:linear-gradient(135deg,#12203a,#1c2f52 60%,#274danull);border-radius:20px;padding:34px 38px;display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
-.brandband{background:linear-gradient(135deg,#12203a,#213764);}
-.brandband::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 88% 20%,rgba(58,110,244,.35),transparent 45%);pointer-events:none;}
-.bb-left{position:relative;z-index:2;}
-.bb-kick{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:#8fb0fb;margin-bottom:14px;}
-.bb-h{font-size:26px;font-weight:600;letter-spacing:-0.03em;color:#fff;line-height:1.18;}
-.bb-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#a9c2fd;}
-.bb-p{font-size:13px;font-weight:300;color:#b9c4d6;margin-top:12px;max-width:420px;}
-.bb-metrics{display:flex;gap:26px;margin-top:22px;}
-.bb-metric .n{font-size:24px;font-weight:600;color:#fff;letter-spacing:-0.03em;}
-.bb-metric .l{font-size:10.5px;font-weight:300;color:#93a1b8;margin-top:2px;}
-.bb-visual{position:relative;z-index:2;display:flex;justify-content:flex-end;align-items:center;gap:18px;}
-.bb-creative{width:150px;height:150px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 40px rgba(0,0,0,.35);flex-shrink:0;}
-.bb-creative img{width:100%;height:100%;object-fit:cover;display:block;}
-.bb-creative-cap{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#93a1b8;margin-top:8px;text-align:center;}
-.bb-svg{flex:1;min-width:0;}
+/* ── KPI STRIP ── */
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px;}
+.kpi-tile{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);}
+.kpi-tile .kl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.13em;color:var(--sub);}
+.kpi-tile .kv{font-size:25px;font-weight:600;letter-spacing:-0.035em;color:var(--navy);margin:8px 0 2px;}
+.kpi-tile .kd{font-size:11px;color:var(--muted);}
+.kpi-tile .kd .up{color:var(--green);}.kpi-tile .kd .down{color:var(--red);}
 
-/* ── BLOCK ── */
+/* ── BRAND BAND ── */
+.brandband{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);margin-top:8px;}
+.bb-left{background:linear-gradient(150deg,var(--navy),#16233b);padding:38px 40px;color:#fff;position:relative;overflow:hidden;}
+.bb-left::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 100%,rgba(58,110,244,.35),transparent 46%);pointer-events:none;}
+.bb-kick{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:#9fb8fc;margin-bottom:16px;}
+.bb-h{font-size:26px;font-weight:600;letter-spacing:-0.03em;line-height:1.2;position:relative;}
+.bb-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#9fb8fc;}
+.bb-p{font-size:13px;color:#c4ccd8;margin-top:14px;max-width:400px;position:relative;}
+.bb-svg{margin-top:26px;position:relative;}
+.bb-right{background:var(--blue-bg);display:flex;align-items:center;justify-content:center;padding:26px;}
+.bb-creative{width:100%;max-width:290px;border-radius:14px;box-shadow:var(--shadow-lg);border:1px solid var(--white);}
+.bb-cap{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-top:12px;text-align:center;}
+
+/* ── DIVIDER LABEL ── */
 .block{margin-top:60px;}
 .block-head{margin-bottom:26px;}
-.block-h{font-size:clamp(21px,2.3vw,29px);font-weight:600;letter-spacing:-0.03em;color:var(--navy);margin:14px 0 10px;}
+.block-h{font-size:clamp(21px,2.3vw,28px);font-weight:600;letter-spacing:-0.03em;color:var(--navy);margin:14px 0 10px;}
 .block-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--blue);}
-.block-sub{font-size:13.5px;font-weight:300;color:var(--muted);max-width:730px;}
+.block-sub{font-size:13.5px;color:var(--muted);max-width:720px;}
 
-/* chips */
+/* data source chips */
 .chips{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
 .chip{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 20px;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;align-items:center;gap:9px;box-shadow:var(--shadow);transition:all .16s;}
 .chip:hover{border-color:var(--blue-mid);color:var(--navy);}
 .chip .cd{width:7px;height:7px;border-radius:50%;background:var(--blue);}
-.chip.accent{background:linear-gradient(145deg,var(--blue),#2b57d6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(58,110,244,.22);}
+.chip.accent{background:linear-gradient(145deg,var(--blue),#2b57d6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(58,110,244,.25);}
 
-/* overview link cards */
+/* ── OVERVIEW LINK CARDS ── */
 .ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.ov-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:30px 32px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.ov-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
 .ov-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--blue-mid);}
 .ov-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
 .ov-label{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);}
 .ov-link{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:6px 13px;white-space:nowrap;transition:all .16s;}
 .ov-card:hover .ov-link{color:var(--blue);border-color:var(--blue-mid);background:var(--blue-bg);}
-.ov-h{font-size:19px;font-weight:600;letter-spacing:-0.025em;line-height:1.2;margin-bottom:16px;color:var(--navy);}
-.ov-big{font-size:40px;font-weight:600;letter-spacing:-0.045em;line-height:1;color:var(--navy);}
+.ov-h{font-size:18.5px;font-weight:600;letter-spacing:-0.025em;line-height:1.22;margin-bottom:16px;color:var(--navy);}
+.ov-big{font-size:40px;font-weight:600;letter-spacing:-0.04em;line-height:1;color:var(--navy);}
 .ov-big .u{font-size:16px;font-weight:400;color:var(--sub);letter-spacing:0;}
-.ov-foot{font-size:12.5px;font-weight:300;color:var(--muted);margin-top:14px;}
+.ov-foot{font-size:12.5px;color:var(--muted);margin-top:14px;}
 .ov-foot strong{color:var(--navy);font-weight:500;}
 .seg{display:flex;align-items:center;gap:0;margin:18px 0 8px;}
 .seg .lbl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);white-space:nowrap;}
@@ -191,34 +185,36 @@ nav{
 .seg .line::after{content:'';position:absolute;right:0;top:50%;width:6px;height:6px;border-radius:50%;background:var(--blue);transform:translateY(-50%);}
 .prow{display:flex;align-items:center;gap:14px;margin-bottom:13px;}
 .prow .pv{font-size:15px;font-weight:600;width:56px;letter-spacing:-0.02em;color:var(--navy);}
-.prow .pl{font-size:12px;font-weight:300;color:var(--muted);width:180px;flex-shrink:0;}
+.prow .pl{font-size:12px;color:var(--muted);width:180px;flex-shrink:0;}
 .prow .ptrack{flex:1;height:7px;border-radius:5px;background:var(--blue-bg);overflow:hidden;}
 .prow .pfill{height:100%;border-radius:5px;background:linear-gradient(90deg,#8aa8fb,var(--blue));}
 .mini-stats{display:flex;gap:10px;margin-bottom:18px;}
 .mini-stat{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
 .mini-stat .n{font-size:22px;font-weight:600;letter-spacing:-0.035em;color:var(--navy);}
-.mini-stat .l{font-size:10.5px;font-weight:300;color:var(--muted);margin-top:2px;}
+.mini-stat .l{font-size:10.5px;color:var(--muted);margin-top:2px;}
 .ov-mini-chart{position:relative;height:120px;margin:6px 0 4px;}
 
-/* charts */
-.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
-.chart-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);}
-.chart-card .ct{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:2px;}
-.chart-card .cx{font-size:12px;font-weight:300;color:var(--sub);margin-bottom:2px;}
-.chart-wrap{position:relative;height:280px;margin-top:14px;}
+/* ── CHARTS ── */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.chart-row + .chart-row{margin-top:18px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);}
+.chart-card.wide{grid-column:1 / -1;}
+.chart-card .ct{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;}
+.chart-card .cx{font-size:12.5px;color:var(--sub);margin-bottom:6px;}
+.chart-wrap{position:relative;height:270px;margin-top:14px;}
 
-/* tables */
+/* ── TABLES ── */
 .table-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:8px 12px;overflow-x:auto;box-shadow:var(--shadow);margin-top:18px;}
 table{width:100%;border-collapse:collapse;min-width:720px;}
 thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);font-weight:500;text-align:left;padding:18px 14px 12px;border-bottom:1px solid var(--border);}
 thead th.num{text-align:right;}
-tbody td{font-size:13px;font-weight:400;color:var(--body);padding:14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tbody td{font-size:13px;color:var(--body);padding:14px;border-bottom:1px solid var(--border);vertical-align:middle;}
 tbody td.num{text-align:right;font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:-0.01em;color:var(--navy);}
 tbody tr:last-child td{border-bottom:none;}
 tbody tr:hover{background:var(--bg);}
 tbody tr.total-row td{font-weight:500;color:var(--navy);background:var(--blue-bg);}
 .cell-name{font-weight:500;color:var(--navy);}
-.cell-sub{font-size:11px;font-weight:300;color:var(--sub);margin-top:1px;}
+.cell-sub{font-size:11px;color:var(--sub);margin-top:1px;font-weight:400;}
 
 /* tags */
 .tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;border-radius:20px;padding:4px 10px;white-space:nowrap;}
@@ -228,53 +224,54 @@ tbody tr.total-row td{font-weight:500;color:var(--navy);background:var(--blue-bg
 .tag.acc{background:var(--blue-bg);color:var(--blue);}
 .tag.muted{background:#f1f3f7;color:var(--muted);}
 
-/* insight */
+/* insight box */
 .insight{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:14px;padding:24px 28px;box-shadow:var(--shadow);margin-top:18px;}
 .insight .il{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:10px;}
-.insight p{font-size:13.5px;font-weight:300;color:var(--muted);}
+.insight p{font-size:13.5px;color:var(--muted);}
 .insight p strong{color:var(--navy);font-weight:500;}
 .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
 
 /* channel cards */
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-.ch-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);}
+.ch-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);}
 .ch-card .ct{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
-.ch-card .cn{font-size:30px;font-weight:600;letter-spacing:-0.04em;margin:10px 0 4px;color:var(--navy);}
-.ch-card .cs{font-size:12px;font-weight:300;color:var(--muted);}
+.ch-card .cn{font-size:29px;font-weight:600;letter-spacing:-0.035em;margin:10px 0 4px;color:var(--navy);}
+.ch-card .cs{font-size:12px;color:var(--muted);}
 
 /* recommendations */
 .rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.rec-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
+.rec-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
 .rec-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
-.rec-top{display:flex;align-items:center;gap:15px;margin-bottom:14px;}
-.rec-ico{width:42px;height:42px;border-radius:12px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
+.rec-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.rec-ico{width:40px;height:40px;border-radius:11px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
 .rec-title{font-size:15.5px;font-weight:600;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--navy);}
-.rec-desc{font-size:13px;font-weight:300;color:var(--muted);}
-.rec-step{font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;color:var(--blue);margin-left:auto;}
+.rec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);letter-spacing:0.1em;}
+.rec-desc{font-size:13px;color:var(--muted);}
 
 /* timeline */
-.timeline{margin-top:18px;position:relative;padding-left:2px;}
-.tl-item{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--border);}
-.tl-item:last-child{border-bottom:none;}
-.tl-when{font-family:'DM Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);padding-top:2px;}
-.tl-what{font-size:14px;font-weight:500;color:var(--navy);}
-.tl-desc{font-size:12.5px;font-weight:300;color:var(--muted);margin-top:3px;}
+.timeline{position:relative;margin-top:8px;padding-left:8px;}
+.tl-item{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:0 0 26px 26px;border-left:1.5px solid var(--border);position:relative;}
+.tl-item:last-child{border-left:1.5px solid transparent;padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:-7px;top:2px;width:13px;height:13px;border-radius:50%;background:var(--white);border:2.5px solid var(--blue);}
+.tl-when{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);padding-top:1px;}
+.tl-what h4{font-size:14.5px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+.tl-what p{font-size:12.5px;color:var(--muted);}
 
 /* fazit */
-.fazit{background:linear-gradient(150deg,#12203a,#1b2c4d);border-radius:20px;padding:48px 52px;position:relative;overflow:hidden;margin-top:24px;box-shadow:var(--shadow-lg);}
-.fazit::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 90%,rgba(58,110,244,.26),transparent 42%);pointer-events:none;}
-.fazit .ql{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:#8fb0fb;margin-bottom:20px;}
-.fazit .qt{font-size:clamp(20px,2.3vw,29px);font-weight:400;letter-spacing:-0.02em;line-height:1.4;color:#fff;position:relative;}
-.fazit .qt em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#a9c2fd;}
+.fazit{background:linear-gradient(160deg,var(--navy),#16233b);border-radius:20px;padding:46px 50px;position:relative;overflow:hidden;margin-top:24px;box-shadow:var(--shadow-lg);}
+.fazit::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 90%,rgba(58,110,244,.28),transparent 42%);pointer-events:none;}
+.fazit .ql{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:#8aa8fb;margin-bottom:20px;}
+.fazit .qt{font-size:clamp(20px,2.3vw,29px);font-weight:500;letter-spacing:-0.025em;line-height:1.4;color:#fff;position:relative;}
+.fazit .qt em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#9fb8fc;}
 
 /* footer */
 .footer{border-top:1px solid var(--border);padding:34px 0 60px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
-.footer-brand{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:500;color:var(--navy);}
+.footer-brand{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--navy);}
 .footer-brand span{color:var(--blue);}
 .footer-date{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);text-align:center;flex:1;}
 .footer-year{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--blue);}
 
-/* pager */
+/* page pager */
 .pager{display:flex;justify-content:space-between;gap:16px;margin-top:60px;padding-top:28px;border-top:1px solid var(--border);}
 .pager a{font-size:13px;color:var(--muted);text-decoration:none;display:flex;flex-direction:column;gap:2px;cursor:pointer;transition:color .16s;}
 .pager a:hover{color:var(--blue);}
@@ -286,7 +283,7 @@ tbody tr.total-row td{font-weight:500;color:var(--navy);background:var(--blue-bg
 /* edit bar */
 .edit-bar{position:fixed;bottom:22px;right:22px;z-index:400;display:flex;gap:8px;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:var(--shadow-lg);}
 .eb-brand{display:flex;align-items:center;gap:7px;padding:0 8px 0 4px;font-size:12px;font-weight:500;color:var(--muted);}
-.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:400;padding:8px 15px;border-radius:9px;border:1px solid var(--border);background:var(--white);color:var(--navy);cursor:pointer;transition:all .15s;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:8px 15px;border-radius:9px;border:1px solid var(--border);background:var(--white);color:var(--navy);cursor:pointer;transition:all .15s;}
 .eb-btn:hover{background:var(--bg);}
 .eb-btn.on{background:var(--blue);border-color:transparent;color:#fff;}
 body.editing [contenteditable="true"]:hover{outline:1px dashed var(--blue-mid);outline-offset:3px;border-radius:3px;}
@@ -295,8 +292,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 @media(max-width:900px){
   .wrap{padding:0 22px;}
   .hero-grid,.ov-grid,.chart-row,.rec-grid,.twocol,.brandband{grid-template-columns:1fr;}
-  .stat-row,.grid-3{grid-template-columns:1fr;}
-  .kpi-strip{grid-template-columns:1fr 1fr;}
+  .stat-row,.grid-3,.kpi-strip{grid-template-columns:1fr 1fr;}
   .tl-item{grid-template-columns:1fr;gap:4px;}
   .nav-tabs{display:none;}
 }
@@ -371,7 +367,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
             <div class="pct">−35 %</div>
             <div class="note">ROAS seit Juni · trotz mehr Spend</div>
           </div>
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
         </div>
       </div>
     </div>
@@ -379,18 +375,21 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="stat-row">
     <div class="stat-card">
+      <div class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <div class="stat-mlabel">Google Erstumsatz</div>
       <div class="stat-num">€32.708</div>
       <div class="stat-h">311 neue Google-Kunden</div>
       <div class="stat-desc">Erste nicht gelöschte Bestellung via Google Ads · Production-DB.</div>
     </div>
     <div class="stat-card">
+      <div class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
       <div class="stat-mlabel">CPO Neukunde</div>
       <div class="stat-num">€146,17</div>
       <div class="stat-h">Teuer — steigend</div>
       <div class="stat-desc">Juni €93,03 · Juli €142,15 · Google Spend / 311 Neukunden.</div>
     </div>
     <div class="stat-card">
+      <div class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
       <div class="stat-mlabel">Bing Nebenkanal</div>
       <div class="stat-num">€8.469</div>
       <div class="stat-h">24 Bing-Orders (DB)</div>
@@ -398,44 +397,43 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     </div>
   </div>
 
-  <!-- Brand band with real creative -->
-  <div class="brandband">
-    <div class="bb-left">
-      <div class="bb-kick">RezensionsHeld × Skael</div>
-      <div class="bb-h">Bewertungen skalieren — <em>aber profitabel.</em></div>
-      <p class="bb-p">RezensionsHeld gewinnt über Google Ads planbar Neukunden. Die Frage im August ist nicht Nachfrage, sondern Deckung: Wächst der Umsatz schneller als der Spend?</p>
-      <div class="bb-metrics">
-        <div class="bb-metric"><div class="n">336</div><div class="l">Orders gesamt (DB)</div></div>
-        <div class="bb-metric"><div class="n">€41,3k</div><div class="l">Umsatz Aug MTD</div></div>
-        <div class="bb-metric"><div class="n">1,10×</div><div class="l">LTV-ROAS Jun–Aug</div></div>
-      </div>
+  <!-- schnellgrafiken -->
+  <div class="block">
+    <div class="block-head">
+      <div class="eyebrow">Auf einen Blick</div>
+      <h2 class="block-h">Spend, Umsatz und Budget-<em>Allokation</em></h2>
+      <p class="block-sub">Der Spend läuft Google-dominiert; Erstumsatz kann seit Juli nicht mehr mithalten. Die Allokation zeigt, wie einseitig das Budget auf Google konzentriert ist.</p>
     </div>
-    <div class="bb-visual">
-      <div class="bb-svg">
-        <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
-          <defs><linearGradient id="bbfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b86f7" stop-opacity="0.55"/><stop offset="1" stop-color="#5b86f7" stop-opacity="0"/></linearGradient></defs>
-          <g stroke="#31456f" stroke-width="1"><line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="80" x2="320" y2="80"/><line x1="0" y1="120" x2="320" y2="120"/></g>
-          <path d="M0,55 C60,50 90,35 130,58 C175,84 210,70 260,95 C285,108 300,110 320,118 L320,150 L0,150 Z" fill="url(#bbfill)"/>
-          <path d="M0,55 C60,50 90,35 130,58 C175,84 210,70 260,95 C285,108 300,110 320,118" fill="none" stroke="#9fc0ff" stroke-width="2.5"/>
-          <g fill="#dbe6ff"><circle cx="130" cy="58" r="3.5"/><circle cx="260" cy="95" r="3.5"/><circle cx="320" cy="118" r="3.5"/></g>
-        </svg>
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="ct">Google Spend vs. Erstumsatz · Jun–Aug</div>
+        <div class="chart-wrap" style="height:250px"><canvas id="chartOvSpendRev"></canvas></div>
       </div>
-      <div>
-        <div class="bb-creative"><img src="assets/rezensionsheld/kreativ-loeschdienst24.png" alt="RezensionsHeld Kreativ" loading="lazy"></div>
-        <div class="bb-creative-cap">Kreativ-Beispiel</div>
+      <div class="chart-card">
+        <div class="ct">Budget-Allokation nach Kanal · MTD</div>
+        <div class="chart-wrap" style="height:250px"><canvas id="chartOvAllocation"></canvas></div>
       </div>
     </div>
   </div>
 
-  <!-- quick charts -->
-  <div class="chart-row">
-    <div class="chart-card">
-      <div class="ct">Spend vs. Erstumsatz · Jun–Aug</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartOvSpendRev"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="ct">Budget-Allokation nach Kanal · MTD</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartOvAllocation"></canvas></div>
+  <!-- brand band mit echtem kreativ -->
+  <div class="block">
+    <div class="brandband">
+      <div class="bb-left">
+        <div class="bb-kick">RezensionsHeld × Skael</div>
+        <div class="bb-h">Nachfrage ist da — die <em>Effizienz</em> muss zurück.</div>
+        <p class="bb-p">Google liefert weiter Volumen, aber jeder zusätzliche Euro wird teurer. Dieser Report trennt sauber zwischen Neukunden-Deckung und Recurring-Wert.</p>
+        <svg class="bb-svg" width="280" height="52" viewBox="0 0 280 52" fill="none">
+          <polyline points="0,40 40,30 80,34 120,20 160,26 200,12 240,18 280,6" stroke="#9fb8fc" stroke-width="2" fill="none"/>
+          <g fill="#3a6ef4"><rect x="6" y="42" width="10" height="8" rx="2"/><rect x="46" y="36" width="10" height="14" rx="2"/><rect x="86" y="38" width="10" height="12" rx="2"/><rect x="126" y="28" width="10" height="22" rx="2"/><rect x="166" y="32" width="10" height="18" rx="2"/><rect x="206" y="22" width="10" height="28" rx="2"/><rect x="246" y="26" width="10" height="24" rx="2"/></g>
+        </svg>
+      </div>
+      <div class="bb-right">
+        <div>
+          <img class="bb-creative" src="assets/rezensionsheld/kreativ-loeschdienst24.png" alt="RezensionsHeld Kreativ-Beispiel">
+          <div class="bb-cap">Kreativ-Beispiel · RezensionsHeld</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -514,10 +512,10 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
 
   <div class="kpi-strip">
-    <div class="kpi-tile"><div class="kl">Spend Woche 3</div><div class="kv">€10.482</div><div class="kd"><b style="color:var(--red)">−23,0 %</b> vs. Woche 2</div></div>
-    <div class="kpi-tile"><div class="kl">Neukunden W3</div><div class="kv">75</div><div class="kd"><b style="color:var(--red)">−30,6 %</b> vs. Woche 2</div></div>
-    <div class="kpi-tile"><div class="kl">Direct ROAS W3</div><div class="kv">0,82×</div><div class="kd"><b style="color:var(--green)">+37,8 %</b> seit W1</div></div>
-    <div class="kpi-tile"><div class="kl">AOV Woche 3</div><div class="kv">€114,13</div><div class="kd"><b style="color:var(--green)">+12,3 %</b> seit W1</div></div>
+    <div class="kpi-tile"><div class="kl">Spend W1→W3</div><div class="kv">−41,3 %</div><div class="kd">€17.840 → €10.482</div></div>
+    <div class="kpi-tile"><div class="kl">Direct ROAS</div><div class="kv">0,82×</div><div class="kd"><span class="up">+37,8 %</span> vs. Woche 1</div></div>
+    <div class="kpi-tile"><div class="kl">CPO Neukunde</div><div class="kv">€139,76</div><div class="kd"><span class="up">−18,5 %</span> vs. Woche 1</div></div>
+    <div class="kpi-tile"><div class="kl">AOV</div><div class="kv">€114,13</div><div class="kd"><span class="up">+12,2 %</span> vs. Woche 1</div></div>
   </div>
 
   <div class="chart-row">
@@ -532,12 +530,12 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
   <div class="chart-row">
     <div class="chart-card">
-      <div class="ct">Klicks &amp; Ø CPC pro Woche</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartWeeklyClicks"></canvas></div>
+      <div class="ct">AOV-Entwicklung je Woche</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartWeeklyAov"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="ct">Ø Order-Wert (AOV) im Verlauf</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartWeeklyAov"></canvas></div>
+      <div class="ct">Klicks &amp; Ø CPC je Woche</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartWeeklyClicks"></canvas></div>
     </div>
   </div>
 
@@ -581,10 +579,10 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
 
   <div class="kpi-strip">
-    <div class="kpi-tile"><div class="kl">Spend Jun→Aug</div><div class="kv">€149k</div><div class="kd">3-Monats-Summe</div></div>
-    <div class="kpi-tile"><div class="kl">ROAS-Verlauf</div><div class="kv">1,11→0,72×</div><div class="kd"><b style="color:var(--red)">−35 %</b> Effizienz</div></div>
-    <div class="kpi-tile"><div class="kl">CPO-Verlauf</div><div class="kv">€93→146</div><div class="kd"><b style="color:var(--red)">+57 %</b> pro Neukunde</div></div>
-    <div class="kpi-tile"><div class="kl">Ø CPC</div><div class="kv">€13,6→19,6</div><div class="kd"><b style="color:var(--red)">+44 %</b> Klickpreis</div></div>
+    <div class="kpi-tile"><div class="kl">Spend Jun→Aug</div><div class="kv">€149k</div><div class="kd">kumuliert Jun–Aug MTD</div></div>
+    <div class="kpi-tile"><div class="kl">ROAS Juni</div><div class="kv">1,11×</div><div class="kd"><span class="up">positiv</span></div></div>
+    <div class="kpi-tile"><div class="kl">ROAS Juli</div><div class="kv">0,83×</div><div class="kd"><span class="down">Budgetsprung</span></div></div>
+    <div class="kpi-tile"><div class="kl">ROAS August</div><div class="kv">0,72×</div><div class="kd"><span class="down">unter Break-even</span></div></div>
   </div>
 
   <div class="chart-row">
@@ -599,12 +597,12 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
   <div class="chart-row">
     <div class="chart-card">
-      <div class="ct">Kumulierter Spend vs. Umsatz</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartCumSpend"></canvas></div>
+      <div class="ct">Kumulierter Spend vs. Erstumsatz</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartCumSpend"></canvas></div>
     </div>
     <div class="chart-card">
       <div class="ct">Klicks &amp; Ø CPC · Jun–Aug</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartCpcClicks"></canvas></div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartCpcClicks"></canvas></div>
     </div>
   </div>
 
@@ -643,9 +641,9 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="kpi-strip">
     <div class="kpi-tile"><div class="kl">Recurring Jun–Aug</div><div class="kv">€35.698</div><div class="kd">Folgeumsatz gesamt</div></div>
-    <div class="kpi-tile"><div class="kl">LTV-ROAS gesamt</div><div class="kv">1,10×</div><div class="kd"><b style="color:var(--green)">über Break-even</b></div></div>
-    <div class="kpi-tile"><div class="kl">Repeat Rate</div><div class="kv">17,0 %</div><div class="kd">198 von 1.167 Kunden</div></div>
-    <div class="kpi-tile"><div class="kl">Juni-Kohorte</div><div class="kv">1,52×</div><div class="kd">gereift auf 3 Monate</div></div>
+    <div class="kpi-tile"><div class="kl">LTV-ROAS gesamt</div><div class="kv">1,10×</div><div class="kd"><span class="up">über Break-even</span></div></div>
+    <div class="kpi-tile"><div class="kl">Repeat Rate</div><div class="kv">17,0 %</div><div class="kd">198 von 1.167</div></div>
+    <div class="kpi-tile"><div class="kl">Juni-Kohorte</div><div class="kv">1,52×</div><div class="kd"><span class="up">gereift</span></div></div>
   </div>
 
   <div class="chart-row">
@@ -661,11 +659,12 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   <div class="chart-row">
     <div class="chart-card">
       <div class="ct">LTV-ROAS-Reifung nach Kohorte</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartCltvMaturation"></canvas></div>
+      <div class="cx">Ältere Kohorten hatten mehr Zeit zu reifen</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartCltvMaturation"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="ct">Repeat Rate nach Kohorte</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartRepeatFunnel"></canvas></div>
+      <div class="ct">Repeat Rate je Kohorte</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartRepeatFunnel"></canvas></div>
     </div>
   </div>
 
@@ -704,10 +703,10 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
 
   <div class="kpi-strip">
-    <div class="kpi-tile"><div class="kl">Impressionen</div><div class="kv">26.518</div><div class="kd">CTR 8,74 %</div></div>
-    <div class="kpi-tile"><div class="kl">Klicks</div><div class="kv">2.318</div><div class="kd">Ø CPC €19,61</div></div>
-    <div class="kpi-tile"><div class="kl">Neukunden</div><div class="kv">311</div><div class="kd">13,4 % der Klicks</div></div>
-    <div class="kpi-tile"><div class="kl">Erstumsatz</div><div class="kv">€32.708</div><div class="kd">Direct ROAS 0,72×</div></div>
+    <div class="kpi-tile"><div class="kl">Spend MTD</div><div class="kv">€45.460</div><div class="kd">Run-Rate ca. €61k</div></div>
+    <div class="kpi-tile"><div class="kl">CTR</div><div class="kv">8,74 %</div><div class="kd">26.518 Impressionen</div></div>
+    <div class="kpi-tile"><div class="kl">Ø CPC</div><div class="kv">€19,61</div><div class="kd">2.318 Klicks</div></div>
+    <div class="kpi-tile"><div class="kl">ROAS nach 17.08.</div><div class="kv">1,05×</div><div class="kd"><span class="up">+17,1 %</span> alle Orders</div></div>
   </div>
 
   <div class="table-card" style="margin-top:0">
@@ -720,23 +719,22 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     </table>
   </div>
 
-  <div class="chart-row">
-    <div class="chart-card">
-      <div class="ct">Trichter: Impressionen → Klicks → Neukunden</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartGoogleFunnel"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="ct">Order-Rate pro Klick · vor vs. nach 17.08.</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartGoogleOrderRate"></canvas></div>
-    </div>
-  </div>
-
   <div class="block" style="margin-top:44px">
     <div class="block-head">
-      <div class="eyebrow" style="color:var(--muted)"><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase">Preisanpassung · vor/nach 17.08.</span></div>
-      <h2 class="block-h">Auf alle Google-Orders gerechnet steigt der ROAS von 0,89× auf <em>1,05×</em></h2>
+      <div class="eyebrow" style="color:var(--muted)"><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase">Funnel &amp; Preisanpassung</span></div>
+      <h2 class="block-h">Vom Impressions-Funnel bis zum Effekt der <em>Preisanpassung</em></h2>
     </div>
-    <div class="chart-row" style="margin-top:0">
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="ct">Funnel · Impressionen → Klicks → Neukunden</div>
+        <div class="chart-wrap" style="height:240px"><canvas id="chartGoogleFunnel"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="ct">Order-Rate pro Klick · vor vs. nach 17.08.</div>
+        <div class="chart-wrap" style="height:240px"><canvas id="chartGoogleOrderRate"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-row">
       <div class="chart-card">
         <div class="ct">Direct ROAS · vor vs. nach Preisanpassung</div>
         <div class="chart-wrap" style="height:230px"><canvas id="chartGoogleRoas"></canvas></div>
@@ -782,7 +780,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     <div class="ch-card"><div class="ct">Meta · inkl. Instagram</div><div class="cn">€124,50</div><div class="cs">1 Order · Pixel meldet 6</div></div>
   </div>
 
-  <div class="chart-row">
+  <div class="chart-row" style="margin-top:18px">
     <div class="chart-card">
       <div class="ct">Umsatzanteil nach Kanal (DB)</div>
       <div class="chart-wrap" style="height:250px"><canvas id="chartSalesShare"></canvas></div>
@@ -795,11 +793,11 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   <div class="chart-row">
     <div class="chart-card">
       <div class="ct">Bestellungen nach Kanal</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartSalesOrders"></canvas></div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartSalesOrders"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="ct">Spend vs. Umsatz nach Kanal</div>
-      <div class="chart-wrap" style="height:250px"><canvas id="chartSalesSpendEff"></canvas></div>
+      <div class="ct">Spend/Quelle vs. Umsatz nach Kanal</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartSalesSpendEff"></canvas></div>
     </div>
   </div>
 
@@ -836,36 +834,36 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   <div class="chart-row">
     <div class="chart-card">
       <div class="ct">Priorisierung · Impact vs. Aufwand</div>
-      <div class="cx">Größe = Priorität. Oben-links = Quick Wins.</div>
+      <div class="cx">Oben-links = schnell &amp; wirksam zuerst angehen</div>
       <div class="chart-wrap" style="height:300px"><canvas id="chartPriorityMatrix"></canvas></div>
     </div>
     <div class="chart-card">
       <div class="ct">September-Fahrplan</div>
-      <div class="cx">Vorgeschlagene Reihenfolge der Maßnahmen.</div>
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-when">Woche 1</div><div><div class="tl-what">Budget −30–40 % senken</div><div class="tl-desc">Spend auf ein Level bringen, bei dem CPO und ROAS wieder im Korridor sind.</div></div></div>
-        <div class="tl-item"><div class="tl-when">Woche 1–2</div><div><div class="tl-what">Conversion-Pipeline validieren</div><div class="tl-desc">CRM-Neukundenwert sauber ans Bidding koppeln, bevor neu optimiert wird.</div></div></div>
-        <div class="tl-item"><div class="tl-when">Woche 2–3</div><div><div class="tl-what">Brand &amp; Cold trennen</div><div class="tl-desc">Gewinner-Suchbegriffe als Exact/Phrase, teure generische Terms negativieren.</div></div></div>
-        <div class="tl-item"><div class="tl-when">Woche 3–4</div><div><div class="tl-what">Bing sauber aufsetzen</div><div class="tl-desc">CSV-/API-Export + CRM-Abgleich, dann erst kontrolliert Budget geben.</div></div></div>
+      <div class="cx">Empfohlene Reihenfolge der Maßnahmen</div>
+      <div class="timeline" style="margin-top:18px">
+        <div class="tl-item"><div class="tl-when">KW 36</div><div class="tl-what"><h4>Budget senken</h4><p>Spend auf tragfähiges Level zurücknehmen, CPO/ROAS-Korridor definieren.</p></div></div>
+        <div class="tl-item"><div class="tl-when">KW 36–37</div><div class="tl-what"><h4>Messung stabilisieren</h4><p>Conversion-Pipeline validieren, Bidding auf Neukundenwert umstellen.</p></div></div>
+        <div class="tl-item"><div class="tl-when">KW 38</div><div class="tl-what"><h4>Brand &amp; Cold trennen</h4><p>Struktur aufräumen, Gewinner als Exact/Phrase, teure Begriffe negativeren.</p></div></div>
+        <div class="tl-item"><div class="tl-when">KW 39</div><div class="tl-what"><h4>Bing sauber ausbauen</h4><p>Export/CRM-Abgleich sicherstellen, dann kontrolliert skalieren.</p></div></div>
       </div>
     </div>
   </div>
 
   <div class="rec-grid" style="margin-top:18px">
     <div class="rec-card">
-      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div><div class="rec-title">Google-Budget senken <span class="tag neg">Kritisch</span></div><div class="rec-step">01</div></div>
+      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div><div><div class="rec-num">01</div><div class="rec-title">Google-Budget senken <span class="tag neg">Kritisch</span></div></div></div>
       <p class="rec-desc">Bei 0,72× direktem Neukunden-ROAS und 0,82× observed LTV-ROAS ist das Spend-Level nicht tragfähig. Budget deutlich zurücknehmen, bis CPO und ROAS in einem kontrollierten Korridor sind.</p>
     </div>
     <div class="rec-card">
-      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg></div><div class="rec-title">Bidding auf Neukundenwert <span class="tag neg">Kritisch</span></div><div class="rec-step">02</div></div>
+      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div><div class="rec-num">02</div><div class="rec-title">Bidding auf Neukundenwert <span class="tag neg">Kritisch</span></div></div></div>
       <p class="rec-desc">Wenn optimiert wird, dann auf einen Wert, der Neukundenqualität abbildet — nicht nur Plattform-Conversions. Erst Conversion-Pipeline validieren, dann Ziel-ROAS/CAC-Planke setzen.</p>
     </div>
     <div class="rec-card">
-      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div><div class="rec-title">Brand und Cold trennen <span class="tag warn">Hoch</span></div><div class="rec-step">03</div></div>
+      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></div><div><div class="rec-num">03</div><div class="rec-title">Brand und Cold trennen <span class="tag warn">Hoch</span></div></div></div>
       <p class="rec-desc">Brand-Traffic in eine kleine kontrollierte Exact-Kampagne; Cold-Suchbegriffe getrennt. Gewinner-Suchanfragen als Exact/Phrase testen, teure generische Begriffe negativeren.</p>
     </div>
     <div class="rec-card">
-      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></div><div class="rec-title">Bing sauber ausbauen <span class="tag warn">Hoch</span></div><div class="rec-step">04</div></div>
+      <div class="rec-top"><div class="rec-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><div><div class="rec-num">04</div><div class="rec-title">Bing sauber ausbauen <span class="tag warn">Hoch</span></div></div></div>
       <p class="rec-desc">Bing ist im CRM sichtbar, aber nicht automatisiert messbar. Nicht als Haupthebel bewerten — erst CSV-/API-Export, CRM-Abgleich und klare Kampagnenstruktur sicherstellen.</p>
     </div>
   </div>
@@ -902,148 +900,150 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 Chart.defaults.font.family = "'Poppins', sans-serif";
 Chart.defaults.color = '#6b7280';
 Chart.defaults.font.size = 11;
-Chart.defaults.font.weight = 400;
-const BLUE='#3a6ef4', BLUE_SOFT='rgba(58,110,244,0.16)', BLUE_2='#8aa8fb',
-      NAVY='#12203a', GREEN='#16a34a', RED='#dc2626', AMBER='#f59e0b', GREY='#c2c8d2',
-      GRID='rgba(18,32,58,0.06)';
+Chart.defaults.font.weight = '400';
+const BLUE='#3a6ef4', BLUE_SOFT='rgba(58,110,244,0.16)', BLUE_FILL='rgba(58,110,244,0.10)',
+      NAVY='#0f1b2d', GREEN='#16a34a', GREEN_SOFT='rgba(22,163,74,0.5)', RED='#dc2626',
+      RED_SOFT='rgba(220,38,38,0.18)', AMBER='#f59e0b', GREY='#9ca3af', GRID='rgba(15,27,45,0.06)';
 const months = ['Juni','Juli','August MTD'];
 const weekLabels = ['03.–09.08.','10.–16.08.','17.–23.08.'];
 const baseOpts = { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:16, color:'#6b7280' } } } };
-const roasTick = v=>v.toFixed(1).replace('.',',')+'×';
-const eurK = v=>'€'+(v/1000)+'k';
+const line = (c)=>({ borderColor:c, backgroundColor:c, borderWidth:2, pointRadius:4, pointBackgroundColor:c, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3 });
+const $=(id)=>document.getElementById(id);
 
+/* ── per-page chart builders (lazy) ── */
 const chartBuilders = {
   uebersicht:[
-    ()=>new Chart(chartHeroTrend, { type:'line',
+    ()=>new Chart($('chartHeroTrend'), { type:'line',
       data:{ labels:months, datasets:[
-        { label:'Direct ROAS', data:[1.11,0.83,0.72], borderColor:BLUE, backgroundColor:BLUE_SOFT, borderWidth:2.5, fill:true, tension:.35, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'Direct ROAS', data:[1.11,0.83,0.72], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.35, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
         { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0, fill:false } ] },
-      options:{ ...baseOpts, plugins:{ legend:{display:false} }, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.5, suggestedMax:1.2, ticks:{ callback:roasTick } } } } }),
-    ()=>new Chart(chartOvChannels, { type:'doughnut',
+      options:{ ...baseOpts, plugins:{ legend:{display:false} }, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.5, suggestedMax:1.2, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+    ()=>new Chart($('chartOvChannels'), { type:'doughnut',
       data:{ labels:['Google','Bing','Meta'], datasets:[{ data:[311,24,1], backgroundColor:[BLUE,AMBER,GREY], borderColor:'#fff', borderWidth:2 }] },
       options:{ responsive:true, maintainAspectRatio:false, cutout:'64%', plugins:{ legend:{ position:'right', labels:{ boxWidth:9, boxHeight:9, padding:12, color:'#6b7280', font:{size:10.5} } } } } }),
-    ()=>new Chart(chartOvSpendRev, { type:'bar',
+    ()=>new Chart($('chartOvSpendRev'), { type:'bar',
       data:{ labels:months, datasets:[
-        { label:'Spend (€)', data:[33865,69793,45460], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
+        { label:'Google Spend (€)', data:[33865,69793,45460], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
         { label:'Erstumsatz (€)', data:[37605,57860,32708], backgroundColor:BLUE, borderRadius:6 } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:eurK } } } } }),
-    ()=>new Chart(chartOvAllocation, { type:'bar',
-      data:{ labels:['MTD Spend'], datasets:[
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartOvAllocation'), { type:'bar',
+      data:{ labels:['Spend-Anteil'], datasets:[
         { label:'Google €45,5k', data:[45460], backgroundColor:BLUE, borderRadius:4 },
-        { label:'Bing €4,3k', data:[4300], backgroundColor:AMBER, borderRadius:4 },
+        { label:'Bing ~€4,3k', data:[4300], backgroundColor:AMBER, borderRadius:4 },
         { label:'Meta €0,6k', data:[585], backgroundColor:GREY, borderRadius:4 } ] },
-      options:{ ...baseOpts, indexAxis:'y', scales:{ x:{ stacked:true, grid:{color:GRID}, ticks:{ callback:eurK } }, y:{ stacked:true, grid:{display:false} } } } }),
+      options:{ ...baseOpts, indexAxis:'y', scales:{ x:{ stacked:true, grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } }, y:{ stacked:true, grid:{display:false} } } } }),
   ],
   weekly:[
-    ()=>new Chart(chartWeeklyRevenue, { type:'bar',
+    ()=>new Chart($('chartWeeklyRevenue'), { type:'bar',
       data:{ labels:weekLabels, datasets:[
         { label:'Google Spend (€)', data:[17840,13610,10482], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
         { label:'Neukunden-Umsatz (€)', data:[10575,11107,8560], backgroundColor:BLUE, borderRadius:6 } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:eurK } } } } }),
-    ()=>new Chart(chartWeeklyEfficiency, { type:'bar',
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartWeeklyEfficiency'), { type:'bar',
       data:{ labels:weekLabels, datasets:[
-        { label:'CPO Neukunde (€)', data:[171.54,126.02,139.76], backgroundColor:'rgba(220,38,38,0.16)', borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
-        { label:'Direct ROAS', data:[0.59,0.82,0.82], type:'line', borderColor:GREEN, backgroundColor:GREEN, borderWidth:2.5, pointRadius:4, pointBackgroundColor:GREEN, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3, yAxisID:'y1' } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:roasTick } } } } }),
-    ()=>new Chart(chartWeeklyClicks, { type:'bar',
+        { label:'CPO Neukunde (€)', data:[171.54,126.02,139.76], backgroundColor:RED_SOFT, borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
+        { label:'Direct ROAS', data:[0.59,0.82,0.82], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+    ()=>new Chart($('chartWeeklyAov'), { type:'line',
+      data:{ labels:weekLabels, datasets:[
+        { label:'AOV (€)', data:[101.68,102.84,114.13], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.35, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } } } } }),
+    ()=>new Chart($('chartWeeklyClicks'), { type:'bar',
       data:{ labels:weekLabels, datasets:[
         { label:'Klicks', data:[823,664,641], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6, yAxisID:'y' },
-        { label:'Ø CPC (€)', data:[21.68,20.50,16.35], type:'line', borderColor:AMBER, backgroundColor:AMBER, borderWidth:2.5, pointRadius:4, pointBackgroundColor:AMBER, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3, yAxisID:'y1' } ] },
+        { label:'Ø CPC (€)', data:[21.68,20.50,16.35], type:'line', ...line(AMBER), yAxisID:'y1' } ] },
       options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID} }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>'€'+v } } } } }),
-    ()=>new Chart(chartWeeklyAov, { type:'line',
-      data:{ labels:weekLabels, datasets:[
-        { label:'AOV (€)', data:[101.68,102.84,114.13], borderColor:BLUE, backgroundColor:BLUE_SOFT, borderWidth:2.5, fill:true, tension:.35, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 } ] },
-      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:90, ticks:{ callback:v=>'€'+v } } } } }),
   ],
   vergleich:[
-    ()=>new Chart(chartSpend, { type:'bar',
+    ()=>new Chart($('chartSpend'), { type:'bar',
       data:{ labels:months, datasets:[
         { label:'Google Spend (€)', data:[33865,69793,45460], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
         { label:'Direkter Erstumsatz (€)', data:[37605,57860,32708], backgroundColor:BLUE, borderRadius:6 } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:eurK } } } } }),
-    ()=>new Chart(chartEfficiency, { type:'bar',
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartEfficiency'), { type:'bar',
       data:{ labels:months, datasets:[
-        { label:'CPO Erstorder (€)', data:[93.03,142.15,146.17], backgroundColor:'rgba(220,38,38,0.16)', borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
-        { label:'ROAS direkt', data:[1.11,0.83,0.72], type:'line', borderColor:GREEN, backgroundColor:GREEN, borderWidth:2.5, pointRadius:4, pointBackgroundColor:GREEN, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3, yAxisID:'y1' } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:roasTick } } } } }),
-    ()=>new Chart(chartCumSpend, { type:'line',
+        { label:'CPO Erstorder (€)', data:[93.03,142.15,146.17], backgroundColor:RED_SOFT, borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
+        { label:'ROAS direkt', data:[1.11,0.83,0.72], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+    ()=>new Chart($('chartCumSpend'), { type:'line',
       data:{ labels:months, datasets:[
-        { label:'Kum. Spend (€)', data:[33865,103658,149118], borderColor:RED, backgroundColor:'rgba(220,38,38,0.10)', borderWidth:2.5, fill:true, tension:.3, pointRadius:4, pointBackgroundColor:RED, pointBorderColor:'#fff', pointBorderWidth:2 },
-        { label:'Kum. Erstumsatz (€)', data:[37605,95465,128173], borderColor:BLUE, backgroundColor:BLUE_SOFT, borderWidth:2.5, fill:true, tension:.3, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:eurK } } } } }),
-    ()=>new Chart(chartCpcClicks, { type:'bar',
+        { label:'Kumul. Spend (€)', data:[33865,103658,149118], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.3, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'Kumul. Erstumsatz (€)', data:[37605,95465,128173], borderColor:GREEN, backgroundColor:'rgba(22,163,74,0.08)', borderWidth:2.5, fill:true, tension:.3, pointRadius:4, pointBackgroundColor:GREEN, pointBorderColor:'#fff', pointBorderWidth:2 } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartCpcClicks'), { type:'bar',
       data:{ labels:months, datasets:[
         { label:'Klicks', data:[2492,3748,2318], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6, yAxisID:'y' },
-        { label:'Ø CPC (€)', data:[13.59,18.62,19.61], type:'line', borderColor:AMBER, backgroundColor:AMBER, borderWidth:2.5, pointRadius:4, pointBackgroundColor:AMBER, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3, yAxisID:'y1' } ] },
+        { label:'Ø CPC (€)', data:[13.59,18.62,19.61], type:'line', ...line(AMBER), yAxisID:'y1' } ] },
       options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID} }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>'€'+v } } } } }),
   ],
   cltv:[
-    ()=>new Chart(chartCltvRevenue, { type:'bar',
+    ()=>new Chart($('chartCltvRevenue'), { type:'bar',
       data:{ labels:months, datasets:[
         { label:'Erstumsatz (€)', data:[37605,57860,32708], backgroundColor:BLUE, borderRadius:6 },
-        { label:'Recurring Umsatz (€)', data:[13713,17784,4201], backgroundColor:'rgba(22,163,74,0.55)', borderRadius:6 } ] },
-      options:{ ...baseOpts, scales:{ x:{ stacked:true, grid:{display:false} }, y:{ stacked:true, grid:{color:GRID}, ticks:{ callback:eurK } } } } }),
-    ()=>new Chart(chartCltvRate, { type:'bar',
+        { label:'Recurring Umsatz (€)', data:[13713,17784,4201], backgroundColor:GREEN_SOFT, borderRadius:6 } ] },
+      options:{ ...baseOpts, scales:{ x:{ stacked:true, grid:{display:false} }, y:{ stacked:true, grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartCltvRate'), { type:'bar',
       data:{ labels:months, datasets:[
         { label:'Observed CLTV (€)', data:[140.92,154.06,119.19], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6, yAxisID:'y' },
-        { label:'Repeat Rate', data:[21.7,17.5,10.6], type:'line', borderColor:GREEN, backgroundColor:GREEN, borderWidth:2.5, pointRadius:4, pointBackgroundColor:GREEN, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3, yAxisID:'y1' } ] },
+        { label:'Repeat Rate', data:[21.7,17.5,10.6], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
       options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>v+'%' } } } } }),
-    ()=>new Chart(chartCltvMaturation, { type:'line',
-      data:{ labels:['August (jung)','Juli (mittel)','Juni (gereift)'], datasets:[
-        { label:'LTV-ROAS', data:[0.82,1.08,1.52], borderColor:BLUE, backgroundColor:BLUE_SOFT, borderWidth:2.5, fill:true, tension:.35, pointRadius:5, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
-        { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0 } ] },
-      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.5, ticks:{ callback:roasTick } } } } }),
-    ()=>new Chart(chartRepeatFunnel, { type:'bar',
+    ()=>new Chart($('chartCltvMaturation'), { type:'line',
       data:{ labels:['Juni','Juli','August MTD'], datasets:[
-        { label:'Repeat Rate (%)', data:[21.7,17.5,10.6], backgroundColor:[BLUE,BLUE_2,'#b9ccfb'], borderRadius:6 } ] },
+        { label:'LTV-ROAS', data:[1.52,1.08,0.82], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.3, pointRadius:5, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.6, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+    ()=>new Chart($('chartRepeatFunnel'), { type:'bar',
+      data:{ labels:['Juni','Juli','August MTD'], datasets:[
+        { label:'Repeat Rate (%)', data:[21.7,17.5,10.6], backgroundColor:[BLUE,'#6d95f7','#a9c0fb'], borderRadius:6 } ] },
       options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>v+'%' } }, y:{ grid:{display:false} } } } }),
   ],
   google:[
-    ()=>new Chart(chartGoogleRoas, { type:'bar',
+    ()=>new Chart($('chartGoogleFunnel'), { type:'bar',
+      data:{ labels:['Impressionen','Klicks','Neukunden'], datasets:[
+        { label:'Anzahl', data:[26518,2318,311], backgroundColor:[BLUE,'#6d95f7','#a9c0fb'], borderRadius:6 } ] },
+      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ type:'logarithmic', grid:{color:GRID} }, y:{ grid:{display:false} } } } }),
+    ()=>new Chart($('chartGoogleOrderRate'), { type:'bar',
       data:{ labels:['01.–16.08. · alt','17.–23.08. · neu'], datasets:[
-        { label:'Direct ROAS', data:[0.69,0.82], backgroundColor:['rgba(220,38,38,0.72)',AMBER], borderRadius:6 } ] },
-      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, suggestedMax:1, ticks:{ callback:roasTick } }, y:{ grid:{display:false} } } } }),
-    ()=>new Chart(chartGooglePace, { type:'bar',
+        { label:'Order-Rate pro Klick (%)', data:[19.56,16.22], backgroundColor:['rgba(220,38,38,0.75)',AMBER], borderRadius:6 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>v+'%' } } } } }),
+    ()=>new Chart($('chartGoogleRoas'), { type:'bar',
+      data:{ labels:['01.–16.08. · alt','17.–23.08. · neu'], datasets:[
+        { label:'Direct ROAS', data:[0.69,0.82], backgroundColor:['rgba(220,38,38,0.75)',AMBER], borderRadius:6 } ] },
+      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, suggestedMax:1, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } }, y:{ grid:{display:false} } } } }),
+    ()=>new Chart($('chartGooglePace'), { type:'bar',
       data:{ labels:['Spend/Tag (€)','Neuk./Tag'], datasets:[
         { label:'01.–16.08. · alt', data:[2186,14.75], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
         { label:'17.–23.08. · neu', data:[1497,10.71], backgroundColor:BLUE, borderRadius:6 } ] },
       options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ type:'logarithmic', grid:{color:GRID} } } } }),
-    ()=>new Chart(chartGoogleFunnel, { type:'bar',
-      data:{ labels:['Impressionen','Klicks','Neukunden'], datasets:[
-        { label:'Anzahl', data:[26518,2318,311], backgroundColor:[BLUE,BLUE_2,'#b9ccfb'], borderRadius:6 } ] },
-      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ type:'logarithmic', grid:{color:GRID} }, y:{ grid:{display:false} } } } }),
-    ()=>new Chart(chartGoogleOrderRate, { type:'bar',
-      data:{ labels:['01.–16.08. · alt','17.–23.08. · neu'], datasets:[
-        { label:'Order-Rate pro Klick (%)', data:[19.56,16.22], backgroundColor:[BLUE,AMBER], borderRadius:6 } ] },
-      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>v+'%' } } } } }),
   ],
   sales:[
-    ()=>new Chart(chartSalesShare, { type:'doughnut',
+    ()=>new Chart($('chartSalesShare'), { type:'doughnut',
       data:{ labels:['Google €32.708','Bing €8.469','Meta €124'], datasets:[{ data:[32708,8469,124.5], backgroundColor:[BLUE,AMBER,GREY], borderColor:'#fff', borderWidth:2 }] },
       options:{ responsive:true, maintainAspectRatio:false, cutout:'62%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:14, color:'#6b7280' } } } } }),
-    ()=>new Chart(chartSalesAov, { type:'bar',
+    ()=>new Chart($('chartSalesAov'), { type:'bar',
       data:{ labels:['Google','Bing','Meta'], datasets:[
         { label:'Ø Order-Wert (€)', data:[105.17,352.88,124.50], backgroundColor:[BLUE,AMBER,GREY], borderRadius:6 } ] },
       options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y:{ grid:{display:false} } } } }),
-    ()=>new Chart(chartSalesOrders, { type:'bar',
+    ()=>new Chart($('chartSalesOrders'), { type:'bar',
       data:{ labels:['Google','Bing','Meta'], datasets:[
         { label:'Bestellungen', data:[311,24,1], backgroundColor:[BLUE,AMBER,GREY], borderRadius:6 } ] },
       options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID} } } } }),
-    ()=>new Chart(chartSalesSpendEff, { type:'bar',
+    ()=>new Chart($('chartSalesSpendEff'), { type:'bar',
       data:{ labels:['Google','Bing','Meta'], datasets:[
-        { label:'Spend (€)', data:[45460,4300,585], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
-        { label:'Umsatz (€)', data:[32708,8469,124.5], backgroundColor:BLUE, borderRadius:6 } ] },
-      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:eurK } } } } }),
+        { label:'Spend / Quelle (€)', data:[45460,4300,585], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
+        { label:'Umsatz DB (€)', data:[32708,8469,124.5], backgroundColor:BLUE, borderRadius:6 } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ type:'logarithmic', grid:{color:GRID}, ticks:{ callback:v=>'€'+v } } } } }),
   ],
   empfehlungen:[
-    ()=>new Chart(chartPriorityMatrix, { type:'bubble',
+    ()=>new Chart($('chartPriorityMatrix'), { type:'bubble',
       data:{ datasets:[
-        { label:'01 · Budget senken', data:[{x:2,y:9,r:20}], backgroundColor:'rgba(220,38,38,0.55)', borderColor:RED, borderWidth:1.5 },
-        { label:'02 · Bidding Neukundenwert', data:[{x:6,y:8,r:18}], backgroundColor:'rgba(220,38,38,0.4)', borderColor:RED, borderWidth:1.5 },
-        { label:'03 · Brand & Cold trennen', data:[{x:5,y:6,r:14}], backgroundColor:'rgba(58,110,244,0.45)', borderColor:BLUE, borderWidth:1.5 },
-        { label:'04 · Bing ausbauen', data:[{x:7,y:4,r:12}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER, borderWidth:1.5 } ] },
-      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:9, boxHeight:9, padding:12, color:'#6b7280', font:{size:10.5} } } },
-        scales:{ x:{ title:{display:true,text:'Aufwand →',color:'#9aa1ad',font:{size:10}}, min:0, max:10, grid:{color:GRID} }, y:{ title:{display:true,text:'Impact →',color:'#9aa1ad',font:{size:10}}, min:0, max:10, grid:{color:GRID} } } } }),
+        { label:'01 Budget senken', data:[{x:2,y:9,r:16}], backgroundColor:'rgba(220,38,38,0.55)', borderColor:RED },
+        { label:'02 Bidding Neukundenwert', data:[{x:6,y:8,r:14}], backgroundColor:'rgba(58,110,244,0.5)', borderColor:BLUE },
+        { label:'03 Brand & Cold trennen', data:[{x:5,y:6,r:12}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER },
+        { label:'04 Bing ausbauen', data:[{x:7,y:4,r:11}], backgroundColor:'rgba(156,163,175,0.5)', borderColor:GREY } ] },
+      options:{ ...baseOpts, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:9, boxHeight:9, padding:12, color:'#6b7280', font:{size:10.5} } } },
+        scales:{ x:{ title:{display:true,text:'Aufwand →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} },
+                 y:{ title:{display:true,text:'Impact →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} } } } }),
   ],
 };
 
@@ -1067,7 +1067,7 @@ document.querySelectorAll('[data-page]').forEach(el=>{
 showPage(location.hash.slice(1) || 'uebersicht');
 
 /* ── edit bar ── */
-const EDITABLE_SELECTORS=['.hero-h','.hero-sub','.hero-badge .v','.hm-title','.hm-body','.bignum','.bignum-lbl','.callout .big','.callout .small','.side-title','.side-hi .pct','.side-hi .note','.stat-num','.stat-h','.stat-desc','.page-h','.page-sub','.block-h','.block-sub','.bb-h','.bb-p','.kpi-tile .kv','.kpi-tile .kd','.ov-h','.ov-big','.ov-foot','.insight p','.rec-title','.rec-desc','.tl-what','.tl-desc','.qt','.ch-card .cn','.ch-card .cs','tbody td','.footer-date'].join(',');
+const EDITABLE_SELECTORS=['.hero-h','.hero-sub','.hero-badge .v','.hm-title','.hm-body','.bignum','.bignum-lbl','.callout .big','.callout .small','.side-title','.side-hi .pct','.side-hi .note','.stat-num','.stat-h','.stat-desc','.kpi-tile .kv','.kpi-tile .kd','.page-h','.page-sub','.block-h','.block-sub','.bb-h','.bb-p','.ov-h','.ov-big','.ov-foot','.insight p','.rec-title','.rec-desc','.tl-what h4','.tl-what p','.qt','.ch-card .cn','.ch-card .cs','tbody td','.footer-date'].join(',');
 let editing=false;
 function toggleEdit(){ editing=!editing; const btn=document.getElementById('ebEdit'), save=document.getElementById('ebSave'); if(editing){document.body.classList.add('editing');document.querySelectorAll(EDITABLE_SELECTORS).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';} }
 function downloadHTML(){ const bar=document.getElementById('editBar'); const wasEditing=editing; document.body.classList.remove('editing'); document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false')); bar.style.display='none'; const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML; bar.style.display=''; if(wasEditing){document.body.classList.add('editing');document.querySelectorAll(EDITABLE_SELECTORS).forEach(el=>el.setAttribute('contenteditable','true'));} try{ const blob=new Blob([new TextEncoder().encode(html)],{type:'text/html;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='RezensionsHeld-Aug-2026-v2.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(()=>URL.revokeObjectURL(url),1000); }catch(e){ alert('Download fehlgeschlagen. Bitte lokal im Browser öffnen.'); } }
