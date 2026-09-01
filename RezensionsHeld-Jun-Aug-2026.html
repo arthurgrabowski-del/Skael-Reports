@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — RezensionsHeld Juni–August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fbfcfd;--white:#ffffff;--border:#e6e8ee;--border2:#d7dae4;
+  --navy:#0f1b2d;--blue:#3a6ef4;--blue-bg:#eef2ff;--blue-mid:#c7d4fd;
+  --muted:#6b7280;--sub:#9ca3af;--body:#3b4453;
+  --green:#16a34a;--green-bg:#dcfce7;--red:#dc2626;--red-bg:#fee2e2;--amber:#b45309;--amber-bg:#fef3c7;
+  --shadow:0 1px 2px rgba(15,27,45,.04), 0 8px 30px rgba(15,27,45,.05);
+  --shadow-lg:0 12px 44px rgba(15,27,45,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.011em;font-weight:400;line-height:1.68;color:var(--body);background:var(--bg);-webkit-font-smoothing:antialiased;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+::selection{background:var(--blue);color:#fff;}
+nav{position:sticky;top:0;z-index:200;height:64px;display:flex;align-items:center;gap:16px;padding:0 30px;background:rgba(251,252,253,0.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.nav-logo-mark{width:24px;height:24px;border-radius:7px;background:linear-gradient(145deg,var(--blue),#2b57d6);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:#fff;box-shadow:0 4px 12px rgba(58,110,244,.35);}
+.nav-logo-text{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-0.02em;white-space:nowrap;}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:22px;background:var(--border2);}
+.nav-tabs{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{font-size:12.5px;color:var(--muted);text-decoration:none;padding:7px 13px;border-radius:9px;white-space:nowrap;transition:all .16s;cursor:pointer;font-weight:400;}
+.nav-tab:hover{color:var(--navy);background:rgba(15,27,45,.05);}
+.nav-tab.active{background:var(--navy);color:#fff;font-weight:500;}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:9px;}
+.nav-pill{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:6px 14px;white-space:nowrap;background:var(--white);}
+.nav-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(58,110,244,.15);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 40px;}
+.page{display:none;padding:60px 0 96px;}
+.page.active{display:block;animation:fadeUp .5s cubic-bezier(.22,.68,0,1.05);}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:0.16em;color:var(--blue);display:flex;align-items:center;gap:10px;font-weight:500;}
+.eyebrow::before{content:'';width:22px;height:1.5px;background:var(--blue);}
+.eyebrow.plain::before{display:none;}
+.page-head{margin-bottom:40px;max-width:860px;}
+.page-h{font-size:clamp(30px,3.8vw,46px);font-weight:600;letter-spacing:-0.035em;line-height:1.06;margin:18px 0 14px;color:var(--navy);}
+.page-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--blue);letter-spacing:0;}
+.page-sub{font-size:14.5px;color:var(--muted);max-width:740px;}
+.page-sub strong{color:var(--navy);font-weight:500;}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:36px;}
+.hero-h{font-size:clamp(40px,5.4vw,74px);font-weight:600;letter-spacing:-0.04em;line-height:1.0;margin:16px 0 16px;color:var(--navy);}
+.hero-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:0;color:var(--blue);}
+.hero-sub{font-size:14.5px;color:var(--muted);max-width:560px;}
+.hero-badge{border:1px solid var(--border);border-radius:14px;padding:14px 20px;text-align:right;background:var(--white);box-shadow:var(--shadow);min-width:200px;}
+.hero-badge .k{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.hero-badge .v{font-size:14px;font-weight:500;color:var(--navy);margin-top:4px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);}
+.hero-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:18px;}
+.hero-main{padding:36px 40px 34px;position:relative;overflow:hidden;}
+.hero-main::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 8%,rgba(58,110,244,.06),transparent 42%);pointer-events:none;}
+.hero-side{padding:30px 32px;display:flex;flex-direction:column;background:linear-gradient(160deg,#fff,#f6f8ff);}
+.hm-eyebrows{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px;}
+.hm-date{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.hm-tag{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);}
+.hm-title{font-size:clamp(23px,2.5vw,31px);font-weight:600;letter-spacing:-0.03em;line-height:1.14;margin-bottom:16px;color:var(--navy);}
+.hm-body{font-size:13.5px;color:var(--muted);max-width:560px;}
+.hm-divider{height:1px;background:var(--border);margin:26px 0 24px;}
+.hm-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.bignum{font-size:clamp(46px,5.4vw,74px);font-weight:600;letter-spacing:-0.045em;line-height:0.92;color:var(--navy);}
+.bignum-lbl{font-size:12.5px;color:var(--muted);max-width:250px;margin-top:10px;}
+.callout{background:var(--red-bg);border:1px solid #f6c9c9;border-radius:14px;padding:16px 22px;min-width:150px;}
+.callout .big{font-size:28px;font-weight:600;letter-spacing:-0.03em;color:var(--red);}
+.callout .small{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4;}
+.side-title{font-size:18.5px;font-weight:600;letter-spacing:-0.025em;line-height:1.22;margin:16px 0 18px;color:var(--navy);}
+.side-chart{position:relative;height:150px;margin-bottom:18px;}
+.side-hi{margin-top:auto;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);}
+.side-hi .row{display:flex;align-items:center;justify-content:space-between;}
+.side-hi .pct{font-size:34px;font-weight:600;letter-spacing:-0.03em;color:var(--red);line-height:1;}
+.side-hi .note{font-size:11px;color:var(--muted);margin-top:4px;}
+.side-hi .icon{width:40px;height:40px;border-radius:11px;background:var(--red-bg);display:flex;align-items:center;justify-content:center;color:var(--red);}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:8px;}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
+.stat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.stat-ico{width:38px;height:38px;border-radius:10px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;color:var(--blue);margin-bottom:16px;}
+.stat-mlabel{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:10px;}
+.stat-num{font-size:clamp(32px,3.4vw,42px);font-weight:600;letter-spacing:-0.04em;line-height:0.98;color:var(--navy);}
+.stat-h{font-size:15px;font-weight:500;margin:12px 0 6px;color:var(--navy);}
+.stat-desc{font-size:12.5px;color:var(--muted);}
+.kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px;}
+.kpi-tile{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);}
+.kpi-tile .kl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.13em;color:var(--sub);}
+.kpi-tile .kv{font-size:25px;font-weight:600;letter-spacing:-0.035em;color:var(--navy);margin:8px 0 2px;}
+.kpi-tile .kd{font-size:11px;color:var(--muted);}
+.kpi-tile .kd .up{color:var(--green);}.kpi-tile .kd .down{color:var(--red);}
+.block{margin-top:60px;}
+.block-head{margin-bottom:26px;}
+.block-h{font-size:clamp(21px,2.3vw,28px);font-weight:600;letter-spacing:-0.03em;color:var(--navy);margin:14px 0 10px;}
+.block-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:var(--blue);}
+.block-sub{font-size:13.5px;color:var(--muted);max-width:740px;}
+.chips{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+.chip{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px 20px;font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);display:flex;align-items:center;gap:9px;box-shadow:var(--shadow);transition:all .16s;}
+.chip:hover{border-color:var(--blue-mid);color:var(--navy);}
+.chip .cd{width:7px;height:7px;border-radius:50%;background:var(--blue);}
+.chip.accent{background:linear-gradient(145deg,var(--blue),#2b57d6);color:#fff;border-color:transparent;box-shadow:0 6px 20px rgba(58,110,244,.25);}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.ov-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:28px 30px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;}
+.ov-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--blue-mid);}
+.ov-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.ov-label{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);}
+.ov-link{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:6px 13px;white-space:nowrap;transition:all .16s;}
+.ov-card:hover .ov-link{color:var(--blue);border-color:var(--blue-mid);background:var(--blue-bg);}
+.ov-h{font-size:18.5px;font-weight:600;letter-spacing:-0.025em;line-height:1.22;margin-bottom:16px;color:var(--navy);}
+.ov-big{font-size:38px;font-weight:600;letter-spacing:-0.04em;line-height:1;color:var(--navy);}
+.ov-big .u{font-size:16px;font-weight:400;color:var(--sub);letter-spacing:0;}
+.ov-foot{font-size:12.5px;color:var(--muted);margin-top:14px;}
+.ov-foot strong{color:var(--navy);font-weight:500;}
+.seg{display:flex;align-items:center;gap:0;margin:18px 0 8px;}
+.seg .lbl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);white-space:nowrap;}
+.seg .line{flex:1;height:2px;background:linear-gradient(90deg,var(--blue-mid),var(--blue));margin:0 10px;border-radius:2px;position:relative;}
+.seg .line::after{content:'';position:absolute;right:0;top:50%;width:6px;height:6px;border-radius:50%;background:var(--blue);transform:translateY(-50%);}
+.prow{display:flex;align-items:center;gap:14px;margin-bottom:13px;}
+.prow .pv{font-size:15px;font-weight:600;width:56px;letter-spacing:-0.02em;color:var(--navy);}
+.prow .pl{font-size:12px;color:var(--muted);width:190px;flex-shrink:0;}
+.prow .ptrack{flex:1;height:7px;border-radius:5px;background:var(--blue-bg);overflow:hidden;}
+.prow .pfill{height:100%;border-radius:5px;background:linear-gradient(90deg,#8aa8fb,var(--blue));}
+.mini-stats{display:flex;gap:10px;margin-bottom:18px;}
+.mini-stat{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+.mini-stat .n{font-size:22px;font-weight:600;letter-spacing:-0.035em;color:var(--navy);}
+.mini-stat .l{font-size:10.5px;color:var(--muted);margin-top:2px;}
+.ov-mini-chart{position:relative;height:120px;margin:6px 0 4px;}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.chart-row + .chart-row{margin-top:18px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);}
+.chart-card.wide{grid-column:1 / -1;}
+.chart-card .ct{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;}
+.chart-card .cx{font-size:12.5px;color:var(--sub);margin-bottom:6px;}
+.chart-wrap{position:relative;height:270px;margin-top:14px;}
+.table-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:8px 12px;overflow-x:auto;box-shadow:var(--shadow);margin-top:18px;}
+table{width:100%;border-collapse:collapse;min-width:720px;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);font-weight:500;text-align:left;padding:18px 14px 12px;border-bottom:1px solid var(--border);}
+thead th.num{text-align:right;}
+tbody td{font-size:13px;color:var(--body);padding:14px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tbody td.num{text-align:right;font-family:'DM Mono',monospace;font-size:12.5px;letter-spacing:-0.01em;color:var(--navy);}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--bg);}
+tbody tr.total-row td{font-weight:500;color:var(--navy);background:var(--blue-bg);}
+.cell-name{font-weight:500;color:var(--navy);}
+.cell-sub{font-size:11px;color:var(--sub);margin-top:1px;font-weight:400;}
+.tag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;border-radius:20px;padding:4px 10px;white-space:nowrap;}
+.tag.pos{background:var(--green-bg);color:var(--green);}
+.tag.neg{background:var(--red-bg);color:var(--red);}
+.tag.warn{background:var(--amber-bg);color:var(--amber);}
+.tag.acc{background:var(--blue-bg);color:var(--blue);}
+.tag.muted{background:#f1f3f7;color:var(--muted);}
+.insight{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:14px;padding:24px 28px;box-shadow:var(--shadow);margin-top:18px;}
+.insight .il{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--blue);margin-bottom:10px;}
+.insight p{font-size:13.5px;color:var(--muted);}
+.insight p strong{color:var(--navy);font-weight:500;}
+.insight p+p{margin-top:10px;}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.ch-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:24px 26px;box-shadow:var(--shadow);}
+.ch-card .ct{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.ch-card .cn{font-size:29px;font-weight:600;letter-spacing:-0.035em;margin:10px 0 4px;color:var(--navy);}
+.ch-card .cs{font-size:12px;color:var(--muted);}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.rec-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s;}
+.rec-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.rec-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.rec-ico{width:40px;height:40px;border-radius:11px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0;}
+.rec-title{font-size:15.5px;font-weight:600;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--navy);}
+.rec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);letter-spacing:0.1em;}
+.rec-desc{font-size:13px;color:var(--muted);}
+.chng-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px;}
+.chng-col{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:8px 4px;box-shadow:var(--shadow);}
+.chng-col.done{border-top:3px solid var(--green);}
+.chng-col.open{border-top:3px solid var(--red);}
+.chng-head{display:flex;align-items:center;gap:10px;padding:20px 24px 12px;}
+.chng-head .ci{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chng-col.done .ci{background:var(--green-bg);color:var(--green);}
+.chng-col.open .ci{background:var(--red-bg);color:var(--red);}
+.chng-head h3{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-0.02em;}
+.chng-item{padding:14px 24px;border-top:1px solid var(--border);}
+.chng-item h4{font-size:13.5px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+.chng-item p{font-size:12.5px;color:var(--muted);}
+.hint-box{border-radius:14px;padding:18px 22px;margin-top:18px;font-size:13px;line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border:1px solid #f6c9c9;color:#7f1d1d;}
+.hint-box.blue{background:var(--blue-bg);border:1px solid var(--blue-mid);color:#1e3a8a;}
+.hint-box.amber{background:var(--amber-bg);border:1px solid #f3d99a;color:#78350f;}
+.hint-box strong{font-weight:600;}
+.hint-box .hl{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:8px;display:block;}
+.fazit{background:linear-gradient(160deg,var(--navy),#16233b);border-radius:20px;padding:46px 50px;position:relative;overflow:hidden;margin-top:24px;box-shadow:var(--shadow-lg);}
+.fazit::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 90%,rgba(58,110,244,.28),transparent 42%);pointer-events:none;}
+.fazit .ql{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:#8aa8fb;margin-bottom:20px;}
+.fazit .qt{font-size:clamp(19px,2.2vw,27px);font-weight:500;letter-spacing:-0.025em;line-height:1.4;color:#fff;position:relative;}
+.fazit .qt em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#9fb8fc;}
+.footer{border-top:1px solid var(--border);padding:34px 0 60px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+.footer-brand{display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--navy);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);text-align:center;flex:1;}
+.footer-year{font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;color:var(--blue);}
+.pager{display:flex;justify-content:space-between;gap:16px;margin-top:60px;padding-top:28px;border-top:1px solid var(--border);}
+.pager a{font-size:13px;color:var(--muted);text-decoration:none;display:flex;flex-direction:column;gap:2px;cursor:pointer;transition:color .16s;}
+.pager a:hover{color:var(--blue);}
+.pager a.next{text-align:right;margin-left:auto;}
+.pager .pk{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.pager .pt{font-weight:500;color:var(--navy);}
+.pager a:hover .pt{color:var(--blue);}
+.edit-bar{position:fixed;bottom:22px;right:22px;z-index:400;display:flex;gap:8px;background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:var(--shadow-lg);}
+.eb-brand{display:flex;align-items:center;gap:7px;padding:0 8px 0 4px;font-size:12px;font-weight:500;color:var(--muted);}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:8px 15px;border-radius:9px;border:1px solid var(--border);background:var(--white);color:var(--navy);cursor:pointer;transition:all .15s;}
+.eb-btn:hover{background:var(--bg);}
+.eb-btn.on{background:var(--blue);border-color:transparent;color:#fff;}
+body.editing [contenteditable="true"]:hover{outline:1px dashed var(--blue-mid);outline-offset:3px;border-radius:3px;}
+body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outline-offset:3px;border-radius:3px;}
+@media(max-width:900px){
+  .wrap{padding:0 22px;}
+  .hero-grid,.ov-grid,.chart-row,.rec-grid,.twocol,.chng-grid{grid-template-columns:1fr;}
+  .stat-row,.grid-3,.kpi-strip{grid-template-columns:1fr 1fr;}
+  .nav-tabs{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" data-page="uebersicht">
+    <div class="nav-logo-mark">S</div>
+    <div class="nav-logo-text">Skael<span>.</span> Reports</div>
+  </div>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" data-page="uebersicht" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" data-page="umsatz" href="#umsatz">Umsatz</a>
+    <a class="nav-tab" data-page="google" href="#google">Google Ads</a>
+    <a class="nav-tab" data-page="preis" href="#preis">Preisanpassung</a>
+    <a class="nav-tab" data-page="terms" href="#terms">Suchbegriffe</a>
+    <a class="nav-tab" data-page="changes" href="#changes">Verändert / Nicht</a>
+    <a class="nav-tab" data-page="cltv" href="#cltv">CLTV</a>
+    <a class="nav-tab" data-page="empfehlungen" href="#empfehlungen">Empfehlungen</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-pill"><span class="dot"></span> RezensionsHeld · Juni–Aug 2026</div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<!-- ══════════ 1 · ÜBERSICHT ══════════ -->
+<section class="page active" id="p-uebersicht">
+  <div class="hero-top">
+    <div>
+      <div class="eyebrow">Google Ads &amp; Umsatz · Deep Dive</div>
+      <h1 class="hero-h">RezensionsHeld<br><em>Juni – August 2026</em></h1>
+      <p class="hero-sub">Vollständige Iststand-Analyse des Google-Ads-Kontos und des Gesamtumsatzes über drei Monate — was wir verändert haben, was nicht, und wo aktuell Geld verbrennt. Interne Fassung.</p>
+    </div>
+    <div class="hero-badge">
+      <div class="k">Datenstand</div>
+      <div class="v">Google Ads live bis 31.08. · DB bis ~24.08.</div>
+    </div>
+  </div>
+
+  <div class="hero-grid">
+    <div class="card hero-main">
+      <div class="hm-eyebrows">
+        <span class="hm-date">Juni – August 2026 · Google Ads (live) + Production-DB</span>
+        <span class="hm-tag">Konto 2525117686</span>
+      </div>
+      <h2 class="hm-title">Mehr Budget kauft weiter Volumen — aber keine Deckung mehr.</h2>
+      <p class="hm-body">Der Google-Kanal hat sich Monat für Monat verschlechtert: von einem profitablen Juni in einen August, der auf Erstumsatz-Basis unter Break-even liegt. Das Gesamtgeschäft ist gesund (~934 k€ Umsatz YTD) — das Effizienzproblem ist isoliert auf Google Ads.</p>
+      <div class="hm-divider"></div>
+      <div class="hm-bottom">
+        <div>
+          <div class="bignum">159.860 €</div>
+          <div class="bignum-lbl">Google-Spend Jun–Aug · 131.764 € Conversion-Wert zurück</div>
+        </div>
+        <div class="callout">
+          <div class="big">0,62×</div>
+          <div class="small">Google-ROAS August<br>(Juni war 1,14×)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card hero-side">
+      <div class="eyebrow plain" style="color:var(--muted)"><span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;">ROAS im Monatsverlauf</span></div>
+      <h3 class="side-title">Google-ROAS fällt drei Monate in Folge.</h3>
+      <div class="side-chart"><canvas id="chartHeroTrend"></canvas></div>
+      <div class="side-hi">
+        <div class="row">
+          <div>
+            <div class="pct">−46 %</div>
+            <div class="note">ROAS Juni → August · trotz mehr Spend im Schnitt</div>
+          </div>
+          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="stat-mlabel">Gesamtumsatz YTD</div>
+      <div class="stat-num">933.728 €</div>
+      <div class="stat-h">Jan – Aug 2026</div>
+      <div class="stat-desc">Alle Kanäle, Dashboard. Juli war mit 178.261 € der stärkste Monat. August unvollständig (DB-Import stoppt ~24.8.).</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+      <div class="stat-mlabel">Google CPA</div>
+      <div class="stat-num">161 €</div>
+      <div class="stat-h">Fast verdoppelt seit Juni</div>
+      <div class="stat-desc">Kosten je Conversion: Juni 86 € · Juli 137 € · August 161 €. Ø CPC von 13,58 € auf 19,91 € gestiegen.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div class="stat-mlabel">Leck: Suchbegriffe</div>
+      <div class="stat-num">~3.460 €</div>
+      <div class="stat-h">in 7 Tagen bei ≤ 0,3× ROAS</div>
+      <div class="stat-desc">49 % des sichtbaren Suchbegriff-Spends der letzten Woche floss in Begriffe mit fast keinem Rückfluss.</div>
+    </div>
+  </div>
+
+  <div class="hint-box red" style="margin-top:26px">
+    <span class="hl">Klartext-Urteil · Dringlichkeit 7/10</span>
+    <strong>Ja, der Google-Kanal verbrennt aktuell Geld auf Erstumsatz-Basis.</strong> Für 1 € Spend kommen im August nach Googles eigener Messung ~0,62 € Conversion-Wert zurück — und das vor COGS, Zahlungsgebühren, „Zahlung nur bei Erfolg" und Personal. Kein Totalschaden (Budget wurde Mitte August gedrosselt, einzelne Keywords sind klar profitabel), aber „unverändert weiterlaufen lassen" ist bei dieser Search-Term-Qualität nicht vertretbar. <strong>Für diesen Report wurde nichts am Konto verändert — reine Analyse.</strong>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <div class="eyebrow">Auf einen Blick</div>
+      <h2 class="block-h">Spend, Rückfluss und <em>Effizienz</em> über drei Monate</h2>
+      <p class="block-sub">Der Spend sprang im Juli auf 69,8 k€ und fiel im August wieder — der Conversion-Wert konnte seit Juni nie mehr mithalten. Alle Google-Zahlen live über den Pipeboard-MCP gezogen.</p>
+    </div>
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="ct">Google Spend vs. Conversion-Wert · Jun–Aug</div>
+        <div class="chart-wrap" style="height:250px"><canvas id="chartOvSpendRev"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="ct">Gesamtumsatz je Monat · Jan–Aug (alle Kanäle)</div>
+        <div class="chart-wrap" style="height:250px"><canvas id="chartOvRevenue"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <div class="eyebrow">Datenbasis &amp; Belastbarkeit</div>
+      <h2 class="block-h">Woraus dieser Report <em>gerechnet</em> ist</h2>
+      <p class="block-sub">Google-Zahlen sind live und belastbar bis 31.08. Umsatz-/Käuferzahlen kommen aus dem Dashboard und sind wegen zweier Reporting-Defekte nur bis ~24.8. vollständig — beides ist an jeder betroffenen Stelle markiert.</p>
+    </div>
+    <div class="chips">
+      <div class="chip"><span class="cd"></span> Google Ads · Pipeboard (live)</div>
+      <div class="chip"><span class="cd"></span> Production-DB / Dashboard · bis 24.8.</div>
+      <div class="chip"><span class="cd"></span> CRM = Source of Truth</div>
+      <div class="chip accent">KPI = Neukunden-/Erstumsatz</div>
+    </div>
+    <div class="hint-box amber">
+      <span class="hl">Zwei bekannte Reporting-Defekte</span>
+      <strong>1. Dashboard-Import stoppt am 24.8.</strong> — die laufende Woche wirkt fälschlich „leer" (nur 2 live getrackte Käufe). <strong>2. Attribution ist komplett aus</strong> (Coverage 0 %): das Dashboard ordnet aktuell keinen Umsatz einem Kanal zu. Deshalb stützt sich die Google-Effizienz auf Googles eigene Conversion-Messung, nicht auf einen Dashboard-Gegencheck.
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head">
+      <div class="eyebrow">Report-Bereiche</div>
+      <h2 class="block-h">Die wichtigsten Kennzahlen aus dem <em>gesamten Report</em></h2>
+      <p class="block-sub">Über das Menü oben oder die Karten in jede Sektion springen.</p>
+    </div>
+    <div class="ov-grid">
+      <div class="ov-card" data-page="google">
+        <div class="ov-top"><span class="ov-label">Google Ads</span><span class="ov-link">Details öffnen ↗</span></div>
+        <h3 class="ov-h">Skalierung kippt in Ineffizienz</h3>
+        <div class="prow"><div class="pv">1,14×</div><div class="pl">Juni · 32,1 k€ Spend</div><div class="ptrack"><div class="pfill" style="width:100%"></div></div></div>
+        <div class="prow"><div class="pv">0,85×</div><div class="pl">Juli · 69,8 k€ Spend</div><div class="ptrack"><div class="pfill" style="width:75%"></div></div></div>
+        <div class="prow"><div class="pv">0,62×</div><div class="pl">August · 58,0 k€ Spend</div><div class="ptrack"><div class="pfill" style="width:54%"></div></div></div>
+        <div class="ov-foot">Mehr Budget kauft aktuell <strong>teure Grenz-Conversions</strong>, kein profitables Wachstum.</div>
+      </div>
+
+      <div class="ov-card" data-page="umsatz">
+        <div class="ov-top"><span class="ov-label">Umsatz · Business</span><span class="ov-link">Details öffnen ↗</span></div>
+        <h3 class="ov-h">Gesamtgeschäft gesund, Juli Rekord</h3>
+        <div class="ov-big">933.728 € <span class="u">YTD</span></div>
+        <div class="seg"><span class="lbl">Jan</span><span class="line"></span><span class="lbl">Aug</span></div>
+        <div class="ov-foot"><strong>178.261 € im Juli</strong> — stärkster Monat 2026. Ø ~116,7 k€/Monat.</div>
+      </div>
+
+      <div class="ov-card" data-page="changes">
+        <div class="ov-top"><span class="ov-label">Verändert / Nicht</span><span class="ov-link">Details öffnen ↗</span></div>
+        <h3 class="ov-h">Struktur abgebaut, Hygiene offen</h3>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="n">2 → 1</div><div class="l">Kampagnen (Exact/Phrase entfernt)</div></div>
+          <div class="mini-stat"><div class="n">−30 %</div><div class="l">Budget/Tag Mitte Aug</div></div>
+          <div class="mini-stat"><div class="n">0</div><div class="l">neue Negatives gesetzt</div></div>
+        </div>
+        <div class="ov-foot">Alles hängt an <strong>einer Broad-Kampagne</strong>; die Verbrenner laufen weiter.</div>
+      </div>
+
+      <div class="ov-card" data-page="cltv">
+        <div class="ov-top"><span class="ov-label">Recurring · CLTV</span><span class="ov-link">Details öffnen ↗</span></div>
+        <h3 class="ov-h">Folgekäufe helfen, retten August nicht</h3>
+        <div class="ov-mini-chart"><canvas id="chartOvCltv"></canvas></div>
+        <div class="ov-foot">Juni reift auf <strong>1,52× LTV-ROAS</strong> · August noch bei 0,82×.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pager">
+    <a class="next" data-page="umsatz"><span class="pk">Nächste Seite →</span><span class="pt">Umsatz</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 2 · UMSATZ ══════════ -->
+<section class="page" id="p-umsatz">
+  <div class="page-head">
+    <div class="eyebrow">02 · Umsatz · Gesamtgeschäft</div>
+    <h1 class="page-h">Wie viel Umsatz haben wir gemacht? <em>178 k€ Rekord im Juli</em></h1>
+    <p class="page-sub">Gesamtumsatz aller Kanäle je Monat aus dem Dashboard. <strong>Wichtig:</strong> August ist unvollständig — der Bestell-/Umsatz-Import endet am ~24.8., die letzte Augustwoche fehlt in dieser Zahl.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Umsatz YTD</div><div class="kv">933.728 €</div><div class="kd">Jan–Aug 2026</div></div>
+    <div class="kpi-tile"><div class="kl">Bester Monat</div><div class="kv">178.261 €</div><div class="kd"><span class="up">Juli</span></div></div>
+    <div class="kpi-tile"><div class="kl">Ø Monat</div><div class="kv">116.716 €</div><div class="kd">Schnitt Jan–Aug</div></div>
+    <div class="kpi-tile"><div class="kl">August*</div><div class="kv">113.103 €</div><div class="kd"><span class="down">*nur bis ~24.8.</span></div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card wide">
+      <div class="ct">Gesamtumsatz je Monat · Jan – Aug 2026 (alle Kanäle)</div>
+      <div class="cx">August-Balken schraffiert = unvollständig, Import stoppt ~24.8.</div>
+      <div class="chart-wrap"><canvas id="chartRevYear"></canvas></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr><th>Monat</th><th class="num">Gesamtumsatz</th><th class="num">vs. Vormonat</th><th class="num">Anmerkung</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-name">Januar</td><td class="num">91.301 €</td><td class="num">—</td><td class="num">—</td></tr>
+        <tr><td class="cell-name">Februar</td><td class="num">61.292 €</td><td class="num"><span class="tag neg">−32,8 %</span></td><td class="num">kürzester Monat</td></tr>
+        <tr><td class="cell-name">März</td><td class="num">116.692 €</td><td class="num"><span class="tag pos">+90,4 %</span></td><td class="num">—</td></tr>
+        <tr><td class="cell-name">April</td><td class="num">115.734 €</td><td class="num"><span class="tag muted">−0,8 %</span></td><td class="num">—</td></tr>
+        <tr><td class="cell-name">Mai</td><td class="num">131.989 €</td><td class="num"><span class="tag pos">+14,1 %</span></td><td class="num">—</td></tr>
+        <tr><td class="cell-name">Juni</td><td class="num">125.356 €</td><td class="num"><span class="tag muted">−5,0 %</span></td><td class="num">Google 32,1 k€ Spend</td></tr>
+        <tr><td class="cell-name">Juli</td><td class="num">178.261 €</td><td class="num"><span class="tag pos">+42,2 %</span></td><td class="num">Rekord · Google-Spend-Peak 69,8 k€</td></tr>
+        <tr><td class="cell-name">August*</td><td class="num">113.103 €</td><td class="num"><span class="tag warn">unvollständig</span></td><td class="num">Import stoppt ~24.8.</td></tr>
+        <tr class="total-row"><td class="cell-name">YTD Jan–Aug</td><td class="num">933.728 €</td><td class="num">Ø 116.716 €</td><td class="num">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="twocol">
+    <div class="insight" style="border-left-color:var(--green)">
+      <div class="il" style="color:var(--green)">Was das zeigt</div>
+      <p>Das <strong>Gesamtgeschäft ist robust</strong>: 2026 läuft im Schnitt bei ~116,7 k€/Monat, Juli war mit 178 k€ Rekord. Das Umsatzniveau korreliert klar mit dem Google-Spend (Juli-Peak in beidem), aber der Umsatz kommt aus mehreren Quellen — nicht nur Google.</p>
+    </div>
+    <div class="insight" style="border-left-color:var(--red)">
+      <div class="il" style="color:var(--red)">Belastbarkeits-Warnung</div>
+      <p>Der August-Wert <strong>unterzeichnet die Realität</strong>: der Order-Import endet am ~24.8., die letzte Woche fehlt. Und weil die Kanal-Attribution aus ist, lässt sich hier <strong>nicht</strong> sauber sagen „X € kamen aus Google". Für die Google-Effizienz ist deshalb die Google-Ads-Sektion die belastbare Quelle.</p>
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="uebersicht"><span class="pk">← Zurück</span><span class="pt">Übersicht</span></a>
+    <a class="next" data-page="google"><span class="pk">Nächste Seite →</span><span class="pt">Google Ads</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 3 · GOOGLE ADS ══════════ -->
+<section class="page" id="p-google">
+  <div class="page-head">
+    <div class="eyebrow">03 · Google Ads · Kanal-Performance</div>
+    <h1 class="page-h">Wie sind die Google Ads? <em>Drei Monate bergab</em></h1>
+    <p class="page-sub">Alle Zahlen live über Pipeboard aus Konto <strong>2525117686</strong>, vollständige Monate Juni–August. ROAS = Googles Conversion-Wert ÷ Spend. Der Kanal läuft komplett über <strong>eine</strong> Broad-Kampagne.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Spend Jun–Aug</div><div class="kv">159.860 €</div><div class="kd">9.023 Klicks</div></div>
+    <div class="kpi-tile"><div class="kl">ROAS Juni</div><div class="kv">1,14×</div><div class="kd"><span class="up">profitabel</span></div></div>
+    <div class="kpi-tile"><div class="kl">ROAS Juli</div><div class="kv">0,85×</div><div class="kd"><span class="down">Budgetsprung</span></div></div>
+    <div class="kpi-tile"><div class="kl">ROAS August</div><div class="kv">0,62×</div><div class="kd"><span class="down">unter Break-even</span></div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Spend vs. Conversion-Wert · Jun–Aug</div>
+      <div class="chart-wrap"><canvas id="chartGSpend"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">ROAS &amp; CPA · Jun–Aug</div>
+      <div class="chart-wrap"><canvas id="chartGEff"></canvas></div>
+    </div>
+  </div>
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Klicks &amp; Ø CPC je Monat</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartGClicks"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">Conversions je Monat</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="chartGConv"></canvas></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr>
+        <th>Monat</th><th class="num">Spend</th><th class="num">Impress.</th><th class="num">Klicks</th><th class="num">Ø CPC</th>
+        <th class="num">Conv.</th><th class="num">Conv-Wert</th><th class="num">ROAS</th><th class="num">CPA</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="cell-name">Juni</td><td class="num">32.096 €</td><td class="num">33.850</td><td class="num">2.364</td><td class="num">13,58 €</td><td class="num">373</td><td class="num">36.654 €</td><td class="num"><span class="tag pos">1,14×</span></td><td class="num">86 €</td></tr>
+        <tr><td class="cell-name">Juli</td><td class="num">69.793 €</td><td class="num">44.948</td><td class="num">3.748</td><td class="num">18,62 €</td><td class="num">508</td><td class="num">59.078 €</td><td class="num"><span class="tag warn">0,85×</span></td><td class="num">137 €</td></tr>
+        <tr><td class="cell-name">August</td><td class="num">57.970 €</td><td class="num">33.400</td><td class="num">2.911</td><td class="num">19,91 €</td><td class="num">360</td><td class="num">36.032 €</td><td class="num"><span class="tag neg">0,62×</span></td><td class="num">161 €</td></tr>
+        <tr class="total-row"><td class="cell-name">Summe / Ø</td><td class="num">159.860 €</td><td class="num">112.198</td><td class="num">9.023</td><td class="num">17,72 €</td><td class="num">1.242</td><td class="num">131.764 €</td><td class="num">0,82×</td><td class="num">129 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hint-box blue">
+    <span class="hl">Lag-Hinweis</span>
+    Mit <strong>Conversion-Date-Attribution</strong> (Conversions dem tatsächlichen Kauftag zugeordnet, korrigiert Nachlauf) sieht das Bild fast identisch aus: Juni 1,27× · Juli 0,86× · August 0,63×. Der Abwärtstrend ist also <strong>kein Tracking-Artefakt</strong>, sondern reale Leistungsverschlechterung.
+  </div>
+
+  <div class="twocol">
+    <div class="insight" style="border-left-color:var(--blue)">
+      <div class="il">Was passiert ist</div>
+      <p>Von Juni auf Juli wurde der <strong>Spend mehr als verdoppelt</strong> (32 k€ → 70 k€). Der Conversion-Wert stieg mit — aber unterproportional, der ROAS fiel von 1,14× auf 0,85×. Im August wurde das Budget zurückgenommen (58 k€), doch die Effizienz fiel weiter auf 0,62×, weil der <strong>CPC weiter stieg</strong> (13,58 € → 19,91 €).</p>
+    </div>
+    <div class="insight" style="border-left-color:var(--red)">
+      <div class="il" style="color:var(--red)">Der Kern</div>
+      <p>Es ist ein <strong>Effizienz-, kein Volumenproblem</strong>: Google findet weiter Käufer, aber jeder kostet mehr. CPA hat sich von 86 € auf 161 € fast verdoppelt. Die reine Broad-Struktur ohne Target-ROAS-Deckel lässt teure Grenz-Klicks ungebremst durchlaufen.</p>
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="umsatz"><span class="pk">← Zurück</span><span class="pt">Umsatz</span></a>
+    <a class="next" data-page="preis"><span class="pk">Nächste Seite →</span><span class="pt">Preisanpassung</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 4 · PREISANPASSUNG ══════════ -->
+<section class="page" id="p-preis">
+  <div class="page-head">
+    <div class="eyebrow">04 · Preisanpassung · 17.08.2026</div>
+    <h1 class="page-h">Vor / nach der Preisanpassung: <em>leicht besser, nicht gerettet</em></h1>
+    <p class="page-sub">Google-Ads-Konto, Tagesdaten August gesplittet am 17.8. Parallel zur Preisanpassung wurde Mitte August auch das Tagesbudget real gesenkt — beide Effekte überlagern sich.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">ROAS vor (1.–16.)</div><div class="kv">0,60×</div><div class="kd">34.978 € Spend</div></div>
+    <div class="kpi-tile"><div class="kl">ROAS nach (17.–31.)</div><div class="kv">0,65×</div><div class="kd"><span class="up">+8,3 %</span></div></div>
+    <div class="kpi-tile"><div class="kl">Spend/Tag vor</div><div class="kv">2.186 €</div><div class="kd">1.–16.8.</div></div>
+    <div class="kpi-tile"><div class="kl">Spend/Tag nach</div><div class="kv">1.533 €</div><div class="kd"><span class="down">−29,9 %</span></div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Spend vs. Conversion-Wert · vor / nach 17.8.</div>
+      <div class="chart-wrap"><canvas id="chartPreSpend"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">ROAS &amp; Ø Spend/Tag · vor / nach</div>
+      <div class="chart-wrap"><canvas id="chartPreEff"></canvas></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr>
+        <th>Zeitraum</th><th class="num">Tage</th><th class="num">Spend</th><th class="num">Spend/Tag</th>
+        <th class="num">Conv-Wert</th><th class="num">ROAS</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><div class="cell-name">01.–16.08.</div><div class="cell-sub">vor Preisanpassung</div></td><td class="num">16</td><td class="num">34.978 €</td><td class="num">2.186 €</td><td class="num">20.988 €</td><td class="num"><span class="tag neg">0,60×</span></td></tr>
+        <tr><td><div class="cell-name">17.–31.08.</div><div class="cell-sub">nach Preisanpassung + Budgetkürzung</div></td><td class="num">15</td><td class="num">22.993 €</td><td class="num">1.533 €</td><td class="num">15.044 €</td><td class="num"><span class="tag warn">0,65×</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hint-box amber">
+    <span class="hl">Ehrliche Einordnung</span>
+    Die Preisanpassung hat den ROAS <strong>marginal verbessert (0,60× → 0,65×)</strong> und lief sauber. Aber: sie hat den Kanal <strong>nicht über Break-even gehoben</strong>. Ein großer Teil der Verbesserung kommt zudem aus der gleichzeitigen Budgetkürzung (−30 % Spend/Tag), nicht allein aus dem Preis. Die letzten Augusttage sind durch Conversion-Lag leicht zu pessimistisch — die echte Nach-Zahl landet eher bei ~0,68–0,72×, bleibt aber unter 1,0×.
+  </div>
+
+  <div class="pager">
+    <a data-page="google"><span class="pk">← Zurück</span><span class="pt">Google Ads</span></a>
+    <a class="next" data-page="terms"><span class="pk">Nächste Seite →</span><span class="pt">Suchbegriffe</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 5 · SUCHBEGRIFFE ══════════ -->
+<section class="page" id="p-terms">
+  <div class="page-head">
+    <div class="eyebrow">05 · Suchbegriffe · letzte 7 Tage</div>
+    <h1 class="page-h">Wo das Geld verbrennt: <em>Suchbegriff-Ebene</em></h1>
+    <p class="page-sub">Live-Search-Terms-Report, letzte 7 Tage. Von <strong>6.994 € sichtbarem Suchbegriff-Spend</strong> flossen ~3.460 € (49 %) in Begriffe mit ≤ 0,3× ROAS. Das Muster: Singular-/„lassen"-Varianten konvertieren nicht, einzelne Plural-Exacts tragen den Kanal.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Suchbegriff-Spend 7T</div><div class="kv">6.994 €</div><div class="kd">3.600 € Conv-Wert</div></div>
+    <div class="kpi-tile"><div class="kl">bei ≤ 0,3× ROAS</div><div class="kv">3.460 €</div><div class="kd"><span class="down">49 % des Spends</span></div></div>
+    <div class="kpi-tile"><div class="kl">reine 0-Conv-Begriffe</div><div class="kv">~2.140 €</div><div class="kd"><span class="down">kein Rückfluss</span></div></div>
+    <div class="kpi-tile"><div class="kl">Top-Gewinner</div><div class="kv">9,7×</div><div class="kd"><span class="up">bewertungen löschen</span></div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Größte Verbrenner · Kosten 7 Tage (0 oder Mini-ROAS)</div>
+      <div class="chart-wrap" style="height:300px"><canvas id="chartBurn"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">Spend-Qualität letzte 7 Tage</div>
+      <div class="chart-wrap" style="height:300px"><canvas id="chartQuality"></canvas></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Verbrenner</div><h2 class="block-h">Teure Suchbegriffe <em>ohne</em> Rückfluss</h2></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Suchbegriff</th><th>Match</th><th class="num">Kosten 7T</th><th class="num">Ø CPC</th><th class="num">Conv.</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">google bewertung löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">1.217 €</td><td class="num">28,31 €</td><td class="num">5</td><td class="num"><span class="tag neg">0,21×</span></td></tr>
+          <tr><td class="cell-name">bewertungen löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">538 €</td><td class="num">44,86 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">google rezension löschen</td><td><span class="tag acc">EXACT · aktiv</span></td><td class="num">481 €</td><td class="num">20,03 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">rezensionsheld</td><td><span class="tag warn">Brand in Cold</span></td><td class="num">447 €</td><td class="num">13,15 €</td><td class="num">3</td><td class="num"><span class="tag neg">0,34×</span></td></tr>
+          <tr><td class="cell-name">google rezension löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">313 €</td><td class="num">28,42 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">google rezensionen löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">233 €</td><td class="num">25,93 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">rezensionen löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">124 €</td><td class="num">30,99 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">negative google bewertung löschen</td><td><span class="tag muted">near exact</span></td><td class="num">117 €</td><td class="num">29,21 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">+ Wettbewerber-Marken</td><td><span class="tag muted">broad</span></td><td class="num">~100 €</td><td class="num">—</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="block-sub" style="margin-top:12px">Wettbewerber-Marken mit Impressionen/Klicks aber 0 Conversions: reputationspartner, rufheld, reviewfame, cleverwertungen, bewertungsheld, reputack.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Gewinner</div><h2 class="block-h">Was die Broad trotzdem <em>profitabel</em> findet</h2></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Suchbegriff</th><th>Match</th><th class="num">Kosten 7T</th><th class="num">Conv.</th><th class="num">Conv-Wert</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">bewertungen löschen</td><td><span class="tag acc">EXACT</span></td><td class="num">106 €</td><td class="num">1</td><td class="num">1.022 €</td><td class="num"><span class="tag pos">9,7×</span></td></tr>
+          <tr><td class="cell-name">google einträge löschen lassen</td><td><span class="tag muted">broad</span></td><td class="num">8 €</td><td class="num">1</td><td class="num">51 €</td><td class="num"><span class="tag pos">6,5×</span></td></tr>
+          <tr><td class="cell-name">google bewertungen löschen</td><td><span class="tag acc">EXACT</span></td><td class="num">1.414 €</td><td class="num">6</td><td class="num">1.116 €</td><td class="num"><span class="tag warn">0,79×</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box blue">
+      <span class="hl">Muster</span>
+      <strong>„google bewertungen löschen" (Plural-Exact)</strong> ist der Volumen-Motor — 1.414 € Spend, hält sich nahe Break-even. <strong>„bewertungen löschen" (Exact)</strong> ist der klare Gewinner mit 9,7×. Die verlustreichen Varianten sind fast alle <strong>Singular („rezension") oder „…lassen"</strong>. Genau die stehen seit Wochen als Negative-Kandidaten fest — gesetzt sind sie nicht.
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="preis"><span class="pk">← Zurück</span><span class="pt">Preisanpassung</span></a>
+    <a class="next" data-page="changes"><span class="pk">Nächste Seite →</span><span class="pt">Verändert / Nicht</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 6 · VERÄNDERT / NICHT ══════════ -->
+<section class="page" id="p-changes">
+  <div class="page-head">
+    <div class="eyebrow">06 · Verändert / Nicht verändert</div>
+    <h1 class="page-h">Was wir verändert haben — und was <em>nicht</em></h1>
+    <p class="page-sub">Der ehrliche Abgleich: Struktur wurde vereinfacht und Budget gedrosselt, aber die eigentliche Optimierung (Search-Term-Hygiene, Brand-Trennung, Gewinner-Struktur) ist seit ~2 Wochen offen.</p>
+  </div>
+
+  <div class="chng-grid">
+    <div class="chng-col done">
+      <div class="chng-head">
+        <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h3>Verändert</h3>
+      </div>
+      <div class="chng-item"><h4>Kontostruktur konsolidiert</h4><p>Die strukturierten Kampagnen <strong>PRIO_Exact_Core</strong> und <strong>Expansion_Phrase</strong> sind entfernt (REMOVED). Alles läuft jetzt über <strong>eine</strong> Kampagne „Search | Cold-Google max conv. value", eine Ad-Group, Broad Match.</p></div>
+      <div class="chng-item"><h4>Bidding auf Maximize Conversion Value</h4><p>Smart Bidding ohne Target-ROAS-Deckel. Google optimiert auf Conversion-Wert-Volumen, nicht auf Effizienzgrenze.</p></div>
+      <div class="chng-item"><h4>Budget Mitte August gedrosselt</h4><p>Ø Spend/Tag von <strong>2.186 € (1.–16.8.) auf 1.533 € (17.–31.8.)</strong> gesenkt — real −30 %. Richtige Richtung.</p></div>
+      <div class="chng-item"><h4>Preisanpassung 17.8.2026</h4><p>Sauber ausgerollt, ROAS marginal verbessert (0,60× → 0,65×), AOV leicht gehoben.</p></div>
+    </div>
+
+    <div class="chng-col open">
+      <div class="chng-head">
+        <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        <h3>Nicht verändert</h3>
+      </div>
+      <div class="chng-item"><h4>Negative-Keyword-Hygiene</h4><p>Die teuren 0-Conversion-Begriffe (~2.140 €/Woche) laufen seit Wochen weiter. Keine neuen Exact-Negatives gesetzt.</p></div>
+      <div class="chng-item"><h4>Brand nicht isoliert</h4><p>„rezensionsheld" läuft weiter in der Cold-Kampagne mit (447 € / 7 Tage) statt in einer eigenen günstigen Brand-Kampagne.</p></div>
+      <div class="chng-item"><h4>Gewinner-Exacts nicht hochgezogen</h4><p>Die von Walter selbst empfohlene Exact-Struktur für Gewinner-Keywords wurde nicht gebaut — im Gegenteil, die strukturierten Kampagnen wurden gelöscht.</p></div>
+      <div class="chng-item"><h4>Wettbewerber-Marken nicht ausgeschlossen</h4><p>reputationspartner, rufheld, reviewfame, cleverwertungen, bewertungsheld, reputack — laufen mit, 0 Conversions.</p></div>
+      <div class="chng-item"><h4>Tracking-Baustellen offen</h4><p>DB-Import-Stopp 24.8., Attribution aus, CRM-Purchase-Upload degradiert (falsch gecachte Conversion-Action-ID, EXPIRED_EVENT, 80 % GCLID-Abdeckung).</p></div>
+    </div>
+  </div>
+
+  <div class="insight" style="border-left-color:var(--amber)">
+    <div class="il" style="color:var(--amber)">Bewertung Walter — fair</div>
+    <p><strong>Gut:</strong> Budget mitten im Monat real gesenkt; die Broad findet nachweislich Gewinner-Begriffe; Preisanpassung sauber umgesetzt.</p>
+    <p><strong>Kritisch:</strong> Die empfohlene Exact-/Phrase-Struktur wurde nicht gebaut, sondern abgebaut — jetzt hängt alles an einer Broad-Kampagne. Negative-Hygiene ist zu dünn, Brand nicht getrennt, CPCs (20–45 €, teils 117 €) für einen 40–130-€-AOV strukturell zu hoch ohne tROAS-Deckel. Fazit: solide Basispflege, aber die eigentliche Optimierung ist nicht passiert.</p>
+  </div>
+
+  <div class="pager">
+    <a data-page="terms"><span class="pk">← Zurück</span><span class="pt">Suchbegriffe</span></a>
+    <a class="next" data-page="cltv"><span class="pk">Nächste Seite →</span><span class="pt">CLTV</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 7 · CLTV ══════════ -->
+<section class="page" id="p-cltv">
+  <div class="page-head">
+    <div class="eyebrow">07 · Recurring · CLTV</div>
+    <h1 class="page-h">Folgekäufe helfen — <em>retten den August aber nicht</em></h1>
+    <p class="page-sub">RezensionsHeld ist ein Wiederkäufer-Geschäft: ein Erstauftrag knapp unter Break-even kann über Recurring aufgehen. Aber Reifezeit zählt — jüngere Kohorten haben ihren LTV noch nicht realisiert. Quelle: Production-DB (bis ~24.8.).</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Recurring Jun–Aug</div><div class="kv">35.698 €</div><div class="kd">Folgekäufe</div></div>
+    <div class="kpi-tile"><div class="kl">LTV-ROAS Juni</div><div class="kv">1,52×</div><div class="kd"><span class="up">gereift</span></div></div>
+    <div class="kpi-tile"><div class="kl">LTV-ROAS Juli</div><div class="kv">1,08×</div><div class="kd">reift noch</div></div>
+    <div class="kpi-tile"><div class="kl">LTV-ROAS August</div><div class="kv">0,82×</div><div class="kd"><span class="down">unreif</span></div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Erstumsatz + Recurring je Monat</div>
+      <div class="chart-wrap"><canvas id="chartCltvRev"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">LTV-ROAS-Reifung: frühe Kohorten holen auf</div>
+      <div class="chart-wrap"><canvas id="chartCltvMat"></canvas></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr><th>Monat</th><th class="num">Erstumsatz</th><th class="num">Recurring</th><th class="num">Observed CLTV</th><th class="num">Repeat Rate</th><th class="num">LTV-ROAS</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-name">Juni</td><td class="num">37.605 €</td><td class="num">13.713 €</td><td class="num">140,92 €</td><td class="num">21,7 %</td><td class="num"><span class="tag pos">1,52×</span></td></tr>
+        <tr><td class="cell-name">Juli</td><td class="num">57.860 €</td><td class="num">17.784 €</td><td class="num">154,06 €</td><td class="num">17,5 %</td><td class="num"><span class="tag pos">1,08×</span></td></tr>
+        <tr><td class="cell-name">August*</td><td class="num">32.708 €</td><td class="num">4.201 €</td><td class="num">119,19 €</td><td class="num">10,6 %</td><td class="num"><span class="tag warn">0,82×</span></td></tr>
+      </tbody>
+    </table>
+    <p class="block-sub" style="padding:12px 14px 4px">*August-Kohorte ist noch jung — Repeat Rate und Recurring wachsen über die nächsten Monate; Erstumsatz aus DB bis ~24.8.</p>
+  </div>
+
+  <div class="hint-box blue">
+    <span class="hl">Wie das zu lesen ist</span>
+    Die <strong>Juni-Kohorte reift auf 1,52× LTV-ROAS</strong> — inklusive Folgekäufen war Juni klar profitabel. Juli liegt bei 1,08×, August noch bei 0,82×, wird aber steigen. <strong>Aber:</strong> nach deiner eigenen Regel ist der Erstumsatz die primäre KPI — und auf der steht Google im August unter Wasser. Recurring ist ein Puffer, kein Freifahrtschein für ineffizienten Erstkauf-Spend.
+  </div>
+
+  <div class="pager">
+    <a data-page="changes"><span class="pk">← Zurück</span><span class="pt">Verändert / Nicht</span></a>
+    <a class="next" data-page="empfehlungen"><span class="pk">Nächste Seite →</span><span class="pt">Empfehlungen</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 8 · EMPFEHLUNGEN ══════════ -->
+<section class="page" id="p-empfehlungen">
+  <div class="page-head">
+    <div class="eyebrow">08 · Empfehlungen</div>
+    <h1 class="page-h">Was jetzt zu tun ist <em>— priorisiert</em></h1>
+    <p class="page-sub">Konkrete, reversible Maßnahmen. Reihenfolge nach Impact ÷ Aufwand. <strong>Nichts davon wurde umgesetzt — reine Empfehlung.</strong></p>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card wide">
+      <div class="ct">Prioritäts-Matrix · Impact vs. Aufwand</div>
+      <div class="chart-wrap" style="height:320px"><canvas id="chartPriority"></canvas></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div><div class="rec-title"><span class="rec-num">01</span> Verbrenner als Exact-Negatives</div></div>
+        <p class="rec-desc">Sofort ausschließen (0 Conv, hohe Kosten): <em>google rezension löschen</em>, <em>… löschen lassen</em>, <em>google rezensionen löschen lassen</em>, <em>bewertungen löschen lassen</em>, <em>rezensionen löschen lassen</em>, <em>negative google bewertung löschen</em>. Spart ~2.100 €/Woche. Höchster Impact, minimaler Aufwand.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/></svg></div><div class="rec-title"><span class="rec-num">02</span> Target-ROAS einführen</div></div>
+        <p class="rec-desc">Noch kein tROAS solange die Preisdaten frisch sind (~2 Wochen sammeln), dann einen Ziel-ROAS als Effizienzgrenze setzen. Deckelt teure Grenz-Klicks, die die reine „Maximize Conversion Value"-Strategie aktuell ungebremst einkauft.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><div class="rec-title"><span class="rec-num">03</span> Brand aus Cold trennen</div></div>
+        <p class="rec-desc">„rezensionsheld" in eine eigene günstige Brand-Exact-Kampagne überführen, dann aus Cold ausschließen. Senkt den Brand-CPC und macht die Cold-Zahlen ehrlich (nicht durch billige Brand-Klicks geschönt).</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="rec-title"><span class="rec-num">04</span> Gewinner-Exacts hochziehen</div></div>
+        <p class="rec-desc">„bewertungen löschen", „google bewertungen löschen", „google einträge löschen lassen" in eine eigene, kontrolliert gebotene Ad-Group heben — statt sie in der Broad zu verstecken. Holt die profitable Nachfrage kontrolliert ab.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="rec-title"><span class="rec-num">05</span> Budget bei 1.200–1.500 €/Tag halten</div></div>
+        <p class="rec-desc">Nicht panisch abschalten — die aktuelle Drosselung war richtig. Bei diesem Niveau halten, bis Negatives + Gewinner-Struktur greifen, dann anhand des neuen ROAS neu bewerten.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="4"/></svg></div><div class="rec-title"><span class="rec-num">06</span> Tracking-Baustelle reparieren</div></div>
+        <p class="rec-desc">Parallel-Thema, aber genauso dringend: DB-Import (Stopp 24.8.), Attribution (aus) und CRM-Purchase-Upload (falsche Conversion-Action-ID) müssen wieder laufen — sonst triffst du Budget-Entscheidungen blind.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="fazit">
+    <div class="ql">Fazit</div>
+    <div class="qt">Das Gesamtgeschäft ist gesund — <em>178 k€ im Juli, ~934 k€ YTD</em>. Das Problem ist isoliert der Google-Kanal: von 1,14× im Juni auf 0,62× im August, mit <em>~3.460 € pro Woche</em> in fast wertlosen Suchbegriffen. Struktur wurde vereinfacht und Budget gedrosselt — aber die eigentliche Optimierung, <em>Negatives und Gewinner-Struktur</em>, ist seit zwei Wochen offen. Genau da liegt der schnellste Hebel.</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">Skael<span>.</span> Reports</div>
+    <div class="footer-date">RezensionsHeld · Juni – August 2026 · Interne Fassung · Erstellt 01.09.2026</div>
+    <div class="footer-year">2026</div>
+  </div>
+
+  <div class="pager">
+    <a data-page="cltv"><span class="pk">← Zurück</span><span class="pt">CLTV</span></a>
+    <a class="next" data-page="uebersicht"><span class="pk">Zum Anfang →</span><span class="pt">Übersicht</span></a>
+  </div>
+</section>
+
+</div>
+
+<div class="edit-bar" id="editBar">
+  <div class="eb-brand">✎ Report</div>
+  <button class="eb-btn" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn" id="ebSave" onclick="downloadHTML()" style="display:none">⬇ HTML speichern</button>
+</div>
+
+<script>
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#6b7280';
+Chart.defaults.font.size = 11;
+Chart.defaults.font.weight = '400';
+const BLUE='#3a6ef4', BLUE_SOFT='rgba(58,110,244,0.16)', BLUE_FILL='rgba(58,110,244,0.10)',
+      NAVY='#0f1b2d', GREEN='#16a34a', GREEN_SOFT='rgba(22,163,74,0.5)', RED='#dc2626',
+      RED_SOFT='rgba(220,38,38,0.18)', AMBER='#f59e0b', GREY='#9ca3af', GRID='rgba(15,27,45,0.06)';
+const months = ['Juni','Juli','August'];
+const baseOpts = { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:16, color:'#6b7280' } } } };
+const line = (c)=>({ borderColor:c, backgroundColor:c, borderWidth:2, pointRadius:4, pointBackgroundColor:c, pointBorderColor:'#fff', pointBorderWidth:2, tension:.3 });
+const $=(id)=>document.getElementById(id);
+
+const chartBuilders = {
+  uebersicht:[
+    ()=>new Chart($('chartHeroTrend'), { type:'line',
+      data:{ labels:months, datasets:[
+        { label:'ROAS', data:[1.14,0.85,0.62], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.35, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0, fill:false } ] },
+      options:{ ...baseOpts, plugins:{ legend:{display:false} }, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.5, suggestedMax:1.2, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+    ()=>new Chart($('chartOvSpendRev'), { type:'bar',
+      data:{ labels:months, datasets:[
+        { label:'Google Spend (€)', data:[32096,69793,57970], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
+        { label:'Conversion-Wert (€)', data:[36654,59078,36032], backgroundColor:BLUE, borderRadius:6 } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartOvRevenue'), { type:'bar',
+      data:{ labels:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug*'], datasets:[
+        { label:'Gesamtumsatz (€)', data:[91301,61292,116692,115734,131989,125356,178261,113103], backgroundColor:['#c7d4fd','#c7d4fd','#c7d4fd','#c7d4fd','#c7d4fd','#c7d4fd',BLUE,'rgba(58,110,244,0.35)'], borderRadius:5 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartOvCltv'), { type:'line',
+      data:{ labels:months, datasets:[
+        { label:'LTV-ROAS', data:[1.52,1.08,0.82], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.3, pointRadius:4, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.6, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+  ],
+  umsatz:[
+    ()=>new Chart($('chartRevYear'), { type:'bar',
+      data:{ labels:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug*'], datasets:[
+        { label:'Gesamtumsatz (€)', data:[91301,61292,116692,115734,131989,125356,178261,113103], backgroundColor:['#8aa8fb','#8aa8fb','#8aa8fb','#8aa8fb','#8aa8fb','#8aa8fb',BLUE,'rgba(58,110,244,0.30)'], borderRadius:6 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+  ],
+  google:[
+    ()=>new Chart($('chartGSpend'), { type:'bar',
+      data:{ labels:months, datasets:[
+        { label:'Spend (€)', data:[32096,69793,57970], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
+        { label:'Conversion-Wert (€)', data:[36654,59078,36032], backgroundColor:BLUE, borderRadius:6 } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartGEff'), { type:'bar',
+      data:{ labels:months, datasets:[
+        { label:'CPA (€)', data:[86,137,161], backgroundColor:RED_SOFT, borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
+        { label:'ROAS', data:[1.14,0.85,0.62], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+    ()=>new Chart($('chartGClicks'), { type:'bar',
+      data:{ labels:months, datasets:[
+        { label:'Klicks', data:[2364,3748,2911], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6, yAxisID:'y' },
+        { label:'Ø CPC (€)', data:[13.58,18.62,19.91], type:'line', ...line(AMBER), yAxisID:'y1' } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID} }, y1:{ position:'right', grid:{drawOnChartArea:false}, ticks:{ callback:v=>'€'+v } } } } }),
+    ()=>new Chart($('chartGConv'), { type:'bar',
+      data:{ labels:months, datasets:[
+        { label:'Conversions', data:[373,508,360], backgroundColor:[BLUE,'#6d95f7','#a9c0fb'], borderRadius:6 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID} } } } }),
+  ],
+  preis:[
+    ()=>new Chart($('chartPreSpend'), { type:'bar',
+      data:{ labels:['01.–16.08. · vor','17.–31.08. · nach'], datasets:[
+        { label:'Spend (€)', data:[34978,22993], backgroundColor:BLUE_SOFT, borderColor:BLUE, borderWidth:1, borderRadius:6 },
+        { label:'Conversion-Wert (€)', data:[20988,15044], backgroundColor:BLUE, borderRadius:6 } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartPreEff'), { type:'bar',
+      data:{ labels:['01.–16.08. · vor','17.–31.08. · nach'], datasets:[
+        { label:'Spend/Tag (€)', data:[2186,1533], backgroundColor:RED_SOFT, borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
+        { label:'ROAS', data:[0.60,0.65], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, suggestedMin:0, suggestedMax:1, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+  ],
+  terms:[
+    ()=>new Chart($('chartBurn'), { type:'bar',
+      data:{ labels:['bew. löschen lassen (0,21×)','bewertungen löschen lassen','google rezension löschen','rezensionsheld (Brand)','google rez. löschen lassen','google rez.en löschen lassen','rezensionen löschen lassen','negative bew. löschen'],
+        datasets:[{ label:'Kosten 7T (€)', data:[1217,538,481,447,313,233,124,117], backgroundColor:['rgba(220,38,38,0.75)',RED,RED,AMBER,RED,RED,RED,RED], borderRadius:5 }] },
+      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y:{ grid:{display:false}, ticks:{font:{size:9.5}} } } } }),
+    ()=>new Chart($('chartQuality'), { type:'doughnut',
+      data:{ labels:['≤0,3× ROAS (~3.460 €)','Rest (~3.534 €)'], datasets:[{ data:[3460,3534], backgroundColor:[RED,BLUE], borderColor:'#fff', borderWidth:2 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'62%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:14, color:'#6b7280' } } } } }),
+  ],
+  cltv:[
+    ()=>new Chart($('chartCltvRev'), { type:'bar',
+      data:{ labels:months, datasets:[
+        { label:'Erstumsatz (€)', data:[37605,57860,32708], backgroundColor:BLUE, borderRadius:6 },
+        { label:'Recurring (€)', data:[13713,17784,4201], backgroundColor:GREEN_SOFT, borderRadius:6 } ] },
+      options:{ ...baseOpts, scales:{ x:{ stacked:true, grid:{display:false} }, y:{ stacked:true, grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } } } } }),
+    ()=>new Chart($('chartCltvMat'), { type:'line',
+      data:{ labels:months, datasets:[
+        { label:'LTV-ROAS', data:[1.52,1.08,0.82], borderColor:BLUE, backgroundColor:BLUE_FILL, borderWidth:2.5, fill:true, tension:.3, pointRadius:5, pointBackgroundColor:BLUE, pointBorderColor:'#fff', pointBorderWidth:2 },
+        { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0 } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.6, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+  ],
+  empfehlungen:[
+    ()=>new Chart($('chartPriority'), { type:'bubble',
+      data:{ datasets:[
+        { label:'01 Verbrenner-Negatives', data:[{x:1.5,y:9.5,r:18}], backgroundColor:'rgba(220,38,38,0.55)', borderColor:RED },
+        { label:'02 Target-ROAS', data:[{x:5,y:8,r:14}], backgroundColor:'rgba(58,110,244,0.5)', borderColor:BLUE },
+        { label:'03 Brand trennen', data:[{x:4,y:6.5,r:12}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER },
+        { label:'04 Gewinner-Exacts', data:[{x:6,y:7,r:12}], backgroundColor:'rgba(58,110,244,0.4)', borderColor:BLUE },
+        { label:'05 Budget halten', data:[{x:1.5,y:5,r:10}], backgroundColor:'rgba(22,163,74,0.45)', borderColor:GREEN },
+        { label:'06 Tracking fixen', data:[{x:8,y:8.5,r:13}], backgroundColor:'rgba(156,163,175,0.5)', borderColor:GREY } ] },
+      options:{ ...baseOpts, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:9, boxHeight:9, padding:12, color:'#6b7280', font:{size:10.5} } } },
+        scales:{ x:{ title:{display:true,text:'Aufwand →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} },
+                 y:{ title:{display:true,text:'Impact →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} } } } }),
+  ],
+};
+
+const pages = ['uebersicht','umsatz','google','preis','terms','changes','cltv','empfehlungen'];
+const built = {};
+function showPage(id){
+  if(!pages.includes(id)) id = 'uebersicht';
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById('p-'+id);
+  if(el) el.classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.toggle('active', t.dataset.page===id));
+  window.scrollTo({top:0});
+  if(!built[id]){ (chartBuilders[id]||[]).forEach(fn=>{ try{ fn(); }catch(e){ console.error(e); } }); built[id]=true; }
+}
+function goto(id){ if(location.hash.slice(1)===id){ showPage(id); } else { location.hash = id; } }
+window.addEventListener('hashchange', ()=>showPage(location.hash.slice(1)));
+document.querySelectorAll('[data-page]').forEach(el=>{
+  el.addEventListener('click', e=>{ e.preventDefault(); goto(el.dataset.page); });
+});
+showPage(location.hash.slice(1) || 'uebersicht');
+
+const EDITABLE_SELECTORS=['.hero-h','.hero-sub','.hero-badge .v','.hm-title','.hm-body','.bignum','.bignum-lbl','.callout .big','.callout .small','.side-title','.side-hi .pct','.side-hi .note','.stat-num','.stat-h','.stat-desc','.kpi-tile .kv','.kpi-tile .kd','.page-h','.page-sub','.block-h','.block-sub','.hint-box','.ov-h','.ov-big','.ov-foot','.insight p','.rec-title','.rec-desc','.chng-item h4','.chng-item p','.qt','.mini-stat .n','.mini-stat .l','tbody td','.footer-date'].join(',');
+let editing=false;
+function toggleEdit(){ editing=!editing; const btn=document.getElementById('ebEdit'), save=document.getElementById('ebSave'); if(editing){document.body.classList.add('editing');document.querySelectorAll(EDITABLE_SELECTORS).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';} }
+function downloadHTML(){ const bar=document.getElementById('editBar'); const wasEditing=editing; document.body.classList.remove('editing'); document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false')); bar.style.display='none'; const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML; bar.style.display=''; if(wasEditing){document.body.classList.add('editing');document.querySelectorAll(EDITABLE_SELECTORS).forEach(el=>el.setAttribute('contenteditable','true'));} try{ const blob=new Blob([new TextEncoder().encode(html)],{type:'text/html;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='RezensionsHeld-Jun-Aug-2026.html'; document.body.appendChild(a); a.click(); document.body.removeChild(a); setTimeout(()=>URL.revokeObjectURL(url),1000); }catch(e){ alert('Download fehlgeschlagen. Bitte lokal im Browser öffnen.'); } }
+</script>
+</body>
+</html>
