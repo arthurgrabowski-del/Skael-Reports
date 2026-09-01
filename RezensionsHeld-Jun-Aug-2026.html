@@ -285,9 +285,8 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     <a class="nav-tab" data-page="umsatz" href="#umsatz">Umsatz</a>
     <a class="nav-tab" data-page="google" href="#google">Google Ads</a>
     <a class="nav-tab" data-page="struktur" href="#struktur">Struktur &amp; Setup</a>
-    <a class="nav-tab" data-page="keywords" href="#keywords">Keywords</a>
+    <a class="nav-tab" data-page="keywords" href="#keywords">Keywords &amp; Suchbegriffe</a>
     <a class="nav-tab" data-page="preis" href="#preis">Preisanpassung</a>
-    <a class="nav-tab" data-page="terms" href="#terms">Suchbegriffe</a>
     <a class="nav-tab" data-page="potenziale" href="#potenziale">Potenziale</a>
     <a class="nav-tab" data-page="changes" href="#changes">Verändert / Nicht</a>
     <a class="nav-tab" data-page="cltv" href="#cltv">CLTV</a>
@@ -816,9 +815,9 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 <!-- ══════════ 5 · KEYWORDS ══════════ -->
 <section class="page" id="p-keywords">
   <div class="page-head">
-    <div class="eyebrow">05 · Keywords · Iststand &amp; Performance</div>
-    <h1 class="page-h">Welche Keywords wir <em>gerade</em> ausspielen</h1>
-    <p class="page-sub">Das gesamte Konto läuft über <strong>vier Broad-Match-Keywords</strong> in der aktiven Ad-Group. Alle Zahlen unten sind live über Pipeboard, letzte 30 Tage, auf Keyword-Ebene gezogen. Zusätzlich liegen ~38 Exact-/Phrase-Keywords aus der alten Struktur ruhend im Konto.</p>
+    <div class="eyebrow">05 · Keywords &amp; Suchbegriffe · August 2026</div>
+    <h1 class="page-h">Welche Keywords wir haben — und was sie <em>wirklich</em> ausgelöst haben</h1>
+    <p class="page-sub">Die zentrale Seite. Für jedes der <strong>vier aktiven Keywords</strong> zeigen wir hier vollständig: <strong>welche echten Suchbegriffe</strong> es ausgelöst hat, <strong>wie viel wir dafür bezahlt haben</strong>, <strong>was pro Klick</strong>, <strong>wie viele Käufe</strong> daraus wurden, <strong>wie viel Umsatz</strong> — und daraus den <strong>ROAS</strong> (Umsatz je 1 € Werbung). Alle Zahlen sind der <strong>komplette Monat August 2026</strong>, live über Pipeboard gezogen.</p>
   </div>
 
   <div class="explain">
@@ -830,14 +829,20 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="kpi-strip">
     <div class="kpi-tile"><div class="kl">Aktive Keywords</div><div class="kv">4</div><div class="kd">alle Broad Match</div></div>
-    <div class="kpi-tile"><div class="kl">Spend 30 T (Keywords)</div><div class="kv">56.612 €</div><div class="kd">34.561 € Conv-Wert</div></div>
-    <div class="kpi-tile"><div class="kl">Keyword-ROAS gesamt</div><div class="kv">0,61×</div><div class="kd"><span class="down">unter Break-even</span></div></div>
-    <div class="kpi-tile"><div class="kl">Ruhende Keywords</div><div class="kv">~38</div><div class="kd">Exact/Phrase, abgeschaltet</div></div>
+    <div class="kpi-tile"><div class="kl">ausgelöste Suchbegriffe</div><div class="kv">387</div><div class="kd">im August real getippt</div></div>
+    <div class="kpi-tile"><div class="kl">Spend August</div><div class="kv">57.970 €</div><div class="kd">36.032 € Umsatz (Google)</div></div>
+    <div class="kpi-tile"><div class="kl">ROAS gesamt</div><div class="kv">0,62×</div><div class="kd"><span class="down">62 Cent je 1 € Spend</span></div></div>
+  </div>
+
+  <div class="explain" style="border-left-color:var(--blue)">
+    <div class="el">So liest du die vier Tabellen unten</div>
+    <p>Für jedes Keyword steht zuerst eine <strong>Kopfzeile mit den Gesamtzahlen</strong> (was das Keyword im August insgesamt gekostet und gebracht hat). Darunter die <strong>Suchbegriffe, die es tatsächlich ausgelöst hat</strong> — die teuersten zuerst. Die letzte Zeile <em>„weitere Suchbegriffe (Long Tail)"</em> fasst alle kleinen Begriffe zusammen, damit die Tabelle exakt auf die Gesamtsumme aufgeht.</p>
+    <p>Die entscheidende Spalte ist <strong>ROAS</strong>: Umsatz geteilt durch Kosten. <strong>1,0× = Werbung zahlt sich gerade selbst</strong> (ohne Gewinn). Alles darunter ist ein Zuschussgeschäft auf Erstumsatz-Basis, alles darüber verdient Geld. Rote Markierung = Verlust, grün = klarer Gewinner.</p>
   </div>
 
   <div class="chart-row">
     <div class="chart-card">
-      <div class="ct">Spend je aktivem Keyword · 30 Tage</div>
+      <div class="ct">Spend je Keyword · August 2026</div>
       <div class="chart-wrap" style="height:260px"><canvas id="chartKwCost"></canvas></div>
     </div>
     <div class="chart-card">
@@ -846,25 +851,186 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     </div>
   </div>
 
+  <div class="block-head" style="margin-top:6px"><div class="eyebrow">Überblick</div><h2 class="block-h">Die vier Keywords auf einen Blick</h2>
+  <p class="block-sub">Das ganze bezahlte Wachstum von RezensionsHeld läuft über diese vier Zeilen. „QS" = Quality Score (Googles Qualitätsnote 1–10 für das Keyword). Danach folgt jedes Keyword einzeln, mit seinen echten Suchbegriffen.</p></div>
   <div class="table-card">
     <table>
       <thead><tr>
         <th>Keyword (Broad)</th><th class="num">QS</th><th class="num">Impress.</th><th class="num">Klicks</th>
-        <th class="num">Ø CPC</th><th class="num">Spend</th><th class="num">Conv.</th><th class="num">Conv-Wert</th><th class="num">ROAS</th>
+        <th class="num">Ø CPC</th><th class="num">Kosten</th><th class="num">Käufe</th><th class="num">Umsatz</th><th class="num">ROAS</th>
       </tr></thead>
       <tbody>
-        <tr><td class="cell-name">google bewertungen löschen</td><td class="num"><span class="tag warn">6</span></td><td class="num">11.010</td><td class="num">1.165</td><td class="num">21,92 €</td><td class="num">25.538 €</td><td class="num">156</td><td class="num">16.632 €</td><td class="num"><span class="tag warn">0,65×</span></td></tr>
-        <tr><td class="cell-name">google rezension löschen</td><td class="num"><span class="tag neg">3</span></td><td class="num">12.268</td><td class="num">739</td><td class="num">17,68 €</td><td class="num">13.067 €</td><td class="num">77</td><td class="num">6.439 €</td><td class="num"><span class="tag neg">0,49×</span></td></tr>
-        <tr><td class="cell-name">bewertungen löschen</td><td class="num"><span class="tag warn">6</span></td><td class="num">3.693</td><td class="num">375</td><td class="num">24,25 €</td><td class="num">9.094 €</td><td class="num">52</td><td class="num">5.655 €</td><td class="num"><span class="tag warn">0,62×</span></td></tr>
-        <tr><td class="cell-name">negative bewertungen löschen lassen</td><td class="num"><span class="tag warn">6</span></td><td class="num">5.423</td><td class="num">547</td><td class="num">16,29 €</td><td class="num">8.913 €</td><td class="num">60</td><td class="num">5.835 €</td><td class="num"><span class="tag warn">0,65×</span></td></tr>
-        <tr class="total-row"><td class="cell-name">Summe / Ø</td><td class="num">—</td><td class="num">32.394</td><td class="num">2.826</td><td class="num">20,03 €</td><td class="num">56.612 €</td><td class="num">345</td><td class="num">34.561 €</td><td class="num">0,61×</td></tr>
+        <tr><td class="cell-name">google bewertungen löschen</td><td class="num"><span class="tag warn">6</span></td><td class="num">11.377</td><td class="num">1.205</td><td class="num">21,70 €</td><td class="num">26.146 €</td><td class="num">160</td><td class="num">17.143 €</td><td class="num"><span class="tag warn">0,66×</span></td></tr>
+        <tr><td class="cell-name">google rezension löschen</td><td class="num"><span class="tag neg">3</span></td><td class="num">12.639</td><td class="num">763</td><td class="num">17,59 €</td><td class="num">13.423 €</td><td class="num">81</td><td class="num">6.641 €</td><td class="num"><span class="tag neg">0,49×</span></td></tr>
+        <tr><td class="cell-name">bewertungen löschen</td><td class="num"><span class="tag warn">6</span></td><td class="num">3.810</td><td class="num">386</td><td class="num">24,23 €</td><td class="num">9.353 €</td><td class="num">57</td><td class="num">6.227 €</td><td class="num"><span class="tag warn">0,67×</span></td></tr>
+        <tr><td class="cell-name">negative bewertungen löschen lassen</td><td class="num"><span class="tag warn">6</span></td><td class="num">5.574</td><td class="num">557</td><td class="num">16,24 €</td><td class="num">9.048 €</td><td class="num">63</td><td class="num">6.021 €</td><td class="num"><span class="tag warn">0,67×</span></td></tr>
+        <tr class="total-row"><td class="cell-name">Summe / Ø</td><td class="num">—</td><td class="num">33.400</td><td class="num">2.911</td><td class="num">19,91 €</td><td class="num">57.970 €</td><td class="num">361</td><td class="num">36.032 €</td><td class="num">0,62×</td></tr>
       </tbody>
     </table>
   </div>
 
+  <!-- ── Keyword 1 ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Keyword 1 von 4 · Broad Match</div><h2 class="block-h">„google bewertungen löschen" <span class="tag warn">QS 6</span></h2>
+    <p class="block-sub">Das <strong>größte Keyword</strong> — fast die Hälfte des gesamten Budgets. Es findet zwar den passenden Kern-Suchbegriff, verwässert sich aber stark in „…lassen"- und Wortdreher-Varianten.</p></div>
+    <div class="kpi-strip">
+      <div class="kpi-tile"><div class="kl">Kosten</div><div class="kv">26.146 €</div><div class="kd">45 % des Kontos</div></div>
+      <div class="kpi-tile"><div class="kl">Ø pro Klick</div><div class="kv">21,70 €</div><div class="kd">1.205 Klicks</div></div>
+      <div class="kpi-tile"><div class="kl">Käufe</div><div class="kv">160</div><div class="kd">aus 11.377 Impress.</div></div>
+      <div class="kpi-tile"><div class="kl">Umsatz / ROAS</div><div class="kv">17.143 €</div><div class="kd"><span class="down">0,66× — Verlust</span></div></div>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>ausgelöster Suchbegriff</th><th class="num">Kosten</th><th class="num">Klicks</th><th class="num">Käufe</th><th class="num">Umsatz</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">google bewertungen löschen <span class="tag muted">= Keyword</span></td><td class="num">7.894 €</td><td class="num">329</td><td class="num">43,2</td><td class="num">5.345 €</td><td class="num"><span class="tag warn">0,68×</span></td></tr>
+          <tr><td class="cell-name">google bewertung löschen lassen</td><td class="num">5.648 €</td><td class="num">208</td><td class="num">37,8</td><td class="num">3.376 €</td><td class="num"><span class="tag warn">0,60×</span></td></tr>
+          <tr><td class="cell-name">google bewertung löschen <span class="cons-note">(Einzahl)</span></td><td class="num">2.332 €</td><td class="num">111</td><td class="num">10,0</td><td class="num">635 €</td><td class="num"><span class="tag neg">0,27×</span></td></tr>
+          <tr><td class="cell-name">google bewertungen löschen lassen</td><td class="num">2.259 €</td><td class="num">91</td><td class="num">14,0</td><td class="num">1.758 €</td><td class="num"><span class="tag warn">0,78×</span></td></tr>
+          <tr><td class="cell-name">bewertung löschen google <span class="cons-note">(Wortdreher)</span></td><td class="num">411 €</td><td class="num">17</td><td class="num">8,0</td><td class="num">394 €</td><td class="num"><span class="tag warn">0,96×</span></td></tr>
+          <tr><td class="cell-name">negative google bewertung löschen</td><td class="num">380 €</td><td class="num">19</td><td class="num">2,0</td><td class="num">92 €</td><td class="num"><span class="tag neg">0,24×</span></td></tr>
+          <tr><td class="cell-name">bewertungen google löschen <span class="cons-note">(Wortdreher)</span></td><td class="num">279 €</td><td class="num">8</td><td class="num">0,0</td><td class="num">0 €</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name" style="color:var(--sub)">weitere ~84 Suchbegriffe (Long Tail)</td><td class="num">6.943 €</td><td class="num">422</td><td class="num">45,0</td><td class="num">5.543 €</td><td class="num">0,80×</td></tr>
+          <tr class="total-row"><td class="cell-name">Summe Keyword 1</td><td class="num">26.146 €</td><td class="num">1.205</td><td class="num">160,1</td><td class="num">17.143 €</td><td class="num">0,66×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box amber"><span class="hl">Was hier auffällt</span>Der eigentliche Kern-Begriff „google bewertungen löschen" liegt bei 0,68× — knapp unter Break-even. Der zweitgrößte Posten ist aber schon eine <strong>„…lassen"-Variante (5.648 €)</strong>, und die <strong>Einzahl „google bewertung löschen" verbrennt 2.332 € bei nur 0,27×</strong>. Zusammen mit den Wortdrehern fließt hier viel Geld in Varianten, die kaum kaufen.</div>
+  </div>
+
+  <!-- ── Keyword 2 ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Keyword 2 von 4 · Broad Match</div><h2 class="block-h">„google rezension löschen" <span class="tag neg">QS 3</span></h2>
+    <p class="block-sub">Das <strong>Sorgenkind</strong>. Schlechtester ROAS aller vier, niedrigster Quality Score (3/10) — und mit Abstand die <strong>zersplittertste Streuung</strong>: 212 verschiedene Suchbegriffe aus einem Keyword.</p></div>
+    <div class="kpi-strip">
+      <div class="kpi-tile"><div class="kl">Kosten</div><div class="kv">13.423 €</div><div class="kd">23 % des Kontos</div></div>
+      <div class="kpi-tile"><div class="kl">Ø pro Klick</div><div class="kv">17,59 €</div><div class="kd">763 Klicks</div></div>
+      <div class="kpi-tile"><div class="kl">Käufe</div><div class="kv">81</div><div class="kd">212 versch. Begriffe</div></div>
+      <div class="kpi-tile"><div class="kl">Umsatz / ROAS</div><div class="kv">6.641 €</div><div class="kd"><span class="down">0,49× — schlechtester</span></div></div>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>ausgelöster Suchbegriff</th><th class="num">Kosten</th><th class="num">Klicks</th><th class="num">Käufe</th><th class="num">Umsatz</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">google rezension löschen <span class="tag muted">= Keyword</span></td><td class="num">2.298 €</td><td class="num">128</td><td class="num">16,0</td><td class="num">942 €</td><td class="num"><span class="tag neg">0,41×</span></td></tr>
+          <tr><td class="cell-name">google rezension löschen lassen</td><td class="num">1.625 €</td><td class="num">63</td><td class="num">5,0</td><td class="num">263 €</td><td class="num"><span class="tag neg">0,16×</span></td></tr>
+          <tr><td class="cell-name">google rezensionen löschen lassen</td><td class="num">912 €</td><td class="num">35</td><td class="num">4,5</td><td class="num">729 €</td><td class="num"><span class="tag warn">0,80×</span></td></tr>
+          <tr><td class="cell-name">google rezensionen löschen <span class="cons-note">(Mehrzahl)</span></td><td class="num">895 €</td><td class="num">43</td><td class="num">11,0</td><td class="num">918 €</td><td class="num"><span class="tag pos">1,03×</span></td></tr>
+          <tr><td class="cell-name">rezension löschen google <span class="cons-note">(Wortdreher)</span></td><td class="num">489 €</td><td class="num">20</td><td class="num">4,5</td><td class="num">422 €</td><td class="num"><span class="tag warn">0,86×</span></td></tr>
+          <tr><td class="cell-name">google bewertung entfernen lassen</td><td class="num">210 €</td><td class="num">7</td><td class="num">0,0</td><td class="num">0 €</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name">google kommentare löschen <span class="cons-note">(Thema verfehlt)</span></td><td class="num">145 €</td><td class="num">9</td><td class="num">0,0</td><td class="num">0 €</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+          <tr><td class="cell-name" style="color:var(--sub)">weitere ~205 Suchbegriffe (Long Tail)</td><td class="num">6.849 €</td><td class="num">458</td><td class="num">39,6</td><td class="num">3.367 €</td><td class="num">0,49×</td></tr>
+          <tr class="total-row"><td class="cell-name">Summe Keyword 2</td><td class="num">13.423 €</td><td class="num">763</td><td class="num">80,6</td><td class="num">6.641 €</td><td class="num">0,49×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box red"><span class="hl">Das Kernproblem dieses Keywords</span>Nur der Kern und die Mehrzahl „google rezensionen löschen" (1,03×) tragen etwas bei — der Rest zersplittert in <strong>über 200 winzige Begriffe</strong>, viele davon thematisch daneben („kommentare löschen", „entfernen lassen"). Der niedrige <strong>Quality Score 3</strong> verteuert obendrein jeden Klick und kostet Sichtbarkeit. Dieses Keyword müsste am dringendsten eng gefasst (Phrase/Exact) und von Ballast befreit werden.</div>
+  </div>
+
+  <!-- ── Keyword 3 ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Keyword 3 von 4 · Broad Match</div><h2 class="block-h">„bewertungen löschen" <span class="tag warn">QS 6</span></h2>
+    <p class="block-sub">Das <strong>engste, sauberste</strong> Keyword — nur 33 Suchbegriffe. Enthält den besten Einzelgewinner des Kontos, wird aber durch „…lassen" und die Einzahl nach unten gezogen.</p></div>
+    <div class="kpi-strip">
+      <div class="kpi-tile"><div class="kl">Kosten</div><div class="kv">9.353 €</div><div class="kd">16 % des Kontos</div></div>
+      <div class="kpi-tile"><div class="kl">Ø pro Klick</div><div class="kv">24,23 €</div><div class="kd">teuerster CPC</div></div>
+      <div class="kpi-tile"><div class="kl">Käufe</div><div class="kv">57</div><div class="kd">nur 33 Begriffe</div></div>
+      <div class="kpi-tile"><div class="kl">Umsatz / ROAS</div><div class="kv">6.227 €</div><div class="kd"><span class="down">0,67×</span></div></div>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>ausgelöster Suchbegriff</th><th class="num">Kosten</th><th class="num">Klicks</th><th class="num">Käufe</th><th class="num">Umsatz</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">bewertungen löschen lassen</td><td class="num">2.229 €</td><td class="num">64</td><td class="num">9,0</td><td class="num">876 €</td><td class="num"><span class="tag neg">0,39×</span></td></tr>
+          <tr><td class="cell-name">bewertung löschen <span class="cons-note">(Einzahl)</span></td><td class="num">1.376 €</td><td class="num">48</td><td class="num">8,5</td><td class="num">631 €</td><td class="num"><span class="tag neg">0,46×</span></td></tr>
+          <tr><td class="cell-name">bewertungen löschen <span class="tag muted">= Keyword</span></td><td class="num">923 €</td><td class="num">32</td><td class="num">5,2</td><td class="num">1.529 €</td><td class="num"><span class="tag pos">1,66×</span></td></tr>
+          <tr><td class="cell-name">rezensionen löschen</td><td class="num">605 €</td><td class="num">22</td><td class="num">3,0</td><td class="num">181 €</td><td class="num"><span class="tag neg">0,30×</span></td></tr>
+          <tr><td class="cell-name">bewertung löschen lassen</td><td class="num">443 €</td><td class="num">18</td><td class="num">3,0</td><td class="num">142 €</td><td class="num"><span class="tag neg">0,32×</span></td></tr>
+          <tr><td class="cell-name">rezension löschen <span class="cons-note">(Einzahl)</span></td><td class="num">387 €</td><td class="num">17</td><td class="num">2,0</td><td class="num">252 €</td><td class="num"><span class="tag warn">0,65×</span></td></tr>
+          <tr><td class="cell-name">bewertungsheld <span class="cons-note">(Wettbewerber)</span></td><td class="num">97 €</td><td class="num">9</td><td class="num">2,5</td><td class="num">217 €</td><td class="num"><span class="tag pos">2,24×</span></td></tr>
+          <tr><td class="cell-name" style="color:var(--sub)">weitere ~26 Suchbegriffe (Long Tail)</td><td class="num">3.293 €</td><td class="num">176</td><td class="num">23,5</td><td class="num">2.399 €</td><td class="num">0,73×</td></tr>
+          <tr class="total-row"><td class="cell-name">Summe Keyword 3</td><td class="num">9.353 €</td><td class="num">386</td><td class="num">56,7</td><td class="num">6.227 €</td><td class="num">0,67×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box blue"><span class="hl">Der versteckte Gewinner</span>Der exakte Begriff <strong>„bewertungen löschen" bringt 1,66×</strong> — einer der besten des Kontos. Aber er macht nur 10 % der Keyword-Kosten aus; der große Rest fließt in die verlustreiche Einzahl und „…lassen". Würde man diesen Gewinner <strong>als eigenes Exact-Keyword herauslösen</strong> und höher bieten, ließe sich echte Nachfrage kontrolliert abschöpfen.</div>
+  </div>
+
+  <!-- ── Keyword 4 ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Keyword 4 von 4 · Broad Match</div><h2 class="block-h">„negative bewertungen löschen lassen" <span class="tag warn">QS 6</span></h2>
+    <p class="block-sub">Der <strong>überraschendste Befund</strong>: Dieses Keyword läuft zu fast einem Drittel auf den <strong>eigenen Markennamen „rezensionsheld"</strong> — Markentraffic, der eigentlich fast gratis in einer eigenen Kampagne laufen sollte.</p></div>
+    <div class="kpi-strip">
+      <div class="kpi-tile"><div class="kl">Kosten</div><div class="kv">9.048 €</div><div class="kd">16 % des Kontos</div></div>
+      <div class="kpi-tile"><div class="kl">davon Marke</div><div class="kv">2.818 €</div><div class="kd"><span class="down">31 % = „rezensionsheld"</span></div></div>
+      <div class="kpi-tile"><div class="kl">Käufe</div><div class="kv">63</div><div class="kd">Ø CPC 16,24 €</div></div>
+      <div class="kpi-tile"><div class="kl">Umsatz / ROAS</div><div class="kv">6.021 €</div><div class="kd"><span class="down">0,67× (mit Marke geschönt)</span></div></div>
+    </div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>ausgelöster Suchbegriff</th><th class="num">Kosten</th><th class="num">Klicks</th><th class="num">Käufe</th><th class="num">Umsatz</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">rezensionsheld <span class="tag warn">eigene Marke!</span></td><td class="num">2.818 €</td><td class="num">217</td><td class="num">24,0</td><td class="num">2.089 €</td><td class="num"><span class="tag warn">0,74×</span></td></tr>
+          <tr><td class="cell-name">rezensionen löschen lassen</td><td class="num">742 €</td><td class="num">27</td><td class="num">5,5</td><td class="num">494 €</td><td class="num"><span class="tag warn">0,67×</span></td></tr>
+          <tr><td class="cell-name">negative google bewertungen löschen lassen</td><td class="num">424 €</td><td class="num">12</td><td class="num">2,0</td><td class="num">241 €</td><td class="num"><span class="tag neg">0,57×</span></td></tr>
+          <tr><td class="cell-name">negative google bewertung löschen lassen</td><td class="num">354 €</td><td class="num">10</td><td class="num">2,0</td><td class="num">152 €</td><td class="num"><span class="tag neg">0,43×</span></td></tr>
+          <tr><td class="cell-name">schlechte rezensionen löschen lassen</td><td class="num">351 €</td><td class="num">13</td><td class="num">2,5</td><td class="num">126 €</td><td class="num"><span class="tag neg">0,36×</span></td></tr>
+          <tr><td class="cell-name">rezension löschen lassen</td><td class="num">235 €</td><td class="num">8</td><td class="num">2,0</td><td class="num">142 €</td><td class="num"><span class="tag warn">0,60×</span></td></tr>
+          <tr><td class="cell-name">bewertungen entfernen de</td><td class="num">79 €</td><td class="num">3</td><td class="num">3,0</td><td class="num">451 €</td><td class="num"><span class="tag pos">5,73×</span></td></tr>
+          <tr><td class="cell-name" style="color:var(--sub)">weitere ~57 Suchbegriffe (Long Tail)</td><td class="num">4.045 €</td><td class="num">267</td><td class="num">22,0</td><td class="num">2.326 €</td><td class="num">0,58×</td></tr>
+          <tr class="total-row"><td class="cell-name">Summe Keyword 4</td><td class="num">9.048 €</td><td class="num">557</td><td class="num">63,0</td><td class="num">6.021 €</td><td class="num">0,67×</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box red"><span class="hl">Warum das wichtig ist</span>Ohne den Markennamen bleibt für die <em>eigentliche</em> Kaltakquise dieses Keywords nur <strong>6.230 € Kosten für 3.932 € Umsatz = 0,63×</strong>. Der Marken-Suchbegriff „rezensionsheld" schönt die Zahl. <strong>Marke gehört in eine eigene, sehr günstige Brand-Kampagne</strong> — dort kostet der Klick einen Bruchteil, weil niemand sonst auf deinen Namen bietet.</div>
+  </div>
+
+  <!-- ── Verbrenner / Gewinner August ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Quer über alle vier Keywords · August</div><h2 class="block-h">Die klarsten <em>Verbrenner</em> und <em>Gewinner</em></h2>
+    <p class="block-sub">Dieselben Daten, anders sortiert: links die Suchbegriffe, die Geld gekostet und (fast) nichts gebracht haben; rechts die, die deutlich Gewinn gemacht haben. Genau diese Listen sind die Vorlage für „ausschließen" bzw. „als eigenes Keyword hochziehen".</p></div>
+    <div class="twocol">
+      <div>
+        <div class="ct" style="margin-bottom:8px;color:var(--red)">Verbrenner — viel Geld, (fast) 0 Umsatz</div>
+        <div class="table-card">
+          <table>
+            <thead><tr><th>Suchbegriff</th><th class="num">Kosten</th><th class="num">Käufe</th><th class="num">ROAS</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-name">google bewertung löschen lassen</td><td class="num">5.648 €</td><td class="num">37,8</td><td class="num"><span class="tag warn">0,60×</span></td></tr>
+              <tr><td class="cell-name">google bewertung löschen <span class="cons-note">(Einzahl)</span></td><td class="num">2.332 €</td><td class="num">10,0</td><td class="num"><span class="tag neg">0,27×</span></td></tr>
+              <tr><td class="cell-name">bewertungen löschen lassen</td><td class="num">2.229 €</td><td class="num">9,0</td><td class="num"><span class="tag neg">0,39×</span></td></tr>
+              <tr><td class="cell-name">google rezension löschen lassen</td><td class="num">1.625 €</td><td class="num">5,0</td><td class="num"><span class="tag neg">0,16×</span></td></tr>
+              <tr><td class="cell-name">rezensionen löschen</td><td class="num">605 €</td><td class="num">3,0</td><td class="num"><span class="tag neg">0,30×</span></td></tr>
+              <tr><td class="cell-name">bewertungen google löschen · entfernen lassen · kommentare löschen</td><td class="num">~950 €</td><td class="num">0,0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="block-sub" style="margin-top:8px">Muster: <strong>„…lassen", Einzahl, „entfernen", Wortdreher</strong> und thematisch Verfehltes. Das ist der Beifang der Broad-Aufweitung.</p>
+      </div>
+      <div>
+        <div class="ct" style="margin-bottom:8px;color:var(--green)">Gewinner — profitabel (ROAS ≥ 1,0×)</div>
+        <div class="table-card">
+          <table>
+            <thead><tr><th>Suchbegriff</th><th class="num">Kosten</th><th class="num">Umsatz</th><th class="num">ROAS</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-name">bewertungen löschen</td><td class="num">923 €</td><td class="num">1.529 €</td><td class="num"><span class="tag pos">1,66×</span></td></tr>
+              <tr><td class="cell-name">google rezensionen löschen</td><td class="num">895 €</td><td class="num">918 €</td><td class="num"><span class="tag pos">1,03×</span></td></tr>
+              <tr><td class="cell-name">schlechte google bewertung löschen</td><td class="num">166 €</td><td class="num">299 €</td><td class="num"><span class="tag pos">1,80×</span></td></tr>
+              <tr><td class="cell-name">negative google bewertungen löschen</td><td class="num">152 €</td><td class="num">201 €</td><td class="num"><span class="tag pos">1,32×</span></td></tr>
+              <tr><td class="cell-name">bewertungen entfernen de</td><td class="num">79 €</td><td class="num">451 €</td><td class="num"><span class="tag pos">5,73×</span></td></tr>
+              <tr><td class="cell-name">google bewertungen löschen österreich</td><td class="num">6 €</td><td class="num">225 €</td><td class="num"><span class="tag pos">37×</span></td></tr>
+              <tr><td class="cell-name">remove reviews <span class="cons-note">(englisch)</span></td><td class="num">4 €</td><td class="num">294 €</td><td class="num"><span class="tag pos">74×</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="block-sub" style="margin-top:8px">Muster: <strong>klare Mehrzahl, „schlechte/negative … löschen"</strong> und ungenutzte Nischen (Österreich, Englisch) mit winzigem Spend und Top-ROAS.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="hint-box red">
     <span class="hl">Der teuerste Einzelposten</span>
-    <strong>„google rezension löschen" (Broad, Quality Score 3)</strong> zieht mit <strong>12.268 Impressionen die meisten Einblendungen aller Keywords</strong> — aber nur 0,49× ROAS bei 13.067 € Spend. Der niedrige Quality Score (3/10) ist ein doppeltes Problem: er macht die Klicks <strong>teurer</strong> und kostet gleichzeitig <strong>Sichtbarkeit</strong> (verlorener Ad-Rank-Anteil). Über die Broad-Aufweitung zieht genau dieses Keyword außerdem die 0-Conversion-Suchbegriffe „…löschen lassen" herein.
+    Das Keyword <strong>„google rezension löschen" (Quality Score 3)</strong> hat im August mit <strong>12.639 Impressionen die meisten Einblendungen</strong> geliefert — aber nur 0,49× ROAS bei 13.423 € Kosten. Der niedrige Quality Score (3/10) ist ein doppeltes Problem: er macht die Klicks <strong>teurer</strong> und kostet gleichzeitig <strong>Sichtbarkeit</strong> (verlorener Ad-Rank-Anteil). Über die Broad-Aufweitung zieht genau dieses Keyword außerdem die meisten thematisch verfehlten 0-Umsatz-Begriffe herein.
   </div>
 
   <div class="block">
@@ -997,92 +1163,14 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="pager">
     <a data-page="keywords"><span class="pk">← Zurück</span><span class="pt">Keywords</span></a>
-    <a class="next" data-page="terms"><span class="pk">Nächste Seite →</span><span class="pt">Suchbegriffe</span></a>
-  </div>
-</section>
-
-<!-- ══════════ 7 · SUCHBEGRIFFE ══════════ -->
-<section class="page" id="p-terms">
-  <div class="page-head">
-    <div class="eyebrow">07 · Suchbegriffe · letzte 7 Tage</div>
-    <h1 class="page-h">Wo das Geld verbrennt: <em>Suchbegriff-Ebene</em></h1>
-    <p class="page-sub">Live-Search-Terms-Report, letzte 7 Tage. Von <strong>6.994 € sichtbarem Suchbegriff-Spend</strong> flossen ~3.460 € (49 %) in Begriffe mit ≤ 0,3× ROAS. Das Muster: Singular-/„lassen"-Varianten konvertieren nicht, einzelne Plural-Exacts tragen den Kanal.</p>
-  </div>
-
-  <div class="explain">
-    <div class="el">Was du auf dieser Seite siehst</div>
-    <p>Das hier ist der <strong>Kassenbon der Werbung</strong>: eine Liste der echten Suchbegriffe, die Nutzer eingetippt haben, und was jeder davon gekostet und gebracht hat. Erst auf dieser Ebene wird sichtbar, <strong>wohin das Geld wirklich fließt</strong> — die Keyword-Seite zeigt nur die 4 Angeln, hier sehen wir den ganzen Fang.</p>
-    <p>Das Ergebnis ist unbequem klar: In den letzten 7 Tagen sind <strong>fast die Hälfte aller Ausgaben</strong> (~3.460 €) in Suchbegriffe geflossen, die <strong>so gut wie nichts</strong> zurückbrachten. Der größte Teil davon sind zwei erkennbare Muster — Begriffe mit dem Wort <strong>„lassen"</strong> (der Sucher will einen Dienstleister, nicht selbst machen) und die <strong>Einzahl „rezension"</strong> statt „rezensionen". Beide kosten 28–45 € pro Klick und führen fast nie zum Kauf.</p>
-    <div class="simple">💡 <b>Das Gute daran:</b> Das ist ein sauber behebbares Leck. Diese Begriffe stehen namentlich fest — man muss sie nur auf die Ausschluss-Liste setzen, dann hört die Blutung sofort auf.</div>
-  </div>
-
-  <div class="kpi-strip">
-    <div class="kpi-tile"><div class="kl">Suchbegriff-Spend 7T</div><div class="kv">6.994 €</div><div class="kd">3.600 € Conv-Wert</div></div>
-    <div class="kpi-tile"><div class="kl">bei ≤ 0,3× ROAS</div><div class="kv">3.460 €</div><div class="kd"><span class="down">49 % des Spends</span></div></div>
-    <div class="kpi-tile"><div class="kl">reine 0-Conv-Begriffe</div><div class="kv">~2.140 €</div><div class="kd"><span class="down">kein Rückfluss</span></div></div>
-    <div class="kpi-tile"><div class="kl">Top-Gewinner</div><div class="kv">9,7×</div><div class="kd"><span class="up">bewertungen löschen</span></div></div>
-  </div>
-
-  <div class="chart-row">
-    <div class="chart-card">
-      <div class="ct">Größte Verbrenner · Kosten 7 Tage (0 oder Mini-ROAS)</div>
-      <div class="chart-wrap" style="height:300px"><canvas id="chartBurn"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="ct">Spend-Qualität letzte 7 Tage</div>
-      <div class="chart-wrap" style="height:300px"><canvas id="chartQuality"></canvas></div>
-    </div>
-  </div>
-
-  <div class="block">
-    <div class="block-head"><div class="eyebrow">Verbrenner</div><h2 class="block-h">Teure Suchbegriffe <em>ohne</em> Rückfluss</h2></div>
-    <div class="table-card">
-      <table>
-        <thead><tr><th>Suchbegriff</th><th>Match</th><th class="num">Kosten 7T</th><th class="num">Ø CPC</th><th class="num">Conv.</th><th class="num">ROAS</th></tr></thead>
-        <tbody>
-          <tr><td class="cell-name">google bewertung löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">1.217 €</td><td class="num">28,31 €</td><td class="num">5</td><td class="num"><span class="tag neg">0,21×</span></td></tr>
-          <tr><td class="cell-name">bewertungen löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">538 €</td><td class="num">44,86 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-          <tr><td class="cell-name">google rezension löschen</td><td><span class="tag acc">EXACT · aktiv</span></td><td class="num">481 €</td><td class="num">20,03 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-          <tr><td class="cell-name">rezensionsheld</td><td><span class="tag warn">Brand in Cold</span></td><td class="num">447 €</td><td class="num">13,15 €</td><td class="num">3</td><td class="num"><span class="tag neg">0,34×</span></td></tr>
-          <tr><td class="cell-name">google rezension löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">313 €</td><td class="num">28,42 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-          <tr><td class="cell-name">google rezensionen löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">233 €</td><td class="num">25,93 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-          <tr><td class="cell-name">rezensionen löschen lassen</td><td><span class="tag muted">near exact</span></td><td class="num">124 €</td><td class="num">30,99 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-          <tr><td class="cell-name">negative google bewertung löschen</td><td><span class="tag muted">near exact</span></td><td class="num">117 €</td><td class="num">29,21 €</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-          <tr><td class="cell-name">+ Wettbewerber-Marken</td><td><span class="tag muted">broad</span></td><td class="num">~100 €</td><td class="num">—</td><td class="num">0</td><td class="num"><span class="tag neg">0,00×</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="block-sub" style="margin-top:12px">Wettbewerber-Marken mit Impressionen/Klicks aber 0 Conversions: reputationspartner, rufheld, reviewfame, cleverwertungen, bewertungsheld, reputack.</p>
-  </div>
-
-  <div class="block">
-    <div class="block-head"><div class="eyebrow">Gewinner</div><h2 class="block-h">Was die Broad trotzdem <em>profitabel</em> findet</h2></div>
-    <div class="table-card">
-      <table>
-        <thead><tr><th>Suchbegriff</th><th>Match</th><th class="num">Kosten 7T</th><th class="num">Conv.</th><th class="num">Conv-Wert</th><th class="num">ROAS</th></tr></thead>
-        <tbody>
-          <tr><td class="cell-name">bewertungen löschen</td><td><span class="tag acc">EXACT</span></td><td class="num">106 €</td><td class="num">1</td><td class="num">1.022 €</td><td class="num"><span class="tag pos">9,7×</span></td></tr>
-          <tr><td class="cell-name">google einträge löschen lassen</td><td><span class="tag muted">broad</span></td><td class="num">8 €</td><td class="num">1</td><td class="num">51 €</td><td class="num"><span class="tag pos">6,5×</span></td></tr>
-          <tr><td class="cell-name">google bewertungen löschen</td><td><span class="tag acc">EXACT</span></td><td class="num">1.414 €</td><td class="num">6</td><td class="num">1.116 €</td><td class="num"><span class="tag warn">0,79×</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="hint-box blue">
-      <span class="hl">Muster</span>
-      <strong>„google bewertungen löschen" (Plural-Exact)</strong> ist der Volumen-Motor — 1.414 € Spend, hält sich nahe Break-even. <strong>„bewertungen löschen" (Exact)</strong> ist der klare Gewinner mit 9,7×. Die verlustreichen Varianten sind fast alle <strong>Singular („rezension") oder „…lassen"</strong>. Genau die stehen seit Wochen als Negative-Kandidaten fest — gesetzt sind sie nicht.
-    </div>
-  </div>
-
-  <div class="pager">
-    <a data-page="preis"><span class="pk">← Zurück</span><span class="pt">Preisanpassung</span></a>
-    <a class="next" data-page="potenziale"><span class="pk">Nächste Seite →</span><span class="pt">Potenziale</span></a>
+    <a class="next" data-page="potenziale"><span class="pk">Nächste Seite →</span><span class="pt">Potenziale &amp; Hebel</span></a>
   </div>
 </section>
 
 <!-- ══════════ 8 · POTENZIALE & HEBEL ══════════ -->
 <section class="page" id="p-potenziale">
   <div class="page-head">
-    <div class="eyebrow">08 · Potenziale &amp; Hebel</div>
+    <div class="eyebrow">07 · Potenziale &amp; Hebel</div>
     <h1 class="page-h">Welche Potenziale wir <em>nutzen</em> — und welche brachliegen</h1>
     <p class="page-sub">Nicht jeder schwache ROAS ist verlorenes Geld — manches ist ungenutzter Hebel. Hier die zwei größten messbaren Potenziale live aus dem Konto: <strong>verschenkte Sichtbarkeit</strong> (Impression Share) und der <strong>Geräte-Unterschied</strong> (Desktop vs. Mobile). Beide sind konkret adressierbar, ohne die Kampagne abzuschalten.</p>
   </div>
@@ -1158,7 +1246,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
 
   <div class="pager">
-    <a data-page="terms"><span class="pk">← Zurück</span><span class="pt">Suchbegriffe</span></a>
+    <a data-page="preis"><span class="pk">← Zurück</span><span class="pt">Preisanpassung</span></a>
     <a class="next" data-page="changes"><span class="pk">Nächste Seite →</span><span class="pt">Verändert / Nicht</span></a>
   </div>
 </section>
@@ -1166,9 +1254,37 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 <!-- ══════════ 9 · VERÄNDERT / NICHT ══════════ -->
 <section class="page" id="p-changes">
   <div class="page-head">
-    <div class="eyebrow">09 · Verändert / Nicht verändert</div>
+    <div class="eyebrow">08 · Verändert / Nicht verändert</div>
     <h1 class="page-h">Was wir verändert haben — und was <em>nicht</em></h1>
-    <p class="page-sub">Der ehrliche Abgleich: Struktur wurde vereinfacht und Budget gedrosselt, aber die eigentliche Optimierung (Search-Term-Hygiene, Brand-Trennung, Gewinner-Struktur) ist seit ~2 Wochen offen.</p>
+    <p class="page-sub">Hier ist genau nachvollziehbar, <strong>was am Konto verändert wurde</strong> — Google protokolliert jede Änderung mit Datum, Bereich und Bearbeiter. Darunter der ehrliche Abgleich: was gemacht wurde und was <em>nicht</em>, plus die messbare Wirkung auf die Anzeigen, soweit sie sich sauber zuordnen lässt.</p>
+  </div>
+
+  <div class="explain">
+    <div class="el">So liest du das Änderungsprotokoll</div>
+    <p>Jedes Google-Ads-Konto führt ein <strong>Änderungsprotokoll</strong> — wie eine Historie in einem Dokument. Man sieht auf den Tag genau, wer was angefasst hat. Die Tabelle unten ist genau dieses Protokoll, gefiltert auf die <strong>relevanten</strong> Eingriffe (die vielen automatischen Kleinst-Änderungen sind zu einer Zeile zusammengefasst).</p>
+    <p><strong>Eine wichtige Einschränkung vorweg, ehrlich gesagt:</strong> Google speichert dieses Protokoll nur <strong>30 Tage</strong> rückwirkend. Wir sehen also sauber alles ab dem <strong>3. August</strong>. Die großen Umbauten davor — das Bauen der alten Exact-/Phrase-Kampagnen, deren Pausierung und der Start der einen Broad-Kampagne — liegen <strong>vor diesem Fenster</strong> und sind nicht mehr im Log abrufbar. Wo wir uns auf die Zeit davor beziehen, ist es als Einordnung gekennzeichnet, nicht als Protokoll-Fakt.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Änderungsprotokoll · 03.08.–01.09.2026 (live aus Google)</div><h2 class="block-h">Was Walter am Konto <em>tatsächlich</em> gemacht hat</h2>
+    <p class="block-sub">Chronologisch, echte Log-Einträge. „Wer/Wie" zeigt, ob eine Änderung von Hand (Weboberfläche), automatisch (Google-Empfehlung) oder über ein angebundenes Tool (API) kam.</p></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Datum</th><th>Bereich</th><th>Was genau geändert wurde</th><th>Wer / Wie</th><th>Messbarer Effekt auf die Ads</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">04.08.</td><td><span class="tag muted">Gebotsstrategie</span></td><td>Eine <strong>Google-Empfehlung automatisch übernommen</strong> (Auto-Apply war aktiv)</td><td>System</td><td>nicht isoliert messbar</td></tr>
+          <tr><td class="cell-name">04.–20.08.</td><td><span class="tag muted">Benennung</span></td><td>Kampagne mehrfach umbenannt (zuletzt „… Preisanpassung 17.8.2026")</td><td>Walter · Web</td><td>reines Label — keine Performance-Wirkung</td></tr>
+          <tr><td class="cell-name">11.08.</td><td><span class="tag acc">Budget</span></td><td>Tagesbudget angepasst</td><td>Walter · Web</td><td rowspan="2">Ø Spend/Tag <strong>2.186 € → 1.533 €</strong> (−30 %) — richtige Richtung</td></tr>
+          <tr><td class="cell-name">13.08.</td><td><span class="tag acc">Budget</span></td><td>Tagesbudget erneut gesenkt</td><td>Walter · Web</td></tr>
+          <tr><td class="cell-name">14.08.</td><td><span class="tag warn">Gebotsstrategie</span></td><td>Am <strong>Target-ROAS</strong> der „Maximize Conversion Value"-Strategie gedreht</td><td>Walter (klaschka.io) · Web</td><td rowspan="2"><strong>aktuell KEIN Target-ROAS aktiv</strong> — zweimal angefasst, per Saldo wieder aus</td></tr>
+          <tr><td class="cell-name">20.08.</td><td><span class="tag warn">Gebotsstrategie</span></td><td>Target-ROAS erneut verändert</td><td>Walter (klaschka.io) · Web</td></tr>
+          <tr><td class="cell-name">17.08.</td><td><span class="tag acc">Preis</span></td><td><strong>Preisanpassung ausgerollt</strong>, Kampagne entsprechend benannt</td><td>Walter · Web</td><td>ROAS <strong>0,60× → 0,65×</strong>, AOV leicht ↑ (siehe Seite Preisanpassung)</td></tr>
+          <tr><td class="cell-name">21.08.</td><td><span class="tag muted">Anzeige</span></td><td>Neues <strong>Anzeigen-Asset</strong> über das NXT-YOU-Tool angelegt</td><td>performance@nxtyou.de</td><td>zu jung für eine belastbare Messung</td></tr>
+          <tr><td class="cell-name">fast täglich</td><td><span class="tag neg">Ausschlüsse</span></td><td><strong>IP-Sperren + einzelne Negative-Keywords</strong> automatisiert hinzugefügt/entfernt (dutzende Einträge)</td><td>Walter · API</td><td>defensiv — aber die teuren „…lassen"-Verbrenner sind <strong>nicht</strong> darunter</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box amber"><span class="hl">Was das Protokoll verrät</span>Die Eingriffe der letzten Wochen waren fast alle <strong>Feinjustierung</strong>: Budget senken, umbenennen, IP-Sperren pflegen, am Target-ROAS drehen (der am Ende trotzdem aus ist). <strong>Kein einziger struktureller Schritt</strong> in Richtung der eigentlichen Optimierung — keine Gewinner-Ad-Group, keine Brand-Trennung, kein Ausschluss der bekannten Geldverbrenner. Das viele „Aktivsein" im Log darf nicht mit Fortschritt verwechselt werden.</div>
   </div>
 
   <div class="chng-grid">
@@ -1177,7 +1293,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
         <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h3>Verändert</h3>
       </div>
-      <div class="chng-item"><h4>Kontostruktur konsolidiert</h4><p>Die strukturierten Kampagnen <strong>PRIO_Exact_Core</strong> und <strong>Expansion_Phrase</strong> sind entfernt (REMOVED). Alles läuft jetzt über <strong>eine</strong> Kampagne „Search | Cold-Google max conv. value", eine Ad-Group, Broad Match.</p></div>
+      <div class="chng-item"><h4>Kontostruktur konsolidiert</h4><p>Die strukturierten Kampagnen <strong>PRIO_Exact_Core</strong> und <strong>Expansion_Phrase</strong> sind <strong>pausiert (nicht gelöscht)</strong> — ihre ~38 Keywords und Anzeigen liegen vollständig im Konto und sind reaktivierbar. Alles Aktive läuft über <strong>eine</strong> Kampagne, eine Ad-Group, Broad Match.</p></div>
       <div class="chng-item"><h4>Bidding auf Maximize Conversion Value</h4><p>Smart Bidding ohne Target-ROAS-Deckel. Google optimiert auf Conversion-Wert-Volumen, nicht auf Effizienzgrenze.</p></div>
       <div class="chng-item"><h4>Budget Mitte August gedrosselt</h4><p>Ø Spend/Tag von <strong>2.186 € (1.–16.8.) auf 1.533 € (17.–31.8.)</strong> gesenkt — real −30 %. Richtige Richtung.</p></div>
       <div class="chng-item"><h4>Preisanpassung 17.8.2026</h4><p>Sauber ausgerollt, ROAS marginal verbessert (0,60× → 0,65×), AOV leicht gehoben.</p></div>
@@ -1189,7 +1305,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
         <h3>Nicht verändert</h3>
       </div>
       <div class="chng-item"><h4>Negative-Hygiene für die neuen Verbrenner</h4><p>Es gibt zwar 64 Negatives, aber die aktuell teuren 0-Conversion-Begriffe („…löschen lassen", Singular-Varianten, ~2.140 €/Woche) sind <strong>nicht</strong> darunter — sie laufen seit Wochen weiter.</p></div>
-      <div class="chng-item"><h4>Brand nicht isoliert</h4><p>„rezensionsheld" läuft weiter in der Cold-Kampagne mit (447 € / 7 Tage) statt in einer eigenen günstigen Brand-Kampagne.</p></div>
+      <div class="chng-item"><h4>Brand nicht isoliert</h4><p>Der Markenname „rezensionsheld" läuft weiter mitten in der Cold-Kampagne — <strong>2.818 € im August</strong> (31 % des Keywords „negative bewertungen löschen lassen") statt in einer eigenen, sehr günstigen Brand-Kampagne.</p></div>
       <div class="chng-item"><h4>Gewinner-Exacts nicht hochgezogen</h4><p>Die fertige Exact-Struktur für Gewinner-Keywords wurde nicht reaktiviert — im Gegenteil, die strukturierten Kampagnen wurden abgeschaltet.</p></div>
       <div class="chng-item"><h4>Wettbewerber nur teilweise ausgeschlossen</h4><p>rufheld, removify, review hero, löschprofis sind negativiert — reputationspartner, reviewfame, cleverwertungen, reputack laufen aber weiter mit (0 Conversions).</p></div>
       <div class="chng-item"><h4>Gerät &amp; Quality Score nicht optimiert</h4><p>Keine Mobile-Gebotsanpassung trotz halber Conversion-Rate; QS 3 auf dem größten Keyword unangetastet.</p></div>
@@ -1212,7 +1328,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 <!-- ══════════ 7 · CLTV ══════════ -->
 <section class="page" id="p-cltv">
   <div class="page-head">
-    <div class="eyebrow">10 · Recurring · CLTV</div>
+    <div class="eyebrow">09 · Recurring · CLTV</div>
     <h1 class="page-h">Folgekäufe helfen — <em>retten den August aber nicht</em></h1>
     <p class="page-sub">RezensionsHeld ist ein Wiederkäufer-Geschäft: ein Erstauftrag knapp unter Break-even kann über Recurring aufgehen. Aber Reifezeit zählt — jüngere Kohorten haben ihren LTV noch nicht realisiert. Quelle: Production-DB (bis ~24.8.).</p>
   </div>
@@ -1261,70 +1377,182 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 <!-- ══════════ 8 · EMPFEHLUNGEN ══════════ -->
 <section class="page" id="p-empfehlungen">
   <div class="page-head">
-    <div class="eyebrow">11 · Empfehlungen</div>
-    <h1 class="page-h">Was jetzt zu tun ist <em>— priorisiert</em></h1>
-    <p class="page-sub">Konkrete, reversible Maßnahmen. Reihenfolge nach Impact ÷ Aufwand. <strong>Nichts davon wurde umgesetzt — reine Empfehlung.</strong></p>
+    <div class="eyebrow">10 · Empfehlungen</div>
+    <h1 class="page-h">Was zu tun ist <em>— vom Ist zum sauberen Soll</em></h1>
+    <p class="page-sub">Kein Maßnahmen-Zeitplan, sondern das <strong>Zielbild</strong>: Wie sieht das Konto <em>jetzt</em> aus (Ist), und wie würde man dieselbe Kampagne <strong>von Grund auf sauber</strong> aufsetzen (Soll)? Danach konkret: welche Keywords rein, welche raus, was an den Anzeigen fehlt. <strong>Nichts davon wurde umgesetzt oder verändert — reine Analyse.</strong></p>
   </div>
 
   <div class="explain">
-    <div class="el">In welcher Reihenfolge — und warum</div>
-    <p>Alle Maßnahmen unten sind <strong>umkehrbar</strong> — nichts davon zerstört Bestehendes, alles lässt sich zurückdrehen. Sie sind so sortiert, dass <strong>der größte Effekt bei kleinstem Aufwand zuerst kommt</strong>. Wer nur eine Sache macht, macht Nummer 1.</p>
-    <div class="simple" style="margin-top:8px">
-      <b>Sofort (heute, 10 Minuten):</b> Die Geldverbrenner-Suchbegriffe ausschließen → stoppt ~2.100 €/Woche.<br>
-      <b>Diese Woche:</b> Markenname trennen · Handy-Gebot senken · Gewinner in eigene Gruppe.<br>
-      <b>In 2 Wochen:</b> Effizienz-Bremse (Target-ROAS) einbauen, sobald genug neue Preisdaten da sind.<br>
-      <b>Parallel:</b> Die Tracking-Baustellen reparieren, damit Entscheidungen wieder auf sauberen Zahlen stehen.
-    </div>
-    <p style="margin-top:14px">Wichtig zur Einordnung: <strong>Nicht abschalten.</strong> Der Kanal bringt weiterhin echte Kunden, das Geschäft dahinter ist gesund. Es geht nicht ums Zudrehen, sondern ums <strong>Aufräumen</strong> — Geld von den toten Suchbegriffen zu den funktionierenden umleiten.</p>
+    <div class="el">Worum es hier geht</div>
+    <p>Das aktuelle Konto ist nicht „kaputt" — es ist <strong>zu einfach gebaut</strong>. Alles hängt an einer einzigen Broad-Kampagne, in der Gewinner und Verlierer denselben Topf teilen. Man kann nicht gezielt steuern, weil technisch nichts getrennt ist. Das Zielbild unten trennt sauber nach <strong>Absicht des Suchers</strong> und gibt jeder Gruppe eigenes Gebot, eigene Anzeige, eigenes Budget.</p>
+    <p><strong>Grundprinzip in einem Satz:</strong> Geld soll dahin fließen, wo Menschen mit klarer Kaufabsicht suchen — und weg von denen, die nur vergleichen, einen Anwalt suchen oder etwas ganz anderes meinen. Alles Weitere ist Handwerk, das genau das umsetzt.</p>
   </div>
 
-  <div class="chart-row">
-    <div class="chart-card wide">
-      <div class="ct">Prioritäts-Matrix · Impact vs. Aufwand</div>
-      <div class="chart-wrap" style="height:320px"><canvas id="chartPriority"></canvas></div>
-    </div>
-  </div>
-
+  <!-- ── IST vs SOLL ── -->
   <div class="block">
+    <div class="block-head"><div class="eyebrow">Der Kern dieser Seite</div><h2 class="block-h">Das ganze Konto: <em>Ist-Zustand</em> gegen <em>sauberes Zielbild</em></h2>
+    <p class="block-sub">Links, wie es heute läuft. Rechts, wie eine sauber aufgesetzte Kampagne aussähe. Jede Zeile ist ein konkreter Baustein.</p></div>
+    <div class="cons-grid">
+      <div class="cons-col before">
+        <div class="cch">IST · heute</div>
+        <div class="ccs">1 Kampagne · 1 Ad-Group · 4 Broad-Keywords · alles gemischt</div>
+        <div class="cons-row"><span class="cdot" style="background:var(--red)"></span><span><span class="cons-bucket">Eine Cold-Kampagne für alles</span> <span class="cons-note">— Gewinner &amp; Verbrenner im selben Budget</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--red)"></span><span><span class="cons-bucket">Nur Broad Match</span> <span class="cons-note">— 4 Keywords lösen 387 Suchbegriffe aus, kaum steuerbar</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--red)"></span><span><span class="cons-bucket">Kein Target-ROAS</span> <span class="cons-note">— „Maximize Conversion Value" kauft Klicks ohne Effizienzgrenze</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--amber)"></span><span><span class="cons-bucket">Marke läuft in Cold mit</span> <span class="cons-note">— „rezensionsheld" verbraucht 2.818 € im Cold-Budget</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--red)"></span><span><span class="cons-bucket">Verbrenner nicht ausgeschlossen</span> <span class="cons-note">— „…lassen", Einzahl, „entfernen", Wortdreher laufen weiter</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--amber)"></span><span><span class="cons-bucket">Gewinner-Exacts pausiert</span> <span class="cons-note">— fertige Struktur liegt ungenutzt daneben</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--red)"></span><span><span class="cons-bucket">Mobile ungebremst</span> <span class="cons-note">— halbe Conversion-Rate, kein Geräte-Gebot</span></span></div>
+      </div>
+      <div class="cons-mid">→</div>
+      <div class="cons-col after">
+        <div class="cch">SOLL · sauber gebaut</div>
+        <div class="ccs">2 Kampagnen · klare Ad-Groups nach Absicht · 1 geteilte Ausschluss-Liste</div>
+        <div class="cons-row"><span class="cdot" style="background:var(--amber)"></span><span><span class="cons-bucket">Kampagne A — Brand</span> <span class="cons-note">— „rezensionsheld" als Exact, Mini-Budget, schützt den Namen sehr günstig</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--green)"></span><span><span class="cons-bucket">Kampagne B / Gruppe 1 — Gewinner (Exact)</span> <span class="cons-note">— die nachweislich profitablen Begriffe, höheres Gebot</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--blue)"></span><span><span class="cons-bucket">Kampagne B / Gruppe 2 — Aufweitung (Phrase)</span> <span class="cons-note">— kontrolliert, mittleres Gebot, eng beobachtet</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--muted)"></span><span><span class="cons-bucket">Kampagne B / Gruppe 3 — Discovery (Broad)</span> <span class="cons-note">— nur zum Finden, kleines Budget, strenge Negativliste</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--red)"></span><span><span class="cons-bucket">Geteilte Ausschluss-Liste</span> <span class="cons-note">— „…lassen", „entfernen", „kommentare", Einzahl-Nieten, Wettbewerber</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--green)"></span><span><span class="cons-bucket">Target-ROAS als Deckel</span> <span class="cons-note">— nach 2 Wochen Datensammeln, Effizienzgrenze statt Blindkauf</span></span></div>
+        <div class="cons-row"><span class="cdot" style="background:var(--green)"></span><span><span class="cons-bucket">Mobile-Gebot gesenkt</span> <span class="cons-note">— −20/−30 %, bis die mobile Landingpage steht</span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BLUEPRINT ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Das Zielbild im Detail</div><h2 class="block-h">Wie man die Kampagne <em>von Grund auf sauber</em> aufbauen würde</h2>
+    <p class="block-sub">Derselbe Aktenschrank-Vergleich wie auf der Struktur-Seite — nur richtig einsortiert. Zwei Schränke (Kampagnen), klar getrennte Schubladen (Ad-Groups) nach Kaufabsicht.</p></div>
+    <div class="table-card" style="padding:18px 20px">
+      <div style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:2">
+        <div style="color:var(--navy);font-weight:600">▸ KAMPAGNE A · „Brand" &nbsp;<span style="color:var(--sub);font-weight:400">— Budget 10–20 €/Tag · Ziel: den eigenen Namen billig verteidigen</span></div>
+        <div style="padding-left:22px;color:var(--sub)">└ Ad-Group „Brand-Exact": <span style="color:var(--body)">[rezensionsheld]</span>, <span style="color:var(--body)">[rezensionsheld erfahrungen]</span>, Tippfehler-Varianten</div>
+        <div style="height:8px"></div>
+        <div style="color:var(--navy);font-weight:600">▸ KAMPAGNE B · „Cold / Generisch" &nbsp;<span style="color:var(--sub);font-weight:400">— Budget 1.200–1.500 €/Tag · Ziel: neue Kunden</span></div>
+        <div style="padding-left:22px;color:var(--green);font-weight:500">├ Gruppe 1 „Kauf-Absicht" (Exact) · höheres Gebot</div>
+        <div style="padding-left:40px;color:var(--body)">[bewertungen löschen] · [google bewertungen löschen] · [google rezensionen löschen] · [schlechte google bewertung löschen] · [negative google bewertungen löschen]</div>
+        <div style="padding-left:22px;color:var(--blue);font-weight:500">├ Gruppe 2 „Aufweitung" (Phrase) · mittleres Gebot, eng beobachtet</div>
+        <div style="padding-left:40px;color:var(--body)">"bewertung löschen" · "google bewertung entfernen" · "rezension löschen"</div>
+        <div style="padding-left:22px;color:var(--sub);font-weight:500">└ Gruppe 3 „Discovery" (Broad + Smart Bidding) · kleines Budget</div>
+        <div style="padding-left:40px;color:var(--body)">1–2 Broad-Keywords nur zum Finden neuer Begriffe → Fundstücke wandern wöchentlich in Gruppe 1/2 oder auf die Ausschluss-Liste</div>
+        <div style="height:8px"></div>
+        <div style="color:var(--red);font-weight:600">▸ GETEILTE AUSSCHLUSS-LISTE &nbsp;<span style="color:var(--sub);font-weight:400">— gilt für alle Gruppen von Kampagne B</span></div>
+        <div style="padding-left:22px;color:var(--body)">„…löschen lassen" · „…entfernen (lassen)" · „kommentare" · Einzahl-Nieten · Wettbewerber-Namen · Plattformen (ebay, trustpilot …)</div>
+      </div>
+    </div>
+    <div class="table-card" style="margin-top:16px">
+      <table>
+        <thead><tr><th>Einstellung</th><th>Ist heute</th><th>Soll (sauber)</th><th>Warum</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">Kampagnen</td><td>1 (Cold, alles gemischt)</td><td><span class="tag pos">2</span> Brand + Cold getrennt</td><td>Marke nicht aus Cold-Budget bezahlen</td></tr>
+          <tr><td class="cell-name">Ad-Groups (Cold)</td><td>1 (Broad, alles drin)</td><td><span class="tag pos">3</span> nach Kaufabsicht</td><td>Gewinner &amp; Verlierer einzeln steuerbar</td></tr>
+          <tr><td class="cell-name">Match Types</td><td>nur Broad</td><td><span class="tag pos">Exact + Phrase + 1× Broad</span></td><td>Kontrolle statt Streuung; Broad nur zum Entdecken</td></tr>
+          <tr><td class="cell-name">Gebotsstrategie</td><td>Max Conv. Value, kein Deckel</td><td>Max Conv. Value → dann <span class="tag pos">Target-ROAS</span></td><td>Effizienzgrenze gegen teure Grenz-Klicks</td></tr>
+          <tr><td class="cell-name">Negativliste</td><td>64, aber Lücken</td><td><span class="tag pos">geteilte Liste</span>, konsequent</td><td>Verbrenner &amp; Wettbewerber raus, einmal zentral</td></tr>
+          <tr><td class="cell-name">Geräte</td><td>keine Anpassung</td><td>Mobile <span class="tag pos">−20/−30 %</span></td><td>Mobile-Conversion-Rate ist nur halb so hoch</td></tr>
+          <tr><td class="cell-name">Anzeigen / Gruppe</td><td>1 RSA</td><td><span class="tag pos">2 RSA</span> mit klaren CTAs</td><td>A/B-Vergleich + stärkere Handlungsaufforderung</td></tr>
+          <tr><td class="cell-name">Netzwerk</td><td>nur Suche</td><td>nur Suche <span class="tag pos">✓ bleibt</span></td><td>bereits richtig — nicht anfassen</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── KEYWORDS REIN / RAUS / FEHLT ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Konkret · aus den echten August-Daten</div><h2 class="block-h">Welche Keywords <em>rein</em>, welche <em>raus</em> — und was <em>fehlt</em></h2>
+    <p class="block-sub">Alle drei Listen stammen direkt aus der Suchbegriff-Analyse. „Rein" = als eigenes Keyword aufnehmen und bieten. „Raus" = als Negative ausschließen. „Fehlt" = konvertiert stark, wird aber gar nicht gezielt bespielt.</p></div>
+    <div class="twocol">
+      <div class="insight" style="border-left-color:var(--green)">
+        <div class="il" style="color:var(--green)">✓ REIN — als Exact aufnehmen</div>
+        <p>Diese Suchbegriffe haben im August <strong>Gewinn gemacht</strong>, laufen aber nur zufällig über Broad:</p>
+        <ul style="margin:8px 0 0;padding-left:18px;line-height:1.9;font-size:13.5px">
+          <li><strong>bewertungen löschen</strong> — 1,66×</li>
+          <li><strong>google rezensionen löschen</strong> — 1,03×</li>
+          <li><strong>schlechte google bewertung löschen</strong> — 1,80×</li>
+          <li><strong>negative google bewertungen löschen</strong> — 1,32×</li>
+          <li><strong>bewertungen entfernen</strong> — 5,73×</li>
+          <li><strong>google bewertungen löschen</strong> — Volumen-Motor</li>
+        </ul>
+      </div>
+      <div class="insight" style="border-left-color:var(--red)">
+        <div class="il" style="color:var(--red)">✕ RAUS — als Negative ausschließen</div>
+        <p>Viel Geld, (fast) kein Umsatz — sofort auf die Ausschluss-Liste:</p>
+        <ul style="margin:8px 0 0;padding-left:18px;line-height:1.9;font-size:13.5px">
+          <li><strong>google bewertung löschen</strong> (Einzahl) — 0,27×, 2.332 €</li>
+          <li><strong>alle „…löschen lassen"</strong> (Anwalts-Suche) — als Phrase-Negative</li>
+          <li><strong>bewertung/bewertungen google löschen</strong> (Wortdreher-Nieten)</li>
+          <li><strong>„…entfernen lassen"</strong>, <strong>google kommentare löschen</strong> — 0×</li>
+          <li><strong>rezensionen löschen</strong> — 0,30×</li>
+          <li>Wettbewerber: <strong>reputack, reputationspartner, rufheld</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hint-box blue" style="margin-top:14px">
+      <span class="hl">Fehlt komplett — ungenutzte Gewinner</span>
+      Diese Suchanfragen haben bei <strong>winzigem Spend Top-ROAS</strong> gebracht, werden aber gar nicht gezielt bespielt: <strong>„google bewertungen löschen lassen kosten"</strong> (14,7× — klarer Preis-/Kaufintent), <strong>„google bewertungen löschen österreich"</strong> (37× — Region AT), <strong>„remove reviews"</strong> und <strong>„google reviews löschen"</strong> (englischsprachige Nachfrage, 3,8–74×). Eine kleine eigene Gruppe für <strong>Region + Englisch + Preis-Intent</strong> wäre reine Zusatznachfrage, die aktuell auf dem Tisch liegen bleibt.
+    </div>
+  </div>
+
+  <!-- ── ANZEIGEN / CTA ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Anzeigentext</div><h2 class="block-h">Was an den Anzeigen <em>fehlt</em>: klare Handlungsaufforderungen</h2>
+    <p class="block-sub">Die aktive Anzeige hat 15 Überschriften. Google zeigt jeweils nur 2–3 davon gleichzeitig. Problem: Fast alle sind <strong>Aussagen über Vorteile</strong> — echte Handlungsaufforderungen (CTAs), die zum Klick auffordern, sind rar.</p></div>
+    <div class="twocol">
+      <div>
+        <div class="ct" style="margin-bottom:8px">Aktive Headlines — überwiegend Aussagen, kein CTA</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">Nur Zahlung bei Erfolg</span>
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">94% Erfolgsquote</span>
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">Self-Service Tool</span>
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">Kein Anwalt. Sofort beauftragt</span>
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">Ergebnis in 24–48 Stunden</span>
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">Faire Preise. 100% digital.</span>
+          <span style="font-size:12px;background:var(--bg);border:1px solid var(--border);color:var(--sub);border-radius:8px;padding:6px 11px">Ab 24,90€ – Nur bei Erfolg</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Jetzt Standort auswählen ✓</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">In Sekunden online beauftragen ✓</span>
+        </div>
+        <p class="block-sub" style="margin-top:10px">Nur ~3 von 15 Headlines (blau) sind echte Handlungsaufforderungen — und <strong>keine ist auf Position 1 fixiert</strong>. Der Rest beschreibt Vorteile, sagt dem Nutzer aber nicht, <em>was er tun soll</em>.</p>
+      </div>
+      <div>
+        <div class="ct" style="margin-bottom:8px;color:var(--green)">Vorschlag — 3–4 klare CTAs ergänzen</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <span style="font-size:12px;background:rgba(22,163,74,0.1);color:#166534;border:1px solid rgba(22,163,74,0.3);border-radius:8px;padding:6px 11px">Jetzt kostenlos prüfen lassen</span>
+          <span style="font-size:12px;background:rgba(22,163,74,0.1);color:#166534;border:1px solid rgba(22,163,74,0.3);border-radius:8px;padding:6px 11px">In 2 Minuten starten</span>
+          <span style="font-size:12px;background:rgba(22,163,74,0.1);color:#166534;border:1px solid rgba(22,163,74,0.3);border-radius:8px;padding:6px 11px">Bewertung jetzt melden</span>
+          <span style="font-size:12px;background:rgba(22,163,74,0.1);color:#166534;border:1px solid rgba(22,163,74,0.3);border-radius:8px;padding:6px 11px">Gratis &amp; unverbindlich prüfen</span>
+        </div>
+        <p class="block-sub" style="margin-top:10px">Dazu: <strong>mindestens einen CTA auf Position 1 „pinnen"</strong>, damit er immer zuerst erscheint. Und eine <strong>zweite Anzeige (RSA)</strong> pro Gruppe zum Vergleichen — aktuell gibt es nur eine, es lässt sich also nichts gegeneinander testen.</p>
+      </div>
+    </div>
+    <div class="hint-box amber"><span class="hl">Fair eingeordnet</span>Die Anzeige ist inhaltlich stark — USPs („nur Zahlung bei Erfolg", „94 %", „ab 24,90 €") sind klar drin. Es fehlt nicht die Botschaft, sondern der <strong>Anstoß zur Handlung</strong>. Das ist eine kleine, schnelle Ergänzung mit direkter Wirkung auf die Klickrate.</div>
+  </div>
+
+  <!-- ── WEITERE STELLSCHRAUBEN ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Weitere Stellschrauben</div><h2 class="block-h">Was zusätzlich sauber gemacht gehört</h2></div>
     <div class="rec-grid">
       <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div><div class="rec-title"><span class="rec-num">01</span> Verbrenner als Exact-Negatives</div></div>
-        <p class="rec-desc">Sofort ausschließen (0 Conv, hohe Kosten): <em>google rezension löschen</em>, <em>… löschen lassen</em>, <em>google rezensionen löschen lassen</em>, <em>bewertungen löschen lassen</em>, <em>rezensionen löschen lassen</em>, <em>negative google bewertung löschen</em>. Spart ~2.100 €/Woche. Höchster Impact, minimaler Aufwand.</p>
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/></svg></div><div class="rec-title">Target-ROAS als Effizienzgrenze</div></div>
+        <p class="rec-desc">Erst 2 Wochen mit den neuen Preisen Daten sammeln, dann einen Ziel-ROAS setzen (Start z. B. 0,9–1,0×, dann schrittweise anheben). Deckelt die teuren Grenz-Klicks, die „Maximize Conversion Value" heute ungebremst einkauft.</p>
       </div>
       <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/></svg></div><div class="rec-title"><span class="rec-num">02</span> Target-ROAS einführen</div></div>
-        <p class="rec-desc">Noch kein tROAS solange die Preisdaten frisch sind (~2 Wochen sammeln), dann einen Ziel-ROAS als Effizienzgrenze setzen. Deckelt teure Grenz-Klicks, die die reine „Maximize Conversion Value"-Strategie aktuell ungebremst einkauft.</p>
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg></div><div class="rec-title">Quality Score auf QS 3 heben</div></div>
+        <p class="rec-desc">Das größte Keyword „google rezension löschen" hat nur QS 3 — das verteuert jeden Klick und kostet ~29 % Sichtbarkeit. Anzeige enger auf den Suchbegriff zuschneiden und passende Landingpage → günstigere Klicks bei mehr Impressionen, ohne mehr Budget.</p>
       </div>
       <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><div class="rec-title"><span class="rec-num">03</span> Brand aus Cold trennen</div></div>
-        <p class="rec-desc">„rezensionsheld" in eine eigene günstige Brand-Exact-Kampagne überführen, dann aus Cold ausschließen. Senkt den Brand-CPC und macht die Cold-Zahlen ehrlich (nicht durch billige Brand-Klicks geschönt).</p>
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="4"/></svg></div><div class="rec-title">Tracking-Baustellen schließen</div></div>
+        <p class="rec-desc">Unabhängig vom Kampagnen-Umbau, aber genauso wichtig: DB-Import (Stopp 24.8.), abgeschaltete Attribution und der degradierte CRM-Purchase-Upload (falsche Conversion-Action-ID) müssen wieder laufen — sonst entscheidet man auf Basis unvollständiger Zahlen.</p>
       </div>
       <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="rec-title"><span class="rec-num">04</span> Gewinner-Exacts hochziehen</div></div>
-        <p class="rec-desc">„bewertungen löschen", „google bewertungen löschen", „google einträge löschen lassen" in eine eigene, kontrolliert gebotene Ad-Group heben — statt sie in der Broad zu verstecken. Holt die profitable Nachfrage kontrolliert ab.</p>
-      </div>
-      <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="rec-title"><span class="rec-num">05</span> Budget bei 1.200–1.500 €/Tag halten</div></div>
-        <p class="rec-desc">Nicht panisch abschalten — die aktuelle Drosselung war richtig. Bei diesem Niveau halten, bis Negatives + Gewinner-Struktur greifen, dann anhand des neuen ROAS neu bewerten.</p>
-      </div>
-      <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="4"/></svg></div><div class="rec-title"><span class="rec-num">06</span> Tracking-Baustelle reparieren</div></div>
-        <p class="rec-desc">Parallel-Thema, aber genauso dringend: DB-Import (Stopp 24.8.), Attribution (aus) und CRM-Purchase-Upload (falsche Conversion-Action-ID) müssen wieder laufen — sonst triffst du Budget-Entscheidungen blind.</p>
-      </div>
-      <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div><div class="rec-title"><span class="rec-num">07</span> Mobile-Gebot senken</div></div>
-        <p class="rec-desc">Mobile bringt bei 38,8 % des Budgets nur 0,47× ROAS und halbe Conversion-Rate. Eine negative Gebotsanpassung auf Mobile (z. B. −20 bis −30 %) verschiebt Budget dorthin, wo es effizienter arbeitet — und legt offen, ob die mobile Landingpage der eigentliche Engpass ist.</p>
-      </div>
-      <div class="rec-card">
-        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg></div><div class="rec-title"><span class="rec-num">08</span> Quality Score heben</div></div>
-        <p class="rec-desc">QS 3 auf „google rezension löschen" macht das größte Keyword teuer und kostet 29 % Sichtbarkeit über schwachen Ad Rank. Anzeigenrelevanz + Landingpage-Erlebnis für diesen Suchbegriff verbessern → günstigere Klicks bei mehr Impressionen, ohne einen Cent mehr Budget.</p>
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="rec-title">Budget stabil halten, nicht abschalten</div></div>
+        <p class="rec-desc">Der Kanal bringt weiterhin echte Kunden — es geht ums Aufräumen, nicht ums Zudrehen. Budget auf 1.200–1.500 €/Tag halten, bis die saubere Struktur greift, dann anhand des neuen ROAS neu entscheiden.</p>
       </div>
     </div>
   </div>
 
   <div class="fazit">
     <div class="ql">Fazit</div>
-    <div class="qt">Das Gesamtgeschäft ist gesund — <em>178 k€ im Juli, ~934 k€ YTD</em>. Das Problem ist isoliert der Google-Kanal: von 1,14× im Juni auf 0,62× im August, mit <em>~3.460 € pro Woche</em> in fast wertlosen Suchbegriffen. Struktur wurde vereinfacht und Budget gedrosselt — aber die eigentliche Optimierung, <em>Negatives und Gewinner-Struktur</em>, ist seit zwei Wochen offen. Genau da liegt der schnellste Hebel.</div>
+    <div class="qt">Das Gesamtgeschäft ist gesund — <em>178 k€ im Juli, ~934 k€ YTD</em>. Das Problem ist isoliert der Google-Kanal: von 1,14× im Juni auf 0,62× im August. Die Ursache ist keine „kaputte" Kampagne, sondern eine <em>zu einfach gebaute</em>: alles in einem Broad-Topf, Marke im Cold-Budget, Verbrenner ungebremst, Gewinner ungenutzt daneben. Das Zielbild ist Standard-Handwerk — <em>nach Kaufabsicht trennen, Gewinner heraus­lösen, Verbrenner ausschließen, Marke isolieren, Effizienz­grenze setzen</em>. Genau da liegt der Hebel.</div>
   </div>
 
   <div class="footer">
@@ -1421,23 +1649,14 @@ const chartBuilders = {
         { label:'ROAS', data:[0.60,0.65], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
       options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, suggestedMin:0, suggestedMax:1, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
   ],
-  terms:[
-    ()=>new Chart($('chartBurn'), { type:'bar',
-      data:{ labels:['bew. löschen lassen (0,21×)','bewertungen löschen lassen','google rezension löschen','rezensionsheld (Brand)','google rez. löschen lassen','google rez.en löschen lassen','rezensionen löschen lassen','negative bew. löschen'],
-        datasets:[{ label:'Kosten 7T (€)', data:[1217,538,481,447,313,233,124,117], backgroundColor:['rgba(220,38,38,0.75)',RED,RED,AMBER,RED,RED,RED,RED], borderRadius:5 }] },
-      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y:{ grid:{display:false}, ticks:{font:{size:9.5}} } } } }),
-    ()=>new Chart($('chartQuality'), { type:'doughnut',
-      data:{ labels:['≤0,3× ROAS (~3.460 €)','Rest (~3.534 €)'], datasets:[{ data:[3460,3534], backgroundColor:[RED,BLUE], borderColor:'#fff', borderWidth:2 }] },
-      options:{ responsive:true, maintainAspectRatio:false, cutout:'62%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:14, color:'#6b7280' } } } } }),
-  ],
   keywords:[
     ()=>new Chart($('chartKwCost'), { type:'bar',
       data:{ labels:['google bewertungen löschen','google rezension löschen','bewertungen löschen','negative bew. löschen lassen'], datasets:[
-        { label:'Spend 30T (€)', data:[25538,13067,9094,8913], backgroundColor:[BLUE,'rgba(220,38,38,0.7)','#6d95f7','#6d95f7'], borderRadius:5 } ] },
+        { label:'Kosten August (€)', data:[26146,13423,9353,9048], backgroundColor:[BLUE,'rgba(220,38,38,0.7)','#6d95f7','#6d95f7'], borderRadius:5 } ] },
       options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } }, y:{ grid:{display:false}, ticks:{font:{size:10}} } } } }),
     ()=>new Chart($('chartKwRoas'), { type:'bar',
       data:{ labels:['google bew. löschen','google rez. löschen','bewertungen löschen','negative bew. lassen'], datasets:[
-        { label:'ROAS', data:[0.65,0.49,0.62,0.65], backgroundColor:['#f0a500','rgba(220,38,38,0.85)','#f0a500','#f0a500'], borderRadius:6 },
+        { label:'ROAS', data:[0.66,0.49,0.67,0.67], backgroundColor:['#f0a500','rgba(220,38,38,0.85)','#f0a500','#f0a500'], borderRadius:6 },
         { label:'Break-even', data:[1,1,1,1], type:'line', borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0, fill:false } ] },
       options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false}, ticks:{font:{size:9.5}} }, y:{ grid:{color:GRID}, suggestedMax:1.1, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
   ],
@@ -1463,24 +1682,9 @@ const chartBuilders = {
         { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0 } ] },
       options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.6, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
   ],
-  empfehlungen:[
-    ()=>new Chart($('chartPriority'), { type:'bubble',
-      data:{ datasets:[
-        { label:'01 Verbrenner-Negatives', data:[{x:1.5,y:9.5,r:18}], backgroundColor:'rgba(220,38,38,0.55)', borderColor:RED },
-        { label:'02 Target-ROAS', data:[{x:5,y:8,r:14}], backgroundColor:'rgba(58,110,244,0.5)', borderColor:BLUE },
-        { label:'03 Brand trennen', data:[{x:4,y:6.5,r:12}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER },
-        { label:'04 Gewinner-Exacts', data:[{x:6,y:7,r:12}], backgroundColor:'rgba(58,110,244,0.4)', borderColor:BLUE },
-        { label:'05 Budget halten', data:[{x:1.5,y:5,r:10}], backgroundColor:'rgba(22,163,74,0.45)', borderColor:GREEN },
-        { label:'06 Tracking fixen', data:[{x:8,y:8.5,r:13}], backgroundColor:'rgba(156,163,175,0.5)', borderColor:GREY },
-        { label:'07 Mobile-Gebot senken', data:[{x:2.5,y:7.5,r:13}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER },
-        { label:'08 Quality Score heben', data:[{x:6,y:6,r:11}], backgroundColor:'rgba(58,110,244,0.35)', borderColor:BLUE } ] },
-      options:{ ...baseOpts, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:9, boxHeight:9, padding:12, color:'#6b7280', font:{size:10.5} } } },
-        scales:{ x:{ title:{display:true,text:'Aufwand →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} },
-                 y:{ title:{display:true,text:'Impact →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} } } } }),
-  ],
 };
 
-const pages = ['uebersicht','grundlagen','umsatz','google','struktur','keywords','preis','terms','potenziale','changes','cltv','empfehlungen'];
+const pages = ['uebersicht','grundlagen','umsatz','google','struktur','keywords','preis','potenziale','changes','cltv','empfehlungen'];
 const built = {};
 function showPage(id){
   if(!pages.includes(id)) id = 'uebersicht';
