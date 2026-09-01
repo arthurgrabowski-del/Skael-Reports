@@ -233,8 +233,11 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     <a class="nav-tab active" data-page="uebersicht" href="#uebersicht">Übersicht</a>
     <a class="nav-tab" data-page="umsatz" href="#umsatz">Umsatz</a>
     <a class="nav-tab" data-page="google" href="#google">Google Ads</a>
+    <a class="nav-tab" data-page="struktur" href="#struktur">Struktur &amp; Setup</a>
+    <a class="nav-tab" data-page="keywords" href="#keywords">Keywords</a>
     <a class="nav-tab" data-page="preis" href="#preis">Preisanpassung</a>
     <a class="nav-tab" data-page="terms" href="#terms">Suchbegriffe</a>
+    <a class="nav-tab" data-page="potenziale" href="#potenziale">Potenziale</a>
     <a class="nav-tab" data-page="changes" href="#changes">Verändert / Nicht</a>
     <a class="nav-tab" data-page="cltv" href="#cltv">CLTV</a>
     <a class="nav-tab" data-page="empfehlungen" href="#empfehlungen">Empfehlungen</a>
@@ -392,9 +395,20 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
         <div class="mini-stats">
           <div class="mini-stat"><div class="n">2 → 1</div><div class="l">Kampagnen (Exact/Phrase entfernt)</div></div>
           <div class="mini-stat"><div class="n">−30 %</div><div class="l">Budget/Tag Mitte Aug</div></div>
-          <div class="mini-stat"><div class="n">0</div><div class="l">neue Negatives gesetzt</div></div>
+          <div class="mini-stat"><div class="n">64</div><div class="l">Negatives – aber nicht die Verbrenner</div></div>
         </div>
         <div class="ov-foot">Alles hängt an <strong>einer Broad-Kampagne</strong>; die Verbrenner laufen weiter.</div>
+      </div>
+
+      <div class="ov-card" data-page="struktur">
+        <div class="ov-top"><span class="ov-label">Struktur &amp; Keywords</span><span class="ov-link">Details öffnen ↗</span></div>
+        <h3 class="ov-h">Alles hängt an 4 Broad-Keywords</h3>
+        <div class="mini-stats">
+          <div class="mini-stat"><div class="n">1</div><div class="l">aktive Kampagne / Ad-Group</div></div>
+          <div class="mini-stat"><div class="n">4</div><div class="l">aktive Broad-Keywords</div></div>
+          <div class="mini-stat"><div class="n">QS 3</div><div class="l">auf dem größten Keyword</div></div>
+        </div>
+        <div class="ov-foot">Impression Share <strong>53,6 %</strong> · Mobile-ROAS <strong>0,47×</strong> — konkrete, ungenutzte Hebel.</div>
       </div>
 
       <div class="ov-card" data-page="cltv">
@@ -537,14 +551,201 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="pager">
     <a data-page="umsatz"><span class="pk">← Zurück</span><span class="pt">Umsatz</span></a>
+    <a class="next" data-page="struktur"><span class="pk">Nächste Seite →</span><span class="pt">Struktur &amp; Setup</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 4 · STRUKTUR & SETUP ══════════ -->
+<section class="page" id="p-struktur">
+  <div class="page-head">
+    <div class="eyebrow">04 · Kampagnenstruktur &amp; Setup</div>
+    <h1 class="page-h">Wie das Konto <em>wirklich</em> aufgesetzt ist</h1>
+    <p class="page-sub">Der komplette Iststand des Kontos <strong>2525117686</strong>, live gezogen: welche Kampagne läuft, mit welcher Gebotsstrategie, welchem Budget, welchen Netzwerken — und was daran gut bzw. riskant ist. Das ganze bezahlte Wachstum von RezensionsHeld hängt aktuell an <strong>einer einzigen Kampagne mit einer Ad-Group</strong>.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Aktive Kampagnen</div><div class="kv">1</div><div class="kd">2 weitere entfernt/pausiert</div></div>
+    <div class="kpi-tile"><div class="kl">Aktive Ad-Groups</div><div class="kv">1</div><div class="kd">„Cold-Google | Broad"</div></div>
+    <div class="kpi-tile"><div class="kl">Aktive Keywords</div><div class="kv">4</div><div class="kd">alle Broad Match</div></div>
+    <div class="kpi-tile"><div class="kl">Negative Keywords</div><div class="kv">64</div><div class="kd">alle auf Kampagnen-Ebene</div></div>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Kontobaum</div><h2 class="block-h">Was <em>aktiv</em> ist — und was stillgelegt wurde</h2>
+    <p class="block-sub">Ein Google-Ads-Konto ist hierarchisch: Konto → Kampagne (Budget &amp; Strategie) → Ad-Group (Keywords &amp; Anzeigen) → Keywords/Ads. So sieht der Baum aktuell aus.</p></div>
+
+    <div class="table-card" style="padding:26px 30px">
+      <div style="font-family:'DM Mono',monospace;font-size:12.5px;line-height:2.1;color:var(--body)">
+        <div style="color:var(--navy);font-weight:500">▸ Konto 2525117686 · RezensionsHeld</div>
+        <div style="padding-left:20px;border-left:2px solid var(--blue-mid);margin-left:6px">
+          <div style="margin-top:6px"><span class="tag pos">ENABLED</span> &nbsp;<strong style="font-family:Poppins">Search | Cold-Google max conv. value (Preisanpassung 17.8.2026)</strong></div>
+          <div style="padding-left:22px;color:var(--muted)">
+            <div>└ Budget <strong style="color:var(--navy)">1.500 €/Tag</strong> · Maximize Conversion Value · <span style="color:var(--red)">kein Target-ROAS</span></div>
+            <div>└ Netzwerk: <strong style="color:var(--navy)">nur Google Suche</strong> · Suchpartner AUS · Display AUS</div>
+            <div style="margin-top:4px"><span class="tag pos" style="font-size:8px">ENABLED</span> Ad-Group „Search | Cold-Google | Broad"</div>
+            <div style="padding-left:22px">└ 4 Broad-Keywords · 1 Responsive Search Ad · 64 Negatives (Kampagne)</div>
+          </div>
+          <div style="margin-top:14px"><span class="tag muted">REMOVED</span> &nbsp;<strong style="font-family:Poppins;color:var(--sub)">PRIO_Exact_Core</strong> <span style="color:var(--sub)">— strukturierte Exact-Kampagne, abgeschaltet</span></div>
+          <div style="padding-left:22px;color:var(--sub)">└ Ad-Groups USP_SelfService_Tool_v1 · PRIO_Exact_Core_Safe_v1 · CORE_Rezension_Static_v1 (~30 Exact-Keywords, ruhend)</div>
+          <div style="margin-top:10px"><span class="tag muted">REMOVED</span> &nbsp;<strong style="font-family:Poppins;color:var(--sub)">Expansion_Phrase</strong> <span style="color:var(--sub)">— Phrase-Kampagne, abgeschaltet</span></div>
+          <div style="padding-left:22px;color:var(--sub)">└ Ad-Group Expansion_Phrase_Safe_v1 (~9 Phrase-Keywords, ruhend)</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint-box amber">
+      <span class="hl">Wichtig zu verstehen</span>
+      Die alten Kampagnen <strong>PRIO_Exact_Core</strong> und <strong>Expansion_Phrase</strong> existieren noch inklusive ihrer sorgfältig gebauten Exact-/Phrase-Keywords — sie sind nur <strong>abgeschaltet</strong>. Diese Keywords tauchen in Abfragen weiter als „ENABLED" auf, liefern aber <strong>keine Impressionen</strong>, weil ihre Kampagne/Ad-Group aus ist. Das heißt: die Struktur-Arbeit ist bereits gemacht und liegt griffbereit — sie wurde bewusst zugunsten der einen Broad-Kampagne stillgelegt.
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Einstellungen</div><h2 class="block-h">Wie die aktive Kampagne <em>konfiguriert</em> ist</h2>
+    <p class="block-sub">Jede Einstellung mit Klartext-Bewertung: was sie bedeutet und ob sie für einen 40–130-€-Warenkorb sinnvoll ist.</p></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Einstellung</th><th>Aktueller Wert</th><th>Bewertung</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">Kampagnentyp</td><td>Search (Suchnetzwerk)</td><td><span class="tag pos">passend</span> reine Textanzeigen auf Suchintention</td></tr>
+          <tr><td class="cell-name">Gebotsstrategie</td><td>Maximize Conversion Value</td><td><span class="tag warn">ohne Deckel</span> optimiert auf Wert-Volumen, nicht Effizienz</td></tr>
+          <tr><td class="cell-name">Target-ROAS</td><td>nicht gesetzt</td><td><span class="tag neg">Risiko</span> teure Grenz-Klicks laufen ungebremst</td></tr>
+          <tr><td class="cell-name">Tagesbudget</td><td>1.500 €/Tag</td><td><span class="tag acc">gedrosselt</span> Mitte Aug real von ~2.190 € gesenkt</td></tr>
+          <tr><td class="cell-name">Suchnetzwerk-Partner</td><td>AUS</td><td><span class="tag pos">gut</span> keine Streuung auf Drittseiten</td></tr>
+          <tr><td class="cell-name">Displaynetzwerk</td><td>AUS</td><td><span class="tag pos">gut</span> verhindert Low-Intent-/Bot-Traffic</td></tr>
+          <tr><td class="cell-name">Ad-Group-Struktur</td><td>1 Ad-Group, Broad</td><td><span class="tag warn">flach</span> keine Trennung von Gewinnern/Verlierern</td></tr>
+          <tr><td class="cell-name">Anzeigen</td><td>1 Responsive Search Ad</td><td><span class="tag warn">dünn</span> keine A/B-Variante zum Vergleich</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Die laufende Anzeige</div><h2 class="block-h">Wie die <em>eine</em> Anzeige textlich aufgebaut ist</h2>
+    <p class="block-sub">Eine Responsive Search Ad (RSA) mischt 15 Überschriften und 4 Beschreibungen dynamisch. Alle Assets sind freigegeben. Ziel-URL: <strong>rezensionsheld.com</strong>. Die Botschaft ist klar auf die USPs zugeschnitten — „nur Zahlung bei Erfolg", „kein Anwalt", „94 % Erfolgsquote", „ab 24,90 €".</p></div>
+    <div class="twocol">
+      <div class="chart-card">
+        <div class="ct">15 Überschriften (Headlines)</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:12px">
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Negative Bewertung entfernen</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Rezension löschen</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Nur Zahlung bei Erfolg</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Kein Anwalt. Sofort beauftragt</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Self-Service Tool</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">94% Erfolgsquote</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">In Sekunden online beauftragen</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Ergebnis in 24–48 Stunden</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Fake-Bewertung? Jetzt weg.</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Sofortauftrag in unter 2 Min.</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Faire Preise. 100% digital.</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Ab 24,90€ – Nur bei Erfolg</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Bewertung weg. Ohne Anwalt</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Jetzt Standort auswählen</span>
+          <span style="font-size:12px;background:var(--blue-bg);color:#1e3a8a;border-radius:8px;padding:6px 11px">Löschung prüfen lassen</span>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="ct">4 Beschreibungen (Descriptions)</div>
+        <div style="display:flex;flex-direction:column;gap:9px;margin-top:12px">
+          <div style="font-size:12.5px;color:var(--body);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px">Standort wählen, Bewertungen markieren, absenden. Sie zahlen nur bei Löschung.</div>
+          <div style="font-size:12.5px;color:var(--body);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px">Kein Anwalt, kein Telefonat. Einfach online beauftragen. Ergebnis in 24–48h.</div>
+          <div style="font-size:12.5px;color:var(--body);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px">Käuferschutz inklusive! Zahlen Sie nur für wirklich gelöschte Bewertungen. Jetzt starten</div>
+          <div style="font-size:12.5px;color:var(--body);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px">Günstiger &amp; schneller als die Konkurrenz. Komplett online, nur Zahlung bei Erfolg.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="twocol">
+    <div class="insight" style="border-left-color:var(--green)">
+      <div class="il" style="color:var(--green)">Was am Setup gut ist</div>
+      <p>Die <strong>Netzwerk-Hygiene ist sauber</strong>: nur Google-Suche, kein Display, keine Suchpartner — genau richtig für ein intent-getriebenes Löschangebot. Die <strong>64 Negatives</strong> filtern Plattform-Fremdverkehr (ebay, trustpilot, amazon) und mehrere Wettbewerber (rufheld, removify, review hero) bereits sauber weg. Die RSA ist inhaltlich stark und voll freigegeben.</p>
+    </div>
+    <div class="insight" style="border-left-color:var(--red)">
+      <div class="il" style="color:var(--red)">Wo das Setup Geld kostet</div>
+      <p>Zwei strukturelle Schwächen: <strong>(1) Kein Target-ROAS</strong> — „Maximize Conversion Value" kauft jeden Klick, den es für wertträchtig hält, auch bei 45 € CPC. <strong>(2) Alles in einer flachen Broad-Ad-Group</strong> — Gewinner und Verbrenner teilen sich Gebot und Budget, statt getrennt steuerbar zu sein. Genau deshalb laufen die 0-Conversion-Begriffe ungebremst mit.</p>
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="google"><span class="pk">← Zurück</span><span class="pt">Google Ads</span></a>
+    <a class="next" data-page="keywords"><span class="pk">Nächste Seite →</span><span class="pt">Keywords</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 5 · KEYWORDS ══════════ -->
+<section class="page" id="p-keywords">
+  <div class="page-head">
+    <div class="eyebrow">05 · Keywords · Iststand &amp; Performance</div>
+    <h1 class="page-h">Welche Keywords wir <em>gerade</em> ausspielen</h1>
+    <p class="page-sub">Das gesamte Konto läuft über <strong>vier Broad-Match-Keywords</strong> in der aktiven Ad-Group. Alle Zahlen unten sind live über Pipeboard, letzte 30 Tage, auf Keyword-Ebene gezogen. Zusätzlich liegen ~38 Exact-/Phrase-Keywords aus der alten Struktur ruhend im Konto.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Aktive Keywords</div><div class="kv">4</div><div class="kd">alle Broad Match</div></div>
+    <div class="kpi-tile"><div class="kl">Spend 30 T (Keywords)</div><div class="kv">56.612 €</div><div class="kd">34.561 € Conv-Wert</div></div>
+    <div class="kpi-tile"><div class="kl">Keyword-ROAS gesamt</div><div class="kv">0,61×</div><div class="kd"><span class="down">unter Break-even</span></div></div>
+    <div class="kpi-tile"><div class="kl">Ruhende Keywords</div><div class="kv">~38</div><div class="kd">Exact/Phrase, abgeschaltet</div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Spend je aktivem Keyword · 30 Tage</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="chartKwCost"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">ROAS je Keyword · Break-even = 1,0×</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="chartKwRoas"></canvas></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead><tr>
+        <th>Keyword (Broad)</th><th class="num">QS</th><th class="num">Impress.</th><th class="num">Klicks</th>
+        <th class="num">Ø CPC</th><th class="num">Spend</th><th class="num">Conv.</th><th class="num">Conv-Wert</th><th class="num">ROAS</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="cell-name">google bewertungen löschen</td><td class="num"><span class="tag warn">6</span></td><td class="num">11.010</td><td class="num">1.165</td><td class="num">21,92 €</td><td class="num">25.538 €</td><td class="num">156</td><td class="num">16.632 €</td><td class="num"><span class="tag warn">0,65×</span></td></tr>
+        <tr><td class="cell-name">google rezension löschen</td><td class="num"><span class="tag neg">3</span></td><td class="num">12.268</td><td class="num">739</td><td class="num">17,68 €</td><td class="num">13.067 €</td><td class="num">77</td><td class="num">6.439 €</td><td class="num"><span class="tag neg">0,49×</span></td></tr>
+        <tr><td class="cell-name">bewertungen löschen</td><td class="num"><span class="tag warn">6</span></td><td class="num">3.693</td><td class="num">375</td><td class="num">24,25 €</td><td class="num">9.094 €</td><td class="num">52</td><td class="num">5.655 €</td><td class="num"><span class="tag warn">0,62×</span></td></tr>
+        <tr><td class="cell-name">negative bewertungen löschen lassen</td><td class="num"><span class="tag warn">6</span></td><td class="num">5.423</td><td class="num">547</td><td class="num">16,29 €</td><td class="num">8.913 €</td><td class="num">60</td><td class="num">5.835 €</td><td class="num"><span class="tag warn">0,65×</span></td></tr>
+        <tr class="total-row"><td class="cell-name">Summe / Ø</td><td class="num">—</td><td class="num">32.394</td><td class="num">2.826</td><td class="num">20,03 €</td><td class="num">56.612 €</td><td class="num">345</td><td class="num">34.561 €</td><td class="num">0,61×</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hint-box red">
+    <span class="hl">Der teuerste Einzelposten</span>
+    <strong>„google rezension löschen" (Broad, Quality Score 3)</strong> zieht mit <strong>12.268 Impressionen die meisten Einblendungen aller Keywords</strong> — aber nur 0,49× ROAS bei 13.067 € Spend. Der niedrige Quality Score (3/10) ist ein doppeltes Problem: er macht die Klicks <strong>teurer</strong> und kostet gleichzeitig <strong>Sichtbarkeit</strong> (verlorener Ad-Rank-Anteil). Über die Broad-Aufweitung zieht genau dieses Keyword außerdem die 0-Conversion-Suchbegriffe „…löschen lassen" herein.
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Zum Verständnis</div><h2 class="block-h">Warum <em>Broad Match</em> hier Fluch und Segen ist</h2></div>
+    <div class="twocol">
+      <div class="insight" style="border-left-color:var(--blue)">
+        <div class="il">Segen</div>
+        <p><strong>Broad Match</strong> öffnet ein Keyword für alle bedeutungsverwandten Suchanfragen. Dadurch findet die Kampagne auch Begriffe, die niemand explizit als Keyword angelegt hat — z. B. den Top-Gewinner <em>„bewertungen löschen" (9,7× ROAS)</em> oder <em>„google einträge löschen lassen"</em>. In Kombination mit Smart Bidding ist das ein guter <strong>Entdeckungs-Motor</strong>.</p>
+      </div>
+      <div class="insight" style="border-left-color:var(--red)">
+        <div class="il" style="color:var(--red)">Fluch</div>
+        <p>Dieselbe Aufweitung zieht ohne feste Negativ-Liste auch <strong>teure Nieten</strong> herein: Singular- und „…lassen"-Varianten, die 20–45 € pro Klick kosten und 0 Conversions bringen. Broad braucht deshalb <strong>disziplinierte Negatives</strong> als Leitplanke — und genau die ist für diese neuen Verbrenner noch nicht gesetzt.</p>
+      </div>
+    </div>
+    <div class="hint-box blue">
+      <span class="hl">Ungenutztes Potenzial</span>
+      Im Konto liegen bereits <strong>~30 Exact-Keywords</strong> (u. a. „google bewertungen löschen", „google rezensionen löschen", „schlechte google bewertung löschen") und <strong>~9 Phrase-Keywords</strong> aus der abgeschalteten Struktur. Diese müssten für eine kontrollierte Gewinner-Ad-Group <strong>nicht neu gebaut, nur reaktiviert</strong> werden — die Vorarbeit ist da.
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="struktur"><span class="pk">← Zurück</span><span class="pt">Struktur &amp; Setup</span></a>
     <a class="next" data-page="preis"><span class="pk">Nächste Seite →</span><span class="pt">Preisanpassung</span></a>
   </div>
 </section>
 
-<!-- ══════════ 4 · PREISANPASSUNG ══════════ -->
+<!-- ══════════ 6 · PREISANPASSUNG ══════════ -->
 <section class="page" id="p-preis">
   <div class="page-head">
-    <div class="eyebrow">04 · Preisanpassung · 17.08.2026</div>
+    <div class="eyebrow">06 · Preisanpassung · 17.08.2026</div>
     <h1 class="page-h">Vor / nach der Preisanpassung: <em>leicht besser, nicht gerettet</em></h1>
     <p class="page-sub">Google-Ads-Konto, Tagesdaten August gesplittet am 17.8. Parallel zur Preisanpassung wurde Mitte August auch das Tagesbudget real gesenkt — beide Effekte überlagern sich.</p>
   </div>
@@ -586,15 +787,15 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
 
   <div class="pager">
-    <a data-page="google"><span class="pk">← Zurück</span><span class="pt">Google Ads</span></a>
+    <a data-page="keywords"><span class="pk">← Zurück</span><span class="pt">Keywords</span></a>
     <a class="next" data-page="terms"><span class="pk">Nächste Seite →</span><span class="pt">Suchbegriffe</span></a>
   </div>
 </section>
 
-<!-- ══════════ 5 · SUCHBEGRIFFE ══════════ -->
+<!-- ══════════ 7 · SUCHBEGRIFFE ══════════ -->
 <section class="page" id="p-terms">
   <div class="page-head">
-    <div class="eyebrow">05 · Suchbegriffe · letzte 7 Tage</div>
+    <div class="eyebrow">07 · Suchbegriffe · letzte 7 Tage</div>
     <h1 class="page-h">Wo das Geld verbrennt: <em>Suchbegriff-Ebene</em></h1>
     <p class="page-sub">Live-Search-Terms-Report, letzte 7 Tage. Von <strong>6.994 € sichtbarem Suchbegriff-Spend</strong> flossen ~3.460 € (49 %) in Begriffe mit ≤ 0,3× ROAS. Das Muster: Singular-/„lassen"-Varianten konvertieren nicht, einzelne Plural-Exacts tragen den Kanal.</p>
   </div>
@@ -658,14 +859,91 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="pager">
     <a data-page="preis"><span class="pk">← Zurück</span><span class="pt">Preisanpassung</span></a>
+    <a class="next" data-page="potenziale"><span class="pk">Nächste Seite →</span><span class="pt">Potenziale</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 8 · POTENZIALE & HEBEL ══════════ -->
+<section class="page" id="p-potenziale">
+  <div class="page-head">
+    <div class="eyebrow">08 · Potenziale &amp; Hebel</div>
+    <h1 class="page-h">Welche Potenziale wir <em>nutzen</em> — und welche brachliegen</h1>
+    <p class="page-sub">Nicht jeder schwache ROAS ist verlorenes Geld — manches ist ungenutzter Hebel. Hier die zwei größten messbaren Potenziale live aus dem Konto: <strong>verschenkte Sichtbarkeit</strong> (Impression Share) und der <strong>Geräte-Unterschied</strong> (Desktop vs. Mobile). Beide sind konkret adressierbar, ohne die Kampagne abzuschalten.</p>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-tile"><div class="kl">Impression Share</div><div class="kv">53,6 %</div><div class="kd">nur gut die Hälfte abgeholt</div></div>
+    <div class="kpi-tile"><div class="kl">verloren: Ad Rank</div><div class="kv">29,2 %</div><div class="kd"><span class="down">Quality/Gebot</span></div></div>
+    <div class="kpi-tile"><div class="kl">verloren: Budget</div><div class="kv">17,2 %</div><div class="kd">Budget-Limit</div></div>
+    <div class="kpi-tile"><div class="kl">Oberste Position</div><div class="kv">19,7 %</div><div class="kd">absolute Top-Impressionen</div></div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="ct">Impression Share · wohin die Sichtbarkeit geht</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="chartIS"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="ct">ROAS &amp; CPA nach Gerät · 30 Tage</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="chartDevice"></canvas></div>
+    </div>
+  </div>
+
+  <div class="insight" style="border-left-color:var(--blue)">
+    <div class="il">Impression Share — was die Zahl heißt</div>
+    <p>Die Kampagne holt aktuell nur <strong>53,6 %</strong> aller möglichen Einblendungen ab. <strong>29,2 % gehen durch schlechten Ad Rank verloren</strong> (Quality Score / Gebot zu niedrig — maßgeblich getrieben vom QS-3-Keyword) und <strong>17,2 % durch das Budget-Limit</strong>. Das ist zweischneidig: Es gibt <strong>echtes Wachstumspotenzial</strong> — aber mehr Budget allein würde bei 0,6× ROAS nur schneller Geld verbrennen. Der <strong>richtige Hebel ist Ad Rank</strong>: bessere Quality Scores holen mehr Sichtbarkeit zu <em>niedrigeren</em> CPCs, statt teurer.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Geräte</div><h2 class="block-h">Der klarste ungenutzte Hebel: <em>Mobile</em></h2>
+    <p class="block-sub">Desktop und Mobile verhalten sich völlig unterschiedlich — werden aktuell aber gleich behandelt (keine Gebotsanpassung nach Gerät).</p></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Gerät</th><th class="num">Spend</th><th class="num">Anteil Spend</th><th class="num">Conv.</th><th class="num">Conv-Rate</th><th class="num">Ø CPC</th><th class="num">CPA</th><th class="num">ROAS</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">Desktop</td><td class="num">34.388 €</td><td class="num">60,7 %</td><td class="num">219</td><td class="num">15,0 %</td><td class="num">23,55 €</td><td class="num">157 €</td><td class="num"><span class="tag warn">0,70×</span></td></tr>
+          <tr><td class="cell-name">Mobile</td><td class="num">21.966 €</td><td class="num">38,8 %</td><td class="num">124</td><td class="num">9,2 %</td><td class="num">16,31 €</td><td class="num">177 €</td><td class="num"><span class="tag neg">0,47×</span></td></tr>
+          <tr><td class="cell-name">Tablet</td><td class="num">259 €</td><td class="num">0,5 %</td><td class="num">2</td><td class="num">10,5 %</td><td class="num">13,61 €</td><td class="num">129 €</td><td class="num"><span class="tag pos">0,93×</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box amber">
+      <span class="hl">Der Befund</span>
+      <strong>Mobile frisst 38,8 % des Budgets (21.966 €) bei nur 0,47× ROAS</strong> — die Mobile-Conversion-Rate (9,2 %) ist fast nur die <strong>Hälfte von Desktop (15,0 %)</strong>. Gleicher Traffic, halbe Abschlussquote. Das ist ein klassischer Fall für eine <strong>negative Gebotsanpassung auf Mobile</strong> und/oder eine bessere mobile Landingpage. Allein hier stecken grob <strong>3.000–5.000 € monatlicher Spend</strong>, der auf Desktop-Niveau deutlich effizienter arbeiten würde.
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Bilanz der Hebel</div><h2 class="block-h">Was <em>in Benutzung</em> ist — und was nicht</h2></div>
+    <div class="chng-grid">
+      <div class="chng-col done">
+        <div class="chng-head"><div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><h3>Genutzte Potenziale</h3></div>
+        <div class="chng-item"><h4>Broad + Smart Bidding als Entdeckung</h4><p>Findet nachweislich profitable Begriffe, die nicht als Keyword angelegt sind.</p></div>
+        <div class="chng-item"><h4>Saubere Netzwerk-Hygiene</h4><p>Nur Google-Suche, kein Display/Partner — kein Streuverlust.</p></div>
+        <div class="chng-item"><h4>64 Negatives gegen Fremd-/Wettbewerbstraffic</h4><p>Plattformen (ebay, trustpilot) und mehrere Konkurrenten sind ausgeschlossen.</p></div>
+        <div class="chng-item"><h4>Starke, freigegebene RSA</h4><p>USP-getriebene Anzeige mit klarer „nur bei Erfolg"-Botschaft.</p></div>
+      </div>
+      <div class="chng-col open">
+        <div class="chng-head"><div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><h3>Brachliegende Potenziale</h3></div>
+        <div class="chng-item"><h4>Ad Rank / Quality Score</h4><p>29,2 % Sichtbarkeit gehen durch schwachen Ad Rank verloren — QS 3 auf dem größten Keyword.</p></div>
+        <div class="chng-item"><h4>Geräte-Gebotsanpassung</h4><p>Mobile (0,47×) und Desktop (0,70×) werden gleich geboten — kein Mobile-Discount.</p></div>
+        <div class="chng-item"><h4>Target-ROAS als Effizienzgrenze</h4><p>Nicht gesetzt — teure Grenz-Klicks laufen ungebremst.</p></div>
+        <div class="chng-item"><h4>Ruhende Exact-/Phrase-Struktur</h4><p>~38 fertige Keywords liegen abgeschaltet im Konto, statt Gewinner kontrolliert abzuholen.</p></div>
+        <div class="chng-item"><h4>Brand-Trennung</h4><p>„rezensionsheld" läuft teuer in Cold statt in günstiger Brand-Kampagne.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="terms"><span class="pk">← Zurück</span><span class="pt">Suchbegriffe</span></a>
     <a class="next" data-page="changes"><span class="pk">Nächste Seite →</span><span class="pt">Verändert / Nicht</span></a>
   </div>
 </section>
 
-<!-- ══════════ 6 · VERÄNDERT / NICHT ══════════ -->
+<!-- ══════════ 9 · VERÄNDERT / NICHT ══════════ -->
 <section class="page" id="p-changes">
   <div class="page-head">
-    <div class="eyebrow">06 · Verändert / Nicht verändert</div>
+    <div class="eyebrow">09 · Verändert / Nicht verändert</div>
     <h1 class="page-h">Was wir verändert haben — und was <em>nicht</em></h1>
     <p class="page-sub">Der ehrliche Abgleich: Struktur wurde vereinfacht und Budget gedrosselt, aber die eigentliche Optimierung (Search-Term-Hygiene, Brand-Trennung, Gewinner-Struktur) ist seit ~2 Wochen offen.</p>
   </div>
@@ -687,22 +965,23 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
         <div class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
         <h3>Nicht verändert</h3>
       </div>
-      <div class="chng-item"><h4>Negative-Keyword-Hygiene</h4><p>Die teuren 0-Conversion-Begriffe (~2.140 €/Woche) laufen seit Wochen weiter. Keine neuen Exact-Negatives gesetzt.</p></div>
+      <div class="chng-item"><h4>Negative-Hygiene für die neuen Verbrenner</h4><p>Es gibt zwar 64 Negatives, aber die aktuell teuren 0-Conversion-Begriffe („…löschen lassen", Singular-Varianten, ~2.140 €/Woche) sind <strong>nicht</strong> darunter — sie laufen seit Wochen weiter.</p></div>
       <div class="chng-item"><h4>Brand nicht isoliert</h4><p>„rezensionsheld" läuft weiter in der Cold-Kampagne mit (447 € / 7 Tage) statt in einer eigenen günstigen Brand-Kampagne.</p></div>
-      <div class="chng-item"><h4>Gewinner-Exacts nicht hochgezogen</h4><p>Die von Walter selbst empfohlene Exact-Struktur für Gewinner-Keywords wurde nicht gebaut — im Gegenteil, die strukturierten Kampagnen wurden gelöscht.</p></div>
-      <div class="chng-item"><h4>Wettbewerber-Marken nicht ausgeschlossen</h4><p>reputationspartner, rufheld, reviewfame, cleverwertungen, bewertungsheld, reputack — laufen mit, 0 Conversions.</p></div>
+      <div class="chng-item"><h4>Gewinner-Exacts nicht hochgezogen</h4><p>Die fertige Exact-Struktur für Gewinner-Keywords wurde nicht reaktiviert — im Gegenteil, die strukturierten Kampagnen wurden abgeschaltet.</p></div>
+      <div class="chng-item"><h4>Wettbewerber nur teilweise ausgeschlossen</h4><p>rufheld, removify, review hero, löschprofis sind negativiert — reputationspartner, reviewfame, cleverwertungen, reputack laufen aber weiter mit (0 Conversions).</p></div>
+      <div class="chng-item"><h4>Gerät &amp; Quality Score nicht optimiert</h4><p>Keine Mobile-Gebotsanpassung trotz halber Conversion-Rate; QS 3 auf dem größten Keyword unangetastet.</p></div>
       <div class="chng-item"><h4>Tracking-Baustellen offen</h4><p>DB-Import-Stopp 24.8., Attribution aus, CRM-Purchase-Upload degradiert (falsch gecachte Conversion-Action-ID, EXPIRED_EVENT, 80 % GCLID-Abdeckung).</p></div>
     </div>
   </div>
 
   <div class="insight" style="border-left-color:var(--amber)">
     <div class="il" style="color:var(--amber)">Bewertung Walter — fair</div>
-    <p><strong>Gut:</strong> Budget mitten im Monat real gesenkt; die Broad findet nachweislich Gewinner-Begriffe; Preisanpassung sauber umgesetzt.</p>
+    <p><strong>Gut:</strong> Budget mitten im Monat real gesenkt; saubere Netzwerk-Hygiene (nur Suche, kein Display); 64 Negatives gegen Plattform-/Wettbewerbstraffic; die Broad findet nachweislich Gewinner-Begriffe; Preisanpassung sauber umgesetzt.</p>
     <p><strong>Kritisch:</strong> Die empfohlene Exact-/Phrase-Struktur wurde nicht gebaut, sondern abgebaut — jetzt hängt alles an einer Broad-Kampagne. Negative-Hygiene ist zu dünn, Brand nicht getrennt, CPCs (20–45 €, teils 117 €) für einen 40–130-€-AOV strukturell zu hoch ohne tROAS-Deckel. Fazit: solide Basispflege, aber die eigentliche Optimierung ist nicht passiert.</p>
   </div>
 
   <div class="pager">
-    <a data-page="terms"><span class="pk">← Zurück</span><span class="pt">Suchbegriffe</span></a>
+    <a data-page="potenziale"><span class="pk">← Zurück</span><span class="pt">Potenziale</span></a>
     <a class="next" data-page="cltv"><span class="pk">Nächste Seite →</span><span class="pt">CLTV</span></a>
   </div>
 </section>
@@ -710,7 +989,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 <!-- ══════════ 7 · CLTV ══════════ -->
 <section class="page" id="p-cltv">
   <div class="page-head">
-    <div class="eyebrow">07 · Recurring · CLTV</div>
+    <div class="eyebrow">10 · Recurring · CLTV</div>
     <h1 class="page-h">Folgekäufe helfen — <em>retten den August aber nicht</em></h1>
     <p class="page-sub">RezensionsHeld ist ein Wiederkäufer-Geschäft: ein Erstauftrag knapp unter Break-even kann über Recurring aufgehen. Aber Reifezeit zählt — jüngere Kohorten haben ihren LTV noch nicht realisiert. Quelle: Production-DB (bis ~24.8.).</p>
   </div>
@@ -759,7 +1038,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 <!-- ══════════ 8 · EMPFEHLUNGEN ══════════ -->
 <section class="page" id="p-empfehlungen">
   <div class="page-head">
-    <div class="eyebrow">08 · Empfehlungen</div>
+    <div class="eyebrow">11 · Empfehlungen</div>
     <h1 class="page-h">Was jetzt zu tun ist <em>— priorisiert</em></h1>
     <p class="page-sub">Konkrete, reversible Maßnahmen. Reihenfolge nach Impact ÷ Aufwand. <strong>Nichts davon wurde umgesetzt — reine Empfehlung.</strong></p>
   </div>
@@ -796,6 +1075,14 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
       <div class="rec-card">
         <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="4"/></svg></div><div class="rec-title"><span class="rec-num">06</span> Tracking-Baustelle reparieren</div></div>
         <p class="rec-desc">Parallel-Thema, aber genauso dringend: DB-Import (Stopp 24.8.), Attribution (aus) und CRM-Purchase-Upload (falsche Conversion-Action-ID) müssen wieder laufen — sonst triffst du Budget-Entscheidungen blind.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div><div class="rec-title"><span class="rec-num">07</span> Mobile-Gebot senken</div></div>
+        <p class="rec-desc">Mobile bringt bei 38,8 % des Budgets nur 0,47× ROAS und halbe Conversion-Rate. Eine negative Gebotsanpassung auf Mobile (z. B. −20 bis −30 %) verschiebt Budget dorthin, wo es effizienter arbeitet — und legt offen, ob die mobile Landingpage der eigentliche Engpass ist.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-top"><div class="rec-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9"/></svg></div><div class="rec-title"><span class="rec-num">08</span> Quality Score heben</div></div>
+        <p class="rec-desc">QS 3 auf „google rezension löschen" macht das größte Keyword teuer und kostet 29 % Sichtbarkeit über schwachen Ad Rank. Anzeigenrelevanz + Landingpage-Erlebnis für diesen Suchbegriff verbessern → günstigere Klicks bei mehr Impressionen, ohne einen Cent mehr Budget.</p>
       </div>
     </div>
   </div>
@@ -908,6 +1195,27 @@ const chartBuilders = {
       data:{ labels:['≤0,3× ROAS (~3.460 €)','Rest (~3.534 €)'], datasets:[{ data:[3460,3534], backgroundColor:[RED,BLUE], borderColor:'#fff', borderWidth:2 }] },
       options:{ responsive:true, maintainAspectRatio:false, cutout:'62%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:14, color:'#6b7280' } } } } }),
   ],
+  keywords:[
+    ()=>new Chart($('chartKwCost'), { type:'bar',
+      data:{ labels:['google bewertungen löschen','google rezension löschen','bewertungen löschen','negative bew. löschen lassen'], datasets:[
+        { label:'Spend 30T (€)', data:[25538,13067,9094,8913], backgroundColor:[BLUE,'rgba(220,38,38,0.7)','#6d95f7','#6d95f7'], borderRadius:5 } ] },
+      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+(v/1000)+'k' } }, y:{ grid:{display:false}, ticks:{font:{size:10}} } } } }),
+    ()=>new Chart($('chartKwRoas'), { type:'bar',
+      data:{ labels:['google bew. löschen','google rez. löschen','bewertungen löschen','negative bew. lassen'], datasets:[
+        { label:'ROAS', data:[0.65,0.49,0.62,0.65], backgroundColor:['#f0a500','rgba(220,38,38,0.85)','#f0a500','#f0a500'], borderRadius:6 },
+        { label:'Break-even', data:[1,1,1,1], type:'line', borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0, fill:false } ] },
+      options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false}, ticks:{font:{size:9.5}} }, y:{ grid:{color:GRID}, suggestedMax:1.1, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+  ],
+  potenziale:[
+    ()=>new Chart($('chartIS'), { type:'doughnut',
+      data:{ labels:['Abgeholt (53,6 %)','Verloren: Ad Rank (29,2 %)','Verloren: Budget (17,2 %)'], datasets:[{ data:[53.6,29.2,17.2], backgroundColor:[BLUE,RED,AMBER], borderColor:'#fff', borderWidth:2 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, boxHeight:10, padding:12, color:'#6b7280' } } } } }),
+    ()=>new Chart($('chartDevice'), { type:'bar',
+      data:{ labels:['Desktop','Mobile','Tablet'], datasets:[
+        { label:'CPA (€)', data:[157,177,129], backgroundColor:RED_SOFT, borderColor:RED, borderWidth:1, borderRadius:6, yAxisID:'y' },
+        { label:'ROAS', data:[0.70,0.47,0.93], type:'line', ...line(GREEN), yAxisID:'y1' } ] },
+      options:{ ...baseOpts, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y1:{ position:'right', grid:{drawOnChartArea:false}, suggestedMin:0, suggestedMax:1, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
+  ],
   cltv:[
     ()=>new Chart($('chartCltvRev'), { type:'bar',
       data:{ labels:months, datasets:[
@@ -928,14 +1236,16 @@ const chartBuilders = {
         { label:'03 Brand trennen', data:[{x:4,y:6.5,r:12}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER },
         { label:'04 Gewinner-Exacts', data:[{x:6,y:7,r:12}], backgroundColor:'rgba(58,110,244,0.4)', borderColor:BLUE },
         { label:'05 Budget halten', data:[{x:1.5,y:5,r:10}], backgroundColor:'rgba(22,163,74,0.45)', borderColor:GREEN },
-        { label:'06 Tracking fixen', data:[{x:8,y:8.5,r:13}], backgroundColor:'rgba(156,163,175,0.5)', borderColor:GREY } ] },
+        { label:'06 Tracking fixen', data:[{x:8,y:8.5,r:13}], backgroundColor:'rgba(156,163,175,0.5)', borderColor:GREY },
+        { label:'07 Mobile-Gebot senken', data:[{x:2.5,y:7.5,r:13}], backgroundColor:'rgba(245,158,11,0.5)', borderColor:AMBER },
+        { label:'08 Quality Score heben', data:[{x:6,y:6,r:11}], backgroundColor:'rgba(58,110,244,0.35)', borderColor:BLUE } ] },
       options:{ ...baseOpts, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:9, boxHeight:9, padding:12, color:'#6b7280', font:{size:10.5} } } },
         scales:{ x:{ title:{display:true,text:'Aufwand →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} },
                  y:{ title:{display:true,text:'Impact →',color:'#9ca3af',font:{size:10}}, min:0, max:10, grid:{color:GRID} } } } }),
   ],
 };
 
-const pages = ['uebersicht','umsatz','google','preis','terms','changes','cltv','empfehlungen'];
+const pages = ['uebersicht','umsatz','google','struktur','keywords','preis','terms','potenziale','changes','cltv','empfehlungen'];
 const built = {};
 function showPage(id){
   if(!pages.includes(id)) id = 'uebersicht';
