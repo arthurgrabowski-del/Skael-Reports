@@ -195,6 +195,10 @@ tbody tr.total-row td{font-weight:500;color:var(--navy);background:var(--blue-bg
 .hint-box.amber{background:var(--amber-bg);border:1px solid #f3d99a;color:#78350f;}
 .hint-box strong{font-weight:600;}
 .hint-box .hl{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:8px;display:block;}
+.hint-box code{font-family:'DM Mono',monospace;font-size:11.5px;background:rgba(15,27,45,0.06);padding:1px 6px;border-radius:5px;}
+.negchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.negchips span{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--red-bg);border:1px solid #f6c9c9;color:#7f1d1d;border-radius:7px;padding:4px 9px;}
+.negchips.amber span{background:var(--amber-bg);border-color:#f3d99a;color:#78350f;}
 .fazit{background:linear-gradient(160deg,var(--navy),#16233b);border-radius:20px;padding:46px 50px;position:relative;overflow:hidden;margin-top:24px;box-shadow:var(--shadow-lg);}
 .fazit::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 92% 90%,rgba(58,110,244,.28),transparent 42%);pointer-events:none;}
 .fazit .ql{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.16em;color:#8aa8fb;margin-bottom:20px;}
@@ -296,6 +300,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
     <a class="nav-tab" data-page="potenziale" href="#potenziale">Potenziale</a>
     <a class="nav-tab" data-page="changes" href="#changes">Verändert / Nicht</a>
     <a class="nav-tab" data-page="cltv" href="#cltv">CLTV</a>
+    <a class="nav-tab" data-page="negatives" href="#negatives">Ausschlüsse</a>
     <a class="nav-tab" data-page="empfehlungen" href="#empfehlungen">Empfehlungen</a>
   </div>
   <div class="nav-right">
@@ -1376,14 +1381,121 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
 
   <div class="pager">
     <a data-page="changes"><span class="pk">← Zurück</span><span class="pt">Verändert / Nicht</span></a>
+    <a class="next" data-page="negatives"><span class="pk">Nächste Seite →</span><span class="pt">Ausschlüsse</span></a>
+  </div>
+</section>
+
+<!-- ══════════ 10 · AUSSCHLÜSSE / NEGATIVE KEYWORDS ══════════ -->
+<section class="page" id="p-negatives">
+  <div class="page-head">
+    <div class="eyebrow">10 · Ausschlüsse · Negative Keywords</div>
+    <h1 class="page-h">Wie viel Geld läuft in <em>schlechte Suchbegriffe</em> — und was man ausschließen sollte</h1>
+    <p class="page-sub">Ausgangsfrage: „Sind 64 Ausschlüsse nicht viel zu wenig?" Kurze Antwort: Die <strong>Zahl</strong> ist nicht das Problem — <strong>welche</strong> 64 und <strong>welcher Match-Type</strong> schon. Diese Seite zerlegt alle 1.341 August-Suchbegriffe in „sauber ausschließbar" gegen „schwach, aber trotzdem wertvoll" — damit klar wird, wo Ausschlüsse wirklich helfen und wo sie nur Umsatz zerstören würden.</p>
+  </div>
+
+  <div class="explain">
+    <div class="el">In einem Satz</div>
+    <p>Ein <strong>Ausschluss (Negative Keyword)</strong> ist eine Sperre: „Für diese Suche will ich <em>nicht</em> erscheinen." Man kann eine <strong>exakte Schreibweise</strong> sperren (fängt genau ein Wort) oder eine <strong>Wortgruppe</strong> (fängt jede Suche, die diese Wörter enthält — viel mächtiger). Die aktuellen 64 sind fast alle exakt — sie fangen deshalb je nur eine einzige Schreibweise, während die Varianten weiterlaufen.</p>
+  </div>
+
+  <!-- ── Wie viel ist schlecht? ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Die ehrliche Aufteilung · August 2026</div><h2 class="block-h">Von 46.335 € sichtbarem Spend: <em>wo</em> steckt das schlechte Geld?</h2>
+    <p class="block-sub">Wichtig: „schlecht" heißt nicht automatisch „ausschließen". Ein Großteil des schwachen Spends steckt in <strong>euren eigenen Kern-Begriffen</strong>, die zwar Umsatz bringen, aber zu wenig. Die kann man nicht wegsperren — nur besser aufstellen.</p></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Segment</th><th class="num">Begriffe</th><th class="num">Kosten/Mon</th><th class="num">Umsatz</th><th>Richtige Maßnahme</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">Klarer Müll — 0 Conv, thematisch daneben</td><td class="num">~340</td><td class="num">~900 €</td><td class="num">0 €</td><td><span class="tag pos">Ausschließen</span> → Liste unten</td></tr>
+          <tr><td class="cell-name">Kern-Begriffe, die schwach konvertieren</td><td class="num">20</td><td class="num"><strong>~13.800 €</strong></td><td class="num">4.666 €</td><td><span class="tag neg">NICHT ausschließen</span> → Struktur &amp; Gebote</td></tr>
+          <tr><td class="cell-name">Long-Tail — 0 Conv, je Cent-Beträge</td><td class="num">~925</td><td class="num">~4.200 €</td><td class="num">0 €</td><td><span class="tag warn">Automatisch</span> über Phrase/Exact-Struktur</td></tr>
+          <tr class="total-row"><td class="cell-name">„Schlecht" gesamt</td><td class="num">~1.285</td><td class="num">~18.900 €</td><td class="num">4.666 €</td><td>nur ~900 € davon <em>sauber</em> negativierbar</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box amber" style="margin-top:14px">
+      <span class="hl">Der wichtigste Denkfehler, den man hier vermeiden muss</span>
+      Es sieht so aus, als lägen <strong>~18.900 €</strong> im Müll — aber davon sind nur <strong>~900 €/Monat sauber ausschließbar</strong>. Die großen <strong>~13.800 €</strong> stecken in Begriffen wie „google bewertung löschen" oder „…löschen lassen", die <em>echten Umsatz</em> bringen (nur zu wenig pro Euro). Sperrt man die weg, ist auch der Umsatz weg. Negatives sind <strong>Hygiene (~900 €), kein Umsatzhebel</strong> — der echte Hebel ist die Match-Type-Struktur aus den Empfehlungen.
+    </div>
+  </div>
+
+  <!-- ── Kategorien-Chart ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Der Müll, aufgeschlüsselt</div><h2 class="block-h">Die ~900 € sauber ausschließbarer Spend — nach <em>Kategorie</em></h2>
+    <p class="block-sub">Alle Begriffe mit 0 Conversions, gruppiert danach, <em>warum</em> sie nicht passen. Jede Gruppe wird unten zu einer fertigen Ausschluss-Liste.</p></div>
+    <div class="chart-card"><canvas id="chNegCat" height="128"></canvas></div>
+    <div class="table-card" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Kategorie</th><th class="num">Begriffe</th><th class="num">Kosten</th><th>Was das ist</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">Off-Intent / Ratgeber</td><td class="num">72</td><td class="num">501 €</td><td>„wie kann man …", „kommentare löschen", „standort" — sucht Info, kein Kauf</td></tr>
+          <tr><td class="cell-name">Englisch</td><td class="num">230</td><td class="num">246 €</td><td>„delete google reviews", „reputation management" — falsches Land/Sprache</td></tr>
+          <tr><td class="cell-name">Wettbewerber</td><td class="num">10</td><td class="num">103 €</td><td>reputack, reputationspartner, rufheld — fremde Marken</td></tr>
+          <tr><td class="cell-name">Fremdplattform</td><td class="num">15</td><td class="num">40 €</td><td>„google maps …", „play store" — anderer Kanal</td></tr>
+          <tr><td class="cell-name">Sonstige Nieten (0 Conv)</td><td class="num">~13</td><td class="num">~200 €</td><td>„löschdienst", „bewertung raus de", Bot-Suchen</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Fertige Listen ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Fertig zum Reinkopieren · reiner Vorschlag</div><h2 class="block-h">Die konkreten Ausschluss-Listen</h2>
+    <p class="block-sub">Zwei Sorten: <strong>Wortgruppen-Ausschlüsse</strong> fangen ganze Muster auf einmal (mächtig, wenige nötig). <strong>Exakte Ausschlüsse</strong> sperren einzelne Marken/Nieten punktgenau. <strong>Nichts davon wurde am Konto gesetzt.</strong></p></div>
+    <div class="twocol">
+      <div class="insight" style="border-left-color:var(--red)">
+        <div class="il" style="color:var(--red)">Wortgruppe — fängt ganze Muster</div>
+        <div class="negchips">
+          <span>"kommentar"</span><span>"kommentare"</span><span>"delete"</span><span>"reviews"</span><span>"reputation management"</span><span>"reputationsmanagement"</span><span>"wie kann man"</span><span>"kann man"</span><span>"anleitung"</span><span>"kostenlos"</span><span>"gratis"</span><span>"selber löschen"</span><span>"selbst löschen"</span><span>"google standort"</span><span>"google konto"</span><span>"positive bewertung"</span><span>"gute bewertung"</span><span>"5 sterne"</span><span>"bewertung schreiben"</span><span>"bewertung kaufen"</span><span>"google maps"</span><span>"play store"</span><span>"app store"</span>
+        </div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--sub)">Belegt: „kommentar" 205 € · englisch ~250 € · „wie/kann man" ~350 € — alle <strong>0 € Umsatz</strong>.</p>
+      </div>
+      <div class="insight" style="border-left-color:var(--amber)">
+        <div class="il" style="color:#b45309">Exakt — Wettbewerber &amp; Einzel-Nieten</div>
+        <div class="negchips amber">
+          <span>[reputack]</span><span>[reputationspartner]</span><span>[rufheld]</span><span>[rufheld erfahrungen]</span><span>[cleverwertungen]</span><span>[reviewfame]</span><span>[reviewhero]</span><span>[removify]</span><span>[removego]</span><span>[netreputation]</span><span>[reputation guard]</span><span>[gdelete]</span><span>[minc]</span><span>[google kommentare löschen]</span><span>[google standort löschen]</span><span>[löschdienst]</span><span>[bewertung raus de]</span><span>[kostenlose google bewertung]</span><span>[1 star review bot]</span>
+        </div>
+        <p style="margin-top:10px;font-size:12.5px;color:var(--sub)">Wettbewerber-Marken + konkrete 0-Conv-Nieten aus dem August.</p>
+      </div>
+    </div>
+    <div class="hint-box blue" style="margin-top:14px">
+      <span class="hl">Die vollständige Liste zum Reinkopieren</span>
+      Alle vier Listen (inkl. Watch-Liste) liegen als separates Dokument bei: <strong>RezensionsHeld-Negative-Keywords-Aug2026.md</strong> — mit Einbau-Anleitung Schritt für Schritt.
+    </div>
+  </div>
+
+  <!-- ── Watch-Liste ── -->
+  <div class="block">
+    <div class="block-head"><div class="eyebrow">Genauso wichtig: die Falle</div><h2 class="block-h">Was man <em>auf keinen Fall</em> ausschließen darf</h2>
+    <p class="block-sub">Diese Muster sehen „teuer &amp; schwach" aus — aber sie tragen echten Umsatz. Ein Wortgruppen-Ausschluss auf eines dieser Wörter würde zahlende Kunden mitsperren.</p></div>
+    <div class="table-card">
+      <table>
+        <thead><tr><th>Muster</th><th class="num">Kosten Aug</th><th class="num">Umsatz Aug</th><th class="num">ROAS</th><th>Warum behalten</th></tr></thead>
+        <tbody>
+          <tr><td class="cell-name">„…löschen <em>lassen</em>" (108 Begriffe)</td><td class="num">18.799 €</td><td class="num">10.318 €</td><td class="num"><span class="tag warn">0,55×</span></td><td>Service-Sucher, konvertieren real</td></tr>
+          <tr><td class="cell-name">„…<em>entfernen</em> (lassen)"</td><td class="num">1.980 €</td><td class="num">1.399 €</td><td class="num"><span class="tag warn">0,71×</span></td><td>trägt Umsatz</td></tr>
+          <tr><td class="cell-name">„…<em>kosten</em>"</td><td class="num">371 €</td><td class="num">708 €</td><td class="num"><span class="tag pos">1,91×</span></td><td><strong>Gewinner</strong> — ausbauen</td></tr>
+          <tr><td class="cell-name">„…<em>österreich</em>"</td><td class="num">6 €</td><td class="num">225 €</td><td class="num"><span class="tag pos">37×</span></td><td><strong>Gewinner</strong> — eigene AT-Gruppe</td></tr>
+          <tr><td class="cell-name">google bewertung löschen <span style="color:var(--sub)">(Einzahl)</span></td><td class="num">2.334 €</td><td class="num">635 €</td><td class="num"><span class="tag neg">0,27×</span></td><td>Kern-Keyword → Gebot senken, nicht sperren</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hint-box red" style="margin-top:14px">
+      <span class="hl">Merksatz</span>
+      Wortgruppen-Ausschlüsse wie <code>"lassen"</code>, <code>"entfernen"</code>, <code>"kosten"</code>, <code>"erfahrungen"</code>, <code>"österreich"</code> <strong>niemals</strong> blind setzen — jede dieser Wortgruppen enthält zahlenden Umsatz. Genau hier trennt sich sauberes Konto-Handwerk von „einfach alles Teure ausschalten".
+    </div>
+  </div>
+
+  <div class="pager">
+    <a data-page="cltv"><span class="pk">← Zurück</span><span class="pt">CLTV</span></a>
     <a class="next" data-page="empfehlungen"><span class="pk">Nächste Seite →</span><span class="pt">Empfehlungen</span></a>
   </div>
 </section>
 
-<!-- ══════════ 8 · EMPFEHLUNGEN ══════════ -->
+<!-- ══════════ 11 · EMPFEHLUNGEN ══════════ -->
 <section class="page" id="p-empfehlungen">
   <div class="page-head">
-    <div class="eyebrow">10 · Empfehlungen</div>
+    <div class="eyebrow">11 · Empfehlungen</div>
     <h1 class="page-h">Was zu tun ist <em>— vom Ist zum sauberen Soll</em></h1>
     <p class="page-sub">Kein Maßnahmen-Zeitplan, sondern das <strong>Zielbild</strong>: Wie sieht das Konto <em>jetzt</em> aus (Ist), und wie würde man dieselbe Kampagne <strong>von Grund auf sauber</strong> aufsetzen (Soll)? Danach konkret: welche Keywords rein, welche raus, was an den Anzeigen fehlt. <strong>Nichts davon wurde umgesetzt oder verändert — reine Analyse.</strong></p>
   </div>
@@ -1568,7 +1680,7 @@ body.editing [contenteditable="true"]:focus{outline:1.5px solid var(--blue);outl
   </div>
 
   <div class="pager">
-    <a data-page="cltv"><span class="pk">← Zurück</span><span class="pt">CLTV</span></a>
+    <a data-page="negatives"><span class="pk">← Zurück</span><span class="pt">Ausschlüsse</span></a>
     <a class="next" data-page="uebersicht"><span class="pk">Zum Anfang →</span><span class="pt">Übersicht</span></a>
   </div>
 </section>
@@ -1688,9 +1800,15 @@ const chartBuilders = {
         { label:'Break-even', data:[1,1,1], borderColor:GREY, borderWidth:1.5, borderDash:[5,4], pointRadius:0 } ] },
       options:{ ...baseOpts, plugins:{legend:{display:false}}, scales:{ x:{ grid:{display:false} }, y:{ grid:{color:GRID}, suggestedMin:0.6, ticks:{ callback:v=>v.toFixed(1).replace('.',',')+'×' } } } } }),
   ],
+  negatives:[
+    ()=>new Chart($('chNegCat'), { type:'bar',
+      data:{ labels:['Off-Intent / Ratgeber','Englisch','Wettbewerber','Fremdplattform','Sonstige Nieten'], datasets:[
+        { label:'Kosten August (€)', data:[501,246,103,40,200], backgroundColor:[RED,'rgba(220,38,38,0.75)','#e07a5f','#f0a500','#c9ada7'], borderRadius:5 } ] },
+      options:{ ...baseOpts, indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{ grid:{color:GRID}, ticks:{ callback:v=>'€'+v } }, y:{ grid:{display:false}, ticks:{font:{size:11}} } } } }),
+  ],
 };
 
-const pages = ['uebersicht','grundlagen','umsatz','google','struktur','keywords','preis','potenziale','changes','cltv','empfehlungen'];
+const pages = ['uebersicht','grundlagen','umsatz','google','struktur','keywords','preis','potenziale','changes','cltv','negatives','empfehlungen'];
 const built = {};
 function showPage(id){
   if(!pages.includes(id)) id = 'uebersicht';
