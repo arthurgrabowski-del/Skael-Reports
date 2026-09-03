@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report, Maloum · Rückblick & Neustart (Feb–Aug 2026)</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report, Maloum · Rückblick & Neustart (Feb–Aug 2026)">
+<meta property="og:description" content="Meta Ads · Story · DACH · 7-Monats-Rückblick · Übergang & Neustart · Backend-verifiziert">
+<meta property="og:url" content="https://reports.skael.de/Maloum-Feb-Aug-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:       #fbfcfd;
+  --white:    #ffffff;
+  --border:   #e4e6ec;
+  --border2:  #d0d3de;
+  --navy:     #0f1b2d;
+  --blue:     #3a6ef4;
+  --blue-bg:  #eef2ff;
+  --blue-mid: #c7d4fd;
+  --muted:    #6b7280;
+  --sub:      #9ca3af;
+  --body:     #374151;
+  --green:    #16a34a; --green-bg: #dcfce7; --green-dot: #22c55e;
+  --yellow:   #b45309; --yellow-bg: #fef3c7; --yellow-dot: #f59e0b;
+  --red:      #dc2626; --red-bg:   #fee2e2; --red-dot:   #ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);opacity:0;animation:fadeIn 0.5s ease forwards;}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all 0.15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-tab.active{color:#fff;background:var(--navy);font-weight:500;}
+.nav-right{margin-left:auto;}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;}
+
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.hero{padding:72px 0 64px;scroll-margin-top:58px;}
+.section{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+.section-gray{padding:72px 0;background:var(--bg);scroll-margin-top:58px;}
+
+.h-hero{font-family:'Poppins',sans-serif;font-size:60px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:42px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:32px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.card-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:12px;}
+
+.meta-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px 7px 10px;margin-bottom:24px;opacity:0;animation:fadeIn 0.5s ease 0.15s forwards;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform 0.2s,box-shadow 0.2s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-card.hi{border:1px solid var(--blue-mid);background:#fafbff;}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,0.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,0.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,0.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}
+.sl.y{color:var(--yellow);}
+.sl.r{color:var(--red);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:20px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+.insight-text strong{color:var(--navy);font-weight:500;}
+
+.funnel-grid{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.funnel-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.funnel-row{display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:14px;margin-bottom:16px;}
+.funnel-lbl{font-size:13px;font-weight:500;color:var(--navy);}
+.funnel-track{height:38px;background:#f3f5f9;border-radius:6px;overflow:hidden;}
+.funnel-fill{height:100%;width:0;border-radius:6px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.funnel-right{display:flex;align-items:center;gap:8px;min-width:170px;justify-content:flex-end;}
+.funnel-val{font-family:'Poppins',sans-serif;font-size:15px;font-weight:500;color:var(--navy);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}
+.tag.y{background:var(--yellow-bg);color:var(--yellow);}
+.tag.r{background:var(--red-bg);color:var(--red);}
+.tag.b{background:var(--blue-bg);color:var(--blue);}
+.einordnung-lbl{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);margin-bottom:6px;}
+.einordnung-text{font-size:13px;color:var(--muted);line-height:1.6;}
+.einordnung-text strong{color:var(--navy);font-weight:500;}
+
+.side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.side-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.side-row:last-child{border-bottom:none;}
+.side-row-lbl{font-size:12px;color:var(--muted);}
+.side-row-val{font-size:13px;font-weight:500;color:var(--navy);}
+.side-row-val.green{color:var(--green);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border-color:#fca5a5;}
+.hint-box.red p{color:var(--red);}
+
+.kamp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;}
+.kamp-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+.kamp-card.star{border:1px solid #86efac;background:#f8fff9;}
+.kamp-card.warn{border:1px solid #fcd34d;background:#fffbf2;}
+.kamp-card.crit{border:1px solid #fca5a5;background:#fff8f8;}
+.kamp-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;line-height:1.35;}
+.kamp-sub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:10px;}
+.kamp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);}
+.kamp-row:last-child{border-bottom:none;}
+.kamp-lbl{font-size:11.5px;color:var(--muted);}
+.kamp-val{font-size:12px;font-weight:500;color:var(--navy);}
+.kamp-val.green{color:var(--green);}
+.kamp-val.red{color:var(--red);}
+.kamp-val.big{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;}
+
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 24px 20px;}
+.chart-card canvas{max-height:220px;}
+
+.table-wrap{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);padding:12px 16px;text-align:right;border-bottom:1px solid var(--border);}
+thead th:first-child{text-align:left;}
+tbody td{font-size:13px;color:var(--body);padding:11px 16px;border-bottom:1px solid var(--border);text-align:right;}
+tbody td:first-child{text-align:left;font-weight:500;color:var(--navy);}
+tbody tr:last-child td{border-bottom:none;background:#f0f4ff;}
+tbody tr:hover td{background:#f8f9ff;}
+tbody tr:last-child:hover td{background:#e6edff;}
+.cell-sub{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--sub);margin-top:3px;letter-spacing:0.04em;text-transform:uppercase;display:block;font-weight:400;}
+.roas-strong{color:var(--green);font-weight:600;}
+.roas-mid{color:var(--yellow);font-weight:600;}
+.roas-bad{color:var(--red);font-weight:600;}
+
+.insight-list-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;}
+.ii{padding:16px 0;border-bottom:1px solid var(--border);}
+.ii:last-child{border-bottom:none;padding-bottom:0;}
+.ii:first-child{padding-top:0;}
+.ii-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px;justify-content:space-between;}
+.ii-hdr-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
+.ii-arrow{color:var(--blue);font-size:14px;font-weight:700;}
+.ii-name{font-size:13.5px;font-weight:500;color:var(--navy);}
+.ii-metrics{display:flex;gap:18px;align-items:baseline;}
+.ii-metric{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.ii-metric-val{font-family:'Poppins',sans-serif;font-size:16px;font-weight:500;color:var(--navy);}
+.ii-metric-val.green{color:var(--green);}
+.ii-metric-val.red{color:var(--red);}
+.ii-metric-lbl{font-family:'DM Mono',monospace;font-size:8.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.ii-desc{font-size:12.5px;color:var(--muted);line-height:1.6;padding-left:24px;}
+.ii-desc strong{color:var(--navy);font-weight:500;}
+
+.prio-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.prio-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 26px;transition:transform 0.2s,box-shadow 0.2s;}
+.prio-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.prio-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:12px;}
+.prio-num{font-family:'Poppins',sans-serif;font-size:32px;font-weight:500;line-height:1;color:var(--blue);}
+.prio-title-text{font-size:14px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.4;}
+.prio-desc{font-size:13px;color:var(--body);line-height:1.65;}
+.prio-desc strong{color:var(--navy);font-weight:500;}
+
+.fazit-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:32px 36px;}
+.fazit-heading{font-family:'Poppins',sans-serif;font-size:22px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin-bottom:12px;line-height:1.3;}
+.fazit-heading span{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.fazit-text{font-size:14px;color:var(--body);line-height:1.75;}
+.fazit-text strong{color:var(--navy);font-weight:500;}
+
+.footer{padding:32px 0 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);}
+.footer-brand{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);}
+.footer-brand span{color:var(--blue);}
+.footer-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--sub);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.h-hero{opacity:0;animation:fadeUp 0.8s cubic-bezier(.22,.68,0,1.1) 0.2s forwards;}
+.kpi-r1 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.65s forwards;}
+.kpi-r1 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.73s forwards;}
+.kpi-r1 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.81s forwards;}
+.kpi-r1 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.89s forwards;}
+.kpi-r2 .kpi-card:nth-child(1){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 0.97s forwards;}
+.kpi-r2 .kpi-card:nth-child(2){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.05s forwards;}
+.kpi-r2 .kpi-card:nth-child(3){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.13s forwards;}
+.kpi-r2 .kpi-card:nth-child(4){opacity:0;animation:fadeUp 0.6s cubic-bezier(.22,.68,0,1.2) 1.21s forwards;}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;white-space:nowrap;}
+.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
+.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
+.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
+.eb-edit:hover{background:rgba(255,255,255,0.2);}
+.eb-edit.on{background:var(--blue);color:#fff;}
+.eb-save{background:#fff;color:var(--navy);display:none;}
+.eb-save:hover{background:#eef2ff;}
+.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
+body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
+body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);}
+
+@media(max-width:960px){
+  .container{padding:0 16px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .funnel-grid,.chart-row,.prio-grid,.kamp-grid{grid-template-columns:1fr;}
+  .h-hero{font-size:36px;}
+  .h-section{font-size:30px;}
+  .hero,.section,.section-gray{padding:48px 0;}
+  .funnel-row{grid-template-columns:140px 1fr auto;}
+  .nav-tabs{display:none;}
+  .ii-metrics{flex-wrap:wrap;gap:10px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo-text">Skael <span>Reports</span></span>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#bilanz">Bilanz</a>
+    <a class="nav-tab" href="#verlauf">Entwicklung</a>
+    <a class="nav-tab" href="#performance">Performance</a>
+    <a class="nav-tab" href="#retention">Retention</a>
+    <a class="nav-tab" href="#creators">Creator &amp; Ads</a>
+    <a class="nav-tab" href="#august">Übergang &amp; Neustart</a>
+    <a class="nav-tab" href="#ausblick">Ausblick</a>
+    <a class="nav-tab" href="#forecast">Forecast</a>
+    <a class="nav-tab" href="#fazit">Fazit</a>
+  </div>
+  <div class="nav-right"><span class="nav-pill">Feb – Aug 2026 · Rückblick</span></div>
+</nav>
+
+<!-- HERO -->
+<section id="uebersicht" class="hero">
+  <div class="container">
+    <div class="meta-badge">
+      <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="9" fill="#3a6ef4"/><text x="9" y="12.5" font-family="Poppins, sans-serif" font-size="10" font-weight="600" text-anchor="middle" fill="#fff">M</text></svg>
+      <span>Meta Ads · Story · DACH · 7-Monats-Rückblick · Backend-verifiziert</span>
+    </div>
+
+    <h1 class="h-hero">Maloum<br><em>Feb – August 2026</em><br>Rückblick &amp; Neustart</h1>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Zeitraum</span><span class="hero-meta-value">Februar – August 2026 (7 Monate)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Kanal</span><span class="hero-meta-value">Meta Ads · Story · DACH · Creator-Plattform</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Datenbasis</span><span class="hero-meta-value">Backend-/Transaktionsdaten (Apr–Jun, Aug) · Meta (Feb/Mrz/Jul)</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-value">neolime deaktiviert (Mitte Juli) · Neustart auf Media Buying #1</span></div>
+    </div>
+
+    <!-- GESAMT-BILANZ: Overall über die gesamte Zeit (Hochrechnung) -->
+    <div class="card-label" style="margin-top:36px;margin-bottom:12px;">Gesamt-Bilanz · April – Juni 2026 · 1:1 aus den Monatsreports</div>
+    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Media-Spend · Apr – Jun</span><div class="sw"><div class="sd g"></div><span class="sl g">Reports</span></div></div>
+        <div class="kpi-value">88.459 €</div>
+        <div class="kpi-sub">Summe der drei Monatsreports (Mai = Run-Rate)</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Neukunden-Umsatz · Erstkauf</span><div class="sw"><div class="sd g"></div><span class="sl g">Backend</span></div></div>
+        <div class="kpi-value">153.320 €</div>
+        <div class="kpi-sub">echter Backend-Umsatz · 1.807 Neukunden</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Lifetime-Umsatz · Projektion</span><div class="sw"><div class="sd y"></div><span class="sl y">aus Reports</span></div></div>
+        <div class="kpi-value">~361.400 €</div>
+        <div class="kpi-sub">1.807 Neukunden × 200 € Ø-CLV (Report-Annahme)</div>
+      </div>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Kern-Einordnung · 7 Monate · Feb – August 2026</div>
+      <p class="insight-text">Kurz zusammengefasst: Über die sechs Monate Feb–Juli ist der Account <strong>sauber gewachsen, und das mit echten Backend-Zahlen belegt</strong>. Feb und März waren Aufbau (nur Meta-Reporting), ab April lief alles über echte Transaktionsdaten, und im Juni kam der beste Monat: 45.386 € Spend, 879 Neukunden, 131.656 € Umsatz. Das Wichtigste dabei: Wir haben das Budget von April bis Juni <strong>fast verdreifacht, und die Akquise-ROAS ist trotzdem gestiegen</strong> (1,58x auf 1,81x). <strong>Mitte Juli wurde das alte Konto (neolime) deaktiviert</strong> — Juli war Auslauf. Der <strong>August ist der Übergang</strong>: neolime gab €0 aus, warf aus den früheren Kohorten aber noch <strong>63.176 € Folgekäufe</strong> ab (94,9 % des Monats, reiner LTV-Tail), während die Akquise auf dem neuen Konto <strong>Media Buying #1</strong> mit 3.510 € Spend → 29 Neukunden neu startete. Alle belastbaren Zahlen kommen aus dem <strong>Transaktions-Backend</strong>, nicht aus dem Pixel, der viel zu hohe Werte anzeigt. Das Backend ist die Wahrheit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KOSTEN VS. UMSATZ -->
+<section id="bilanz" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Kosten vs. <em>Umsatz</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Pro Monat gegenübergestellt: was wir an Media-Budget ausgegeben haben und welchen Umsatz die Kampagnen laut <strong>Transaktions-Backend</strong> gebracht haben. Für die drei Monate mit echten Backend-Daten (April–Juni) stehen <strong>88.459 € Ausgaben</strong> rund <strong>153.320 € Neukunden-Umsatz</strong> gegenüber. Februar und März waren Aufbau, Juli Auslauf, dort wurde der Umsatz nicht im Backend erfasst. Der <strong>August</strong> ist ein Sonderfall (alter Account aus, neuer im Warmup) und wird separat im Abschnitt <a href="#august" style="color:var(--blue);text-decoration:none;font-weight:500;">Übergang &amp; Neustart</a> aufgeschlüsselt.</p>
+
+    <div class="chart-card reveal" style="max-width:none;margin-bottom:16px;">
+      <div class="card-label">Ausgegeben vs. Neukunden-Umsatz pro Monat · Apr – Jun 2026 (Backend)</div>
+      <canvas id="chartBilanz"></canvas>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>Monat</th><th>Ausgegeben</th><th>Neukunden-Umsatz</th><th>Akquise-ROAS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Apr 2026</td><td>19.114 €</td><td>30.182 €</td><td><span class="roas-mid">1,58x</span></td></tr>
+          <tr><td>Mai 2026<span class="cell-sub">Vollmonat-Run-Rate</span></td><td>23.959 €</td><td>41.061 €</td><td><span class="roas-mid">1,71x</span></td></tr>
+          <tr><td>Jun 2026<span class="cell-sub">Gesamtumsatz inkl. Bestand: 131.656 €</span></td><td>45.386 €</td><td>82.077 €</td><td><span class="roas-strong">1,81x</span></td></tr>
+          <tr><td>Gesamt Apr – Jun</td><td>88.459 €</td><td>153.320 €</td><td>1,73x</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>Wichtig zur Einordnung:</strong> Das sind die echten, im <strong>Transaktions-Backend gemessenen Neukunden-Umsätze</strong> (Erstkäufe), 100% belegbar aus den Monatsreports. Der <strong>Gesamtumsatz inkl. Wiederkäufe der Bestandskunden ist höher</strong>, aber nur für Juni sauber gemessen: 131.656 € (Blended-ROAS 2,90x). Feb/Mrz (Aufbau) und Juli (Auslauf, Konto Mitte Juli deaktiviert) haben keine Backend-Umsatzdaten, daher startet die Bilanz im April.</p>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>Zur Lifetime-Zahl in der Gesamt-Bilanz oben:</strong> Maloum ist ein Abo-Modell, die Kunden zahlen über ihre Lebensdauer wiederholt, nicht nur beim Erstkauf. Die <strong>1.807 Neukunden aus April–Juni</strong> ergeben bei dem in den Monatsreports angesetzten Ø-Customer-Lifetime-Value von 200 € rund <strong>361.400 € Umsatz über die Lifetime</strong>. Das ist exakt die Summe der drei Report-Projektionen: April ~72.400 € + Mai ~113.200 € + Juni ~175.800 €. Mit einem höheren CLV von 250 € wären es entsprechend ~452.000 €.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIE ENTWICKLUNG -->
+<section id="verlauf" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Die <em>Entwicklung</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Der Verlauf über sechs Monate zeigt eine klare Kurve: <strong>Aufbau, Umstellung auf echte Daten, Skalierung, Peak, Auslauf</strong>. Feb und März waren <strong>Aufbauphase</strong>, nur Meta-Reporting, noch keine Backend-Attribution (nur Signups messbar). <strong>Ab April</strong> wurde auf Backend-/Transaktionsdaten umgestellt: echte Neukunden, echtes Neu-GMV, echte Akquise-ROAS. Der Spend stieg von 6.783 € (Feb) auf den Peak von 45.386 € (Juni). Im Juli wurde das Werbekonto (neolime) Mitte des Monats deaktiviert, daher nur ein Teilmonat mit 10.828 € Auslauf-Spend. Im <strong>August</strong> folgte der Bruch: neolime bei €0, die Akquise startete mit 3.510 € auf dem neuen Konto Media Buying #1 neu — Warmup mit 29 verifizierten Neukunden.</p>
+
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">Media-Spend &amp; verifizierte Neukunden · Feb – August 2026</div>
+        <canvas id="chartVerlauf"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Akquise-ROAS-Entwicklung · Apr – Jun (Backend)</div>
+        <canvas id="chartRoasVerlauf"></canvas>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Monat</th>
+            <th>Media-Spend</th>
+            <th>Neukunden</th>
+            <th>Neu-GMV</th>
+            <th>Akquise-ROAS</th>
+            <th>Blended-ROAS</th>
+            <th>Datenbasis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Feb 2026<span class="cell-sub">Aufbau</span></td>
+            <td>6.783 €</td><td>– <span style="color:var(--sub);">(1.066 Signups)</span></td><td>–</td><td>–</td><td>–</td>
+            <td><span class="tag b">Meta · Aufbau</span></td>
+          </tr>
+          <tr>
+            <td>Mrz 2026<span class="cell-sub">Aufbau</span></td>
+            <td>12.246 €</td><td>– <span style="color:var(--sub);">(1.469 Signups)</span></td><td>–</td><td>–</td><td>–</td>
+            <td><span class="tag b">Meta · Aufbau</span></td>
+          </tr>
+          <tr>
+            <td>Apr 2026<span class="cell-sub">Umstellung Backend</span></td>
+            <td>19.114 €</td><td>362</td><td>30.182 €</td>
+            <td><span class="roas-mid">1,58x</span></td><td>–</td>
+            <td><span class="tag g">Backend</span></td>
+          </tr>
+          <tr>
+            <td>Mai 2026<span class="cell-sub">Vollmonat-Run-Rate</span></td>
+            <td>23.959 €</td><td>566</td><td>41.061 €</td>
+            <td><span class="roas-mid">1,71x</span></td><td>–</td>
+            <td><span class="tag g">Backend</span></td>
+          </tr>
+          <tr>
+            <td>Jun 2026<span class="cell-sub">Peak</span></td>
+            <td>45.386 €</td><td>879</td><td>82.077 €</td>
+            <td><span class="roas-strong">1,81x</span></td><td><span class="roas-strong">2,90x</span></td>
+            <td><span class="tag g">Backend</span></td>
+          </tr>
+          <tr>
+            <td>Jul 2026<span class="cell-sub">Auslauf · neolime Mitte Juli deaktiviert</span></td>
+            <td>10.828 €</td><td>Auslauf</td><td>–</td><td>–</td><td>–</td>
+            <td><span class="tag y">Meta · Teilmonat</span></td>
+          </tr>
+          <tr>
+            <td>Aug 2026<span class="cell-sub">Neustart · Media Buying #1 (Warmup)</span></td>
+            <td>3.510 €</td><td>29</td><td>3.390 €</td>
+            <td><span class="roas-mid">0,97x</span></td><td>–</td>
+            <td><span class="tag g">Backend</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>Methodik-Hinweis:</strong> Feb/Mrz sind <strong>Aufbauphase</strong>, nur Meta-Reporting, keine Backend-Attribution (deshalb nur Signups, kein Neu-GMV/ROAS). <strong>Ab April</strong> läuft alles auf Backend-/Transaktionsdaten (echte Neukunden, Neu-GMV, Akquise- &amp; Blended-ROAS). <strong>Juli</strong> ist Auslauf: neolime Mitte Juli deaktiviert → Teilmonat. <strong>August</strong> ist der Neustart auf dem neuen Konto Media Buying #1 (Warmup, wieder echtes Backend), die 0,97x sind First-Touch — der LTV-Tail kommt darüber (Details im Abschnitt Übergang &amp; Neustart). Der Mai-Report war ursprünglich ein 17-Tage-Mid-Month; die Werte hier sind die dort ausgewiesene Vollmonat-Run-Rate. Meta-Pixel überzeichnet und wird bewusst nicht als ROAS-Basis genutzt, <strong>Backend ist die Wahrheit</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE-KERN -->
+<section id="performance" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal">Performance-<em>Kern</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Die belastbaren Zahlen liegen in den drei Backend-Monaten April bis Juni. Das Wichtigste: <strong>sauber skaliert</strong>. Das Budget wurde fast verdreifacht (19.114 € auf 45.386 €), und die <strong>Akquise-ROAS ist trotzdem gestiegen</strong>, von 1,58x über 1,71x auf 1,81x. Normalerweise sinkt die Effizienz, wenn man mehr ausgibt, weil jeder zusätzliche Kunde teurer wird. Hier war es umgekehrt. Der <strong>Blended-ROAS</strong> (neue plus Bestandskäufer) lag im Juni bei 2,90x.</p>
+
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">Akquise-ROAS vs. Blended-ROAS · Apr – Jun</div>
+        <canvas id="chartPerf"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Spend-Skalierung vs. Akquise-ROAS · Apr – Jun</div>
+        <canvas id="chartScale"></canvas>
+      </div>
+    </div>
+
+    <div class="kpi-grid reveal" style="grid-template-columns:repeat(4,1fr);margin-top:8px;">
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Akquise-ROAS · April</span><div class="sw"><div class="sd y"></div><span class="sl y">Start Backend</span></div></div>
+        <div class="kpi-value">1,58x</div>
+        <div class="kpi-sub">362 Neukunden · 30.182 € Neu-GMV</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Akquise-ROAS · Mai</span><div class="sw"><div class="sd g"></div><span class="sl g">+8%</span></div></div>
+        <div class="kpi-value">1,71x</div>
+        <div class="kpi-sub">566 Neukunden · 41.061 € Neu-GMV</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Akquise-ROAS · Juni</span><div class="sw"><div class="sd g"></div><span class="sl g">+6%</span></div></div>
+        <div class="kpi-value">1,81x</div>
+        <div class="kpi-sub">879 Neukunden · 82.077 € Neu-GMV</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Blended-ROAS · Juni</span><div class="sw"><div class="sd g"></div><span class="sl g">Peak</span></div></div>
+        <div class="kpi-value">2,90x</div>
+        <div class="kpi-sub">131.656 € Blended-GMV / Spend</div>
+      </div>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>Warum das der eigentliche Beweis ist:</strong> Budget April→Juni fast verdreifacht, und die reine Neukunden-ROAS ist von 1,58x auf 1,81x GESTIEGEN. Das heißt: Es gab noch keine Sättigung, das Wachstum war strukturell tragfähig. Der Abstand zwischen Akquise-ROAS (1,81x) und Blended-ROAS (2,90x) im Juni ist der Bestands-Beitrag, Umsatz, den früherer Spend heute noch abwirft. Genau dieser Abstand wächst mit jeder weiteren Kohorte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RETENTION & KOHORTEN -->
+<section id="retention" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Retention &amp; <em>Kohorten</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Der stärkste strukturelle Befund der sechs Monate: <strong>außergewöhnliche Retention</strong>. Die Mai-Neukunden-Kohorte generierte bei Akquise ~31.892 €, und legte im Juni <strong>nochmal ~30.191 €</strong> nach. Das sind rund <strong>100% Wiederholung in Monat 2</strong>. Deshalb wächst der Blended-ROAS strukturell: Jede neue Kohorte stapelt sich auf den wiederkaufenden Bestand. Die 1,81x-Erstkauf-ROAS ist über die Lifetime damit klar profitabel.</p>
+
+    <div class="funnel-grid">
+      <div class="funnel-card reveal">
+        <div class="card-label">Juni-Umsatz nach Akquise-Kohorte · Transaktions-Backend</div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Juni-Neu · Monat 1</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#16a34a,#22c55e);" data-width="100%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">82.077 €</span><span class="tag g">62,3%</span></div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">Mai-Kohorte · Monat 2</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="36.8%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">30.191 €</span><span class="tag b">22,9%</span></div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-lbl">April-Kohorte · Monat 3</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="16.8%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">13.830 €</span><span class="tag b">10,5%</span></div>
+        </div>
+        <div class="funnel-row" style="margin-bottom:0;">
+          <div class="funnel-lbl">März &amp; früher</div>
+          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="6.8%"></div></div>
+          <div class="funnel-right"><span class="funnel-val">5.559 €</span><span class="tag b">4,2%</span></div>
+        </div>
+        <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;">
+          <div class="einordnung-lbl">Einordnung</div>
+          <p class="einordnung-text">Der Juni-Umsatz von 131.656 € teilt sich sauber auf vier Kohorten auf. <strong>62,3% sind neue Käufer</strong> (1,81x), der Rest ist Umsatz aus früheren Monaten. Je länger der Account läuft, desto größer wird der Bestands-Block: <strong>Der Blended-ROAS wächst mit jeder Kohorte</strong>, weil der Bestand zuverlässig wiederkauft. Genau das steckt hinter der 2,90x im Juni, und deshalb geht der Forecast von einem weiter steigenden Blended-ROAS aus.</p>
+        </div>
+      </div>
+      <div>
+        <div class="chart-card reveal">
+          <div class="card-label">Umsatz-Split nach Kohorte</div>
+          <canvas id="chartCohort"></canvas>
+        </div>
+        <div class="hint-box reveal" style="margin-top:12px;">
+          <p><strong>Retention-Beweis:</strong> Mai-Kohorte bei Akquise ~31.892 €, im Juni <strong>nochmal ~30.191 €</strong> (~100% des Erstmonats in Monat 2). Deshalb ist die 1,81x-Erstkauf-ROAS über die Lifetime klar profitabel, und der Blended-ROAS steigt strukturell.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP-CREATOR & ADS -->
+<section id="creators" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal">Top-Creator &amp; <em>Ads</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Über den Zeitraum gab es klare Gewinner und klare Verlierer. Sortiert haben wir nach <strong>Neukunden-ROAS</strong>, nicht nach der gemischten Blended-Sicht. Der Grund: Wer bei der Neukunden-ROAS gut ist, bringt wirklich neue Käufer. Hohe Blended-Werte können dagegen auch einfach nur der eigene Bestand sein, der nachkauft.</p>
+
+    <div class="kamp-grid reveal">
+      <div class="kamp-card star">
+        <div class="kamp-name">Stella</div>
+        <div class="kamp-sub">Günstigste Neukunden, größter Umsatzanteil ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">Bester CPF</span><span class="kamp-val green big">~27–32 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV-Anteil</span><span class="kamp-val">zeitw. ~53%</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Budget</span><span class="kamp-val">größter Empfänger</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Status</span><span class="kamp-val green">durchgehend stark</span></div>
+      </div>
+      <div class="kamp-card star">
+        <div class="kamp-name">Desi</div>
+        <div class="kamp-sub">Beste Werte bei echten Neukunden ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">Top-Ad Neu-ROAS</span><span class="kamp-val green big">4,76x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Ad</span><span class="kamp-val">AD03 MOF V1</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Käufer</span><span class="kamp-val">fast nur neue</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Status</span><span class="kamp-val green">war unterfinanziert</span></div>
+      </div>
+      <div class="kamp-card star">
+        <div class="kamp-name">Faye</div>
+        <div class="kamp-sub">Teure Käufer, hohe Warenkörbe ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">AOV bis</span><span class="kamp-val big">232 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Juni Kamp.-ROAS</span><span class="kamp-val green big">4,40x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Zielgruppe</span><span class="kamp-val">klein, aber zahlungskräftig</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Status</span><span class="kamp-val green">stark</span></div>
+      </div>
+      <div class="kamp-card star">
+        <div class="kamp-name">Emma Spice</div>
+        <div class="kamp-sub">Eine Ad mit 100% Neukunden ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">Top-Ad Neu-ROAS</span><span class="kamp-val green big">4,30x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Ad</span><span class="kamp-val">AD02 TOF V2</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">AOV</span><span class="kamp-val">hoch (103 €)</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neu-Anteil</span><span class="kamp-val green">100%</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Terry · Zoe / AGENCY</div>
+        <div class="kamp-sub">Verlust, wurde abgeschaltet</div>
+        <div class="kamp-row"><span class="kamp-lbl">Terry ROAS</span><span class="kamp-val red big">0,36x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Zoe / AGENCY</span><span class="kamp-val red big">0,32x</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Zoe Status</span><span class="kamp-val red">im Juni abgeschaltet</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Fazit</span><span class="kamp-val red">raus</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">miawild · vanessa</div>
+        <div class="kamp-sub">Hat nicht funktioniert</div>
+        <div class="kamp-row"><span class="kamp-lbl">Käufe</span><span class="kamp-val red big">0</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">GMV</span><span class="kamp-val red">0 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Fazit</span><span class="kamp-val red">passte nicht</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Status</span><span class="kamp-val red">aussortiert</span></div>
+      </div>
+    </div>
+
+    <div class="insight-list-card reveal">
+      <div class="card-label">Top-Ads · nach Neukunden-ROAS · die entscheidende Logik</div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left"><span class="ii-arrow">▸</span><span class="ii-name">Desi | AD03 | MOF V1</span><span class="tag g">Beste Neukunden</span></div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val green">4,76x</span><span class="ii-metric-lbl">NEU-ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">14.318 €</span><span class="ii-metric-lbl">GMV</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>Hat im ganzen Account die besten Werte bei echten Neukunden gebracht,</strong> und lief dabei fast nur auf neuen Käufern. War über den Zeitraum unterfinanziert. Die Ad, die man als Erstes hätte hochziehen sollen.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left"><span class="ii-arrow">▸</span><span class="ii-name">Emma Spice | AD02 | TOF V2</span><span class="tag g">100% neu</span></div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val green">4,30x</span><span class="ii-metric-lbl">NEU-ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">103 €</span><span class="ii-metric-lbl">AOV</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>100% Neukunden, hoher Warenkorb.</strong> Emma lief als Creator insgesamt schlecht, aber diese eine Ad hat richtig teure Käufer gezogen. Zeigt gut, dass es oft auf die einzelne Ad ankommt, nicht pauschal auf den Creator.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left"><span class="ii-arrow">▸</span><span class="ii-name">Faye Story | AD01</span><span class="tag g">Größter Umsatz</span></div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val green">3,12x</span><span class="ii-metric-lbl">NEU-ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">17.073 €</span><span class="ii-metric-lbl">GMV</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>Größter Einzel-Umsatz über den Zeitraum.</strong> Teure Käufer, hohe Warenkörbe, und weiter gut am Neukunden-Ziehen. Die Zielgruppe ist klein und wächst nicht endlos, bringt aber verlässlich Umsatz.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left"><span class="ii-arrow">▸</span><span class="ii-name">Stella | AD03 | MOF V1</span><span class="tag g">Meiste Ausgaben</span></div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val green">2,06x</span><span class="ii-metric-lbl">NEU-ROAS</span></div>
+            <div class="ii-metric"><span class="ii-metric-val">16.940 €</span><span class="ii-metric-lbl">GMV</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>Hat über den Zeitraum das meiste Budget bekommen und dabei gesund neue Käufer gebracht.</strong> Der PayPal/Klarna-Angle (Bezahl-Einwand aufgreifen) skaliert gut.</p>
+      </div>
+      <div class="ii">
+        <div class="ii-hdr">
+          <div class="ii-hdr-left"><span class="ii-arrow">▸</span><span class="ii-name">Stella | AD01 | TOF V1, „Ich warte auf dich"</span><span class="tag b">Früh stark</span></div>
+          <div class="ii-metrics">
+            <div class="ii-metric"><span class="ii-metric-val">5,51x</span><span class="ii-metric-lbl">April · Pixel</span></div>
+          </div>
+        </div>
+        <p class="ii-desc"><strong>Interview-/Story-Format, lief von Anfang an gut.</strong> Das Q&amp;A-Framing („Ich warte auf dich") war eines der ersten Formate, das nachweislich funktioniert hat. Daraus ist die ganze Interview-Ad-Idee entstanden, auf der auch der Ausblick aufbaut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜBERGANG & NEUSTART · AUGUST -->
+<section id="august" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Übergang &amp; <em>Neustart</em> · August</h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Der August ist ein <strong>Bruch gegenüber Juni</strong>. Das Hauptkonto <strong>neolime wurde Mitte Juli deaktiviert</strong> und gab im August €0 aus. Trotzdem kamen aus den früher akquirierten Kohorten <strong>63.176 € Folgekäufe</strong> (94,9 % des Umsatzes) — reiner LTV-Tail, der ohne aktiven Spend weiterläuft. Parallel startete die Neu-Akquise auf dem neuen Konto <strong>Media Buying #1</strong>: 3.510 € Spend → 29 Neukunden, First-Touch-ROAS 0,97x. Alle Zahlen aus dem Transaktions-Backend (3.058 Käufe), nicht aus dem Pixel.</p>
+
+    <div class="kpi-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Media-Spend · August</span><div class="sw"><div class="sd y"></div><span class="sl y">Neustart</span></div></div>
+        <div class="kpi-value">3.510 €</div>
+        <div class="kpi-sub">nur Media Buying #1 · neolime €0 (aus)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Neue Kunden</span><div class="sw"><div class="sd y"></div><span class="sl y">Warmup</span></div></div>
+        <div class="kpi-value">29</div>
+        <div class="kpi-sub">3.390 € Neu-GMV · Akquise-ROAS 0,97x</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">LTV-Tail · Bestand</span><div class="sw"><div class="sd g"></div><span class="sl g">Ernte</span></div></div>
+        <div class="kpi-value">63.176 €</div>
+        <div class="kpi-sub">94,9 % · neolime-Kohorten bei €0 Spend</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">GMV gesamt</span><div class="sw"><div class="sd g"></div><span class="sl g">Backend</span></div></div>
+        <div class="kpi-value">66.566 €</div>
+        <div class="kpi-sub">909 Käufer · 3.058 Transaktionen</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ø Neukundenwert</span><div class="sw"><div class="sd b"></div><span class="sl b">Erstmonat</span></div></div>
+        <div class="kpi-value">116,90 €</div>
+        <div class="kpi-sub">3,8 Transaktionen pro Neukunde</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Neu vs. Bestand</span><div class="sw"><div class="sd b"></div><span class="sl b">Split</span></div></div>
+        <div class="kpi-value">5,1 / 94,9 %</div>
+        <div class="kpi-sub">Neu-Akquise vs. LTV-Tail am GMV</div>
+      </div>
+    </div>
+
+    <div class="insight-card reveal">
+      <div class="card-label">Umgekehrtes Bild zum Juni</div>
+      <p class="insight-text">Im Juni waren <strong>62 % frische Akquise</strong>. Im August ist es fast reine <strong>Ernte</strong> (94,9 %), weil das akquirierende Konto Mitte Juli abgeschaltet wurde. Das ist <strong>kein Nachfrage-Einbruch</strong> — die Basis kauft zuverlässig weiter — aber ohne frische Akquise <strong>schrumpft der Tail Monat für Monat</strong>. Genau deshalb muss der neue Account jetzt Volumen bekommen.</p>
+    </div>
+
+    <h3 class="reveal" style="font-family:'Poppins',sans-serif;font-size:20px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin:40px 0 8px;">Akquise-Motor · Media Buying #1</h3>
+    <p class="reveal" style="font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:20px;max-width:860px;">Der neue Account startete mit drei Warmup-Kampagnen. ROAS = echter Backend-GMV ÷ Spend (Pixel ignoriert), First-Touch — der LTV-Tail kommt über die Lifetime obendrauf.</p>
+
+    <div class="kamp-grid reveal">
+      <div class="kamp-card star">
+        <div class="kamp-name">MAL · WARMUP · Sales</div>
+        <div class="kamp-sub">Multi-Creator · Skalierungs-Kandidat ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">2.444 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden-GMV</span><span class="kamp-val">2.547 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden</span><span class="kamp-val">21</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CAC</span><span class="kamp-val">116 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Akquise-ROAS</span><span class="kamp-val green big">1,04x</span></div>
+      </div>
+      <div class="kamp-card warn">
+        <div class="kamp-name">Sophie Schmidt · WARMUP</div>
+        <div class="kamp-sub">Neuer Creator · beobachten</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">794 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden-GMV</span><span class="kamp-val">767 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden</span><span class="kamp-val">5</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CAC</span><span class="kamp-val">159 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Akquise-ROAS</span><span class="kamp-val big">0,97x</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Lea Sophy · Sales</div>
+        <div class="kamp-sub">Verlust · abschalten</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">272 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden-GMV</span><span class="kamp-val">21 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden</span><span class="kamp-val">1</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CAC</span><span class="kamp-val">272 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Akquise-ROAS</span><span class="kamp-val red big">0,08x</span></div>
+      </div>
+    </div>
+
+    <div class="hint-box red reveal" style="margin-top:16px;">
+      <p><strong>Pixel ist unbrauchbar.</strong> Meta meldet für MAL WARMUP tausende „Käufe" / &gt;$78.000 Wert — real waren es <strong>73 Transaktionen / 2.547 €</strong> aus dem Backend. Der Pixel überzeichnet um ein Vielfaches (feuert auf jeden Unlock). Die ROAS-Spalte im Ads Manager ignorieren, <strong>Backend ist die Wahrheit</strong>.</p>
+    </div>
+
+    <h3 class="reveal" style="font-family:'Poppins',sans-serif;font-size:20px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);margin:40px 0 8px;">LTV-Tail · neolime-Kohorten bei €0 Spend</h3>
+    <p class="reveal" style="font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:20px;max-width:860px;">neolime gab im August €0 aus, aber die früher akquirierten Kunden kaufen weiter. So verteilt sich der 63.176-€-Bestandsumsatz auf die Akquise-Kohorten:</p>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>Akquise-Kohorte (Signup)</th><th>GMV August</th><th>aktive Käufer</th><th>Anteil</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Juni 2026</td><td>21.900 €</td><td>318</td><td>34,7 %</td></tr>
+          <tr><td>Mai 2026</td><td>20.806 €</td><td>286</td><td>32,9 %</td></tr>
+          <tr><td>April 2026</td><td>9.939 €</td><td>131</td><td>15,7 %</td></tr>
+          <tr><td>Juli 2026</td><td>4.936 €</td><td>75</td><td>7,8 %</td></tr>
+          <tr><td>März 2026</td><td>3.228 €</td><td>32</td><td>5,1 %</td></tr>
+          <tr><td>Feb 2026 &amp; früher</td><td>2.366 €</td><td>38</td><td>3,7 %</td></tr>
+          <tr><td>neolime-Tail gesamt</td><td>63.176 €</td><td>880</td><td>100 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>Retention-Beweis, aber Warnsignal.</strong> Die <strong>Mai- und Juni-Kohorten tragen zusammen 68 %</strong> des August-Bestandsumsatzes — die Loyalität ist stark, genau wie im Juni-Report prognostiziert (Mai wiederholte ~100 % ihres Erstmonats). Aber: es kommt <strong>kein frisches Blut mehr</strong> aus neolime. Ohne den neuen Account als Ersatz-Motor läuft dieser 63k-Strom über die nächsten Monate langsam aus. Das ist die zentrale Aufgabe für September: MAL WARMUP (schon 1,04x First-Touch) hochfahren und das Spend-Level wieder Richtung Juni-Niveau bringen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUSBLICK -->
+<section id="ausblick" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal"><em>Ausblick</em>, was als Nächstes kommt</h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Das ist der Fahrplan, aufbauend auf dem, was schon steht — und genau das Programm, mit dem der Neustart auf Media Buying #1 auf Volumen kommt. Nichts davon ist Wunschdenken: Es sind konkrete Bausteine, teils schon fertig produziert und startklar.</p>
+    <div class="prio-grid">
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">01</div><div><div class="prio-title-text">E-Book-Strategie <span class="tag b">Funnel</span></div></div></div>
+        <p class="prio-desc">Ein <strong>günstiges E-Book als neues Einstiegsprodukt</strong> ganz oben im Funnel. Das senkt die Einstiegshürde, bringt <strong>sauberere, echte Kauf-Signale</strong> (löst damit das Tracking-Thema mit) und mehr Reichweite oben im Funnel. So bekommt man beides: mehr Leute rein und ein besseres Signal für die Optimierung.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">02</div><div><div class="prio-title-text">Creator Acquisition mit Interview-Formaten <span class="tag g">Ready</span></div></div></div>
+        <p class="prio-desc">Die Creator-Basis vergrößern über <strong>Interview-Ads mit den Creatorinnen selbst</strong>, also genau das Format, von dem wir wissen, dass es funktioniert. Aktueller Stand: <strong>24 Ads in 4 Varianten</strong> produziert und startklar. Mehr Creator heißt mehr Angebot und damit Platz für mehr Neukunden.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">03</div><div><div class="prio-title-text">Genug Creative-Nachschub <span class="tag b">Bestand</span></div></div></div>
+        <p class="prio-desc">Bestand von <strong>104 Ads</strong> über den Gesamtzeitraum als Basis fürs laufende Testen. Bei 45k+/Monat ist jedes Creative in ein paar Tagen abgenutzt. Ein großer Bestand plus ständiger Nachschub ist die Voraussetzung, um das Tempo zu halten.</p>
+      </div>
+      <div class="prio-card reveal">
+        <div class="prio-header"><div class="prio-num">+</div><div><div class="prio-title-text">Upside auf den Base-Forecast <span class="tag g">Zusatz</span></div></div></div>
+        <p class="prio-desc">E-Book und Creator-Acquisition sind im Forecast der nächsten Sektion <strong>bewusst NICHT eingerechnet</strong>. Sie wären reiner Upside auf das Base-Szenario, zusätzliches Top-Funnel-Volumen und höhere Neukunden-Kapazität oben drauf.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORECAST H2 2026 -->
+<section id="forecast" class="section">
+  <div class="container">
+    <h2 class="h-section reveal">Forecast <em>H2 2026</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:12px;max-width:860px;">So war der ursprüngliche Base-Case für das zweite Halbjahr — die Logik, wenn der Account <strong>ununterbrochen auf neolime weiterskaliert hätte</strong>. Er bleibt hier als dokumentierte Hochrechnung stehen, weil die zugrunde liegenden Muster (stabile Akquise-ROAS bei Skalierung, strukturell steigender Blended-ROAS) belegt sind.</p>
+    <div class="hint-box reveal" style="margin-bottom:16px;max-width:860px;">
+      <p><strong>Annahmen des Base-Case:</strong> Spend skaliert weiter, aber mit abnehmender Rate (Reife). Akquise-ROAS bleibt stabil bei ~1,8x (als skalierbar bewiesen). Der Blended-ROAS steigt durch <strong>Kohorten-Stacking</strong> von 2,9x auf ~3,8x. E-Book + Creator-Acquisition sind <strong>NICHT eingerechnet</strong>, sie wären Upside oben drauf.</p>
+    </div>
+    <div class="hint-box red reveal" style="margin-bottom:32px;max-width:860px;">
+      <p><strong>Was real passiert ist (Realitätsabgleich):</strong> Der Base-Case unterstellte für Juli/August ~50–60k € Spend auf neolime. Real wurde <strong>neolime Mitte Juli deaktiviert</strong> (Juli-Spend 10.828 € Auslauf, August €0), und die Akquise startete im August mit nur <strong>3.510 € auf dem neuen Konto Media Buying #1</strong> neu (siehe Übergang &amp; Neustart). Die H2-Kurve unten ist damit <strong>nicht eingetreten</strong> — sie zeigt das ungebrochene Skalierungs-Szenario. Der reale Pfad ist ein Wieder-Hochlauf des neuen Accounts Richtung Juni-Niveau, während der neolime-LTV-Tail als Brücke ausläuft.</p>
+    </div>
+
+    <div class="chart-row reveal">
+      <div class="chart-card">
+        <div class="card-label">Projizierter Spend &amp; Blended-GMV · Jul – Dez 2026</div>
+        <canvas id="chartForecast"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="card-label">Projizierter Blended-ROAS · Kohorten-Stacking</div>
+        <canvas id="chartForecastRoas"></canvas>
+      </div>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Monat</th>
+            <th>Spend</th>
+            <th>Neukunden</th>
+            <th>Blended-ROAS</th>
+            <th>Blended-GMV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Jul 2026</td><td>50.000 €</td><td>~950</td><td>3,0x</td><td>~150.000 €</td></tr>
+          <tr><td>Aug 2026</td><td>60.000 €</td><td>~1.150</td><td>3,2x</td><td>~192.000 €</td></tr>
+          <tr><td>Sep 2026</td><td>70.000 €</td><td>~1.330</td><td>3,4x</td><td>~238.000 €</td></tr>
+          <tr><td>Okt 2026</td><td>80.000 €</td><td>~1.500</td><td>3,5x</td><td>~280.000 €</td></tr>
+          <tr><td>Nov 2026</td><td>90.000 €</td><td>~1.680</td><td>3,7x</td><td>~333.000 €</td></tr>
+          <tr><td>Dez 2026</td><td>95.000 €</td><td>~1.750</td><td>3,8x</td><td>~361.000 €</td></tr>
+          <tr><td>H2 gesamt<span class="cell-sub">Jul – Dez · Base-Case</span></td><td>~445.000 €</td><td>~8.360</td><td>Ø ~3,4x</td><td>~1,55 Mio €</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>So ist der Forecast zu lesen:</strong> Hypothetisches Base-Szenario, klar als Projektion gekennzeichnet. Die Logik folgt direkt aus den belegten Mustern, stabile Akquise-ROAS bei Skalierung (bewiesen Apr–Jun) plus strukturell steigender Blended-ROAS durch die außergewöhnliche Retention. E-Book und Creator-Acquisition sind <strong>bewusst nicht eingerechnet</strong> und kämen als Upside oben drauf.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAZIT -->
+<section id="fazit" class="section-gray">
+  <div class="container">
+    <h2 class="h-section reveal"><em>Fazit</em> · 7 Monate Maloum</h2>
+    <div class="fazit-card reveal">
+      <div class="card-label">Rückblick &amp; Neustart · Feb – August 2026</div>
+      <div class="fazit-heading"><span>Sauber gewachsen, mit echten Zahlen belegt</span> — von 6.783 € Aufbau-Spend zum besten Monat mit 131.656 € im Juni, und einem sauberen Übergang auf das neue Konto.</div>
+      <p class="fazit-text">In den ersten sechs Monaten Meta Ads haben wir für Maloum ein Akquise-System aufgebaut, das funktioniert. Aus dem Aufbau in Feb/März (nur Meta-Reporting) wurde ab April ein Setup, das mit echten Backend-Zahlen belegt ist: 1.807 echte Neukunden und 153.320 € Neukunden-Umsatz allein von April bis Juni. Der wichtigste Punkt steckt im Skalieren. Wir haben das Budget von April bis Juni <strong>fast verdreifacht, und die Akquise-ROAS ist trotzdem gestiegen</strong> (1,58x auf 1,81x). Normalerweise sinkt die Effizienz, wenn man mehr ausgibt. Hier war es umgekehrt.<br><br>Der größte Vorteil ist die <strong>starke Retention</strong>: Die Mai-Käufer haben im Juni nochmal rund 100% ihres ersten Monats nachgekauft. Dadurch steigt der Blended-ROAS mit jeder neuen Kohorte, im Juni auf 2,90x. Über die gesamte Kundenlebensdauer ist die 1,81x beim Erstkauf damit klar profitabel.<br><br>Aufgebaut haben wir außerdem eine solide Basis an Creators und Creatives: Ads, die nachweislich echte Neukunden bringen (Desi AD03 MOF mit 4,76x Neu-ROAS, dazu Faye, Emma Spice, und Stella, die das meiste Budget getragen hat), ein Bestand von 104 Ads und ein Format, von dem wir wissen, dass es funktioniert (Interview-/Q&amp;A-Story).<br><br>Der <strong>Juli war Auslauf</strong> (neolime Mitte des Monats deaktiviert), der <strong>August der Übergang</strong>: Das alte Konto gab €0 aus, warf aus den Mai/Juni-Kohorten aber noch 63.176 € Folgekäufe ab — die Retention hält, genau wie prognostiziert. Parallel ist die Akquise auf dem neuen Konto Media Buying #1 gestartet; <strong>MAL WARMUP läuft schon bei 1,04x First-Touch</strong> und ist der klare Skalierungs-Kandidat. Die zentrale Aufgabe jetzt: den neuen Motor auf Volumen bringen — sauberes Signal (Purchase New + CAPI), MAL WARMUP hochfahren, Spend Richtung Juni-Niveau — damit die frische Akquise die auslaufenden Kohorten ersetzt. <strong>Das Backend ist die Wahrheit</strong>, und die Wahrheit hier ist ein gesundes Akquise-System, das gerade auf ein neues Konto umzieht.</p>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <footer class="footer">
+    <span class="footer-brand">Skael <span>Reports</span></span>
+    <span class="footer-date">Aktualisiert am 03. September 2026 · Rückblick &amp; Neustart Feb–August 2026 · Basis: verifizierte Backend-Transaktionsdaten (Apr–Jun, Aug)</span>
+  </footer>
+</div>
+
+<div class="edit-bar" id="editBar">
+  <span class="edit-bar-label">Skael Reports</span>
+  <div class="eb-sep"></div>
+  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
+  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
+</div>
+
+<script>
+Chart.defaults.font.family = "'Poppins', sans-serif";
+Chart.defaults.color = '#9ca3af';
+
+// Entwicklung: Spend (bars) Feb–Aug + verifizierte Neukunden (line) Apr–Jun, Aug
+new Chart(document.getElementById('chartVerlauf'), {
+  data: {
+    labels: ['Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug'],
+    datasets: [
+      { type:'bar', label:'Spend €', data:[6783, 12246, 19114, 23959, 45386, 10828, 3510], backgroundColor:['rgba(58,110,244,0.20)','rgba(58,110,244,0.28)','rgba(58,110,244,0.45)','rgba(58,110,244,0.6)','#3a6ef4','rgba(58,110,244,0.30)','rgba(58,110,244,0.22)'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Verifizierte Neukunden', data:[null, null, 362, 566, 879, null, 29], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2, pointBackgroundColor:'#22c55e', pointRadius:6, spanGaps:false, tension:0.3, yAxisID:'y2' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v}} } }
+});
+
+// Akquise-ROAS Verlauf Apr–Jun
+new Chart(document.getElementById('chartRoasVerlauf'), {
+  data: {
+    labels: ['Apr', 'Mai', 'Jun'],
+    datasets: [
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81], borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, fill:true, yAxisID:'y' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:1.4,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+});
+
+// Performance: Akquise vs Blended ROAS Apr–Jun
+new Chart(document.getElementById('chartPerf'), {
+  data: {
+    labels: ['Apr', 'Mai', 'Jun'],
+    datasets: [
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, yAxisID:'y' },
+      { type:'line', label:'Blended-ROAS', data:[null, null, 2.90], borderColor:'#3a6ef4', backgroundColor:'transparent', borderWidth:2.5, borderDash:[5,4], pointBackgroundColor:'#3a6ef4', pointRadius:6, tension:0.3, yAxisID:'y' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12,padding:10}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:1.4,max:3.1,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+});
+
+// Spend-Skalierung vs Akquise-ROAS Apr–Jun
+new Chart(document.getElementById('chartScale'), {
+  data: {
+    labels: ['Apr', 'Mai', 'Jun'],
+    datasets: [
+      { type:'bar', label:'Spend €', data:[19114, 23959, 45386], backgroundColor:['rgba(58,110,244,0.35)','rgba(58,110,244,0.55)','#3a6ef4'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, yAxisID:'y2' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, y2:{position:'right',grid:{drawOnChartArea:false},min:1.4,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+});
+
+// Kohorten Doughnut
+new Chart(document.getElementById('chartCohort'), {
+  type:'doughnut',
+  data: {
+    labels: ['Juni-Neu (62,3%)','Mai-Kohorte (22,9%)','April-Kohorte (10,5%)','März & früher (4,2%)'],
+    datasets: [{ data:[82077, 30191, 13830, 5559], backgroundColor:['#22c55e','#3a6ef4','#7ba0f8','#c7d4fd'], borderWidth:0 }]
+  },
+  options:{ responsive:true, cutout:'62%', animation:{animateRotate:true,duration:1100}, plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:11,padding:10}}} }
+});
+
+// Forecast: Spend (bars) + Blended-GMV (line) Jul–Dez
+new Chart(document.getElementById('chartForecast'), {
+  data: {
+    labels: ['Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+    datasets: [
+      { type:'bar', label:'Spend €', data:[50000, 60000, 70000, 80000, 90000, 95000], backgroundColor:'rgba(58,110,244,0.30)', borderColor:'rgba(58,110,244,0.5)', borderWidth:1, borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Blended-GMV €', data:[150000, 192000, 238000, 280000, 333000, 361000], borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.06)', borderWidth:2.5, borderDash:[5,4], pointBackgroundColor:'#22c55e', pointRadius:5, tension:0.3, fill:true, yAxisID:'y' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12,padding:10}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}} } }
+});
+
+// Forecast Blended-ROAS Jul–Dez
+new Chart(document.getElementById('chartForecastRoas'), {
+  data: {
+    labels: ['Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+    datasets: [
+      { type:'line', label:'Blended-ROAS (projiziert)', data:[3.0, 3.2, 3.4, 3.5, 3.7, 3.8], borderColor:'#3a6ef4', backgroundColor:'rgba(58,110,244,0.07)', borderWidth:2.5, borderDash:[5,4], pointBackgroundColor:'#3a6ef4', pointRadius:5, tension:0.3, fill:true, yAxisID:'y' }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:2.8,max:4.0,ticks:{callback:v=>v.toFixed(1)+'x'}} } }
+});
+
+// Bilanz: Ausgegeben vs. Neukunden-Umsatz (Backend) Apr–Jul, zwei Balken pro Monat
+new Chart(document.getElementById('chartBilanz'), {
+  type:'bar',
+  data: {
+    labels: ['Apr','Mai','Jun'],
+    datasets: [
+      { label:'Ausgegeben', data:[19114,23959,45386], backgroundColor:'#c7d4fd', borderRadius:4 },
+      { label:'Neukunden-Umsatz (Backend)', data:[30182,41061,82077], backgroundColor:'#3a6ef4', borderRadius:4 }
+    ]
+  },
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12,padding:10}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, x:{grid:{display:false}} } }
+});
+
+const ro = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+const fo = new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.funnel-fill').forEach((f,i)=>setTimeout(()=>{f.style.width=f.dataset.width;},i*130));fo.disconnect();}},{threshold:0.2});
+const fEl=document.querySelector('#retention .funnel-fill'); if(fEl){fo.observe(fEl.closest('.funnel-card'));}
+
+document.querySelectorAll('.nav-tab').forEach(tab=>{tab.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
+document.querySelectorAll('section[id]').forEach(s=>{new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.nav-tab[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:0.3}).observe(s);});
+
+const ES=['.h-hero','.h-hero em','.meta-badge span','.hero-meta-value','.hero-meta-label','.nav-pill','.kpi-label','.kpi-value','.kpi-sub','.sl','.insight-text','.card-label','.h-section','.h-section em','.funnel-lbl','.funnel-val','.tag','.einordnung-lbl','.einordnung-text','.side-row-lbl','.side-row-val','.hint-box p','.kamp-name','.kamp-sub','.kamp-lbl','.kamp-val','tbody td','thead th','.ii-name','.ii-desc','.ii-metric-val','.ii-metric-lbl','.prio-title-text','.prio-desc','.fazit-heading','.fazit-text','.footer-brand','.footer-date'].join(',');
+let editing=false;
+function toggleEdit(){editing=!editing;const btn=document.getElementById('ebEdit'),save=document.getElementById('ebSave');if(editing){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';}}
+function downloadHTML(){const bar=document.getElementById('editBar'),was=editing;document.body.classList.remove('editing');document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));bar.style.display='none';const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;bar.style.display='';if(was){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));}try{const enc=new TextEncoder(),bytes=enc.encode(html),blob=new Blob([bytes],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Maloum-Feb-Aug-2026.html';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){alert('Download fehlgeschlagen.');}}
+</script>
+
+</body>
+</html>
