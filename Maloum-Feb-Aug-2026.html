@@ -195,18 +195,6 @@ tbody tr:last-child:hover td{background:#e6edff;}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
-.edit-bar{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;border-radius:12px;padding:9px 9px 9px 18px;display:flex;align-items:center;gap:8px;box-shadow:0 8px 32px rgba(15,27,45,0.25);z-index:9999;font-family:'Poppins',sans-serif;font-size:12.5px;white-space:nowrap;}
-.edit-bar-label{color:rgba(255,255,255,0.55);margin-right:4px;}
-.eb-btn{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:7px 15px;border-radius:8px;border:none;cursor:pointer;transition:all 0.15s;}
-.eb-edit{background:rgba(255,255,255,0.12);color:#fff;}
-.eb-edit:hover{background:rgba(255,255,255,0.2);}
-.eb-edit.on{background:var(--blue);color:#fff;}
-.eb-save{background:#fff;color:var(--navy);display:none;}
-.eb-save:hover{background:#eef2ff;}
-.eb-sep{width:1px;height:20px;background:rgba(255,255,255,0.12);}
-body.editing [contenteditable="true"]{outline:1.5px dashed rgba(58,110,244,0.4);outline-offset:2px;border-radius:3px;cursor:text;}
-body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outline-offset:2px;background:rgba(58,110,244,0.03);}
-
 @media(max-width:960px){
   .container{padding:0 16px;}
   .kpi-grid{grid-template-columns:repeat(2,1fr);}
@@ -797,13 +785,6 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
   </footer>
 </div>
 
-<div class="edit-bar" id="editBar">
-  <span class="edit-bar-label">Skael Reports</span>
-  <div class="eb-sep"></div>
-  <button class="eb-btn eb-edit" id="ebEdit" onclick="toggleEdit()">✏︎ Bearbeiten</button>
-  <button class="eb-btn eb-save" id="ebSave" onclick="downloadHTML()">⬇ HTML speichern</button>
-</div>
-
 <script>
 Chart.defaults.font.family = "'Poppins', sans-serif";
 Chart.defaults.color = '#9ca3af';
@@ -863,11 +844,6 @@ const fEl=document.querySelector('#retention .funnel-fill'); if(fEl){fo.observe(
 
 document.querySelectorAll('.nav-tab').forEach(tab=>{tab.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});
 document.querySelectorAll('section[id]').forEach(s=>{new IntersectionObserver(es=>{if(es[0].isIntersecting){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.nav-tab[href="#${s.id}"]`);if(a)a.classList.add('active');}},{threshold:0.3}).observe(s);});
-
-const ES=['.h-hero','.h-hero em','.meta-badge span','.hero-meta-value','.hero-meta-label','.nav-pill','.kpi-label','.kpi-value','.kpi-sub','.sl','.insight-text','.card-label','.h-section','.h-section em','.funnel-lbl','.funnel-val','.tag','.einordnung-lbl','.einordnung-text','.side-row-lbl','.side-row-val','.hint-box p','.kamp-name','.kamp-sub','.kamp-lbl','.kamp-val','tbody td','thead th','.ii-name','.ii-desc','.ii-metric-val','.ii-metric-lbl','.prio-title-text','.prio-desc','.fazit-heading','.fazit-text','.footer-brand','.footer-date'].join(',');
-let editing=false;
-function toggleEdit(){editing=!editing;const btn=document.getElementById('ebEdit'),save=document.getElementById('ebSave');if(editing){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));btn.textContent='✕ Fertig';btn.classList.add('on');save.style.display='block';}else{document.body.classList.remove('editing');document.querySelectorAll('[contenteditable="true"]').forEach(el=>el.setAttribute('contenteditable','false'));btn.textContent='✏︎ Bearbeiten';btn.classList.remove('on');save.style.display='none';}}
-function downloadHTML(){const bar=document.getElementById('editBar'),was=editing;document.body.classList.remove('editing');document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));bar.style.display='none';const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;bar.style.display='';if(was){document.body.classList.add('editing');document.querySelectorAll(ES).forEach(el=>el.setAttribute('contenteditable','true'));}try{const enc=new TextEncoder(),bytes=enc.encode(html),blob=new Blob([bytes],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Maloum-Feb-Aug-2026.html';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){alert('Download fehlgeschlagen.');}}
 </script>
 
 </body>
