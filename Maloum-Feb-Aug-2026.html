@@ -257,23 +257,28 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
       <div class="hero-meta-item"><span class="hero-meta-label">Status</span><span class="hero-meta-value">neolime deaktiviert (Mitte Juli) · Neustart auf Media Buying #1</span></div>
     </div>
 
-    <!-- GESAMT-BILANZ: Overall über die gesamte Zeit (Hochrechnung) -->
-    <div class="card-label" style="margin-top:36px;margin-bottom:12px;">Gesamt-Bilanz · April – Juni 2026 · 1:1 aus den Monatsreports</div>
-    <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);">
+    <!-- GESAMT-BILANZ: kumuliert über die gesamte Zusammenarbeit -->
+    <div class="card-label" style="margin-top:36px;margin-bottom:12px;">Gesamt-Bilanz · kumuliert Feb – August 2026 · Backend-verifiziert</div>
+    <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);">
       <div class="kpi-card hi">
-        <div class="kpi-header"><span class="kpi-label">Media-Spend · Apr – Jun</span><div class="sw"><div class="sd g"></div><span class="sl g">Reports</span></div></div>
-        <div class="kpi-value">88.459 €</div>
-        <div class="kpi-sub">Summe der drei Monatsreports (Mai = Run-Rate)</div>
+        <div class="kpi-header"><span class="kpi-label">Media-Spend gesamt</span><div class="sw"><div class="sd b"></div><span class="sl b">Feb – Aug</span></div></div>
+        <div class="kpi-value">121.826 €</div>
+        <div class="kpi-sub">Summe aller 7 Monate (Feb–Aug)</div>
       </div>
       <div class="kpi-card hi">
-        <div class="kpi-header"><span class="kpi-label">Neukunden-Umsatz · Erstkauf</span><div class="sw"><div class="sd g"></div><span class="sl g">Backend</span></div></div>
-        <div class="kpi-value">153.320 €</div>
-        <div class="kpi-sub">echter Backend-Umsatz · 1.807 Neukunden</div>
+        <div class="kpi-header"><span class="kpi-label">Verifizierte Neukunden</span><div class="sw"><div class="sd g"></div><span class="sl g">Backend</span></div></div>
+        <div class="kpi-value">1.836</div>
+        <div class="kpi-sub">Apr 362 · Mai 566 · Jun 879 · Aug 29</div>
       </div>
       <div class="kpi-card hi">
-        <div class="kpi-header"><span class="kpi-label">Lifetime-Umsatz · Projektion</span><div class="sw"><div class="sd y"></div><span class="sl y">aus Reports</span></div></div>
-        <div class="kpi-value">~361.400 €</div>
-        <div class="kpi-sub">1.807 Neukunden × 200 € Ø-CLV (Report-Annahme)</div>
+        <div class="kpi-header"><span class="kpi-label">Echter Umsatz · Ist</span><div class="sw"><div class="sd g"></div><span class="sl g">eingenommen</span></div></div>
+        <div class="kpi-value">269.465 €</div>
+        <div class="kpi-sub">real im Backend gemessen · inkl. Bestand (Jun &amp; Aug)</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Lifetime-Hochrechnung</span><div class="sw"><div class="sd y"></div><span class="sl y">Projektion</span></div></div>
+        <div class="kpi-value">~367.200 €</div>
+        <div class="kpi-sub">1.836 Neukunden × 200 € Ø-CLV</div>
       </div>
     </div>
 
@@ -288,33 +293,37 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
 <section id="bilanz" class="section">
   <div class="container">
     <h2 class="h-section reveal">Kosten vs. <em>Umsatz</em></h2>
-    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Pro Monat gegenübergestellt: was wir an Media-Budget ausgegeben haben und welchen Umsatz die Kampagnen laut <strong>Transaktions-Backend</strong> gebracht haben. Für die drei Monate mit echten Backend-Daten (April–Juni) stehen <strong>88.459 € Ausgaben</strong> rund <strong>153.320 € Neukunden-Umsatz</strong> gegenüber. Februar und März waren Aufbau, Juli Auslauf, dort wurde der Umsatz nicht im Backend erfasst. Der <strong>August</strong> ist ein Sonderfall (alter Account aus, neuer im Warmup) und wird separat im Abschnitt <a href="#august" style="color:var(--blue);text-decoration:none;font-weight:500;">Übergang &amp; Neustart</a> aufgeschlüsselt.</p>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Pro Monat gegenübergestellt: was wir an Media-Budget ausgegeben haben und welchen Umsatz die Kampagnen laut <strong>Transaktions-Backend</strong> gebracht haben — sowohl den reinen <strong>Neukunden-Umsatz (Erstkauf)</strong> als auch den <strong>Gesamt-Umsatz inkl. Bestandskäufe</strong>. Über die gesamte Zusammenarbeit stehen <strong>121.826 € Ausgaben</strong> rund <strong>269.465 € echtem, im Backend gemessenem Umsatz</strong> gegenüber — ein kumulierter Ist-Return von <strong>2,21x</strong>. Der große Juni-Sprung und der August-Tail zeigen: ein Großteil des Umsatzes kommt aus dem wiederkaufenden Bestand, nicht nur aus dem Erstkauf.</p>
 
     <div class="chart-card reveal" style="max-width:none;margin-bottom:16px;">
-      <div class="card-label">Ausgegeben vs. Neukunden-Umsatz pro Monat · Apr – Jun 2026 (Backend)</div>
+      <div class="card-label">Ausgegeben vs. Backend-Umsatz (inkl. Bestand) pro Monat · Feb – Aug 2026</div>
       <canvas id="chartBilanz"></canvas>
     </div>
 
     <div class="table-wrap reveal">
       <table>
         <thead>
-          <tr><th>Monat</th><th>Ausgegeben</th><th>Neukunden-Umsatz</th><th>Akquise-ROAS</th></tr>
+          <tr><th>Monat</th><th>Ausgegeben</th><th>Neukunden-Umsatz</th><th>Backend-Umsatz gesamt (Ist)</th><th>Akquise-ROAS</th></tr>
         </thead>
         <tbody>
-          <tr><td>Apr 2026</td><td>19.114 €</td><td>30.182 €</td><td><span class="roas-mid">1,58x</span></td></tr>
-          <tr><td>Mai 2026<span class="cell-sub">Vollmonat-Run-Rate</span></td><td>23.959 €</td><td>41.061 €</td><td><span class="roas-mid">1,71x</span></td></tr>
-          <tr><td>Jun 2026<span class="cell-sub">Gesamtumsatz inkl. Bestand: 131.656 €</span></td><td>45.386 €</td><td>82.077 €</td><td><span class="roas-strong">1,81x</span></td></tr>
-          <tr><td>Gesamt Apr – Jun</td><td>88.459 €</td><td>153.320 €</td><td>1,73x</td></tr>
+          <tr><td>Feb 2026<span class="cell-sub">Aufbau · nur Meta</span></td><td>6.783 €</td><td>–</td><td>–</td><td>–</td></tr>
+          <tr><td>Mrz 2026<span class="cell-sub">Aufbau · nur Meta</span></td><td>12.246 €</td><td>–</td><td>–</td><td>–</td></tr>
+          <tr><td>Apr 2026<span class="cell-sub">Bestand nicht separat gemessen</span></td><td>19.114 €</td><td>30.182 €</td><td>30.182 €</td><td><span class="roas-mid">1,58x</span></td></tr>
+          <tr><td>Mai 2026<span class="cell-sub">Bestand nicht separat gemessen</span></td><td>23.959 €</td><td>41.061 €</td><td>41.061 €</td><td><span class="roas-mid">1,71x</span></td></tr>
+          <tr><td>Jun 2026<span class="cell-sub">Peak · inkl. Bestand</span></td><td>45.386 €</td><td>82.077 €</td><td>131.656 €</td><td><span class="roas-strong">1,81x</span></td></tr>
+          <tr><td>Jul 2026<span class="cell-sub">Auslauf · neolime aus</span></td><td>10.828 €</td><td>–</td><td>–</td><td>–</td></tr>
+          <tr><td>Aug 2026<span class="cell-sub">Neustart · inkl. neolime-Tail 63.176 €</span></td><td>3.510 €</td><td>3.390 €</td><td>66.566 €</td><td><span class="roas-mid">0,97x</span></td></tr>
+          <tr><td>Gesamt Feb – Aug<span class="cell-sub">kumulierter Ist-Return 2,21x</span></td><td>121.826 €</td><td>156.710 €</td><td>269.465 €</td><td>2,21x</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="hint-box reveal" style="margin-top:16px;">
-      <p><strong>Wichtig zur Einordnung:</strong> Das sind die echten, im <strong>Transaktions-Backend gemessenen Neukunden-Umsätze</strong> (Erstkäufe), 100% belegbar aus den Monatsreports. Der <strong>Gesamtumsatz inkl. Wiederkäufe der Bestandskunden ist höher</strong>, aber nur für Juni sauber gemessen: 131.656 € (Blended-ROAS 2,90x). Feb/Mrz (Aufbau) und Juli (Auslauf, Konto Mitte Juli deaktiviert) haben keine Backend-Umsatzdaten, daher startet die Bilanz im April.</p>
+      <p><strong>Wichtig zur Einordnung:</strong> Der <strong>Neukunden-Umsatz</strong> ist der reine Erstkauf, 100 % aus den Monatsreports belegt. Der <strong>Backend-Umsatz gesamt (Ist)</strong> ist das real eingenommene GMV inkl. Wiederkäufe: für <strong>Juni (131.656 €)</strong> und <strong>August (66.566 €)</strong> sauber inkl. Bestand gemessen, für April/Mai wurde der Bestand nicht separat erfasst (dort = Erstkauf, also ein <strong>konservativer Floor</strong>). Feb/Mrz (Aufbau) und Juli (Auslauf) haben keine Backend-Umsatzdaten. Der echte Gesamt-Umsatz liegt damit <strong>eher über den 269.465 €</strong>. Meta-Pixel überzeichnet und wird bewusst nicht genutzt, <strong>Backend ist die Wahrheit</strong>.</p>
     </div>
 
     <div class="hint-box reveal" style="margin-top:16px;">
-      <p><strong>Zur Lifetime-Zahl in der Gesamt-Bilanz oben:</strong> Maloum ist ein Abo-Modell, die Kunden zahlen über ihre Lebensdauer wiederholt, nicht nur beim Erstkauf. Die <strong>1.807 Neukunden aus April–Juni</strong> ergeben bei dem in den Monatsreports angesetzten Ø-Customer-Lifetime-Value von 200 € rund <strong>361.400 € Umsatz über die Lifetime</strong>. Das ist exakt die Summe der drei Report-Projektionen: April ~72.400 € + Mai ~113.200 € + Juni ~175.800 €. Mit einem höheren CLV von 250 € wären es entsprechend ~452.000 €.</p>
+      <p><strong>Zur Lifetime-Hochrechnung in der Gesamt-Bilanz oben:</strong> Maloum ist ein Abo-Modell, die Kunden zahlen über ihre Lebensdauer wiederholt, nicht nur beim Erstkauf. Die <strong>1.836 verifizierten Neukunden (Apr/Mai/Jun/Aug)</strong> ergeben bei dem in den Monatsreports angesetzten Ø-Customer-Lifetime-Value von 200 € rund <strong>367.200 € Umsatz über die Lifetime</strong>. Mit einem höheren CLV von 250 € wären es entsprechend ~459.000 €. Diese Hochrechnung ist unabhängig vom bereits eingenommenen Ist-Umsatz und beziffert das Lifetime-Potenzial der bisher gewonnenen Kohorten.</p>
     </div>
   </div>
 </section>
@@ -331,7 +340,7 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
         <canvas id="chartVerlauf"></canvas>
       </div>
       <div class="chart-card">
-        <div class="card-label">Akquise-ROAS-Entwicklung · Apr – Jun (Backend)</div>
+        <div class="card-label">Akquise-ROAS-Entwicklung · Apr – Aug (Backend)</div>
         <canvas id="chartRoasVerlauf"></canvas>
       </div>
     </div>
@@ -407,11 +416,11 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
 
     <div class="chart-row reveal">
       <div class="chart-card">
-        <div class="card-label">Akquise-ROAS vs. Blended-ROAS · Apr – Jun</div>
+        <div class="card-label">Akquise-ROAS vs. Blended-ROAS · Apr – Aug</div>
         <canvas id="chartPerf"></canvas>
       </div>
       <div class="chart-card">
-        <div class="card-label">Spend-Skalierung vs. Akquise-ROAS · Apr – Jun</div>
+        <div class="card-label">Spend-Skalierung vs. Akquise-ROAS · Apr – Aug</div>
         <canvas id="chartScale"></canvas>
       </div>
     </div>
@@ -440,7 +449,7 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
     </div>
 
     <div class="hint-box reveal" style="margin-top:16px;">
-      <p><strong>Warum das der eigentliche Beweis ist:</strong> Budget April→Juni fast verdreifacht, und die reine Neukunden-ROAS ist von 1,58x auf 1,81x GESTIEGEN. Das heißt: Es gab noch keine Sättigung, das Wachstum war strukturell tragfähig. Der Abstand zwischen Akquise-ROAS (1,81x) und Blended-ROAS (2,90x) im Juni ist der Bestands-Beitrag, Umsatz, den früherer Spend heute noch abwirft. Genau dieser Abstand wächst mit jeder weiteren Kohorte.</p>
+      <p><strong>Warum das der eigentliche Beweis ist:</strong> Budget April→Juni fast verdreifacht, und die reine Neukunden-ROAS ist von 1,58x auf 1,81x GESTIEGEN. Das heißt: Es gab noch keine Sättigung, das Wachstum war strukturell tragfähig. Der Abstand zwischen Akquise-ROAS (1,81x) und Blended-ROAS (2,90x) im Juni ist der Bestands-Beitrag, Umsatz, den früherer Spend heute noch abwirft. Genau dieser Abstand wächst mit jeder weiteren Kohorte. <strong>Der August-Punkt (0,97x)</strong> auf den Charts ist der <strong>First-Touch-Wert des Warmup-Neustarts</strong> auf dem neuen Konto (3.510 € Spend) — nicht mit dem eingeschwungenen Apr–Jun-Niveau vergleichbar, sondern der Startpunkt der neuen Hochlaufkurve.</p>
     </div>
   </div>
 </section>
@@ -831,39 +840,39 @@ new Chart(document.getElementById('chartVerlauf'), {
   options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, y2:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v}} } }
 });
 
-// Akquise-ROAS Verlauf Apr–Jun
+// Akquise-ROAS Verlauf Apr–Aug (Jul Auslauf = Lücke, Aug Warmup-Neustart)
 new Chart(document.getElementById('chartRoasVerlauf'), {
   data: {
-    labels: ['Apr', 'Mai', 'Jun'],
+    labels: ['Apr', 'Mai', 'Jun', 'Jul', 'Aug'],
     datasets: [
-      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81], borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, fill:true, yAxisID:'y' }
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81, null, 0.97], borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, spanGaps:false, tension:0.3, fill:true, yAxisID:'y' }
     ]
   },
-  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:1.4,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:0.8,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
 });
 
 // Performance: Akquise vs Blended ROAS Apr–Jun
 new Chart(document.getElementById('chartPerf'), {
   data: {
-    labels: ['Apr', 'Mai', 'Jun'],
+    labels: ['Apr', 'Mai', 'Jun', 'Jul', 'Aug'],
     datasets: [
-      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, yAxisID:'y' },
-      { type:'line', label:'Blended-ROAS', data:[null, null, 2.90], borderColor:'#3a6ef4', backgroundColor:'transparent', borderWidth:2.5, borderDash:[5,4], pointBackgroundColor:'#3a6ef4', pointRadius:6, tension:0.3, yAxisID:'y' }
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81, null, 0.97], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, spanGaps:false, tension:0.3, yAxisID:'y' },
+      { type:'line', label:'Blended-ROAS', data:[null, null, 2.90, null, null], borderColor:'#3a6ef4', backgroundColor:'transparent', borderWidth:2.5, borderDash:[5,4], pointBackgroundColor:'#3a6ef4', pointRadius:6, tension:0.3, yAxisID:'y' }
     ]
   },
-  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12,padding:10}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:1.4,max:3.1,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12,padding:10}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:0.8,max:3.1,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
 });
 
 // Spend-Skalierung vs Akquise-ROAS Apr–Jun
 new Chart(document.getElementById('chartScale'), {
   data: {
-    labels: ['Apr', 'Mai', 'Jun'],
+    labels: ['Apr', 'Mai', 'Jun', 'Jul', 'Aug'],
     datasets: [
-      { type:'bar', label:'Spend €', data:[19114, 23959, 45386], backgroundColor:['rgba(58,110,244,0.35)','rgba(58,110,244,0.55)','#3a6ef4'], borderRadius:5, yAxisID:'y' },
-      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, tension:0.3, yAxisID:'y2' }
+      { type:'bar', label:'Spend €', data:[19114, 23959, 45386, 10828, 3510], backgroundColor:['rgba(58,110,244,0.35)','rgba(58,110,244,0.55)','#3a6ef4','rgba(58,110,244,0.30)','rgba(58,110,244,0.22)'], borderRadius:5, yAxisID:'y' },
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.71, 1.81, null, 0.97], borderColor:'#22c55e', backgroundColor:'transparent', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, spanGaps:false, tension:0.3, yAxisID:'y2' }
     ]
   },
-  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, y2:{position:'right',grid:{drawOnChartArea:false},min:1.4,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, y2:{position:'right',grid:{drawOnChartArea:false},min:0.8,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
 });
 
 // Kohorten Doughnut
@@ -899,14 +908,14 @@ new Chart(document.getElementById('chartForecastRoas'), {
   options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:2.8,max:4.0,ticks:{callback:v=>v.toFixed(1)+'x'}} } }
 });
 
-// Bilanz: Ausgegeben vs. Neukunden-Umsatz (Backend) Apr–Jul, zwei Balken pro Monat
+// Bilanz: Ausgegeben vs. Backend-Umsatz gesamt (inkl. Bestand) Feb–Aug
 new Chart(document.getElementById('chartBilanz'), {
   type:'bar',
   data: {
-    labels: ['Apr','Mai','Jun'],
+    labels: ['Feb','Mrz','Apr','Mai','Jun','Jul','Aug'],
     datasets: [
-      { label:'Ausgegeben', data:[19114,23959,45386], backgroundColor:'#c7d4fd', borderRadius:4 },
-      { label:'Neukunden-Umsatz (Backend)', data:[30182,41061,82077], backgroundColor:'#3a6ef4', borderRadius:4 }
+      { label:'Ausgegeben', data:[6783,12246,19114,23959,45386,10828,3510], backgroundColor:'#c7d4fd', borderRadius:4 },
+      { label:'Backend-Umsatz gesamt (Ist)', data:[null,null,30182,41061,131656,null,66566], backgroundColor:'#3a6ef4', borderRadius:4 }
     ]
   },
   options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:true,labels:{font:{size:10},boxWidth:12,padding:10}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k €'}}, x:{grid:{display:false}} } }
