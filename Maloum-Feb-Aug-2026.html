@@ -783,8 +783,8 @@ body.editing [contenteditable="true"]:focus{outline:2px solid var(--blue);outlin
         <p class="prio-desc">Bestand von <strong>104 Ads</strong> über den Gesamtzeitraum als Basis fürs laufende Testen. Bei 45k+/Monat ist jedes Creative in ein paar Tagen abgenutzt. Ein großer Bestand plus ständiger Nachschub ist die Voraussetzung, um das Tempo zu halten.</p>
       </div>
       <div class="prio-card reveal">
-        <div class="prio-header"><div class="prio-num">+</div><div><div class="prio-title-text">Upside auf den Base-Forecast <span class="tag g">Zusatz</span></div></div></div>
-        <p class="prio-desc">E-Book und Creator-Acquisition sind im Forecast der nächsten Sektion <strong>bewusst NICHT eingerechnet</strong>. Sie wären reiner Upside auf das Base-Szenario, zusätzliches Top-Funnel-Volumen und höhere Neukunden-Kapazität oben drauf.</p>
+        <div class="prio-header"><div class="prio-num">+</div><div><div class="prio-title-text">Upside oben drauf <span class="tag g">Zusatz</span></div></div></div>
+        <p class="prio-desc">E-Book und Creator-Acquisition kommen als <strong>reiner Upside</strong> auf das bestehende Setup oben drauf: zusätzliches Top-Funnel-Volumen und höhere Neukunden-Kapazität, ohne dass am bewiesenen Kern etwas geändert werden muss.</p>
       </div>
     </div>
   </div>
@@ -825,7 +825,7 @@ new Chart(document.getElementById('chartRoasVerlauf'), {
   data: {
     labels: ['Apr', 'Mai', 'Jun', 'Jul', 'Aug'],
     datasets: [
-      { type:'line', label:'Akquise-ROAS (Aug: nur MB#1)', data:[1.58, 1.32, 1.81, 1.16, 0.97], borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, spanGaps:false, tension:0.3, fill:true, yAxisID:'y' }
+      { type:'line', label:'Akquise-ROAS', data:[1.58, 1.32, 1.81, 1.16, 1.31], borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,0.08)', borderWidth:2.5, pointBackgroundColor:'#22c55e', pointRadius:6, spanGaps:false, tension:0.3, fill:true, yAxisID:'y' }
     ]
   },
   options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:0.8,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
