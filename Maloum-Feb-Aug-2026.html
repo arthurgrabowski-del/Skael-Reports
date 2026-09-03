@@ -421,114 +421,76 @@ tbody tr:last-child:hover td{background:#e6edff;}
 <!-- RETENTION & KOHORTEN -->
 <section id="retention" class="section">
   <div class="container">
-    <h2 class="h-section reveal">Retention &amp; <em>Kohorten</em></h2>
-    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Die Einzel-CSV-Auswertung bestätigt die starke Retention. Die im Mai ab 18.05. akquirierte Kohorte erzeugte 31.576 € im Akquisemonat und im Juni weitere <strong>30.088 €</strong> — rund <strong>95 % Wiederholung</strong> im Folgemonat. Der Kohorten-Effekt wird im Juli und August noch deutlicher.</p>
+    <h2 class="h-section reveal">Kohorten, Retention &amp; <em>CLTV</em></h2>
+    <p class="reveal" style="font-size:14px;color:var(--body);line-height:1.75;margin-bottom:32px;max-width:860px;">Die Matrix zeigt pro <strong>Akquise-Kohorte</strong> (Zeile), wie viel Umsatz sie in jedem Monat gebracht hat: der <strong>Erstumsatz im Akquisemonat</strong> (grün) und die <strong>Folgeumsätze</strong> in den Monaten danach. Beispiel: Die März-Kunden haben im August nochmal <strong>3.228 €</strong> ausgegeben. Rechts daneben der daraus resultierende <strong>beobachtete Customer Lifetime Value</strong> je Kohorte.</p>
 
-    <div class="funnel-grid">
-      <div class="funnel-card reveal">
-        <div class="card-label">Juni-Umsatz nach Akquise-Kohorte · Transaktions-Backend</div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Juni-Neu · Monat 1</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#16a34a,#22c55e);" data-width="100%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">82.073 €</span><span class="tag g">64,0%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Mai-Kohorte · Monat 2</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="36.7%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">30.088 €</span><span class="tag b">23,5%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">April-Kohorte · Monat 3</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="16.9%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">13.830 €</span><span class="tag b">10,8%</span></div>
-        </div>
-        <div class="funnel-row" style="margin-bottom:0;">
-          <div class="funnel-lbl">März &amp; Februar</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="2.8%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">2.315 €</span><span class="tag b">1,8%</span></div>
-        </div>
-        <div style="border-top:1px solid var(--border);margin-top:20px;padding-top:16px;">
-          <div class="einordnung-lbl">Einordnung</div>
-          <p class="einordnung-text">Der Skael-attribuierte Juni-Umsatz von 128.306 € teilt sich in <strong>82.073 € Neukunden-Umsatz</strong> und 46.233 € aus früheren Skael-Kohorten. Damit stammen 64,0 % aus frischer Akquise und 36,0 % aus Wiederkäufen; die Blended-ROAS liegt bei 2,83x.</p>
-        </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>Akquise-Kohorte</th><th>Neukunden</th><th>Apr</th><th>Mai</th><th>Jun</th><th>Jul</th><th>Aug</th><th>Gesamt</th><th>Ø CLTV beobachtet</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Feb 2026<span class="cell-sub">nur Folgeumsatz ab 18.05. sichtbar</span></td><td><span style="color:var(--sub);">n/v</span></td><td>–</td><td>232 €</td><td>577 €</td><td>1.334 €</td><td>751 €</td><td>2.894 €</td><td><span style="color:var(--sub);">n/v</span></td></tr>
+          <tr><td>Mrz 2026<span class="cell-sub">nur Folgeumsatz ab 18.05. sichtbar</span></td><td><span style="color:var(--sub);">n/v</span></td><td>–</td><td>1.351 €</td><td>1.738 €</td><td>1.338 €</td><td>3.228 €</td><td>7.655 €</td><td><span style="color:var(--sub);">n/v</span></td></tr>
+          <tr><td>Apr 2026<span class="cell-sub">Erstmonat aus Monatsreport</span></td><td>362</td><td><span class="roas-strong">30.182 €</span></td><td>10.941 €</td><td>13.830 €</td><td>8.826 €</td><td>10.664 €</td><td><strong>74.443 €</strong></td><td><strong>205,64 €</strong></td></tr>
+          <tr><td>Mai 2026<span class="cell-sub">ab 18.05.</span></td><td>465</td><td>–</td><td><span class="roas-strong">31.576 €</span></td><td>30.088 €</td><td>17.960 €</td><td>21.481 €</td><td><strong>101.104 €</strong></td><td><strong>217,43 €</strong></td></tr>
+          <tr><td>Jun 2026</td><td>876</td><td>–</td><td>–</td><td><span class="roas-strong">82.073 €</span></td><td>35.747 €</td><td>22.092 €</td><td><strong>139.913 €</strong></td><td>159,72 €</td></tr>
+          <tr><td>Jul 2026</td><td>197</td><td>–</td><td>–</td><td>–</td><td><span class="roas-strong">12.511 €</span></td><td>5.044 €</td><td><strong>17.555 €</strong></td><td>89,11 €</td></tr>
+          <tr><td>Aug 2026</td><td>55</td><td>–</td><td>–</td><td>–</td><td>–</td><td><span class="roas-strong">4.582 €</span></td><td><strong>4.582 €</strong></td><td>83,31 €</td></tr>
+          <tr><td>Gesamt<span class="cell-sub">Spalten = Monatsumsätze aus der Bilanz</span></td><td>1.955</td><td>30.182 €</td><td>44.100 €</td><td>128.306 €</td><td>77.716 €</td><td>67.841 €</td><td><strong>348.146 €</strong></td><td><strong>172,68 €</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="hint-box reveal" style="margin-top:16px;">
+      <p><strong>Lesehilfe:</strong> Grün = Erstumsatz im Akquisemonat, alle Zellen rechts davon = Folgeumsätze derselben Kunden. Der Ø-CLTV je Kohorte ist der beobachtete Gesamtumsatz geteilt durch die Neukunden. Für Feb/Mrz ist die Kohortengröße nicht bekannt (Aufbauphase ohne Backend-Attribution), deshalb fließen deren 10.549 € Folgeumsatz nicht in den Ø-CLTV ein — der echte Overall-CLTV liegt also eher höher. Mai-Spalte ab 18.05. (CSV-Beginn).</p>
+    </div>
+
+    <div class="card-label reveal" style="margin-top:40px;margin-bottom:12px;">Customer Lifetime Value · beobachtet vs. Projektion</div>
+    <div class="kpi-grid reveal" style="grid-template-columns:repeat(4,1fr);margin-top:0;">
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ø CLTV · alle Kohorten</span><div class="sw"><div class="sd b"></div><span class="sl b">beobachtet</span></div></div>
+        <div class="kpi-value">172,68 €</div>
+        <div class="kpi-sub">nach im Schnitt nur ~3 Monaten · Kohorten kaufen weiter</div>
       </div>
-      <div>
-        <div class="chart-card reveal">
-          <div class="card-label">Umsatz-Split nach Kohorte · Juni</div>
-          <canvas id="chartCohort"></canvas>
-        </div>
-        <div class="hint-box reveal" style="margin-top:12px;">
-          <p><strong>Retention-Beweis:</strong> Die ab 18.05. sichtbare Mai-Kohorte erzeugte 31.576 € im Akquisemonat und im Juni weitere <strong>30.088 €</strong> — rund 95 %. Juli und August zeigen denselben Kohorten-Effekt über mehrere Akquisemonate hinweg.</p>
-        </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">April-Kohorte</span><div class="sw"><div class="sd g"></div><span class="sl g">5 Monate</span></div></div>
+        <div class="kpi-value">205,64 €</div>
+        <div class="kpi-sub">ohne 01.–17.05. · kauft weiter → real höher</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Mai-Kohorte</span><div class="sw"><div class="sd g"></div><span class="sl g">3,5 Monate</span></div></div>
+        <div class="kpi-value">217,43 €</div>
+        <div class="kpi-sub">schon jetzt klar über 200 €</div>
+      </div>
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">CLTV-Ansatz Projektion</span><div class="sw"><div class="sd y"></div><span class="sl y">Lifetime</span></div></div>
+        <div class="kpi-value">250 €</div>
+        <div class="kpi-sub">abgeleitet aus Apr/Mai-Trajektorie über die volle Lifetime</div>
       </div>
     </div>
 
-    <div class="chart-row reveal" style="margin-top:16px;">
-      <div class="funnel-card">
-        <div class="card-label">Juli-Umsatz nach Akquise-Kohorte · 77.716 € gesamt</div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Juni-Kohorte · Monat 2</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="100%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">35.747 €</span><span class="tag b">46,0%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Mai-Kohorte · Monat 3</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="50%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">17.960 €</span><span class="tag b">23,1%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Juli-Neu · Monat 1</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#16a34a,#22c55e);" data-width="35%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">12.511 €</span><span class="tag g">16,1%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">April-Kohorte</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="25%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">8.826 €</span><span class="tag b">11,4%</span></div>
-        </div>
-        <div class="funnel-row" style="margin-bottom:0;">
-          <div class="funnel-lbl">März &amp; Februar</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="7.5%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">2.672 €</span><span class="tag b">3,4%</span></div>
-        </div>
+    <div class="chart-row reveal" style="margin-top:20px;">
+      <div class="chart-card">
+        <div class="card-label">ROAS-Entwicklung · Ist heute → Lifetime-Projektion (121.826 € Spend)</div>
+        <canvas id="chartLtvRoas"></canvas>
       </div>
-      <div class="funnel-card">
-        <div class="card-label">August-Umsatz nach Akquise-Kohorte · 67.841 € gesamt</div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Juni-Kohorte · Monat 3</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="100%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">22.092 €</span><span class="tag b">32,6%</span></div>
+      <div>
+        <div class="kpi-card hi" style="margin-bottom:14px;">
+          <div class="kpi-header"><span class="kpi-label">Lifetime-Umsatz bei 250 € CLTV</span><div class="sw"><div class="sd y"></div><span class="sl y">Projektion</span></div></div>
+          <div class="kpi-value">~488.750 €</div>
+          <div class="kpi-sub">1.955 Neukunden × 250 €</div>
         </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Mai-Kohorte · Monat 4</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="97%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">21.481 €</span><span class="tag b">31,7%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">April-Kohorte</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="48%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">10.664 €</span><span class="tag b">15,7%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">Juli-Kohorte · Monat 2</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="23%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">5.044 €</span><span class="tag b">7,4%</span></div>
-        </div>
-        <div class="funnel-row">
-          <div class="funnel-lbl">August-Neu · Monat 1</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#16a34a,#22c55e);" data-width="21%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">4.582 €</span><span class="tag g">6,8%</span></div>
-        </div>
-        <div class="funnel-row" style="margin-bottom:0;">
-          <div class="funnel-lbl">März &amp; Februar</div>
-          <div class="funnel-track"><div class="funnel-fill" style="background:linear-gradient(90deg,#2d5fa0,#3a6ef4);" data-width="18%"></div></div>
-          <div class="funnel-right"><span class="funnel-val">3.979 €</span><span class="tag b">5,9%</span></div>
+        <div class="kpi-card hi">
+          <div class="kpi-header"><span class="kpi-label">Lifetime-ROAS bei 250 €</span><div class="sw"><div class="sd g"></div><span class="sl g">aus 2,86x Ist</span></div></div>
+          <div class="kpi-value">4,01x</div>
+          <div class="kpi-sub">~488.750 € ÷ 121.826 € Spend</div>
         </div>
       </div>
     </div>
 
     <div class="hint-box reveal" style="margin-top:16px;">
-      <p><strong>Lesart Juli/August:</strong> Im Juli tragen die Juni- und Mai-Kohorten zusammen <strong>69 %</strong> des Monats — die im Peak akquirierten Kunden kaufen zuverlässig weiter. Im August wiederholte die Mai-Kohorte mit 21.481 € sogar <strong>rund 68 % ihres Erstmonats im vierten Monat</strong>. Genau dieses Kohorten-Stacking ist der Grund, warum der Gesamt-ROAS auf Overall-Basis bei 2,86x liegt, obwohl der Erstkauf-ROAS pro Monat zwischen 1,16x und 1,81x lag.</p>
+      <p><strong>Warum 250 € als CLTV-Ansatz:</strong> Die April-Kohorte steht nach 5 Monaten bereits bei <strong>205,64 €</strong> (ohne die fehlenden Tage 01.–17.05.), die Mai-Kohorte nach 3,5 Monaten bei <strong>217,43 €</strong> — und beide kaufen weiter. Auf die volle Kundenlebensdauer sind <strong>250 €</strong> damit die realistische Annahme. Auf dieser Basis entwickelt sich der ROAS von <strong>2,86x heute (Ist: 348.146 €)</strong> auf <strong>4,01x über die Lifetime (~488.750 €)</strong> — aus 121.826 € Media-Spend.</p>
     </div>
   </div>
 </section>
@@ -812,14 +774,14 @@ new Chart(document.getElementById('chartRoasVerlauf'), {
   options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:0.8,max:2.0,ticks:{callback:v=>v.toFixed(2)+'x'}} } }
 });
 
-// Kohorten Doughnut
-new Chart(document.getElementById('chartCohort'), {
-  type:'doughnut',
+// CLTV-ROAS-Projektion
+new Chart(document.getElementById('chartLtvRoas'), {
+  type:'bar',
   data: {
-    labels: ['Juni-Neu (64,0%)','Mai-Kohorte (23,5%)','April-Kohorte (10,8%)','März & Februar (1,8%)'],
-    datasets: [{ data:[82073.30, 30087.54, 13829.99, 2315.48], backgroundColor:['#22c55e','#3a6ef4','#7ba0f8','#c7d4fd'], borderWidth:0 }]
+    labels: ['Ist heute · 348.146 €', 'Lifetime bei 200 € CLTV · ~391.000 €', 'Lifetime bei 250 € CLTV · ~488.750 €'],
+    datasets: [{ label:'ROAS', data:[2.86, 3.21, 4.01], backgroundColor:['#3a6ef4','#7ba0f8','#22c55e'], borderRadius:6 }]
   },
-  options:{ responsive:true, cutout:'62%', animation:{animateRotate:true,duration:1100}, plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:11,padding:10}}} }
+  options:{ responsive:true, animation:{duration:1000,easing:'easeInOutQuart'}, plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toFixed(2).replace('.',',')+'x'}}}, scales:{ y:{grid:{color:'rgba(0,0,0,0.04)'},min:0,max:4.5,ticks:{callback:v=>v.toFixed(1)+'x'}}, x:{grid:{display:false},ticks:{font:{size:9.5}}} } }
 });
 
 // Bilanz: Ausgaben vs. Umsatz (Neukunden + Kohorten gestapelt) Feb–Aug
