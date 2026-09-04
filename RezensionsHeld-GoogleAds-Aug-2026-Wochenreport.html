@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — RezensionsHeld Google Ads · August 2026 · Wochenreport</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report — RezensionsHeld Google Ads August 2026">
+<meta property="og:description" content="Google Ads · Vollmonat · Woche-für-Woche-Analyse · Preisanpassung 17.8. · tROAS-Test">
+<meta property="og:url" content="https://reports.skael.de/RezensionsHeld-GoogleAds-Aug-2026-Wochenreport.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fbfcfd;--white:#fff;--border:#e4e6ec;--border2:#d0d3de;--navy:#0f1b2d;
+  --blue:#3a6ef4;--blue-bg:#eef2ff;--blue-mid:#c7d4fd;--muted:#6b7280;--sub:#9ca3af;--body:#374151;
+  --green:#16a34a;--green-bg:#dcfce7;--green-dot:#22c55e;
+  --yellow:#b45309;--yellow-bg:#fef3c7;--yellow-dot:#f59e0b;
+  --red:#dc2626;--red-bg:#fee2e2;--red-dot:#ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;flex-wrap:wrap;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all .15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;margin-left:auto;}
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.hero{padding:64px 0 56px;scroll-margin-top:58px;}
+.section{padding:60px 0;scroll-margin-top:58px;border-top:1px solid var(--border);}
+.h-hero{font-family:'Poppins',sans-serif;font-size:52px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:36px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:24px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.meta-badge{display:inline-block;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px;margin-bottom:22px;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px;}
+.kpi-grid.six{grid-template-columns:repeat(6,1fr);}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform .2s,box-shadow .2s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-card.hi{border:1px solid var(--blue-mid);background:#fafbff;}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,.22);}
+.sd.b{background:var(--blue);box-shadow:0 0 0 2px rgba(58,110,244,.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}.sl.y{color:var(--yellow);}.sl.r{color:var(--red);}.sl.b{color:var(--blue);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:28px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:22px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+.insight-text strong{color:var(--navy);font-weight:500;}
+.insight-text em{font-style:normal;color:var(--blue);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;margin-top:16px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border-color:#fca5a5;}
+.hint-box.red p{color:var(--red);}
+.hint-box.yellow{background:var(--yellow-bg);border-color:#fcd34d;}
+.hint-box.yellow p{color:var(--yellow);}
+.hint-box.gray{background:#f6f7f9;border-color:var(--border2);}
+.hint-box.gray p{color:var(--muted);}
+table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:8px;}
+th,td{text-align:left;padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);}
+th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);font-weight:500;background:#fafbfc;}
+td{color:var(--body);}td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--navy);font-weight:500;}
+th.n{text-align:right;}
+tr:last-child td{border-bottom:none;}
+tr.tot td{background:#fafbff;font-weight:600;color:var(--navy);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}.tag.y{background:var(--yellow-bg);color:var(--yellow);}.tag.r{background:var(--red-bg);color:var(--red);}.tag.b{background:var(--blue-bg);color:var(--blue);}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:8px;}
+.chart-box{height:280px;}
+.chart-title{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);margin-bottom:14px;}
+.week-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px;}
+.week-range{font-family:'DM Mono',monospace;font-size:11px;color:var(--sub);letter-spacing:0.06em;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-top:18px;}
+.event-list{margin-top:8px;}
+.event-item{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--border);}
+.event-item:last-child{border-bottom:none;}
+.event-date{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:0.04em;padding-top:2px;}
+.event-text{font-size:13px;color:var(--body);line-height:1.6;}
+.event-text strong{color:var(--navy);font-weight:500;}
+footer{border-top:1px solid var(--border);padding:36px 0 48px;margin-top:20px;}
+.footer-note{font-size:11.5px;color:var(--sub);line-height:1.7;}
+@media(max-width:980px){
+  .kpi-grid,.kpi-grid.six{grid-template-columns:repeat(2,1fr);}
+  .two-col{grid-template-columns:1fr;}
+  .h-hero{font-size:38px;}.h-section{font-size:28px;}
+  .container{padding:0 20px;}
+  nav{padding:0 16px;overflow-x:auto;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo-text">SKAEL<span>·</span>REPORT</div>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#uebersicht">Übersicht</a>
+    <a class="nav-tab" href="#wochen">Wochenverlauf</a>
+    <a class="nav-tab" href="#w1">Woche 1</a>
+    <a class="nav-tab" href="#w2">Woche 2</a>
+    <a class="nav-tab" href="#w3">Woche 3</a>
+    <a class="nav-tab" href="#w4">Woche 4</a>
+    <a class="nav-tab" href="#suchbegriffe">Suchbegriffe</a>
+    <a class="nav-tab" href="#ereignisse">Ereignisse</a>
+    <a class="nav-tab" href="#einordnung">Einordnung</a>
+  </div>
+  <div class="nav-pill">Aug 2026</div>
+</nav>
+
+<!-- ============ HERO / ÜBERSICHT ============ -->
+<header class="hero container" id="uebersicht">
+  <div class="meta-badge"><span>Google Ads · Konto 2525117686 · Kampagne „Search | Cold-Google max conv. value"</span></div>
+  <h1 class="h-hero">RezensionsHeld<br>Google Ads <em>August 2026</em></h1>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="hero-meta-label">Zeitraum</div><div class="hero-meta-value">01.–31. August 2026</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-label">Datenquelle</div><div class="hero-meta-value">Google Ads API (live), Tagesebene</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-label">Messung</div><div class="hero-meta-value">Google Conversion-Wert (CRM-Purchase-Upload)</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-label">Stand</div><div class="hero-meta-value">04.09.2026</div></div>
+  </div>
+
+  <div class="kpi-grid six">
+    <div class="kpi-card hi">
+      <div class="kpi-header"><div class="kpi-label">Ad-Spend</div><div class="sw"><div class="sd b"></div><div class="sl b">Ist</div></div></div>
+      <div class="kpi-value">57.970&nbsp;€</div>
+      <div class="kpi-sub">Ø 1.870 €/Tag · Budget nominal 1.500 €</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header"><div class="kpi-label">Conversion-Wert</div><div class="sw"><div class="sd r"></div><div class="sl r">Tief</div></div></div>
+      <div class="kpi-value">36.183&nbsp;€</div>
+      <div class="kpi-sub">Google-Messung, alle Conversions</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header"><div class="kpi-label">ROAS</div><div class="sw"><div class="sd r"></div><div class="sl r">0,62×</div></div></div>
+      <div class="kpi-value">0,62×</div>
+      <div class="kpi-sub">Juni 1,14× → Juli 0,85× → Aug 0,62×</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header"><div class="kpi-label">Conversions</div><div class="sw"><div class="sd y"></div><div class="sl y">−39%</div></div></div>
+      <div class="kpi-value">362</div>
+      <div class="kpi-sub">CPA 160 € · Ø Wert/Conv ~100 €</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header"><div class="kpi-label">Klicks</div><div class="sw"><div class="sd b"></div><div class="sl b">2.911</div></div></div>
+      <div class="kpi-value">2.911</div>
+      <div class="kpi-sub">33.400 Impressionen · CTR 8,7 %</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-header"><div class="kpi-label">Ø CPC</div><div class="sw"><div class="sd r"></div><div class="sl r">Hoch</div></div></div>
+      <div class="kpi-value">19,91&nbsp;€</div>
+      <div class="kpi-sub">Juni 13,58 € · Juli 18,62 €</div>
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      <strong>Das August-Bild in einem Satz:</strong> Für jeden ausgegebenen Euro kamen nach Googles eigener Messung
+      <strong>62 Cent Erstumsatz</strong> zurück — der dritte Monat in Folge mit fallender Effizienz (Juni 1,14× → Juli 0,85× → August 0,62×).
+      Der Monat zerfällt in vier klar unterscheidbare Wochen: eine <em>teure Startwoche</em> (0,55×), eine <em>Übergangswoche mit Budget-Senkung und tROAS-Test</em> (0,68×),
+      die <em>beste Woche nach der Preisanpassung</em> (0,76×, CPC −20&nbsp;%) — und einen <em>Rückfall zum Monatsende</em> (0,57×, CPA 232&nbsp;€).
+      Die Preisanpassung vom 17.8. hat die Effizienz kurzfristig messbar verbessert, aber der Effekt hat den Monatsschluss nicht getragen.
+    </p>
+  </div>
+</header>
+
+<!-- ============ WOCHENVERLAUF ============ -->
+<section class="section container" id="wochen">
+  <h2 class="h-section">Der Monat in <em>vier Wochen</em></h2>
+
+  <table>
+    <thead><tr>
+      <th>Woche</th><th class="n">Spend</th><th class="n">Ø/Tag</th><th class="n">Klicks</th><th class="n">Ø CPC</th>
+      <th class="n">Conversions</th><th class="n">CPA</th><th class="n">Conv-Wert</th><th class="n">ROAS</th><th>Status</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><strong>W1</strong> · 1.–9.8.</td><td class="n">21.368 €</td><td class="n">2.374 €</td><td class="n">1.013</td><td class="n">21,09 €</td><td class="n">137,4</td><td class="n">155 €</td><td class="n">11.823 €</td><td class="n">0,55×</td><td><span class="tag r">Teuerste Woche</span></td></tr>
+      <tr><td><strong>W2</strong> · 10.–16.8.</td><td class="n">13.610 €</td><td class="n">1.944 €</td><td class="n">664</td><td class="n">20,50 €</td><td class="n">100,5</td><td class="n">135 €</td><td class="n">9.216 €</td><td class="n">0,68×</td><td><span class="tag y">Budget ↓ · tROAS-Start</span></td></tr>
+      <tr><td><strong>W3</strong> · 17.–23.8.</td><td class="n">10.482 €</td><td class="n">1.497 €</td><td class="n">641</td><td class="n">16,35 €</td><td class="n">70,5</td><td class="n">149 €</td><td class="n">8.018 €</td><td class="n">0,76×</td><td><span class="tag g">Beste Woche · Preisanpassung</span></td></tr>
+      <tr><td><strong>W4</strong> · 24.–31.8.</td><td class="n">12.510 €</td><td class="n">1.564 €</td><td class="n">593</td><td class="n">21,10 €</td><td class="n">54,0</td><td class="n">232 €</td><td class="n">7.126 €</td><td class="n">0,57×</td><td><span class="tag r">Rückfall</span></td></tr>
+      <tr class="tot"><td>August gesamt</td><td class="n">57.970 €</td><td class="n">1.870 €</td><td class="n">2.911</td><td class="n">19,91 €</td><td class="n">362,4</td><td class="n">160 €</td><td class="n">36.183 €</td><td class="n">0,62×</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="chart-card">
+    <div class="chart-title">Tagesverlauf · Spend vs. Conversion-Wert (Balken) · ROAS (Linie)</div>
+    <div class="chart-box"><canvas id="chartDaily"></canvas></div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-card" style="margin-top:0;">
+      <div class="chart-title">Wochenvergleich · Spend vs. Conversion-Wert</div>
+      <div class="chart-box" style="height:230px;"><canvas id="chartWeeks"></canvas></div>
+    </div>
+    <div class="insight-card" style="margin-top:0;">
+      <p class="insight-text">
+        <strong>Was der Verlauf zeigt:</strong> Der Spend wurde über den Monat real gedrosselt (Ø 2.374 €/Tag in W1 → 1.497 €/Tag in W3),
+        und die Effizienz stieg dabei Woche für Woche — bis W3 mit 0,76× dem Break-even am nächsten kam.
+        In W4 drehte sich das Bild: Der Tagesspend stieg wieder (+19&nbsp;% ggü. W3, u.&nbsp;a. 24.8. mit 2.330&nbsp;€ und 31.8. mit 2.004&nbsp;€),
+        aber die Conversions halbierten sich fast (54 vs. 70,5). Die letzten vier Tage des Monats (28.–31.8.) waren mit
+        <strong>5.631&nbsp;€ Spend bei nur 1.559&nbsp;€ Wert (0,28×)</strong> der schwächste Abschnitt des gesamten Monats.
+      </p>
+      <div class="hint-box yellow">
+        <p><strong>Conversion-Lag beachten:</strong> Die jüngsten Tage reifen nach — Conversions werden dem Klicktag teils erst Tage später zugeschrieben
+        (CRM-Upload). W4 wird rückblickend etwas besser aussehen als hier gemessen. Den Absturz der letzten Tage erklärt der Lag aber nur teilweise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WOCHE 1 ============ -->
+<section class="section container" id="w1">
+  <div class="week-head"><h2 class="h-section" style="margin-bottom:0;">Woche 1 — <em>teurer Monatsstart</em></h2><span class="week-range">SA 01.08. – SO 09.08. · 9 TAGE</span></div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Spend</div><div class="sw"><div class="sd r"></div><div class="sl r">Hoch</div></div></div><div class="kpi-value">21.368&nbsp;€</div><div class="kpi-sub">Ø 2.374 €/Tag — 58 % über dem 1.500-€-Budget</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Conv-Wert</div></div><div class="kpi-value">11.823&nbsp;€</div><div class="kpi-sub">137,4 Conversions · CPA 155 €</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">ROAS</div><div class="sw"><div class="sd r"></div><div class="sl r">0,55×</div></div></div><div class="kpi-value">0,55×</div><div class="kpi-sub">schwächste reguläre Woche vor W4</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Ø CPC</div></div><div class="kpi-value">21,09&nbsp;€</div><div class="kpi-sub">1.013 Klicks · 12.163 Impressionen</div></div>
+  </div>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      Die erste Woche war die <strong>teuerste des Monats</strong> — und die uneffizienteste unter den „normalen" Wochen.
+      Am <strong>3.8. liefen 4.607&nbsp;€ an einem einzigen Tag</strong> (dreifaches Nominalbudget; „Maximize Conversion Value" darf Tagesbudgets bis zu 2× überziehen,
+      und der Monatsstart gab dem Algorithmus freien Lauf) — bei nur 1.804&nbsp;€ Wert (0,39×).
+      Auch das Wochenende 7.–8.8. verbrannte: zusammen 4.460&nbsp;€ Spend für 1.228&nbsp;€ Wert.
+      Einziger Tag über Break-even: der 1.8. (1,08×). Das Grundmuster der Woche: <strong>volles Broad-Gas ohne Bremse</strong> bei CPCs über 21&nbsp;€.
+    </p>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;color:var(--navy);margin-top:26px;">Top-Suchbegriffe der Woche (nach Kosten)</h3>
+  <table>
+    <thead><tr><th>Suchbegriff</th><th class="n">Kosten</th><th class="n">Klicks</th><th class="n">Conv</th><th class="n">Wert</th><th class="n">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td>google bewertungen löschen</td><td class="n">2.841 €</td><td class="n">128</td><td class="n">13,0</td><td class="n">1.309 €</td><td class="n">0,46×</td></tr>
+      <tr><td>google bewertung löschen lassen</td><td class="n">1.761 €</td><td class="n">56</td><td class="n">16,3</td><td class="n">1.378 €</td><td class="n">0,78×</td></tr>
+      <tr><td>google bewertung löschen <span class="tag r">Einzahl</span></td><td class="n">892 €</td><td class="n">40</td><td class="n">3,0</td><td class="n">241 €</td><td class="n">0,27×</td></tr>
+      <tr><td>bewertungen löschen lassen</td><td class="n">851 €</td><td class="n">25</td><td class="n">3,0</td><td class="n">317 €</td><td class="n">0,37×</td></tr>
+      <tr><td>google bewertungen löschen lassen</td><td class="n">836 €</td><td class="n">27</td><td class="n">7,0</td><td class="n">765 €</td><td class="n">0,91×</td></tr>
+      <tr><td>rezensionsheld <span class="tag b">Brand in Cold</span></td><td class="n">663 €</td><td class="n">50</td><td class="n">6,0</td><td class="n">903 €</td><td class="n">1,36×</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ WOCHE 2 ============ -->
+<section class="section container" id="w2">
+  <div class="week-head"><h2 class="h-section" style="margin-bottom:0;">Woche 2 — <em>Budget runter, tROAS-Test an</em></h2><span class="week-range">MO 10.08. – SO 16.08. · 7 TAGE</span></div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Spend</div><div class="sw"><div class="sd y"></div><div class="sl y">−36%</div></div></div><div class="kpi-value">13.610&nbsp;€</div><div class="kpi-sub">Ø 1.944 €/Tag</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Conv-Wert</div></div><div class="kpi-value">9.216&nbsp;€</div><div class="kpi-sub">100,5 Conversions · CPA 135 € (Monats-Bestwert)</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">ROAS</div><div class="sw"><div class="sd y"></div><div class="sl y">0,68×</div></div></div><div class="kpi-value">0,68×</div><div class="kpi-sub">+0,13 ggü. W1</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Ø CPC</div></div><div class="kpi-value">20,50&nbsp;€</div><div class="kpi-sub">664 Klicks · 6.434 Impressionen</div></div>
+  </div>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      Die Woche der <strong>ersten echten Eingriffe</strong>: Am <strong>11. und 13.8. wurde das Budget in zwei Schritten real gesenkt</strong> —
+      der Tagesspend fiel von 3.534&nbsp;€ (10.8.) auf unter 1.300&nbsp;€ zum Wochenende.
+      Die Tage 11.–13.8. waren die beste Phase des Monats bis dahin (0,78× / 0,94× / <strong>1,13×</strong> am 13.8.).
+      Dann startete am <strong>14.8. der Ziel-ROAS-Test</strong> — und der 14.8. wurde mit <strong>41&nbsp;€ Wert bei 1.530&nbsp;€ Spend (0,03×)</strong>
+      der schwächste Tag des gesamten Monats: Der Algorithmus fiel in die Lernphase, das Wochenende 15./16.8. blieb mit 0,67×/0,51× gedrückt.
+    </p>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;color:var(--navy);margin-top:26px;">Top-Suchbegriffe der Woche (nach Kosten)</h3>
+  <table>
+    <thead><tr><th>Suchbegriff</th><th class="n">Kosten</th><th class="n">Klicks</th><th class="n">Conv</th><th class="n">Wert</th><th class="n">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td>google bewertungen löschen</td><td class="n">2.128 €</td><td class="n">75</td><td class="n">13,0</td><td class="n">1.209 €</td><td class="n">0,57×</td></tr>
+      <tr><td>google bewertung löschen lassen</td><td class="n">1.149 €</td><td class="n">42</td><td class="n">8,0</td><td class="n">593 €</td><td class="n">0,52×</td></tr>
+      <tr><td>rezensionsheld <span class="tag b">Brand in Cold</span></td><td class="n">856 €</td><td class="n">66</td><td class="n">12,0</td><td class="n">792 €</td><td class="n">0,93×</td></tr>
+      <tr><td>google bewertungen löschen lassen</td><td class="n">633 €</td><td class="n">29</td><td class="n">4,0</td><td class="n">567 €</td><td class="n">0,90×</td></tr>
+      <tr><td>google bewertung löschen <span class="tag r">Einzahl</span></td><td class="n">591 €</td><td class="n">26</td><td class="n">1,0</td><td class="n">40 €</td><td class="n">0,07×</td></tr>
+      <tr><td>google rezension löschen</td><td class="n">482 €</td><td class="n">35</td><td class="n">3,0</td><td class="n">162 €</td><td class="n">0,33×</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ WOCHE 3 ============ -->
+<section class="section container" id="w3">
+  <div class="week-head"><h2 class="h-section" style="margin-bottom:0;">Woche 3 — <em>Preisanpassung: beste Woche</em></h2><span class="week-range">MO 17.08. – SO 23.08. · 7 TAGE</span></div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Spend</div><div class="sw"><div class="sd g"></div><div class="sl g">Tiefster</div></div></div><div class="kpi-value">10.482&nbsp;€</div><div class="kpi-sub">Ø 1.497 €/Tag — erstmals im Budgetrahmen</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Conv-Wert</div></div><div class="kpi-value">8.018&nbsp;€</div><div class="kpi-sub">70,5 Conversions · CPA 149 €</div></div>
+    <div class="kpi-card hi"><div class="kpi-header"><div class="kpi-label">ROAS</div><div class="sw"><div class="sd g"></div><div class="sl g">Beste</div></div></div><div class="kpi-value">0,76×</div><div class="kpi-sub">beste Woche des Monats</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Ø CPC</div><div class="sw"><div class="sd g"></div><div class="sl g">−20%</div></div></div><div class="kpi-value">16,35&nbsp;€</div><div class="kpi-sub">641 Klicks · 7.921 Impressionen</div></div>
+  </div>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      Am <strong>Montag, 17.8., ging die Preisanpassung live</strong> (die Kampagne wurde entsprechend umbenannt); am <strong>20.8. wurde der tROAS-Test wieder beendet</strong>.
+      Das Ergebnis war die beste Woche des Monats: höherer Warenkorbwert pro Conversion (114&nbsp;€ vs. ~86&nbsp;€ in W1),
+      der <strong>CPC fiel um 20&nbsp;%</strong> auf 16,35&nbsp;€, und das Wochenende lieferte die zwei besten regulären Tage des Monats
+      (22.8. <strong>1,41×</strong>, 23.8. <strong>1,26×</strong>). Einziger Ausreißer nach unten: der 20.8. (0,19×) — der Tag des tROAS-Ausstiegs, an dem
+      der Spend kurz auf 2.135&nbsp;€ hochschoss. <strong>Aber:</strong> Das Volumen sank spürbar — 70,5 Conversions vs. 137 in W1.
+      Die Preisanpassung hat die <em>Effizienz</em> verbessert, nicht die <em>Menge</em>.
+    </p>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;color:var(--navy);margin-top:26px;">Top-Suchbegriffe der Woche (nach Kosten)</h3>
+  <table>
+    <thead><tr><th>Suchbegriff</th><th class="n">Kosten</th><th class="n">Klicks</th><th class="n">Conv</th><th class="n">Wert</th><th class="n">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td>google bewertungen löschen</td><td class="n">1.329 €</td><td class="n">69</td><td class="n">9,2</td><td class="n">1.410 €</td><td class="n">1,06×</td></tr>
+      <tr><td>google bewertung löschen lassen</td><td class="n">1.169 €</td><td class="n">52</td><td class="n">7,5</td><td class="n">815 €</td><td class="n">0,70×</td></tr>
+      <tr><td>rezensionsheld <span class="tag b">Brand in Cold</span></td><td class="n">664 €</td><td class="n">54</td><td class="n">3,0</td><td class="n">194 €</td><td class="n">0,29×</td></tr>
+      <tr><td>google bewertung löschen <span class="tag r">Einzahl</span></td><td class="n">592 €</td><td class="n">26</td><td class="n">4,0</td><td class="n">203 €</td><td class="n">0,34×</td></tr>
+      <tr><td>google rezension löschen</td><td class="n">438 €</td><td class="n">31</td><td class="n">5,0</td><td class="n">254 €</td><td class="n">0,58×</td></tr>
+      <tr><td>google rezension löschen lassen</td><td class="n">308 €</td><td class="n">12</td><td class="n">0,0</td><td class="n">0 €</td><td class="n">0,00×</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ WOCHE 4 ============ -->
+<section class="section container" id="w4">
+  <div class="week-head"><h2 class="h-section" style="margin-bottom:0;">Woche 4 — <em>der Rückfall</em></h2><span class="week-range">MO 24.08. – MO 31.08. · 8 TAGE</span></div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Spend</div><div class="sw"><div class="sd y"></div><div class="sl y">+19%/Tag</div></div></div><div class="kpi-value">12.510&nbsp;€</div><div class="kpi-sub">Ø 1.564 €/Tag — wieder über Budget</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">Conv-Wert</div><div class="sw"><div class="sd r"></div><div class="sl r">Tief</div></div></div><div class="kpi-value">7.126&nbsp;€</div><div class="kpi-sub">nur noch 54 Conversions</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">ROAS</div><div class="sw"><div class="sd r"></div><div class="sl r">0,57×</div></div></div><div class="kpi-value">0,57×</div><div class="kpi-sub">28.–31.8. sogar nur 0,28×</div></div>
+    <div class="kpi-card"><div class="kpi-header"><div class="kpi-label">CPA</div><div class="sw"><div class="sd r"></div><div class="sl r">+56%</div></div></div><div class="kpi-value">232&nbsp;€</div><div class="kpi-sub">vs. 135–155 € in W1–W3</div></div>
+  </div>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      Die Woche begann stark — <strong>24.8. mit 2.171&nbsp;€ Wert</strong> (0,93×) und der <strong>27.8. war mit 1,45× der beste Tag des Monats</strong>.
+      Dann brach der Monatsschluss weg: <strong>28.–31.8. zusammen 5.631&nbsp;€ Spend für 1.559&nbsp;€ Wert (0,28×)</strong>,
+      mit dem 30.8. (0,04×) und 31.8. (0,15×) als Tiefpunkten — während der Tagesspend gleichzeitig wieder anstieg (31.8.: 2.004&nbsp;€).
+      Der CPA explodierte auf 232&nbsp;€ — bei einem Ø-Warenkorb von ~130&nbsp;€ heißt das: <strong>Jeder Neukunde der Woche wurde mit deutlichem Verlust eingekauft.</strong>
+      Auffällig auf Suchbegriff-Ebene: <em>google rezension löschen</em> gab 547&nbsp;€ ohne einen einzigen Kauf aus, und die „lassen"-Begriffe liefen ungewöhnlich schwach.
+    </p>
+    <div class="hint-box yellow">
+      <p><strong>Zwei Vorbehalte zu W4:</strong> (1) Conversion-Lag — als jüngste Woche reift sie am stärksten nach; ein Teil des Einbruchs wird sich noch auffüllen.
+      (2) Der CRM-Purchase-Upload hatte im August dokumentierte Probleme (EXPIRED_EVENT-Fehler, ~80&nbsp;% GCLID-Abdeckung, zuletzt sichtbarer Feed-Import 13.8.) —
+      ein Teil des „Einbruchs" kann Messausfall statt echtem Leistungsabfall sein. Gegenprüfung über das interne Dashboard ist ab 24.8. nicht möglich (Import-Stopp, siehe Einordnung).</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:15px;font-weight:500;color:var(--navy);margin-top:26px;">Top-Suchbegriffe der Woche (nach Kosten)</h3>
+  <table>
+    <thead><tr><th>Suchbegriff</th><th class="n">Kosten</th><th class="n">Klicks</th><th class="n">Conv</th><th class="n">Wert</th><th class="n">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td>google bewertungen löschen</td><td class="n">1.595 €</td><td class="n">57</td><td class="n">8,0</td><td class="n">1.417 €</td><td class="n">0,89×</td></tr>
+      <tr><td>google bewertung löschen lassen</td><td class="n">1.570 €</td><td class="n">58</td><td class="n">6,0</td><td class="n">591 €</td><td class="n">0,38×</td></tr>
+      <tr><td>rezensionsheld <span class="tag b">Brand in Cold</span></td><td class="n">635 €</td><td class="n">47</td><td class="n">4,0</td><td class="n">252 €</td><td class="n">0,40×</td></tr>
+      <tr><td>bewertungen löschen lassen</td><td class="n">626 €</td><td class="n">14</td><td class="n">1,0</td><td class="n">151 €</td><td class="n">0,24×</td></tr>
+      <tr><td>google rezension löschen <span class="tag r">0 Käufe</span></td><td class="n">547 €</td><td class="n">27</td><td class="n">0,0</td><td class="n">0 €</td><td class="n">0,00×</td></tr>
+      <tr><td>google bewertungen löschen lassen</td><td class="n">409 €</td><td class="n">17</td><td class="n">1,5</td><td class="n">201 €</td><td class="n">0,49×</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ SUCHBEGRIFFE ============ -->
+<section class="section container" id="suchbegriffe">
+  <h2 class="h-section">Suchbegriffe — <em>wohin das Geld floss</em></h2>
+
+  <p class="insight-text" style="max-width:900px;margin-bottom:18px;">
+    Über den ganzen August verteilt sich der <strong>sichtbare</strong> Suchbegriff-Spend (46.335&nbsp;€ von 57.970&nbsp;€;
+    Rest entfällt auf Begriffe mit zu wenig Volumen für Einzelausweis) so auf vier Leistungsklassen:
+  </p>
+
+  <table>
+    <thead><tr><th>Segment</th><th class="n">Begriffe</th><th class="n">Anteil Spend</th><th class="n">Anteil Umsatz</th><th class="n">Spend</th><th class="n">Umsatz</th><th class="n">ROAS</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag r">0 Conversions</span> reiner Abfluss</td><td class="n">1.265</td><td class="n">10,9 %</td><td class="n">0 %</td><td class="n">5.067 €</td><td class="n">0 €</td><td class="n">0,00×</td></tr>
+      <tr><td><span class="tag r">Schwach</span> ROAS unter 0,5</td><td class="n">20</td><td class="n">29,8 %</td><td class="n">16,4 %</td><td class="n">13.827 €</td><td class="n">4.666 €</td><td class="n">0,34×</td></tr>
+      <tr><td><span class="tag y">Mittelfeld</span> ROAS 0,5–1,0</td><td class="n">28</td><td class="n">51,8 %</td><td class="n">58,1 %</td><td class="n">24.004 €</td><td class="n">16.489 €</td><td class="n">0,69×</td></tr>
+      <tr><td><span class="tag g">Gewinner</span> ROAS ab 1,0</td><td class="n">28</td><td class="n">7,4 %</td><td class="n">25,5 %</td><td class="n">3.437 €</td><td class="n">7.224 €</td><td class="n">2,10×</td></tr>
+    </tbody>
+  </table>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      <strong>Die zwei Kernsätze des Monats:</strong>
+      41&nbsp;% des sichtbaren Spends (≈&nbsp;18.900&nbsp;€) flossen in Suchbegriffe, die zusammen nur 16&nbsp;% des Umsatzes brachten.
+      Umgekehrt bekamen die Gewinner-Begriffe (2,10×) nur 7&nbsp;% des Budgets, lieferten aber 26&nbsp;% des Umsatzes.
+      Dazu lief der eigene Markenname <em>rezensionsheld</em> den ganzen Monat in der Cold-Kampagne mit —
+      <strong>2.818&nbsp;€ zu Cold-Klickpreisen</strong> für Suchende, die RezensionsHeld bereits kannten.
+    </p>
+  </div>
+</section>
+
+<!-- ============ EREIGNISSE ============ -->
+<section class="section container" id="ereignisse">
+  <h2 class="h-section">Was im August <em>verändert wurde</em></h2>
+
+  <div class="insight-card" style="margin-top:0;">
+    <div class="event-list">
+      <div class="event-item"><div class="event-date">11.08.</div><div class="event-text"><strong>Budget-Senkung, Schritt 1.</strong> Tagesspend fällt von ~3.500 € (10.8.) Richtung 2.000 €.</div></div>
+      <div class="event-item"><div class="event-date">13.08.</div><div class="event-text"><strong>Budget-Senkung, Schritt 2.</strong> Tagesspend ab jetzt meist 1.200–1.700 €. Zusammen ≈ −30 % Budget.</div></div>
+      <div class="event-item"><div class="event-date">14.08.</div><div class="event-text"><strong>Ziel-ROAS-Test startet.</strong> Sofortiger Lernphasen-Einbruch: 14.8. = 0,03× (schwächster Tag des Monats).</div></div>
+      <div class="event-item"><div class="event-date">17.08.</div><div class="event-text"><strong>Preisanpassung live</strong> (Produkt-/Funnel-Ebene), Kampagne umbenannt in „…(Preisanpassung 17.8.2026)". Es ist dieselbe Kampagne, kein Neuaufbau.</div></div>
+      <div class="event-item"><div class="event-date">20.08.</div><div class="event-text"><strong>Ziel-ROAS wieder deaktiviert.</strong> Testfenster 14.–20.8. gesamt: 0,49× — mitten in Budget-Umbau und Preisanpassung, daher kein sauberer Test, aber klar negativ.</div></div>
+      <div class="event-item"><div class="event-date">laufend</div><div class="event-text"><strong>Tägliche IP-Ausschlüsse</strong> (Automatik, Klickbetrug-Schutz) — einzige regelmäßige Pflegeaktivität im Konto.</div></div>
+    </div>
+  </div>
+
+  <div class="hint-box red">
+    <p><strong>Was im August NICHT verändert wurde:</strong> keine Keyword-Änderung (dieselben 4 Broad-Keywords seit Juni),
+    keine neuen Negative Keywords (Stand: 64, fast alle Exact), keine Brand-Abtrennung, keine Anzeigen-Text-Überarbeitung,
+    keine Struktur-Änderung. Die Suchbegriff-Erkenntnisse (Verbrenner wie auch 14,7×-Gewinner) blieben unübersetzt im Konto liegen.</p>
+  </div>
+</section>
+
+<!-- ============ EINORDNUNG ============ -->
+<section class="section container" id="einordnung">
+  <h2 class="h-section">Einordnung &amp; <em>Datenqualität</em></h2>
+
+  <div class="two-col" style="margin-top:8px;">
+    <div class="insight-card" style="margin-top:0;">
+      <p class="insight-text">
+        <strong>Drei-Monats-Trend:</strong> Juni 32.096&nbsp;€ Spend / 1,14× → Juli 69.793&nbsp;€ / 0,85× → August 57.970&nbsp;€ / 0,62×.
+        Das Muster ist klassisch: Die Skalierung im Juli hat überproportional Streuverlust eingekauft (CPC +37&nbsp;% seit Juni),
+        und die August-Drosselung hat das nicht mehr aufgeholt. Die Preisanpassung wirkte messbar (W3: 0,76×, Ø-Warenkorb ~114&nbsp;€),
+        war aber kein Ersatz für die ausstehende Struktur-Arbeit (Brand-Trennung, Gewinner-Exacts, Negatives).
+      </p>
+    </div>
+    <div class="insight-card" style="margin-top:0;">
+      <p class="insight-text"><strong>Belastbarkeit der Zahlen — drei Einschränkungen:</strong></p>
+      <p class="insight-text" style="margin-top:8px;">
+        <strong>1 · Google-Messung, nicht CRM.</strong> Alle Wert-/ROAS-Zahlen hier sind Googles Conversion-Messung (CRM-Purchase-Upload). Das CRM bleibt die verbindliche Umsatzquelle.<br>
+        <strong>2 · Upload degradiert.</strong> EXPIRED_EVENT-Fehler, ~80 % GCLID-Abdeckung, falsch gecachte Conversion-Action — die echten Werte liegen eher <em>über</em> der Google-Messung.<br>
+        <strong>3 · Dashboard blind ab 24.8.</strong> Der Bestell-Import ins interne Dashboard stoppte am 24.8., die Kanal-Attribution ist aus — W4 lässt sich intern derzeit nicht gegenprüfen.
+      </p>
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <p class="insight-text">
+      <strong>Fazit August:</strong> Der Monat zeigt in vier Wochen das ganze Problem und die ganze Lösung.
+      Wo eingegriffen wurde (Budget runter, Preisanpassung), wurde es messbar besser — W3 war mit 0,76× und CPC −20&nbsp;% die beste Woche.
+      Wo nicht eingegriffen wurde (Keywords, Negatives, Brand, Anzeigen), blieb das strukturelle Leck offen: 41&nbsp;% des Spends in Begriffe mit 16&nbsp;% des Umsatzes,
+      2.818&nbsp;€ Brand-Traffic zu Cold-Preisen, und ein Monatsende bei 0,28×.
+      Der Hebel für September liegt nicht im Budget-Regler, sondern im Umbau: <strong>Brand raus, Gewinner als Exact, Phrase-Negatives drauf.</strong>
+      (Detailliertes Soll-Konzept: siehe Notion „Google Ads: Ist-Kampagne &amp; Neuaufbau" sowie der Juni–August-Report.)
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="footer-note">
+      Skael Report · RezensionsHeld Google Ads August 2026 (Wochenreport) · erstellt 04.09.2026 ·
+      Datenquellen: Google Ads API (Konto 2525117686, Tagesebene, Suchbegriff-Berichte je Kalenderwoche) ·
+      Alle Wert-Angaben = Google Conversion-Messung; CRM ist verbindliche Umsatzquelle ·
+      Woche 1 umfasst 9 Tage (Sa 1.8. – So 9.8.), Woche 4 umfasst 8 Tage (Mo 24.8. – Mo 31.8.) ·
+      Verwandte Reports: <a href="RezensionsHeld-Jun-Aug-2026.html" style="color:var(--blue);">Juni–August Gesamtanalyse</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+const labels=['1.8.','2.8.','3.8.','4.8.','5.8.','6.8.','7.8.','8.8.','9.8.','10.8.','11.8.','12.8.','13.8.','14.8.','15.8.','16.8.','17.8.','18.8.','19.8.','20.8.','21.8.','22.8.','23.8.','24.8.','25.8.','26.8.','27.8.','28.8.','29.8.','30.8.','31.8.'];
+const spend=[1358,2170,4607,2298,2128,1954,2548,1912,2393,3534,2048,2133,1888,1530,1275,1202,1663,1645,1409,2135,1602,1031,997,2330,1586,1511,1453,1301,947,1378,2004];
+const value=[1471,952,1804,1808,1881,1133,824,404,1546,1978,1589,2004,2139,41,858,608,910,1554,1057,404,1384,1455,1254,2171,983,301,2111,300,904,51,303];
+const roas=[1.08,0.44,0.39,0.79,0.88,0.58,0.32,0.21,0.65,0.56,0.78,0.94,1.13,0.03,0.67,0.51,0.55,0.94,0.75,0.19,0.86,1.41,1.26,0.93,0.62,0.20,1.45,0.23,0.95,0.04,0.15];
+Chart.defaults.font.family="'Poppins',sans-serif";
+Chart.defaults.font.size=10.5;
+Chart.defaults.color='#9ca3af';
+new Chart(document.getElementById('chartDaily'),{
+  data:{labels:labels,datasets:[
+    {type:'bar',label:'Spend €',data:spend,backgroundColor:'#c7d4fd',borderRadius:3,yAxisID:'y'},
+    {type:'bar',label:'Conv-Wert €',data:value,backgroundColor:'#3a6ef4',borderRadius:3,yAxisID:'y'},
+    {type:'line',label:'ROAS',data:roas,borderColor:'#0f1b2d',borderWidth:1.6,pointRadius:2,pointBackgroundColor:'#0f1b2d',tension:.3,yAxisID:'y2'}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,usePointStyle:true}}},
+    scales:{
+      y:{beginAtZero:true,grid:{color:'#eef0f4'},ticks:{callback:v=>v.toLocaleString('de-DE')+' €'}},
+      y2:{position:'right',beginAtZero:true,max:1.6,grid:{display:false},ticks:{callback:v=>v.toFixed(1)+'×'}},
+      x:{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:16}}
+    }}
+});
+new Chart(document.getElementById('chartWeeks'),{
+  type:'bar',
+  data:{labels:['W1 · 1.–9.','W2 · 10.–16.','W3 · 17.–23.','W4 · 24.–31.'],datasets:[
+    {label:'Spend €',data:[21368,13610,10482,12510],backgroundColor:'#c7d4fd',borderRadius:4},
+    {label:'Conv-Wert €',data:[11823,9216,8018,7126],backgroundColor:'#3a6ef4',borderRadius:4}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'top',align:'end',labels:{boxWidth:10,boxHeight:10,usePointStyle:true}}},
+    scales:{
+      y:{beginAtZero:true,grid:{color:'#eef0f4'},ticks:{callback:v=>v.toLocaleString('de-DE')+' €'}},
+      x:{grid:{display:false}}
+    }}
+});
+</script>
+</body>
+</html>
