@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skael Report — Maloum September 2026</title>
+<link rel="icon" type="image/x-icon" href="/www.skael.de-favicon.ico">
+<meta property="og:title" content="Skael Report — Maloum September 2026">
+<meta property="og:description" content="Meta Ads · Vollmonat · Media Buying #1 · Transaktions-Backend">
+<meta property="og:url" content="https://reports.skael.de/Maloum-Sep-2026.html">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#fbfcfd;--white:#fff;--border:#e4e6ec;--border2:#d0d3de;--navy:#0f1b2d;
+  --blue:#3a6ef4;--blue-bg:#eef2ff;--blue-mid:#c7d4fd;--muted:#6b7280;--sub:#9ca3af;--body:#374151;
+  --green:#16a34a;--green-bg:#dcfce7;--green-dot:#22c55e;
+  --yellow:#b45309;--yellow-bg:#fef3c7;--yellow-dot:#f59e0b;
+  --red:#dc2626;--red-bg:#fee2e2;--red-dot:#ef4444;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;font-size:14px;letter-spacing:-0.015em;line-height:1.65;background:var(--bg);color:var(--body);}
+nav{position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px;background:rgba(251,252,253,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
+.nav-logo-text span{color:var(--blue);}
+.nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
+.nav-tabs{display:flex;gap:4px;flex:1;flex-wrap:wrap;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all .15s;}
+.nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
+.nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;margin-left:auto;}
+.container{max-width:1280px;margin:0 auto;padding:0 48px;}
+.hero{padding:64px 0 56px;scroll-margin-top:58px;}
+.section{padding:60px 0;scroll-margin-top:58px;border-top:1px solid var(--border);}
+.h-hero{font-family:'Poppins',sans-serif;font-size:56px;font-weight:500;letter-spacing:-0.04em;line-height:1.05;color:var(--navy);}
+.h-hero em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.h-section{font-family:'Poppins',sans-serif;font-size:38px;font-weight:500;letter-spacing:-0.035em;line-height:1.1;color:var(--navy);margin-bottom:28px;}
+.h-section em{font-family:'Instrument Serif',serif;font-style:italic;color:var(--blue);}
+.meta-badge{display:inline-block;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:7px 14px;margin-bottom:22px;}
+.meta-badge span{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px;}
+.hero-meta-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.12em;color:var(--sub);}
+.hero-meta-value{font-size:13px;font-weight:500;color:var(--navy);}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px;}
+.kpi-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:transform .2s,box-shadow .2s;}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(15,27,45,0.08);}
+.kpi-card.hi{border:1px solid var(--blue-mid);background:#fafbff;}
+.kpi-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.kpi-label{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:var(--sub);}
+.sw{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
+.sd.g{background:var(--green-dot);box-shadow:0 0 0 2px rgba(34,197,94,.22);}
+.sd.y{background:var(--yellow-dot);box-shadow:0 0 0 2px rgba(245,158,11,.22);}
+.sd.r{background:var(--red-dot);box-shadow:0 0 0 2px rgba(239,68,68,.22);}
+.sd.b{background:var(--blue);box-shadow:0 0 0 2px rgba(58,110,244,.22);}
+.sl{font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:0.08em;}
+.sl.g{color:var(--green);}.sl.y{color:var(--yellow);}.sl.r{color:var(--red);}.sl.b{color:var(--blue);}
+.kpi-value{font-family:'Poppins',sans-serif;font-size:30px;font-weight:500;letter-spacing:-0.02em;color:var(--navy);line-height:1.1;}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px;}
+.insight-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:22px;}
+.insight-text{font-size:14px;color:var(--body);line-height:1.7;}
+.insight-text strong{color:var(--navy);font-weight:500;}
+.split-wrap{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start;}
+.split-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:26px 30px;}
+.split-row{display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:14px;margin-bottom:18px;}
+.split-row:last-child{margin-bottom:0;}
+.split-lbl{font-size:13px;font-weight:500;color:var(--navy);}
+.split-lbl small{display:block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;color:var(--sub);text-transform:uppercase;margin-top:2px;}
+.split-track{height:40px;background:#f3f5f9;border-radius:6px;overflow:hidden;}
+.split-fill{height:100%;width:0;border-radius:6px;transition:width 1.1s cubic-bezier(.4,0,.2,1);}
+.split-right{text-align:right;min-width:120px;}
+.split-val{font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;color:var(--navy);}
+.split-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+.side-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.side-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);}
+.side-row:last-child{border-bottom:none;}
+.side-row-lbl{font-size:12px;color:var(--muted);}
+.side-row-val{font-size:13px;font-weight:500;color:var(--navy);}
+.side-row-val.green{color:var(--green);}.side-row-val.red{color:var(--red);}
+.hint-box{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:10px;padding:16px 18px;margin-top:16px;}
+.hint-box p{font-size:12.5px;color:var(--blue);line-height:1.6;}
+.hint-box.red{background:var(--red-bg);border-color:#fca5a5;}
+.hint-box.red p{color:var(--red);}
+.hint-box.gray{background:#f6f7f9;border-color:var(--border2);}
+.hint-box.gray p{color:var(--muted);}
+.kamp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;}
+.kamp-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 22px;}
+.kamp-card.star{border:1px solid #86efac;background:#f8fff9;}
+.kamp-card.warn{border:1px solid #fcd34d;background:#fffbf2;}
+.kamp-card.crit{border:1px solid #fca5a5;background:#fff8f8;}
+.kamp-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px;line-height:1.35;}
+.kamp-sub{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--sub);margin-bottom:10px;}
+.kamp-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);}
+.kamp-row:last-child{border-bottom:none;}
+.kamp-lbl{font-size:11.5px;color:var(--muted);}
+.kamp-val{font-size:12px;font-weight:500;color:var(--navy);}
+.kamp-val.green{color:var(--green);}.kamp-val.red{color:var(--red);}
+.kamp-val.big{font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;}
+table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:8px;}
+th,td{text-align:left;padding:11px 16px;font-size:12.5px;border-bottom:1px solid var(--border);}
+th{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);font-weight:500;background:#fafbfc;}
+td{color:var(--body);}td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--navy);font-weight:500;}
+tr:last-child td{border-bottom:none;}
+tr.tot td{background:#fafbff;font-weight:600;color:var(--navy);}
+.tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;border-radius:20px;padding:2px 9px;white-space:nowrap;}
+.tag.g{background:var(--green-bg);color:var(--green);}.tag.y{background:var(--yellow-bg);color:var(--yellow);}.tag.r{background:var(--red-bg);color:var(--red);}.tag.b{background:var(--blue-bg);color:var(--blue);}
+.chart-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-top:8px;}
+.chart-box{height:260px;}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+.rec-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 24px;display:flex;gap:16px;}
+.rec-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:30px;color:var(--blue-mid);line-height:1;min-width:30px;}
+.rec-body h4{font-size:13.5px;font-weight:600;color:var(--navy);margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+.rec-body p{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.fazit{background:var(--navy);border-radius:14px;padding:44px 48px;margin-top:8px;color:#e5e9f0;}
+.fazit-lbl{font-family:'DM Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;color:#7d8ba3;margin-bottom:14px;}
+.fazit h3{font-family:'Poppins',sans-serif;font-size:26px;font-weight:500;letter-spacing:-0.03em;color:#fff;line-height:1.25;margin-bottom:18px;}
+.fazit h3 em{font-family:'Instrument Serif',serif;font-style:italic;color:#8ab0ff;}
+.fazit p{font-size:13.5px;color:#c3ccdb;line-height:1.75;margin-bottom:12px;}
+.fazit p strong{color:#fff;font-weight:500;}
+footer{padding:40px 0 60px;border-top:1px solid var(--border);}
+.footer-txt{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+@media(max-width:900px){.kpi-grid{grid-template-columns:1fr 1fr;}.split-wrap{grid-template-columns:1fr;}.kamp-grid,.rec-grid{grid-template-columns:1fr;}.container{padding:0 24px;}.h-hero{font-size:40px;}.h-section{font-size:30px;}}
+.kpi-value.muted{color:var(--sub);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo-text">SKAEL<span>.</span>REPORTS</div>
+  <div class="nav-sep"></div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="#overview">Übersicht</a>
+    <a class="nav-tab" href="#split">Neu vs. Bestand</a>
+    <a class="nav-tab" href="#akquise">Akquise-Motor</a>
+    <a class="nav-tab" href="#kohorten">Kohorten</a>
+    <a class="nav-tab" href="#verlauf">Verlauf & Creator</a>
+    <a class="nav-tab" href="#rec">Empfehlungen</a>
+  </div>
+  <div class="nav-pill">Maloum · Sep 2026 · Vollmonat</div>
+</nav>
+
+<!-- HERO / OVERVIEW -->
+<section class="hero" id="overview">
+  <div class="container">
+    <div class="meta-badge"><span>Meta Ads · Story · DACH · Vollmonat · Backend-verifiziert</span></div>
+    <h1 class="h-hero">Maloum <em>September 2026</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="hero-meta-label">Zeitraum</div><div class="hero-meta-value">01.–30. September 2026 (30 Tage · Vollmonat)</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Konto</div><div class="hero-meta-value">Media Buying #1 · neolime deaktiviert (€0)</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Quelle</div><div class="hero-meta-value">Spend: Meta Ads API · Umsatz: Transaktions-Exporte (2.948 Txns)</div></div>
+      <div class="hero-meta-item"><div class="hero-meta-label">Erstellt</div><div class="hero-meta-value">05. Oktober 2026</div></div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card hi">
+        <div class="kpi-header"><span class="kpi-label">Media-Spend</span><span class="sw"><span class="sd b"></span><span class="sl b">Media Buying #1</span></span></div>
+        <div class="kpi-value">4.570 €</div>
+        <div class="kpi-sub">$5.262 · neolime €0 (aus)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Neue Kunden</span><span class="sw"><span class="sd g"></span><span class="sl g">Akquise</span></span></div>
+        <div class="kpi-value">40</div>
+        <div class="kpi-sub">im September registriert · 148 Käufe</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Neukunden-Umsatz</span><span class="sw"><span class="sd b"></span><span class="sl b">Erstumsatz</span></span></div>
+        <div class="kpi-value">6.375 €</div>
+        <div class="kpi-sub">11,2 % des Skael-Umsatzes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Akquise-ROAS</span><span class="sw"><span class="sd g"></span><span class="sl g">First-Touch</span></span></div>
+        <div class="kpi-value">1,39x</div>
+        <div class="kpi-sub">Neukunden-Umsatz ÷ Spend · Aug 0,97x</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Kohorten-Umsatz</span><span class="sw"><span class="sd g"></span><span class="sl g">LTV-Tail</span></span></div>
+        <div class="kpi-value">50.393 €</div>
+        <div class="kpi-sub">88,8 % · 789 Bestandskäufer</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Overall-Umsatz</span><span class="sw"><span class="sd g"></span><span class="sl g">Backend</span></span></div>
+        <div class="kpi-value">56.768 €</div>
+        <div class="kpi-sub">829 Käufer · 2.948 Transaktionen</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Ø Neukundenwert</span><span class="sw"><span class="sd b"></span><span class="sl b">Erstmonat</span></span></div>
+        <div class="kpi-value">159,36 €</div>
+        <div class="kpi-sub">CAC 114 € · 3,7 Käufe pro Neukunde</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header"><span class="kpi-label">Overall-ROAS</span><span class="sw"><span class="sd g"></span><span class="sl g">Blended</span></span></div>
+        <div class="kpi-value">12,42x</div>
+        <div class="kpi-sub">Overall-Umsatz ÷ Spend</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-text">
+        <strong>Kern-Einordnung · September 2026 · Vollmonat.</strong> Der neue Account <strong>Media Buying #1</strong> hat im September <strong>4.570 €</strong> ausgegeben und <strong>40 Neukunden</strong> mit <strong>6.375 € Erstumsatz</strong> gebracht — Akquise-ROAS <strong>1,39x</strong> (August: 0,97x). Getragen wird das fast komplett von <strong>MAL WARMUP</strong>: 2.606 € Spend → 36 Neukunden → 6.211 € (2,38x). Die von Skael aufgebauten Kohorten kauften weiter: <strong>50.393 € Kohorten-Umsatz</strong> (88,8 %). Zusammen <strong>56.768 € Skael-attribuierter Umsatz</strong>, Overall-ROAS 12,42x. Alle Zahlen aus dem <strong>Transaktions-Backend</strong>, nicht aus dem Pixel.
+      </div>
+    </div>
+    <div class="hint-box gray">
+      <p><strong>Daten-Scope:</strong> 01.–27.09. aus dem Meta-Export vom 28.09. (Zuordnung je Kauf über die Kampagnen-ID in der Ad-URL; nur Skael-Kampagnen aus neolime + Media Buying #1). 28.–30.09. aus dem Gesamt-Export vom 05.10.: Dort fehlt die Ad-URL, deshalb zählen in diesen drei Tagen die Käufe aller bereits Skael-attribuierten Käufer; in diesen drei Tagen neu registrierte Ad-Käufer sind darin nicht enthalten. Spend ist USD ($5.261,75) und mit dem EZB-Monatsmittel <strong>€0,8686/USD</strong> umgerechnet. Ausgeschlossen: 21.822 € aus Fremd-Kampagnen (separater Stella-Account „Neue Kampagne für Umsatz“ / „ROAS maximieren“, Nov/Dez-2025-Kampagnen, nicht zuordenbare IDs).</p>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT -->
+<section class="section" id="split">
+  <div class="container">
+    <h2 class="h-section">Neu <em>vs.</em> Bestand</h2>
+    <div class="split-wrap">
+      <div class="split-card">
+        <div class="split-row">
+          <div class="split-lbl">NEU · im September akquiriert<small>Media Buying #1 · v.a. MAL WARMUP</small></div>
+          <div class="split-track"><div class="split-fill" data-w="11.2" style="background:var(--blue);"></div></div>
+          <div class="split-right"><div class="split-val">6.375 €</div><div class="split-pct">11,2 %</div></div>
+        </div>
+        <div class="split-row">
+          <div class="split-lbl">ALT · früher akquiriert<small>Skael-Kohorten Feb–Aug · LTV-Tail</small></div>
+          <div class="split-track"><div class="split-fill" data-w="88.8" style="background:var(--green-dot);"></div></div>
+          <div class="split-right"><div class="split-val">50.393 €</div><div class="split-pct">88,8 %</div></div>
+        </div>
+        <div class="hint-box">
+          <p><strong>Akquise zieht wieder an.</strong> Der Neukunden-Anteil steigt von 5,1 % im August auf <strong>11,2 %</strong>, der Akquise-ROAS von 0,97x auf <strong>1,39x</strong>. Der Kohorten-Umsatz sinkt dagegen weiter (August 63.176 € → September 50.393 €) — ohne neolime-Volumen läuft der alte Tail langsam aus. Der neue Account ersetzt ihn noch nicht.</p>
+        </div>
+      </div>
+      <div>
+        <div class="side-card">
+          <div class="side-row"><span class="side-row-lbl">Overall-Umsatz</span><span class="side-row-val">56.768 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Neukunden-Umsatz</span><span class="side-row-val">6.375 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Kohorten-Umsatz</span><span class="side-row-val green">50.393 €</span></div>
+          <div class="side-row"><span class="side-row-lbl">Käufer gesamt</span><span class="side-row-val">829</span></div>
+          <div class="side-row"><span class="side-row-lbl">davon Neukunden</span><span class="side-row-val">40</span></div>
+          <div class="side-row"><span class="side-row-lbl">Bestandskäufer</span><span class="side-row-val">789</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AKQUISE -->
+<section class="section" id="akquise">
+  <div class="container">
+    <h2 class="h-section">Akquise-<em>Motor</em> · Media Buying #1</h2>
+    <p style="color:var(--muted);font-size:13.5px;margin-bottom:22px;max-width:820px;">ROAS = <strong style="color:var(--navy)">Neukunden-Umsatz aus dem Backend ÷ Spend</strong> (Meta-Pixel ignoriert). Neukunden-Umsatz enthält alle Septemberkäufe der neu gewonnenen Kunden, nicht nur den ersten Kauf.</p>
+    <div class="kamp-grid">
+      <div class="kamp-card star">
+        <div class="kamp-name">MAL · WARMUP · Sales</div>
+        <div class="kamp-sub">Multi-Creator · Skalierungs-Kandidat ⭐</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">2.606 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden-Umsatz</span><span class="kamp-val">6.211 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden</span><span class="kamp-val">36</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CAC</span><span class="kamp-val">72 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Akquise-ROAS</span><span class="kamp-val big green">2,38x</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Lea Sophy · Sales</div>
+        <div class="kamp-sub">Verlust · abschalten</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">778 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden-Umsatz</span><span class="kamp-val">1,15 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden</span><span class="kamp-val">1</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CAC</span><span class="kamp-val">778 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Akquise-ROAS</span><span class="kamp-val big red">0,00x</span></div>
+      </div>
+      <div class="kamp-card crit">
+        <div class="kamp-name">Sophie Schmidt · WARMUP</div>
+        <div class="kamp-sub">Verlust · pausiert</div>
+        <div class="kamp-row"><span class="kamp-lbl">Spend</span><span class="kamp-val">695 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden-Umsatz</span><span class="kamp-val">48 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Neukunden</span><span class="kamp-val">2</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">CAC</span><span class="kamp-val">348 €</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Akquise-ROAS</span><span class="kamp-val big red">0,07x</span></div>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>Kampagne</th><th style="text-align:right">Spend</th><th style="text-align:right">Neu-Umsatz</th><th style="text-align:right">Neukunden</th><th style="text-align:right">CAC</th><th style="text-align:right">ROAS</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>MAL WARMUP</td><td class="n">2.606 €</td><td class="n">6.211 €</td><td class="n">36</td><td class="n">72 €</td><td class="n">2,38x</td><td><span class="tag g">Skalieren</span></td></tr>
+        <tr><td>Samantra Brand Push</td><td class="n">157 €</td><td class="n">114 €</td><td class="n">1</td><td class="n">157 €</td><td class="n">0,73x</td><td><span class="tag y">Beobachten</span></td></tr>
+        <tr><td>Sophie Schmidt WARMUP</td><td class="n">695 €</td><td class="n">48 €</td><td class="n">2</td><td class="n">348 €</td><td class="n">0,07x</td><td><span class="tag r">Pausiert</span></td></tr>
+        <tr><td>Lea Sophy</td><td class="n">778 €</td><td class="n">1 €</td><td class="n">1</td><td class="n">778 €</td><td class="n">0,00x</td><td><span class="tag r">Abschalten</span></td></tr>
+        <tr><td>Leyla · Nikoleta · Samantra Creator <small style="color:var(--sub)">(5 Kampagnen)</small></td><td class="n">334 €</td><td class="n">0 €</td><td class="n">0</td><td class="n">–</td><td class="n">–</td><td><span class="tag y">Ohne UTMs</span></td></tr>
+        <tr class="tot"><td>Media Buying #1 · gesamt</td><td class="n">4.570 €</td><td class="n">6.375 €</td><td class="n">40</td><td class="n">114 €</td><td class="n">1,39x</td><td><span class="tag b">September</span></td></tr>
+      </tbody>
+    </table>
+    <div class="hint-box red">
+      <p><strong>Neue Creator-Kampagnen ohne Tracking.</strong> Die Leyla-, Nikoleta- und Samantra-Creator-Kampagnen (334 € Spend) liefen im September ohne UTM-Parameter. Ihre Käufer landen deshalb nicht im Meta-Export und sind hier mit 0 ausgewiesen — das ist eine Messlücke, kein bestätigter Nullumsatz. Die UTMs müssen auf allen aktiven Anzeigen nachgezogen werden (siehe Empfehlung 3). Der Meta-Pixel meldet für den Account weiter ein Vielfaches der echten Käufe und wird nicht verwendet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KOHORTEN -->
+<section class="section" id="kohorten">
+  <div class="container">
+    <h2 class="h-section">Kohorten · <em>LTV-Tail</em></h2>
+    <p style="color:var(--muted);font-size:13.5px;margin-bottom:22px;max-width:820px;">So verteilt sich der 50.393 €-Bestandsumsatz im September auf die Akquise-Kohorten (Registrierungsmonat der Skael-Käufer):</p>
+    <table>
+      <thead><tr><th>Akquise-Kohorte (Signup)</th><th style="text-align:right">Umsatz September</th><th style="text-align:right">aktive Käufer</th><th style="text-align:right">Anteil</th></tr></thead>
+      <tbody>
+        <tr><td>Juni 2026</td><td class="n">18.421 €</td><td class="n">279</td><td class="n">36,6 %</td></tr>
+        <tr><td>Mai 2026</td><td class="n">15.169 €</td><td class="n">260</td><td class="n">30,1 %</td></tr>
+        <tr><td>April 2026</td><td class="n">8.950 €</td><td class="n">124</td><td class="n">17,8 %</td></tr>
+        <tr><td>Juli 2026</td><td class="n">3.330 €</td><td class="n">69</td><td class="n">6,6 %</td></tr>
+        <tr><td>März 2026</td><td class="n">2.804 €</td><td class="n">31</td><td class="n">5,6 %</td></tr>
+        <tr><td>August 2026</td><td class="n">1.529 €</td><td class="n">19</td><td class="n">3,0 %</td></tr>
+        <tr><td>Feb 2026</td><td class="n">190 €</td><td class="n">7</td><td class="n">0,4 %</td></tr>
+        <tr class="tot"><td>Kohorten gesamt</td><td class="n">50.393 €</td><td class="n">789</td><td class="n">100 %</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-card">
+      <div class="insight-text"><strong>Mai und Juni tragen weiter.</strong> Die Mai- und Juni-Kohorten liefern zusammen <strong>67 %</strong> des Bestandsumsatzes — die Kunden aus der Skalierungsphase kaufen auch im vierten bzw. fünften Monat weiter. Die Juli- und August-Kohorten sind klein (4.860 €), weil in diesen Monaten kaum akquiriert wurde. Genau diese Lücke muss die September-Akquise schließen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VERLAUF + CREATOR -->
+<section class="section" id="verlauf">
+  <div class="container">
+    <h2 class="h-section">Verlauf &amp; <em>Creator</em></h2>
+    <div class="chart-card"><div class="chart-box"><canvas id="dailyChart"></canvas></div></div>
+    <table style="margin-top:20px;">
+      <thead><tr><th>Monat</th><th style="text-align:right">Spend</th><th style="text-align:right">Neukunden</th><th style="text-align:right">Neu-Umsatz</th><th style="text-align:right">Overall-Umsatz</th><th style="text-align:right">Akquise-ROAS</th></tr></thead>
+      <tbody>
+        <tr><td>Juli 2026</td><td class="n">10.828 €</td><td class="n">197</td><td class="n">12.511 €</td><td class="n">77.716 €</td><td class="n">1,16x</td></tr>
+        <tr><td>August 2026</td><td class="n">3.510 €</td><td class="n">29</td><td class="n">3.390 €</td><td class="n">66.566 €</td><td class="n">0,97x</td></tr>
+        <tr class="tot"><td>September 2026</td><td class="n">4.570 €</td><td class="n">40</td><td class="n">6.375 €</td><td class="n">56.768 €</td><td class="n">1,39x</td></tr>
+      </tbody>
+    </table>
+    <table style="margin-top:20px;">
+      <thead><tr><th>Creator (Verkäufer)</th><th style="text-align:right">Umsatz</th><th style="text-align:right">Käufer</th><th style="text-align:right">davon Neukunden-Umsatz</th><th>Rolle</th></tr></thead>
+      <tbody>
+        <tr><td>stella4twenty</td><td class="n">6.459 €</td><td class="n">429</td><td class="n">1.589 €</td><td><span class="tag b">Neu + Bestand</span></td></tr>
+        <tr><td>emma.spice</td><td class="n">5.606 €</td><td class="n">36</td><td class="n">2.015 €</td><td><span class="tag b">Neu + Bestand</span></td></tr>
+        <tr><td>ossi.desii</td><td class="n">4.345 €</td><td class="n">185</td><td class="n">1.501 €</td><td><span class="tag b">Neu + Bestand</span></td></tr>
+        <tr><td>samantra</td><td class="n">2.963 €</td><td class="n">55</td><td class="n">67 €</td><td><span class="tag b">Neu + Bestand</span></td></tr>
+        <tr><td>fayesxh</td><td class="n">2.632 €</td><td class="n">61</td><td class="n">39 €</td><td><span class="tag b">Neu + Bestand</span></td></tr>
+        <tr><td>lil.lucy</td><td class="n">2.383 €</td><td class="n">24</td><td class="n">0 €</td><td><span class="tag g">Bestand</span></td></tr>
+        <tr><td>celiashia</td><td class="n">2.211 €</td><td class="n">7</td><td class="n">0 €</td><td><span class="tag g">Bestand</span></td></tr>
+        <tr><td>deineeleyla</td><td class="n">2.064 €</td><td class="n">47</td><td class="n">639 €</td><td><span class="tag b">Neu + Bestand</span></td></tr>
+      </tbody>
+    </table>
+    <div class="hint-box gray"><p>stella4twenty und emma.spice bringen zusammen 21 % des Skael-Umsatzes. Neukunden-Umsatz entsteht vor allem bei <strong>emma.spice, stella4twenty, ossi.desii und deineeleyla</strong> — gekauft von Kunden, die fast alle über MAL WARMUP kamen. Top-10-Käufer = 25,0 % des Umsatzes.</p></div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section class="section" id="rec">
+  <div class="container">
+    <h2 class="h-section"><em>Empfehlungen</em> &amp; Plan</h2>
+    <div class="rec-grid">
+      <div class="rec-card"><div class="rec-num">1</div><div class="rec-body"><h4>MAL WARMUP weiter skalieren <span class="tag g">Sofort</span></h4><p>2,38x Akquise-ROAS bei 72 € CAC — die Kampagne verdient die Werbekosten schon im Erstmonat mehr als doppelt zurück. Budget schrittweise erhöhen und den ROAS wöchentlich gegen das Backend prüfen.</p></div></div>
+      <div class="rec-card"><div class="rec-num">2</div><div class="rec-body"><h4>Lea Sophy abschalten <span class="tag r">Sofort</span></h4><p>778 € Spend, 1 Neukunde (1,15 €). Die Kampagne hat saubere UTMs — das ist keine Messlücke, sondern fehlende Wirkung. Läuft im Oktober noch weiter und sollte pausiert werden.</p></div></div>
+      <div class="rec-card"><div class="rec-num">3</div><div class="rec-body"><h4>Tracking der neuen Creator-Kampagnen fixen <span class="tag y">Kritisch</span></h4><p>Leyla, Nikoleta, Samantra Creator (und die Oktober-Starts Emma, Tess, Julia, Gwendo) brauchen die einheitlichen UTMs <code>utm_source=meta+ads</code> + Kampagnen-/Anzeigen-Namen. Sonst sind ihre Käufer im Backend unsichtbar und nicht bewertbar.</p></div></div>
+      <div class="rec-card"><div class="rec-num">4</div><div class="rec-body"><h4>Export mit Ad-URL anfordern <span class="tag y">Kritisch</span></h4><p>Der Gesamt-Export vom 05.10. enthält keine <code>Current URL</code>. Ohne diese Spalte lassen sich neue Ad-Käufer nicht zuordnen. Für Oktober den Export im bisherigen Format (mit Current URL / Referring user) anfordern.</p></div></div>
+      <div class="rec-card"><div class="rec-num">5</div><div class="rec-body"><h4>Sophie Schmidt pausiert lassen <span class="tag r">Erledigt</span></h4><p>695 € Spend → 2 Neukunden (48 €). Kein Oktober-Spend mehr — richtig so.</p></div></div>
+      <div class="rec-card"><div class="rec-num">6</div><div class="rec-body"><h4>Akquise-Volumen aufbauen <span class="tag b">Strukturell</span></h4><p>Der Kohorten-Umsatz fällt (Juli 65.205 € → Aug 63.176 € → Sep 50.393 €). 40 Neukunden im Monat ersetzen das nicht. Mit WARMUP als Basis das Monatsbudget Richtung 10.000 € entwickeln, solange der Akquise-ROAS über 1,0x bleibt.</p></div></div>
+    </div>
+
+    <div class="fazit" style="margin-top:32px;">
+      <div class="fazit-lbl">Fazit · September 2026 · Vollmonat</div>
+      <h3>Der neue Account <em>akquiriert</em> wieder profitabel — jetzt braucht er Volumen und sauberes Tracking.</h3>
+      <p>Media Buying #1 hat mit <strong>4.570 € Spend 40 Neukunden und 6.375 € Erstumsatz</strong> gebracht — <strong>1,39x Akquise-ROAS</strong>, deutlich über August (0,97x). Treiber ist <strong>MAL WARMUP mit 2,38x</strong>. Lea Sophy und Sophie Schmidt haben zusammen 1.473 € ohne nennenswerte Neukunden gekostet.</p>
+      <p>Die Skael-Kohorten bringen weiter <strong>50.393 €</strong> im Monat, aber mit fallender Tendenz. Prio für Oktober: WARMUP hochfahren, Lea Sophy stoppen, UTMs auf allen neuen Creator-Kampagnen sicherstellen und den Maloum-Export wieder mit Ad-URL bekommen.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-txt">Skael Reports · Maloum September 2026 · Vollmonat · Backend-verifiziert · Meta Ads API + Transaktions-Export · erstellt 05.10.2026</div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load',()=>{document.querySelectorAll('.split-fill').forEach(el=>{setTimeout(()=>{el.style.width=el.dataset.w+'%';},150);});});
+new Chart(document.getElementById('dailyChart'),{
+  type:'bar',
+  data:{labels:["01.09", "02.09", "03.09", "04.09", "05.09", "06.09", "07.09", "08.09", "09.09", "10.09", "11.09", "12.09", "13.09", "14.09", "15.09", "16.09", "17.09", "18.09", "19.09", "20.09", "21.09", "22.09", "23.09", "24.09", "25.09", "26.09", "27.09", "28.09", "29.09", "30.09"],datasets:[{label:'Skael-Umsatz / Tag (€)',data:[1871, 1045, 1599, 2541, 1418, 2212, 2900, 1840, 1269, 1110, 2488, 971, 2570, 1274, 1813, 2252, 1717, 1154, 759, 1305, 2431, 984, 2236, 1799, 2705, 1723, 3783, 2496, 2281, 2221],backgroundColor:'#3a6ef4',borderRadius:4,maxBarThickness:28}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toLocaleString('de-DE')+' €'}}},
+  scales:{y:{grid:{color:'#eef0f4'},ticks:{font:{family:'DM Mono',size:10},color:'#9ca3af',callback:v=>v/1000+'k'}},x:{grid:{display:false},ticks:{font:{family:'DM Mono',size:9},color:'#9ca3af'}}}}
+});
+</script>
+</body>
+</html>
