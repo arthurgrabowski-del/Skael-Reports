@@ -1,0 +1,4 @@
+﻿scenario,assumed_spend,assumed_cpl,expected_leads,qualified_rate,held_per_qualified,offer_per_held,win_per_offer,lead_to_win,expected_wins,media_cac,max_cpl_at_db6400_margin50,max_cpl_at_db5000_margin50
+Vorsichtig,3000,300,10,0.3,0.5,0.6,0.2,0.018,0.18,16666.666666666668,57.599999999999994,45.0
+Arbeitsfall,3000,300,10,0.5,0.7,0.7,0.25,0.06124999999999999,0.6124999999999999,4897.95918367347,195.99999999999997,153.12499999999997
+Stark,3000,300,10,0.65,0.8,0.8,0.3,0.12480000000000001,1.248,2403.846153846154,399.36,312.0
