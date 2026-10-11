@@ -1,0 +1,33 @@
+﻿claim_id,claim,sources,evidence_location,status,limitation
+M01,"Deutschland ITK 2026 246,4 Mrd. Euro, +4,1%; Software 58,1 Mrd., +9,9%; IT-Services +3,1%",1;6,direct-5.txt,Prognose,Nicht NXT-Nachfrage
+M02,"Frühere Januarprognose ITK 245,1 Mrd., +4,4%; Software 58,3 Mrd., +10,2%",2,direct-6.txt,Prognose-Vintage,Nicht aktuellere Julibasis mischen
+M03,"KfW Ausgaben 2024 23,8 Mrd., Rückgang 8,1 Mrd. nominal; Projekte 2022–24 Anteil 30%",4,kfw-digitalisierung-full.md,Ist/Befragung,"2026 Veröffentlichung, nicht Beobachtungsjahr"
+M04,"VC Q3 2026 4,5 Mrd.; 6 Megadeals 3,5 Mrd.; 89 Runden ab 1 Mio.",12,latest-1.txt Seiten 3–6,Beobachtet/revidierbar,Nicht 89 alle Deals
+M05,YTD Deals ab 1 Mio. 276 versus 304; Q3 140 alle Deals,12,"latest-1.txt Seiten 6,14",Beobachtet/revidierbar,Nicht AI-Deals addieren
+M06,"Q3 Seed 227 Mio., Scale-up 73%; AI 61 Runden rund 3,1 Mrd.",12,"latest-1.txt Seiten 4,5,8",Beobachtet/revidierbar,Keine gleichmäßige Verteilung auf Gründer
+M07,DE KI-Nutzung 2025 26%; 10–49:23%; 50–249:36%; ab250:57%,5,source-initial-4.md,Amtliche Befragung,Nicht externe Beschaffung
+M08,DE Hemmnisse 72/62/60/45/44/32 Prozent,5,source-initial-4.md,Amtliche Befragung,"Nenner Nichtnutzer, die KI bereits erwogen"
+M09,"AT 30% KI, EU20%, DE26%; 77% AT Nichtnutzer noch nicht erwogen",8,direct-2.txt,Amtliche Befragung,"H1 2025, ab10 Beschäftigte, definierte Branchen"
+M10,"CH Q4 ICT104,0 Software104,7 ITServices98,9; Projektverzögerung",11,latest-0.txt,Stimmung/Erwartung,Keine Umsatzprozentwerte
+M11,"DE KI 2026 28,7 Mrd. +48%; KI Services6,8 Mrd. +30%; 2027 40,3 Mrd. erwartet",3,direct-7.txt,Prognose,Software/Services/Hardware; kein NXT-Kausaleffekt
+M12,KI verändert Prozesse/Produkte/Geschäftsmodelle,10,direct-4.txt,Positionspapier,Keine quantitative Agenturproduktivität
+G01,"Budget360, tCPA400, Caps25/15, Oktober Budgetverlust0",E1;E6,archivierter interner Prüfbericht,Kontosnapshot,"Nach A unverändert, C nicht angewendet; E1-E7 private supporting originals excluded"
+G02,"Oktober bis10 Kosten1104,16; Auslastung30,67%",E1,calculations-qa.json,Rechnung,Nicht partiellen11.10. verwenden; E1-E7 private supporting originals excluded
+G03,"BeforeAfter Kosten+6,57%, Klicks+14,38%, CPC-6,82%, CVR-73,77%",E2,campaign_before_after.csv; calculations-qa.json,Rechnung,Kein LP-Kausalexperiment; E1-E7 private supporting originals excluded
+G04,"Exact IS41→56,56; Rangverlust59→40,43; Prospecting80,60→84,99",E2,campaign_before_after.csv,Perioden-GAQL,IS nicht mitteln; E1-E7 private supporting originals excluded
+G05,"18 stabile Keyword-IDs; QS-Abdeckung34,52/37,91%",E2,qs_coverage_by_period.csv (full population); matched_keywords_before_after.csv (18-keyword common panel),Historische Diagnose,QS diagnostic only; full-population coverage differs from fixed-panel mean; E1-E7 private supporting originals excluded
+G06,"Broad app entwickler Nachher1789,25Euro275Klicks2Conv",E2,all_delivered_keywords.csv,Keywordperformance,Fehlender QS kein Nullwert; E1-E7 private supporting originals excluded
+G07,QS Diagnoseinstrument; AdRank mehrere aktuelle Faktoren,13;14,google-official-0.txt; google-official-1.txt,Offizielle Definition,Kein garantierter QS→Spend-Uplift
+G08,"A zwei RSAs sechs Exact-Negatives, historische Kosten82,34Euro",E6,archivierter interner Prüfbericht,Verifiziertes Write-Readback,Keine bewiesene Einsparung; E1-E7 private supporting originals excluded
+G09,A neue Anzeigen pending; 47 bestehende Anzeigen116Positive unverändert,E6,archivierter interner Prüfbericht,Konfigurationsprüfung,Keine aktuelle Wirkung belegt; E1-E7 private supporting originals excluded
+G10,Preis altAds5000 vs aktuelleLP6400,E6,archivierter interner Prüfbericht,Live-Textbefund,Netto/brutto und gültiges Angebot nicht entschieden; E1-E7 private supporting originals excluded
+G11,"B BLOCKED, 15 lokale Tests, kein Deployment",E7,archivierter interner Prüfbericht,Implementierungsstatus,Keine E2E-Reparatur; E1-E7 private supporting originals excluded
+G12,Consent initial granted; Lead frame-view; Direktbooking nicht gleichwertig,E3;E7,archivierter interner Prüfbericht,Konfigurations-/DOMbefund,Keine quantifizierten verlorenen Events; E1-E7 private supporting originals excluded
+G13,EXPIRED_EVENT 60+8 entfernte alteActions; recurring summary,E5,archivierter interner Prüfbericht,API-Diagnose,"Nicht 68 neue Leads, nicht Webtrackingfehler; E1-E7 private supporting originals excluded"
+L01,Google August11Leads7AB; September7Leads2AB,E4,archivierter interner Prüfbericht,Effektive Kohorten,Heute gescort; Buchung beeinflusst Score; E1-E7 private supporting originals excluded
+L02,Google Rohformulare16/8/2 vs AdsSubmit11/5/3,E4,archivierter interner Prüfbericht,Unterschiedliche Nenner,Kein direkt berechneter Trackingverlust; E1-E7 private supporting originals excluded
+L03,"Oktober Dashboard1112,54 vs volleTage1104,16",E1;E4,archivierter interner Prüfbericht,Zeitfensterdifferenz,Nicht widersprüchliche identische Periode; E1-E7 private supporting originals excluded
+S01,"Cap15→16,50 erst nach B, Baseline14d, Test14d+7dLag",E2;E6,REPORT.md Kapitel10,Testvorschlag,"Nicht angewendet, nicht Optimum; E1-E7 private supporting originals excluded"
+S02,"3000Spend300CPL; Szenariomargen50%; maxCPL57,60/196/399,36",ASSUMPTION,economics-scenarios.csv; calculations-qa.json,Explizite Annahmen,"Keine Forecasts, keine verifizierten Margen"
+S03,Founder/Integration/KI-Härtung Angebotsarchitektur,ANALYSIS,REPORT.md Kapitel8,Strategische Hypothese,Neue Angebote erst qualitativ validieren
+S04,Drei Ebenen Markt/Auktion/Funnel getrennt,ANALYSIS,REPORT.md Kapitel7,Evidenzsynthese,Kein erfundener KI-kausaler Downturn

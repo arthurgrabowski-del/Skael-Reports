@@ -1,0 +1,16 @@
+{
+  "ad_id": "2175960969816599",
+  "library_url": "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=DE&id=2175960969816599&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=665514166647225",
+  "card_observed_at": "2026-10-11T09:55:27.017716+00:00",
+  "saved_card_sha256": "ff51ddebb498c1564657e130889d1524ed8c95e1264f941651b0e3334a33b42b",
+  "outbound_link": "https://l.facebook.com/l.php?u=https%3A%2F%2Fgo.krutzfeld.tech%2F&h=AUCqa4GOBZqwRwHjC6GGbqKCaTAAypfiobvgwM0uQ-OQS0JO_ZTDQy3J53JEdwlngOSF4940r-5uelrkwSfNXIqeFG6sXJxlKgdO0n9Avwp7CeF0sa5zXRFMBPF2Buj80ypxIbxEYvMV3DoxSQacLRFGcOf0ZA",
+  "decoded_target": "https://go.krutzfeld.tech/",
+  "basis": "destination encoded in the saved Library outbound link; redirect chain not independently tested",
+  "landing_source": "sources/landing-17.md",
+  "landing_url": "https://go.krutzfeld.tech",
+  "landing_accessed": "2026-10-11",
+  "landing_timestamp_precision": "date only in original citation ledger",
+  "landing_sha256": "07551fe855585ce737cdfa92f73f1592f5e7f48b95067adca1b3f5f457e570c4",
+  "funnel_score": 4,
+  "score_changed": false
+}
