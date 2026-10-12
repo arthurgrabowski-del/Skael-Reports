@@ -1,5 +1,5 @@
 # Generator für das MALOUM-Paper (Skael-Stil wie nxt-you-strategie-2026-10).
-import html, os, re
+import html, json, os, re
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 IMG = "../assets/maloum-konkurrenz/"
@@ -63,6 +63,7 @@ EXTRA_CSS = """
 .script h3{margin:0 0 6px;font-size:18px}
 .script .meta{font-family:'DM Mono',monospace;font-size:11px;color:#6b7280;margin-bottom:14px}
 .script table{min-width:560px}
+.script td:first-child{white-space:nowrap}
 .script blockquote{font-size:14px;margin:14px 0 0}
 .dd{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
 .dd>div{border-radius:10px;padding:18px 20px}
@@ -92,6 +93,19 @@ EXTRA_CSS = """
 .fig figcaption{font-size:12.5px;color:#6b7280;margin-top:10px}
 .steps{padding-left:22px}.steps li{margin:0 0 12px;line-height:1.65}
 .camp-table td,.camp-table th{font-size:13px;vertical-align:top}
+.kchips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px}
+.kchips button{font:inherit;font-size:12.5px;border:1px solid #d7dbe4;background:#fff;border-radius:20px;padding:5px 12px;cursor:pointer;color:#0f1b2d}
+.kchips button.on{background:#0f1b2d;color:#fff;border-color:#0f1b2d}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:14px 0 30px}
+.kad{background:#fff;border:1px solid #e4e6ec;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:7px;font-size:12.5px;min-width:0}
+.kad img{width:100%;max-height:440px;object-fit:cover;object-position:top;border-radius:6px;border:1px solid #eef0f4;display:block}
+.kh{display:flex;gap:8px;align-items:center}.km{font-family:'DM Mono',monospace;font-size:10.5px;color:#6b7280}
+.kt{line-height:1.5;color:#1f2937;overflow-wrap:anywhere}
+.kst{font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px}.kst.on{background:#dcfce7;color:#166534}.kst.off{background:#f3f4f6;color:#6b7280}
+.ktags{display:flex;flex-wrap:wrap;gap:4px}.ktag{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:600;background:#eef2ff;color:#3a6ef4}
+.ktag.g{background:#dcfce7;color:#166534}.ktag.r{background:#fee2e2;color:#991b1b}
+.klnk{margin-top:auto;font-weight:600;font-size:12px}.klnk span{display:block;font-family:'DM Mono',monospace;font-size:10px;color:#9ca3af;font-weight:400}
+@media print{.kchips{display:none}.kad{break-inside:avoid}}
 @media(max-width:900px){.camp{grid-template-columns:1fr 1fr}.phone-grid,.shot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.camp,.phone-grid,.shot-grid,.dd{grid-template-columns:1fr}}
 @media print{.phone,.shot,.script,.camp article{break-inside:avoid}}
@@ -111,8 +125,8 @@ index = """
 <section class="agenda"><h2>Das Paper in vier Teilen</h2>
 <div class="agenda-row"><span>01</span><div><h3>Kampagnenstruktur</h3><p>MALOUM läuft künftig in vier Kampagnen: Brand Push (bestehend), Creator Warm-Up, Creator Scaling und Fix Test. Alle 14 Tage werden Gewinner ins Scaling gezogen. <a href="kampagnen.html">Struktur ansehen</a></p></div></div>
 <div class="agenda-row"><span>02</span><div><h3>So sehen die Ads aus</h3><p>Zwei Formate mit je drei Ads, also sechs Ads je Creatorin: „Neue Bilder“ und „Fragesticker“. Alle wirken wie eine Story, die die Creatorin selbst gepostet hat. <a href="ads.html">Ads ansehen</a></p></div></div>
-<div class="agenda-row"><span>03</span><div><h3>Video-Skripte für Stella und Leyla</h3><p>Zwei kurze Videos, ein Take, selbst gefilmt. Mit Briefing, No-Gos und Abgabe, so wie es an jede Creatorin rausgeht. <a href="skripte.html">Skripte lesen</a></p></div></div>
-<div class="agenda-row"><span>04</span><div><h3>Was die Konkurrenz macht</h3><p>53 Creator-Ads aus der Meta Ad Library. Die Langläufer bestätigen unseren Weg. Das Fragesticker-Format hatten wir zuerst. <a href="konkurrenz.html">Konkurrenz ansehen</a></p></div></div>
+<div class="agenda-row"><span>03</span><div><h3>Sechs Video-Angles</h3><p>Eriks zwei Basis-Skripte plus vier neue Angles aus den Konkurrenz-Langläufern (Shooting-Tag, Zwei Seiten, Du entscheidest, Mein Oktober). Sekunde für Sekunde, mit Briefing, No-Gos und Abgabe. <a href="skripte.html">Skripte lesen</a></p></div></div>
+<div class="agenda-row"><span>04</span><div><h3>Was die Konkurrenz macht</h3><p>Alle gesammelten Creator-Ads aus der Meta Ad Library. Die Langläufer bestätigen unseren Weg. Das Fragesticker-Format hatten wir zuerst. <a href="konkurrenz.html">Konkurrenz ansehen</a></p></div></div>
 </section>
 
 <section><h2>Warum jetzt ein Neustart</h2>
@@ -251,7 +265,7 @@ ads = f"""
 <div class="table-wrap"><table><thead><tr><th>Ad</th><th>Text im Bild</th><th>Primärtext</th><th>Headline</th></tr></thead><tbody>
 <tr><th>AD01 Bild</th><td>Hab heute neue Bilder gemacht / Link unten</td><td>Meine neuesten Bilder findest du auf meinem Maloum-Profil. Anschauen kostet nichts.</td><td>Neue Bilder ansehen</td></tr>
 <tr><th>AD02 Countdown-GIF</th><td>Timer läuft 8 s runter, dann: Meine neuen Bilder sind online</td><td>Meine neuesten Bilder sind online. Klick auf den Link, anschauen kostet nichts.</td><td>Jetzt ansehen</td></tr>
-<tr><th>AD03 Video</th><td><a href="skripte.html">Skript Video 1</a></td><td>Hab neue Bilder gemacht, schau sie dir an. Anschauen kostet nichts.</td><td>Neue Bilder ansehen</td></tr>
+<tr><th>AD03 Video</th><td><a href="skripte.html#v1">Skript V1</a></td><td>Hab neue Bilder gemacht, schau sie dir an. Anschauen kostet nichts.</td><td>Neue Bilder ansehen</td></tr>
 </tbody></table></div>
 </section>
 
@@ -260,7 +274,7 @@ ads = f"""
 <div class="table-wrap"><table><thead><tr><th>Ad</th><th>Frage im Sticker</th><th>Antwort im Bild</th><th>Headline</th></tr></thead><tbody>
 <tr><th>AD04 Bild</th><td>Wo kann ich deine neuen Bilder sehen?</td><td>Meine neuesten Bilder findest du hier unten im Link.</td><td>Neue Bilder ansehen</td></tr>
 <tr><th>AD05 Bild</th><td>Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?</td><td>Ja, klar. Klick einfach auf den Link, bezahlen geht auch mit PayPal.</td><td>Geht auch mit PayPal</td></tr>
-<tr><th>AD06 Video</th><td>Wo kann ich deine neuen Bilder sehen?</td><td><a href="skripte.html">Skript Video 2</a></td><td>Neue Bilder ansehen</td></tr>
+<tr><th>AD06 Video</th><td>Wo kann ich deine neuen Bilder sehen?</td><td><a href="skripte.html#v2">Skript V2</a></td><td>Neue Bilder ansehen</td></tr>
 </tbody></table></div>
 </section>
 
@@ -287,56 +301,98 @@ page("ads.html", "So sehen die <em>Ads</em> aus.",
      ads)
 
 # ---------------------------------------------------------------- Skripte
+LIBA = 'https://www.facebook.com/ads/library/?id='
+VIDS = [
+ ("V1", "Neue Bilder", "Eriks Basis-Skript · AD03", "Stella, Leyla, später alle", "1348379053810950", "Rina: „zu exklusiv für den Feed“, aktiv seit 06.05.",
+  [("0–2 s","Selfie-Kamera, Armlänge, tagsüber am Fenster oder draußen. Direkt in die Kamera.","„Hey, ich hab heute neue Bilder gemacht!“","NEUE BILDER 📸"),
+   ("2–7 s","Kurz auf den Link-Sticker unten zeigen.","„Meine neuesten Bilder findest du hier unten im Link.“","👇 Link"),
+   ("7–12 s","Wieder in die Kamera, locker.","„Und weil mich das viele fragen: Nein, dafür brauchst du keine Kreditkarte. Anschauen kostet nichts.“","Keine Kreditkarte nötig"),
+   ("12–14 s","Lächeln, winken.","„Viel Spaß!“","")],
+  "Hab neue Bilder gemacht, schau sie dir an. Anschauen kostet nichts.", "Neue Bilder ansehen"),
+ ("V2", "Fragesticker", "Eriks Basis-Skript · AD06", "Stella, Leyla, später alle", "2499150103879616", "Lucy: Fragesticker „Wie findest du mich?“, seit 12.05. live",
+  [("0–3 s","Fragesticker eingeblendet (setzen wir). Creatorin liest ihn vor, schaut kurz nach oben auf den Sticker.","„Wo kann ich deine neuen Bilder sehen?“ – „Gute Frage!“","Sticker: Wo kann ich deine neuen Bilder sehen?"),
+   ("3–8 s","Auf den Link-Sticker zeigen.","„Meine neuesten Bilder findest du hier unten im Link.“","👇 Link"),
+   ("8–13 s","In die Kamera.","„Und nein, dafür brauchst du keine Kreditkarte. Einfach draufklicken, anschauen kostet nichts.“","Keine Kreditkarte nötig")],
+  "Die Frage krieg ich ständig, hier die Antwort 👇", "Neue Bilder ansehen"),
+ ("V3", "Shooting-Tag", "neu · Behind the Scenes", "Stella, Leyla, alle mit Shooting-Material", "1348379053810950", "Rina: Behind-the-Scenes-Reihe, mehrere Gestaltungen mit 2–8 Varianten, seit Mai live",
+  [("0–2 s","Selfie im Auto oder auf dem Weg, Tasche/Outfit-Bag im Bild.","„Komm mit, heute ist Shooting-Tag!“","SHOOTING-TAG 📸"),
+   ("2–6 s","Kamera dreht auf Location: Studio, Stadt, Feld. Licht, Kamera, Kleiderstange.","„Hier machen wir heute die neuen Bilder.“","Location ✓"),
+   ("6–10 s","Kurzer Blick auf Display der Kamera / Handy der Fotografin, ohne das Bild groß zu zeigen.","„Das erste Bild ist schon im Kasten, ich bin so gespannt.“","Bild 1 von 40 …"),
+   ("10–14 s","Wieder Selfie, auf Link-Sticker zeigen.","„Die fertigen Bilder findest du hier unten im Link. Anschauen kostet nichts.“","👇 Ergebnis ansehen")],
+  "So entsteht eine neue Bilderserie. Die fertigen Bilder findest du im Link.", "Neue Serie ansehen"),
+ ("V4", "Zwei Seiten", "neu · Alltag vs. Shooting", "Leyla, Samantra, Gwendo", "1356446376514173", "Kate: Montag/Samstag-Split mit klarer Persona, seit 03.09. live",
+  [("0–3 s","Alltagslook: Hoodie, Uni/Job, Kaffee in der Hand. Selfie.","„Unter der Woche: Hoodie, Kaffee, Vorlesung.“","Montag ☕"),
+   ("3–4 s","Schnitt per Handbewegung vor der Linse (einziger erlaubter Übergang).","–","✋"),
+   ("4–9 s","Gleiche Person, gestylt fürs Shooting, gleiche Kameraposition.","„Und am Wochenende? Shooting.“","Samstag 📸"),
+   ("9–14 s","In die Kamera, auf Link-Sticker zeigen.","„Welche Seite gefällt dir besser? Die Bilder vom Wochenende sind hier im Link.“","👇 Wochenend-Bilder")],
+  "Zwei Seiten von mir. Welche gefällt dir besser?", "Neue Bilder ansehen"),
+ ("V5", "Du entscheidest", "neu · Umfrage-Sticker", "Stella, Leyla, alle", "1798716068001442", "Kate/Lucy: Interaktions-Sticker laufen ohne Sperre, solange kein Kontakt versprochen wird",
+  [("0–3 s","Zwei Outfits hochhalten (z. B. Jeansjacke vs. Sommerkleid). Umfrage-Sticker setzen wir.","„Ich kann mich nicht entscheiden …“","Umfrage: Links oder rechts?"),
+   ("3–8 s","Erst das eine, dann das andere Outfit vor den Körper halten.","„Links oder rechts fürs nächste Shooting? Stimm ab!“","Links 👖 / Rechts 👗"),
+   ("8–13 s","Selfie, auf Link-Sticker zeigen.","„Was beim letzten Mal gewonnen hat, siehst du in meinen neuen Bildern, hier im Link.“","👇 Letzte Gewinner-Serie")],
+  "Hilf mir mal: Links oder rechts? Das letzte Ergebnis siehst du im Link.", "Neue Bilder ansehen"),
+ ("V6", "Mein Oktober", "neu · Foto-Dump / Mein Jahr", "Stella, Leyla, Samantra", "965713799880512", "Kate: Collage „So schaut mein Jahr aus. Und deins?“",
+  [("0–2 s","Selfie, direkt in die Kamera.","„Mein Oktober in zehn Sekunden.“","MEIN OKTOBER"),
+   ("2–9 s","5–6 schnelle Clips, je 1 Sekunde: Kaffee, Spaziergang mit Laub, Training/Hobby, Freundinnen (ohne Gesichter), Shooting-Set.","(Musik setzen wir, kein O-Ton)","Kaffee · Laub · Gym · Shooting"),
+   ("9–14 s","Selfie, auf Link-Sticker zeigen.","„Und die Bilder vom Shooting? Die findest du hier im Link. Wie war dein Oktober?“","👇 Oktober-Bilder")],
+  "So sah mein Oktober aus. Und deiner?", "Oktober-Bilder ansehen"),
+]
+def vid(v):
+    vid_, name, kind, who, rid, rtxt, rows, prim, head = v
+    tr = "".join(f"<tr><td>{t}</td><td>{b}</td><td>{g}</td><td>{o}</td></tr>" for t, b, g, o in rows)
+    return f"""<div class="script" id="{vid_.lower()}"><span class="tag{' green' if kind.startswith('neu') else ''}">{kind}</span><h3>{vid_} · {name}</h3><div class="meta">9:16 · 10–15 Sek. · ein Take bzw. Handy-Schnitte · für: {who}</div>
+<div class="table-wrap"><table><thead><tr><th>Zeit</th><th>Bild</th><th>Gesprochen</th><th>Texteinblendung</th></tr></thead><tbody>{tr}</tbody></table></div>
+<p><strong>Primärtext:</strong> {prim}<br><strong>Headline:</strong> {head}</p>
+<p class="fine">Vorbild aus der Ad Library: {rtxt} · <a href="{LIBA}{rid}" target="_blank" rel="noopener">Ad öffnen ↗</a></p></div>"""
+
 skripte = """
-<section><h2>Zwei Videos, ein Take, selbst gefilmt</h2>
-<p>Es soll wirken wie eine ganz normale Story, nicht wie Werbung. Das Briefing unten geht so an jede Creatorin raus.</p>
+<section><h2>Sechs Video-Angles, alle selbst gefilmt</h2>
+<p>Es soll wirken wie eine ganz normale Story, nicht wie Werbung. <strong>V1 und V2 sind Eriks Basis-Skripte</strong> (AD03 und AD06). <strong>V3 bis V6 sind neue Angles</strong>, abgeleitet aus den Konkurrenz-Ads, die seit Monaten ohne Sperre laufen. Jede Creatorin dreht V1 und V2 plus zwei der neuen Angles, die zu ihr passen.</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>Angle</th><th>Mechanik</th><th>Warum</th></tr></thead><tbody>
+<tr><th><a href="#v1">V1</a></th><td>Neue Bilder</td><td>Direkt in die Kamera, Link, keine Kreditkarte</td><td>Einfachste Botschaft, schnell bei allen drehbar</td></tr>
+<tr><th><a href="#v2">V2</a></th><td>Fragesticker</td><td>Sticker-Frage, Creatorin antwortet</td><td>Unser Format, bei Lucy seit Mai ohne Sperre live</td></tr>
+<tr><th><a href="#v3">V3</a></th><td>Shooting-Tag</td><td>Behind the Scenes, Ergebnis im Link</td><td>Rinas Langläufer; macht Neugier ohne Andeutung</td></tr>
+<tr><th><a href="#v4">V4</a></th><td>Zwei Seiten</td><td>Alltag vs. gestylt, Handwisch-Übergang</td><td>Kates Split; stärkster Scroll-Stopper</td></tr>
+<tr><th><a href="#v5">V5</a></th><td>Du entscheidest</td><td>Umfrage-Sticker zum Outfit</td><td>Interaktion ohne Kontakt-Versprechen</td></tr>
+<tr><th><a href="#v6">V6</a></th><td>Mein Oktober</td><td>Foto-Dump in 10 Sekunden</td><td>Kates „Mein Jahr“; jeden Monat neu drehbar</td></tr>
+</tbody></table></div>
 <div class="table-wrap"><table><tbody>
 <tr><th>Kunde</th><td>MALOUM</td></tr>
-<tr><th>Creatorinnen</th><td>Stella, Leyla</td></tr>
-<tr><th>Deliverables</th><td>2 kurze Videos: „Neue Bilder“ und „Fragesticker“</td></tr>
-<tr><th>Stil</th><td>ein Take ohne Schnitt, selbst gefilmt, wie eine normale Instagram-Story</td></tr>
-<tr><th>Länge</th><td>10–15 Sekunden</td></tr>
-<tr><th>Format</th><td>Hochformat 9:16, Handykamera, 1080p oder 4K</td></tr>
+<tr><th>Creatorinnen</th><td>Stella, Leyla (dann alle im Warm-Up)</td></tr>
+<tr><th>Deliverables</th><td>V1 + V2 Pflicht, dazu 2 von V3–V6</td></tr>
+<tr><th>Länge / Format</th><td>10–15 Sekunden, Hochformat 9:16, Handykamera, 1080p oder 4K</td></tr>
 <tr><th>Takes</th><td>je Video 2 komplette Takes, wir nehmen den besten</td></tr>
 <tr><th>Abgabe bis</th><td><span class="tag yellow">offen</span> Datum eintragen</td></tr>
-<tr><th>Postproduktion</th><td>Untertitel und Sticker machen wir, du lieferst nur das Rohvideo</td></tr>
+<tr><th>Postproduktion</th><td>Untertitel, Sticker und ggf. Musik machen wir, du lieferst nur das Rohvideo</td></tr>
 </tbody></table></div>
 <div class="notice"><strong>Das Ziel</strong><p>Deine Follower sollen wissen, wo sie deine neuen Bilder finden, dass Anschauen nichts kostet und dass man keine Kreditkarte braucht. Sag es in deinen eigenen Worten, es muss nicht wörtlich sein.</p></div>
 </section>
-
-<section><h2>Video 1: Neue Bilder</h2>
-<div class="script"><h3>AD03 · Neue Bilder</h3><div class="meta">Video 9:16 · 10–15 Sek. · ein Take</div>
-<blockquote><p>„Hey, ich hab heute neue Bilder gemacht! Meine neuesten Bilder findest du hier unten im Link. Und weil mich das viele fragen: Nein, dafür brauchst du keine Kreditkarte. Einfach draufklicken und anschauen, anschauen kostet nichts. Viel Spaß!“</p></blockquote></div>
-</section>
-
-<section><h2>Video 2: Fragesticker</h2>
-<div class="script"><h3>AD06 · Fragesticker</h3><div class="meta">Video 9:16 · 10–15 Sek. · ein Take · Frage im Sticker setzen wir: „Wo kann ich deine neuen Bilder sehen?“</div>
-<blockquote><p>„Meine neuesten Bilder findest du hier unten im Link. Und weil mich das auch viele fragen: Nein, dafür brauchst du keine Kreditkarte. Einfach draufklicken, anschauen kostet nichts. Viel Spaß!“</p></blockquote>
-<p class="fine">Die Fragen drehen sich nur um die Plattform und deine Bilder, nie um Kontakt. Bitte keine eigenen Fragen wie „Kann ich dir schreiben?“ dazunehmen.</p></div>
+<section><h2>Die Skripte</h2>
+""" + "".join(vid(v) for v in VIDS) + """
+<p class="fine">Alle Fragen und Sticker drehen sich nur um Bilder, Look und Alltag, nie um Kontakt. Bitte keine eigenen Fragen wie „Kann ich dir schreiben?“ dazunehmen. Musik nur aus der Meta-Soundbibliothek, die setzen wir.</p>
 </section>
 
 <section><h2>No-Gos</h2>
 <p>Die Videos laufen als Werbung bei Instagram und Facebook, Meta prüft jede Anzeige. Bitte deshalb nicht:</p>
 <div class="table-wrap"><table><tbody>
 <tr><th>Orte</th><td>kein Bad, kein Spiegel-Selfie, kein Bett oder Schlafzimmer</td></tr>
-<tr><th>Outfit</th><td>nicht bauchfrei, kein tiefer Ausschnitt, keine Unterwäsche oder Bademode</td></tr>
+<tr><th>Outfit</th><td>nicht bauchfrei, kein tiefer Ausschnitt, keine Unterwäsche oder Bademode, auch nicht bei V3 und V5</td></tr>
 <tr><th>Gesten</th><td>keine zweideutigen Posen, kein Kussmund, kein Zwinkern</td></tr>
-<tr><th>Wörter</th><td>nicht „schreib mir“, „privat“, „heute Abend“ oder „exklusiv für dich“</td></tr>
-<tr><th>Hintergrund</th><td>keine fremden Gesichter, keine Kennzeichen, keine Musik</td></tr>
+<tr><th>Wörter</th><td>nicht „schreib mir“, „privat“, „heute Abend“, „exklusiv für dich“ oder „was ich auf Insta nicht zeigen darf“</td></tr>
+<tr><th>Hintergrund</th><td>keine fremden Gesichter (V3/V6: Freundinnen und Fotografin nur von hinten), keine Kennzeichen, keine eigene Musik</td></tr>
 </tbody></table></div>
 </section>
 
 <section><h2>Abgabe</h2>
 <ul class="short-list">
-<li><strong>2 Takes je Version als Originaldatei</strong> bis [Datum eintragen], per WeTransfer oder Google-Drive-Link. Nicht über WhatsApp oder Instagram, dort wird die Qualität schlechter.</li>
-<li><strong>Dateinamen:</strong> Name_Video_Take, z. B. <code>Stella_NeueBilder_Take1.mov</code> oder <code>Leyla_Fragesticker_Take2.mov</code>.</li>
-<li><strong>Video 1 „Neue Bilder“:</strong> 2 komplette Takes. <strong>Video 2 „Fragesticker“:</strong> 2 komplette Takes.</li>
+<li><strong>2 Takes je Video als Originaldatei</strong> bis [Datum eintragen], per WeTransfer oder Google-Drive-Link. Nicht über WhatsApp oder Instagram, dort wird die Qualität schlechter.</li>
+<li><strong>Dateinamen:</strong> Name_Video_Take, z. B. <code>Stella_V1_NeueBilder_Take1.mov</code> oder <code>Leyla_V4_ZweiSeiten_Take2.mov</code>.</li>
 <li>Alles im Hochformat, ohne Filter, ohne Musik. Fragen gehen jederzeit an Erik.</li>
 </ul>
 </section>
 """
-page("skripte.html", "Video-Skripte für <em>Stella und Leyla.</em>",
-     "Zwei kurze Videos, ein Take, selbst gefilmt. Mit Briefing, Skripten, No-Gos und Abgabe.",
+page("skripte.html", "Sechs <em>Video-Angles</em> für die Creatorinnen.",
+     "V1 und V2 als Basis, V3 bis V6 neu aus den Konkurrenz-Langläufern. Sekunde für Sekunde, mit Ad-Text, Vorbild-Link, No-Gos und Abgabe.",
      skripte)
 
 # ---------------------------------------------------------------- Konkurrenz
@@ -353,20 +409,61 @@ shot_html = "".join(
     for i, t, d in shots
 )
 
+KD = json.load(open(os.path.join(OUT, "data", "konkurrenz.json")))
+K_N, K_ACT = len(KD), sum(a["active"] for a in KD)
+K_CR = sorted({a["who"] for a in KD}, key=lambda w: -sum(1 for a in KD if a["who"] == w))
+K_LONG = max(a["days"] for a in KD)
+def kcard(a):
+    tg = "".join(f'<span class="ktag {c}">{html.escape(l)}</span>' for c, l in a["tags"])
+    st = '<span class="kst on">Aktiv</span>' if a["active"] else '<span class="kst off">Inaktiv</span>'
+    per = f"seit {a['start']}" if a["active"] else f"{a['start']} – {a['end']}"
+    img = f'<a href="{LIB}{a["id"]}" target="_blank" rel="noopener"><img loading="lazy" src="{IMG}{a["img"]}" alt=""></a>' if a["img"] else ""
+    tagkeys = " ".join(re.sub(r"\W+", "-", l.lower()) for c, l in a["tags"] if c != "g")
+    body = html.escape(a["body"]) or "<i>Text nur im Bild oder Video</i>"
+    return (f'<article class="kad" data-who="{html.escape(a["who"])}" data-act="{int(a["active"])}" data-tags="{tagkeys}" data-days="{a["days"]}">'
+            f'<div class="kh">{st}<b>{html.escape(a["who"])}</b></div><div class="km">{per} · {a["days"]} Tage · {a["var"]} Variante(n)</div>'
+            f'{img}<div class="kt">{body}</div><div class="ktags">{tg}</div>'
+            f'<a class="klnk" href="{LIB}{a["id"]}" target="_blank" rel="noopener">In der Meta Ad Library öffnen ↗<span>ID {a["id"]}</span></a></article>')
+KD_sorted = sorted(KD, key=lambda a: (not a["active"], -a["days"]))
+fmt_rows = ""
+for c, l, _ in [("b","Fragesticker",0),("b","Persona/Hobby",0),("b","Behind the Scenes",0),("b","Zwei Seiten / Bruchteil",0),("b","Kein Snap mehr",0),("b","Zahlung",0),("b","Schüchtern/Neu",0),("r","Kontakt-/Chat-Versprechen",0),("r","Schule/18 – tabu",0)]:
+    L = [a for a in KD if any(t[1] == l for t in a["tags"])]
+    if not L: continue
+    top = max(L, key=lambda a: a["days"])
+    fmt_rows += f'<tr><th>{l}</th><td>{len(L)}</td><td>{sum(a["active"] for a in L)}</td><td>{top["days"]} Tage · {html.escape(top["who"])} <a href="{LIB}{top["id"]}" target="_blank" rel="noopener">↗</a></td></tr>'
+chips = '<button class="on" data-f="all">Alle</button><button data-f="act">Nur aktive</button><button data-f="long">90+ Tage</button>' + \
+        "".join(f'<button data-w="{html.escape(w)}">{html.escape(w)} ({sum(1 for a in KD if a["who"]==w)})</button>' for w in K_CR) + \
+        "".join(f'<button data-t="{k}">{n}</button>' for k, n in [("fragesticker","Fragesticker"),("persona-hobby","Persona"),("behind-the-scenes","Behind the Scenes"),("kontakt-chat-versprechen","Chat-Versprechen")])
+gallery = f"""<section id="alle"><h2>Alle {K_N} Konkurrenz-Ads zum Durchgehen</h2>
+<p>Sortiert: aktive zuerst, dann nach Laufzeit. Filter oben, Klick aufs Bild öffnet die Ad in der Meta Ad Library. <span class="ktag r">rot</span> = nicht übernehmen.</p>
+<div class="kchips">{chips}</div><p class="fine" id="kcount"></p>
+<div class="kgrid">{''.join(kcard(a) for a in KD_sorted)}</div>
+<script>
+(function(){{var st={{f:'all',w:null,t:null}};var bs=document.querySelectorAll('.kchips button');
+function ap(){{var n=0;document.querySelectorAll('.kad').forEach(function(e){{var ok=(st.f!=='act'||e.dataset.act==='1')&&(st.f!=='long'||+e.dataset.days>=90)&&(!st.w||e.dataset.who===st.w)&&(!st.t||e.dataset.tags.split(' ').indexOf(st.t)>=0);e.style.display=ok?'':'none';if(ok)n++;}});document.getElementById('kcount').textContent=n+' Ads angezeigt';}}
+bs.forEach(function(b){{b.onclick=function(){{if(b.dataset.f){{st={{f:b.dataset.f,w:null,t:null}};}}else if(b.dataset.w){{st.w=st.w===b.dataset.w?null:b.dataset.w;}}else{{st.t=st.t===b.dataset.t?null:b.dataset.t;}}
+bs.forEach(function(x){{x.classList.toggle('on',(x.dataset.f&&x.dataset.f===st.f&&!st.w&&!st.t)||(x.dataset.w&&x.dataset.w===st.w)||(x.dataset.t&&x.dataset.t===st.t));}});ap();}};}});ap();}})();
+</script></section>"""
+
 konk = f"""
 <section><h2>Was wir gesehen haben</h2>
-<p>Wir haben die öffentliche Meta Ad Library für Deutschland mit rund 45 Suchen durchsucht und <strong>53 Ads von 7 Konkurrenz-Creatorinnen</strong> gefunden, 18 davon laufen aktuell. Die meisten führen ebenfalls auf MALOUM.</p>
+<p>Wir haben die öffentliche Meta Ad Library für Deutschland mit rund 45 Suchen durchsucht und <strong>{K_N} Ads von {len(K_CR)} Konkurrenz-Creatorinnen</strong> gefunden, {K_ACT} davon laufen aktuell. <a href="#alle">Alle ansehen</a>. Die meisten führen ebenfalls auf MALOUM.</p>
 <ul class="short-list">
 <li><strong>Die Creatorin ist der Absender.</strong> Alle lang laufenden Ads kommen von der Seite der Creatorin, nicht von einer Marke.</li>
 <li><strong>Handy statt Design.</strong> Selfies, Story-Screenshots, kurze Clips. Keine gestalteten Kacheln.</li>
 <li><strong>Eine klare Rolle.</strong> Kate ist das Dorfmädchen, Lucy die Gamerin, Rina die Fotografin, Leni steht im Dirndl vor den Bergen.</li>
-<li><strong>Viele Varianten.</strong> Lucy fährt ein Format mit bis zu 14 Varianten, Rina mit bis zu 8. Längste Laufzeit: 183 Tage.</li>
+<li><strong>Viele Varianten.</strong> Lucy fährt ein Format mit bis zu 14 Varianten, Rina mit bis zu 8. Längste Laufzeit: {K_LONG} Tage.</li>
 </ul>
 </section>
 
 <section><h2>Die wichtigsten Ads</h2>
 <p class="quiet">Klick auf das Bild öffnet die Ad direkt in der Meta Ad Library.</p>
 <div class="shot-grid">{shot_html}</div>
+</section>
+
+<section><h2>Welche Formate wie oft laufen</h2>
+<div class="table-wrap"><table><thead><tr><th>Format (aus Ad-Text erkannt)</th><th>Ads</th><th>davon aktiv</th><th>Längste Laufzeit</th></tr></thead><tbody>{fmt_rows}</tbody></table></div>
+<p class="fine">Erkannt über Stichworte im Ad-Text. Formate, die nur im Bild stehen (z. B. Fragesticker ohne Text), sind untererfasst; im Zweifel zählt der Screenshot.</p>
 </section>
 
 <section><h2>Wer hatte das Format zuerst?</h2>
@@ -408,11 +505,11 @@ konk = f"""
 <li>Freizügige Bildausschnitte, wie Lucy sie nutzt</li>
 </ul></div>
 </div>
-<p class="fine">Grenzen der Recherche: Ohne Facebook-Login zeigt die Ad Library nur rund 12 Ads pro Suche, das ist eine Stichprobe. Abgelehnte Ads erscheinen dort nie. Eine lange Laufzeit deutet auf Erfolg hin, beweist ihn aber nicht. Alle 53 Ads mit Links: <a href="../Maloum-Konkurrenz-Ads-Okt-2026.html">vollständiger Konkurrenz-Report</a>.</p>
+<p class="fine">Grenzen der Recherche: Ohne Facebook-Login zeigt die Ad Library nur rund 12 Ads pro Suche, das ist eine Stichprobe. Abgelehnte Ads erscheinen dort nie. Eine lange Laufzeit deutet auf Erfolg hin, beweist ihn aber nicht. Alle Ads mit Links stehen <a href="#alle">unten in der Galerie</a> und im <a href="../Maloum-Konkurrenz-Ads-Okt-2026.html">Konkurrenz-Report</a>.</p>
 </section>
-"""
+""" + gallery
 page("konkurrenz.html", "Was die <em>Konkurrenz</em> macht.",
-     "53 Creator-Ads aus der Meta Ad Library. Wer womit wirbt, wer welches Format zuerst hatte und was wir daraus übernehmen.",
+     f"{K_N} Creator-Ads aus der Meta Ad Library, alle mit Screenshot und Link. Wer womit wirbt, wer welches Format zuerst hatte und was wir daraus übernehmen.",
      konk)
 
 open(os.path.join(OUT, "assets", "paper.css"), "w").write(EXTRA_CSS)

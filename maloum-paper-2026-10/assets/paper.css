@@ -47,6 +47,7 @@
 .script h3{margin:0 0 6px;font-size:18px}
 .script .meta{font-family:'DM Mono',monospace;font-size:11px;color:#6b7280;margin-bottom:14px}
 .script table{min-width:560px}
+.script td:first-child{white-space:nowrap}
 .script blockquote{font-size:14px;margin:14px 0 0}
 .dd{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
 .dd>div{border-radius:10px;padding:18px 20px}
@@ -76,6 +77,19 @@
 .fig figcaption{font-size:12.5px;color:#6b7280;margin-top:10px}
 .steps{padding-left:22px}.steps li{margin:0 0 12px;line-height:1.65}
 .camp-table td,.camp-table th{font-size:13px;vertical-align:top}
+.kchips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px}
+.kchips button{font:inherit;font-size:12.5px;border:1px solid #d7dbe4;background:#fff;border-radius:20px;padding:5px 12px;cursor:pointer;color:#0f1b2d}
+.kchips button.on{background:#0f1b2d;color:#fff;border-color:#0f1b2d}
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:14px 0 30px}
+.kad{background:#fff;border:1px solid #e4e6ec;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:7px;font-size:12.5px;min-width:0}
+.kad img{width:100%;max-height:440px;object-fit:cover;object-position:top;border-radius:6px;border:1px solid #eef0f4;display:block}
+.kh{display:flex;gap:8px;align-items:center}.km{font-family:'DM Mono',monospace;font-size:10.5px;color:#6b7280}
+.kt{line-height:1.5;color:#1f2937;overflow-wrap:anywhere}
+.kst{font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px}.kst.on{background:#dcfce7;color:#166534}.kst.off{background:#f3f4f6;color:#6b7280}
+.ktags{display:flex;flex-wrap:wrap;gap:4px}.ktag{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:600;background:#eef2ff;color:#3a6ef4}
+.ktag.g{background:#dcfce7;color:#166534}.ktag.r{background:#fee2e2;color:#991b1b}
+.klnk{margin-top:auto;font-weight:600;font-size:12px}.klnk span{display:block;font-family:'DM Mono',monospace;font-size:10px;color:#9ca3af;font-weight:400}
+@media print{.kchips{display:none}.kad{break-inside:avoid}}
 @media(max-width:900px){.camp{grid-template-columns:1fr 1fr}.phone-grid,.shot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.camp,.phone-grid,.shot-grid,.dd{grid-template-columns:1fr}}
 @media print{.phone,.shot,.script,.camp article{break-inside:avoid}}
