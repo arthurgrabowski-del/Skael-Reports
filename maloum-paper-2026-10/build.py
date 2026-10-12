@@ -81,6 +81,8 @@ EXTRA_CSS = """
 .timeline div.us:before{background:#3a6ef4}
 .timeline span{font-family:'DM Mono',monospace;font-size:11px;color:#6b7280;display:block}
 .timeline p{margin:2px 0 0;font-size:14px}
+.story.img{background-size:cover;background-position:center 30%}
+.story .shade{position:absolute;inset:0;background:linear-gradient(180deg,#0006 0,#0000 18%,#0000 62%,#0008 100%)}
 .story .tb{position:absolute;left:8%;right:8%;text-align:center;font-size:5cqw;font-weight:600;line-height:1.55}
 .story .tb span{background:#fff;color:#111;padding:.6cqw 2.4cqw;border-radius:1.6cqw;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .story .tb.blk span{background:#111;color:#fff}
@@ -208,19 +210,21 @@ page("kampagnen.html", "Kampagnen&shy;struktur.",
 # ---------------------------------------------------------------- Ads
 
 
-def story(cls, user, inner, cta="Mehr dazu"):
-    return f'<div class="story {cls}"><div class="bar"></div><div class="top"><i></i>{user} · Gesponsert</div>{inner}<div class="cta">{cta}</div></div>'
+def story(cls, user, inner, cta="Mehr dazu", img=None):
+    bg = f' img" style="background-image:url(../assets/maloum-paper-ads/{img})' if img else ''
+    shade = '<div class="shade"></div>' if img else ''
+    return f'<div class="story {cls}{bg}">{shade}<div class="bar"></div><div class="top"><i></i>{user} · Gesponsert</div>{inner}<div class="cta">{cta}</div></div>'
 
 
 LINK = '<div class="lnk">🔗 NEUE BILDER</div>'
 six = [
-    ("a", "stella4twenty", '<div class="ph" style="inset:14% 6% 30% 6%">Foto der Creatorin<br>bildfüllend</div><div class="tb" style="top:20%"><span>Hab heute neue Bilder gemacht</span></div>' + LINK,
+    ("a", "stella4twenty", '<div class="tb" style="top:20%"><span>Hab heute neue Bilder gemacht</span></div>' + LINK,
      "AD01", "Neue Bilder · Bild", "Bild 9:16 + 4:5", "Hab heute neue Bilder gemacht / Link unten",
      "Meine neuesten Bilder findest du auf meinem Maloum-Profil. Anschauen kostet nichts.", "Neue Bilder ansehen"),
-    ("c", "deineeleyla", '<div class="ph" style="inset:14% 6% 30% 6%">Foto der Creatorin</div><div class="timer">00:08</div><div class="tb blk" style="top:60%"><span>Meine neuen Bilder sind online</span></div>' + LINK,
+    ("c", "deineeleyla", '<div class="timer" style="top:auto;bottom:33%">00:08</div><div class="tb blk" style="top:auto;bottom:24.5%"><span>Meine neuen Bilder sind online</span></div>' + LINK,
      "AD02", "Neue Bilder · Countdown-GIF", "GIF 9:16, 8 s", "Timer läuft 8 s runter, dann: Meine neuen Bilder sind online",
      "Meine neuesten Bilder sind online. Klick auf den Link, anschauen kostet nichts.", "Jetzt ansehen"),
-    ("b", "stella4twenty", '<div class="play">▶</div><div class="ph" style="inset:58% 12% 22% 12%">Creatorin spricht<br>in die Kamera</div><div class="tb" style="top:16%"><span>hab heute neue bilder gemacht</span></div>',
+    ("b", "stella4twenty", '<div class="play" style="top:66%">▶</div><div class="tb" style="top:16%"><span>hab heute neue bilder gemacht</span></div>',
      "AD03", "Neue Bilder · Video", "Video 9:16", "Skript „Neue Bilder“, Untertitel machen wir",
      "Hab neue Bilder gemacht, schau sie dir an. Anschauen kostet nichts.", "Neue Bilder ansehen"),
     ("d", "deineeleyla", '<div class="q"><b>Stelle mir eine Frage</b><span>Wo kann ich deine neuen Bilder sehen?</span></div><div class="tb" style="top:auto;bottom:24%"><span>Meine neuesten Bilder findest du hier unten im Link.</span></div>' + LINK.replace('NEUE BILDER', 'MEIN PROFIL'),
@@ -229,12 +233,12 @@ six = [
     ("a", "stella4twenty", '<div class="q"><b>Stelle mir eine Frage</b><span>Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?</span></div><div class="tb blk" style="top:auto;bottom:24%"><span>Ja, klar. Klick einfach auf den Link, bezahlen geht auch mit PayPal.</span></div>',
      "AD05", "Fragesticker · Bild", "Bild 9:16", "Frage: „Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?“ · Antwort: „Ja, klar. Klick einfach auf den Link, bezahlen geht auch mit PayPal.“",
      "", "Geht auch mit PayPal"),
-    ("e", "deineeleyla", '<div class="q"><b>Stelle mir eine Frage</b><span>Wo kann ich deine neuen Bilder sehen?</span></div><div class="play" style="top:58%">▶</div><div class="ph" style="inset:66% 14% 18% 14%">Creatorin antwortet<br>im Video</div>',
+    ("e", "deineeleyla", '<div class="q"><b>Stelle mir eine Frage</b><span>Wo kann ich deine neuen Bilder sehen?</span></div><div class="play" style="top:76%">▶</div>',
      "AD06", "Fragesticker · Video", "Video 9:16", "Frage: „Wo kann ich deine neuen Bilder sehen?“ · Antwort im Video laut Skript",
      "", "Neue Bilder ansehen"),
 ]
 cards = "".join(
-    f'<figure class="phone">{story(c, u, inner)}<figcaption><span class="tag">{ad}</span><span class="tag {"green" if "Video" in f else ""}">{fmt}</span><h3>{f}</h3><p>{t}</p>{f"<p><strong>Primärtext:</strong> {p}</p>" if p else ""}<p class="fine">Headline: {h}</p></figcaption></figure>'
+    f'<figure class="phone">{story(c, u, inner, img=f"{ad.lower()}.jpg")}<figcaption><span class="tag">{ad}</span><span class="tag {"green" if "Video" in f else ""}">{fmt}</span><h3>{f}</h3><p>{t}</p>{f"<p><strong>Primärtext:</strong> {p}</p>" if p else ""}<p class="fine">Headline: {h}</p></figcaption></figure>'
     for c, u, inner, ad, f, fmt, t, p, h in six
 )
 
@@ -256,7 +260,7 @@ ads = f"""
 </section>
 
 <section><h2>So sehen die sechs Ads aus</h2>
-<p class="quiet">Skizzen zur Orientierung. Die gestrichelten Flächen sind Platzhalter für das echte Foto bzw. Video der Creatorin.</p>
+<p class="quiet">Skizzen zur Orientierung mit bestehenden Fotos von Stella und Leyla als Beispiel. Bei AD03 und AD06 steht das Foto für das Video, das die Creatorin selbst dreht. Die finalen Bilder wählen wir pro Creatorin aus ihrem Material aus.</p>
 <div class="phone-grid">{cards}</div>
 </section>
 
