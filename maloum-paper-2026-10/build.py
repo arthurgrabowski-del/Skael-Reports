@@ -4,7 +4,7 @@ import html, os, re
 OUT = os.path.dirname(os.path.abspath(__file__))
 IMG = "../assets/maloum-konkurrenz/"
 LIB = "https://www.facebook.com/ads/library/?id="
-EDITION = "12. Oktober 2026<br>Entwurf · Weekly mit Tobias"
+EDITION = "12. Oktober 2026<br>Entwurf · Erik &amp; Arthur"
 
 PAGES = [
     ("index.html", "Überblick"),
@@ -80,6 +80,18 @@ EXTRA_CSS = """
 .timeline div.us:before{background:#3a6ef4}
 .timeline span{font-family:'DM Mono',monospace;font-size:11px;color:#6b7280;display:block}
 .timeline p{margin:2px 0 0;font-size:14px}
+.story .tb{position:absolute;left:8%;right:8%;text-align:center;font-size:5cqw;font-weight:600;line-height:1.55}
+.story .tb span{background:#fff;color:#111;padding:.6cqw 2.4cqw;border-radius:1.6cqw;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.story .tb.blk span{background:#111;color:#fff}
+.story .lnk{position:absolute;left:50%;bottom:15%;transform:translateX(-50%);background:#fff;color:#2f6bff;border-radius:2.4cqw;padding:2.2cqw 3.6cqw;font-size:3.8cqw;font-weight:700;white-space:nowrap;box-shadow:0 1cqw 4cqw #0003}
+.story .timer{position:absolute;left:50%;top:34%;transform:translateX(-50%);background:#fff;color:#111;border-radius:3cqw;padding:2.4cqw 5cqw;font-size:11cqw;font-weight:700;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.story .q span{font-size:4.2cqw}
+.phone .tag{margin-bottom:6px}
+.fig{margin:26px 0;background:#fff;border:1px solid #e4e6ec;border-radius:12px;padding:18px}
+.fig img{width:100%;height:auto;display:block;border-radius:6px}
+.fig figcaption{font-size:12.5px;color:#6b7280;margin-top:10px}
+.steps{padding-left:22px}.steps li{margin:0 0 12px;line-height:1.65}
+.camp-table td,.camp-table th{font-size:13px;vertical-align:top}
 @media(max-width:900px){.camp{grid-template-columns:1fr 1fr}.phone-grid,.shot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.camp,.phone-grid,.shot-grid,.dd{grid-template-columns:1fr}}
 @media print{.phone,.shot,.script,.camp article{break-inside:avoid}}
@@ -97,10 +109,10 @@ def page(fname, title, dek, body):
 # ---------------------------------------------------------------- Überblick
 index = """
 <section class="agenda"><h2>Das Paper in vier Teilen</h2>
-<div class="agenda-row"><span>01</span><div><h3>Kampagnenstruktur</h3><p>Aus über zehn Einzelkampagnen werden vier: Testing, Scaling, Eros-Agentur und ein separater Brand-Push. Stella geht direkt ins Scaling. <a href="kampagnen.html">Struktur ansehen</a></p></div></div>
-<div class="agenda-row"><span>02</span><div><h3>So sehen die neuen Ads aus</h3><p>Die Ads kommen von der Creatorin selbst, nicht von MALOUM: ihr Name als Absender, Handy-Selfies, echte Story-Optik. Neun Formate, alle ohne Chat- oder Kontaktversprechen. <a href="ads.html">Formate ansehen</a></p></div></div>
-<div class="agenda-row"><span>03</span><div><h3>Skripte für die Creatorinnen</h3><p>Fertige Drehanleitungen für Stella und Leyla, dazu Vorlagen für Samantra, Gwendo, Nikoleta, Tess und Emma. Die Creatorin filmt am Handy, wir schneiden und schalten. <a href="skripte.html">Skripte lesen</a></p></div></div>
-<div class="agenda-row"><span>04</span><div><h3>Was die Konkurrenz macht</h3><p>Andere Creatorinnen schalten unser altes Sticker-Format seit Monaten, teils mit bis zu 14 Varianten. Wir hatten es zuerst. Was wir daraus übernehmen und was nicht. <a href="konkurrenz.html">Konkurrenz ansehen</a></p></div></div>
+<div class="agenda-row"><span>01</span><div><h3>Kampagnenstruktur</h3><p>MALOUM läuft künftig in vier Kampagnen: Brand Push (bestehend), Creator Warm-Up, Creator Scaling und Fix Test. Alle 14 Tage werden Gewinner ins Scaling gezogen. <a href="kampagnen.html">Struktur ansehen</a></p></div></div>
+<div class="agenda-row"><span>02</span><div><h3>So sehen die Ads aus</h3><p>Zwei Formate mit je drei Ads, also sechs Ads je Creatorin: „Neue Bilder“ und „Fragesticker“. Alle wirken wie eine Story, die die Creatorin selbst gepostet hat. <a href="ads.html">Ads ansehen</a></p></div></div>
+<div class="agenda-row"><span>03</span><div><h3>Video-Skripte für Stella und Leyla</h3><p>Zwei kurze Videos, ein Take, selbst gefilmt. Mit Briefing, No-Gos und Abgabe, so wie es an jede Creatorin rausgeht. <a href="skripte.html">Skripte lesen</a></p></div></div>
+<div class="agenda-row"><span>04</span><div><h3>Was die Konkurrenz macht</h3><p>53 Creator-Ads aus der Meta Ad Library. Die Langläufer bestätigen unseren Weg. Das Fragesticker-Format hatten wir zuerst. <a href="konkurrenz.html">Konkurrenz ansehen</a></p></div></div>
 </section>
 
 <section><h2>Warum jetzt ein Neustart</h2>
@@ -112,212 +124,219 @@ index = """
 <p class="fine">Zahlen aus dem Oktober-Report 01.–11.10. und Eriks Konto-Audit vom 06.10. Backend-Daten von MALOUM sind die Grundlage, nicht die Pixel-Werte.</p>
 </section>
 
-<section><h2>Was wir im Weekly entscheiden</h2>
+<section><h2>Auf einen Blick</h2>
 <div class="decision-ledger">
-<article><span>Budget</span><h3>Wie viel geht im Oktober in Testing und Scaling?</h3><p>Unser Vorschlag zur Aufteilung steht auf der Seite Kampagnenstruktur. Den Gesamtbetrag legen wir gemeinsam fest.</p></article>
-<article><span>Creatorinnen</span><h3>Wer ist dabei, wer hat ein fixes Agenturbudget?</h3><p>Bisheriger Stand: Eros (Tess, Emma) bekommt eine eigene Kampagne. Gwendo, Samantra und Nikoleta gehen in den gemeinsamen Pool. Lea Sophy wird pausiert.</p></article>
-<article><span>Material</span><h3>Wer liefert bis wann neues Material?</h3><p>Pro Creatorin 8–10 normale Handyfotos und 2–3 kurze Clips nach unseren Skripten. Bei Emma ist das am dringendsten.</p></article>
-<article><span>Absender</span><h3>Laufen die Ads als Partnership Ads?</h3><p>Dann steht der Name der Creatorin oben, die Ad läuft aber über unser Konto. Dafür braucht jede Creatorin einmal ihre Freigabe in Instagram.</p></article>
+<article><span>Struktur</span><h3>Vier Kampagnen statt über zehn</h3><p>Brand Push läuft weiter. Creatorinnen ohne Deal starten im Warm-Up, Gewinner wandern ins Scaling, Agentur-Deals und Startbudgets laufen im Fix Test.</p></article>
+<article><span>Budget</span><h3>200 € pro Tag für die Creator-Kampagnen</h3><p>150 €/Tag Warm-Up und 50 €/Tag Scaling zum Start, dazu fest 1.000 € je Deal-Creatorin bzw. 500 € Startbudget im Fix Test. Brand Push wie bisher.</p></article>
+<article><span>Ads</span><h3>Sechs Ads je Creatorin</h3><p>Ein Foto rein, Name tauschen, fertig. Die Bilder erstellen wir selbst, die beiden Videos dreht die Creatorin.</p></article>
+<article><span>Rhythmus</span><h3>Alle 14 Tage auswerten</h3><p>Nach Backend-Neukunden je Creatorin und Anzeige. Nach 28 Tagen ohne Gewinner macht eine Creatorin Platz für neue.</p></article>
 </div>
-<div class="notice"><strong>Stand: Entwurf.</strong><p>Erik ergänzt noch Details. Dieses Paper ändert nichts an Kampagnen, Budgets oder Tracking. Umgesetzt wird erst nach Freigabe.</p></div>
+<div class="notice"><strong>Stand: Entwurf für das Weekly.</strong><p>Dieses Paper ändert nichts an Kampagnen, Budgets oder Tracking. Umgesetzt wird erst nach Freigabe.</p></div>
 </section>
 """
 page("index.html", "Der <em>Neustart</em> für MALOUM.",
-     "Kampagnenstruktur, neue Ads, Skripte für die Creatorinnen und ein Blick auf die Konkurrenz. Für unser Weekly am 12. Oktober.",
+     "Neue Kampagnenstruktur, neue Ads, Video-Skripte für die Creatorinnen und ein Blick auf die Konkurrenz.",
      index)
 
 # ---------------------------------------------------------------- Kampagnen
 kampagnen = """
-<section><h2>Vier Kampagnen statt über zehn</h2>
-<p>Bisher hat jede Creatorin zwei eigene Kampagnen mit 10 bis 20 € Tagesbudget. Das ist zu wenig, damit Meta genug Käufe sieht und lernt. Künftig bündeln wir: Die Creatorinnen sind Ad Sets innerhalb weniger Kampagnen mit gemeinsamem Budget.</p>
-<div class="camp">
-<article><span class="num">K1 · TESTING</span><h3>Warm-up &amp; Test</h3><p>Hier testen wir neue Creatorinnen und neue Formate.</p><ul><li>Ein Ad Set je Creatorin: Leyla, Samantra, Gwendo, Nikoleta, Julia</li><li>3–5 neue Ads je Ad Set</li><li>Ziel-Event: Purchase New</li><li>Was nicht läuft, fliegt nach 5–7 Tagen raus</li></ul></article>
-<article><span class="num">K2 · SCALING</span><h3>Nur Gewinner</h3><p>Hier landen Creatorinnen und Ads, die im Testing Käufe bringen.</p><ul><li>Stella von Anfang an hier</li><li>Gewinner-Ads aus K1 wandern als Kopie hierher</li><li>Ziel-Event: Purchase New</li><li>Budget steigt schrittweise mit den Ergebnissen</li></ul></article>
-<article><span class="num">K3 · EROS-AGENTUR</span><h3>Tess &amp; Emma</h3><p>Eigene Kampagne, weil Eros ein festes Budget mitbringt und anders gemessen werden will.</p><ul><li>Ein Ad Set je Creatorin</li><li>Ziel-Event: Follow (MALOUM-Follow gegen Agentur-Follow testen)</li><li>Budget laut Agentur 2–3k</li></ul></article>
-<article><span class="num">K4 · BRAND</span><h3>Brand-Push, separat</h3><p>Ankündigungen und organische Reels, die gut laufen, pushen wir hier. Kein Umsatzziel.</p><ul><li>Getrennt auswerten, nicht mit K1/K2 vergleichen</li><li>Erst in 1–2 Wochen starten</li></ul></article>
-</div>
-<p class="fine">Warum Stella nicht ins Testing kommt: In MAL WARMUP hat sie 70–80 % der Impressionen bekommen. Im gemeinsamen Testing würde sie das Budget der anderen Creatorinnen aufbrauchen, bevor diese getestet sind.</p>
+<section><h2>Vier Kampagnen</h2>
+<p>MALOUM läuft in vier Kampagnen: <strong>Brand Push</strong> (die bestehende Kampagne läuft weiter), <strong>Creator Warm-Up</strong>, <strong>Creator Scaling</strong> und <strong>Fix Test</strong>. So sieht das im Werbeanzeigenmanager aus, mit Platzhaltern statt echter Namen:</p>
+<figure class="fig"><img src="assets/kampagnen-werbeanzeigenmanager.png" alt="Die vier Kampagnen mit Anzeigengruppen und Anzeigen im Werbeanzeigenmanager" loading="lazy"><figcaption>Kampagnen, Anzeigengruppen und Anzeigen mit Budgets, wie sie im Werbeanzeigenmanager angelegt werden.</figcaption></figure>
+</section>
+
+<section><h2>So wandern die Creatorinnen durch die Kampagnen</h2>
+<figure class="fig"><img src="assets/kampagnen-ablauf.png" alt="Ablauf: Neue Creatorin über Warm-Up oder Fix Test ins Creator Scaling" loading="lazy"><figcaption>Wer gewinnt, wird alle 14 Tage ins Scaling gezogen.</figcaption></figure>
+<ol class="steps">
+<li><strong>Ohne Deal → Creator Warm-Up.</strong> Jede neue Creatorin ohne Deal bekommt dort eine Anzeigengruppe <code>&lt;Name&gt; | AS01 | Purchase</code> mit 6 Anzeigen. Das Budget sitzt auf der Kampagne, Meta verteilt es selbst. Die Starken fressen die Schwachen, und das ist gewollt.</li>
+<li><strong>Alle 14 Tage wird ausgewertet</strong>, nach Backend-Neukunden je Creatorin und Anzeige. Gewinner-Anzeigen werden ins Creator Scaling hochgezogen, mit derselben Beitrags-ID, und im Warm-Up pausiert.</li>
+<li><strong>Kein Gewinner?</strong> Dann bleibt sie erstmal im Warm-Up und ist in der nächsten Runde wieder dabei. Vorschlag: Nach zwei Runden ohne Gewinner (28 Tage) wird sie entfernt und macht Platz für neue Creatorinnen.</li>
+<li><strong>Creator Scaling enthält nur Gewinner-Anzeigen</strong>, eine Anzeigengruppe <code>&lt;Name&gt; | AS01 | Scale</code> je Gewinnerin. Das Budget sitzt auf der Kampagne und wird alle 2–3 Tage um höchstens 20 % erhöht. Stella startet direkt hier.</li>
+<li><strong>Fix Test ist für zwei Fälle da.</strong> <em>Agentur-Deal:</em> Die Creatorin hat ein zugesagtes Budget, z. B. Tess und Emma von Eros. Sie läuft hier mit festen 1.000 € auf ihrer eigenen Anzeigengruppe und wird nicht gefressen. <em>Startbudget:</em> Eine neue Creatorin bekommt im Warm-Up so wenig Budget, dass wir keine Zahlen für sie haben (Vorschlag: unter 200 € in den ersten 14 Tagen). Dann bekommt sie im Fix Test 500 € für 14 Tage und geht danach mit ihren Zahlen ins Scaling oder zurück ins Warm-Up. Läuft sie gut, kommen ihre Ads ins Creator Scaling, das Fix-Test-Budget gleichen wir dann ab.</li>
+<li><strong>Brand Push läuft wie bisher</strong> von der MALOUM-Seite, mit den PayPal-Anzeigen, und ist unabhängig von den Creator-Kampagnen.</li>
+</ol>
+</section>
+
+<section><h2>Die vier Kampagnen im Detail</h2>
+<div class="table-wrap"><table class="camp-table"><thead><tr><th></th><th>Brand Push</th><th>Creator Warm-Up</th><th>Creator Scaling</th><th>Fix Test</th></tr></thead><tbody>
+<tr><th>Kampagnenname</th><td>MAL | BRAND PUSH (bestehend)</td><td>MAL | CREATOR WARM-UP | Sales | &lt;Monat&gt;</td><td>MAL | CREATOR SCALING | Sales</td><td>MAL | FIX TEST | Sales | &lt;Monat&gt;</td></tr>
+<tr><th>Wo sitzt das Budget?</th><td>auf der Kampagne</td><td>auf der Kampagne</td><td>auf der Kampagne</td><td>auf jeder Anzeigengruppe</td></tr>
+<tr><th>Wie viel?</th><td>wie bisher</td><td>150 €/Tag zum Start (4.500 € im Monat)</td><td>50 €/Tag zum Start (1.500 € im Monat)</td><td>1.000 € fest je Deal-Creatorin bzw. 500 € Startbudget</td></tr>
+<tr><th>Wer ist drin?</th><td>MALOUM selbst</td><td>alle Creatorinnen ohne Deal</td><td>Gewinnerinnen aus Warm-Up und Fix Test, Stella direkt</td><td>Creatorinnen mit Agentur-Deal oder Startbudget</td></tr>
+<tr><th>Anzeigengruppe</th><td>Maloum | Brand Purchase</td><td>&lt;Name&gt; | AS01 | Purchase</td><td>&lt;Name&gt; | AS01 | Scale</td><td>&lt;Name&gt; | AS01 | Deal | &lt;Budget&gt; oder &lt;Name&gt; | AS01 | Start | 500</td></tr>
+<tr><th>Anzeigen</th><td>PayPal Story + Feed</td><td>6 je Creatorin</td><td>nur Gewinner-Anzeigen</td><td>6 je Creatorin</td></tr>
+<tr><th>Anzeigen-Name</th><td>Maloum | Story | AD01</td><td>&lt;Name&gt; | Story+Feed | AD01</td><td>gleicher Name wie vorher</td><td>&lt;Name&gt; | Story+Feed | AD01</td></tr>
+<tr><th>Optimierungs-Event</th><td>Purchase New</td><td>Purchase New</td><td>Purchase New, später Test mit First Purchase</td><td>je Anzeigengruppe laut Deal (Eros: Follow)</td></tr>
+</tbody></table></div>
 </section>
 
 <section><h2>Was wir abschalten</h2>
 <div class="table-wrap"><table><thead><tr><th>Was</th><th>Warum</th><th>Was passiert damit</th></tr></thead><tbody>
 <tr><th>Bisherige FAQ-/Chat-Ads</th><td>11 von 16 Ads mit Kontakt- oder Antwortversprechen sind gesperrt. Jede weitere Sperre erhöht das Risiko für das Konto.</td><td>Pausieren, nicht löschen</td></tr>
 <tr><th>Lea Sophy</th><td>288 € im Oktober, kein Neukunde. Im September 778 € und 1 Käufer.</td><td>Pausieren</td></tr>
-<tr><th>Doppelte Creator-Kampagnen</th><td>Zwei Kampagnen pro Creatorin teilen ein ohnehin kleines Budget.</td><td>Ad Sets in K1 bzw. K2 neu anlegen</td></tr>
-<tr><th>MAL WARMUP</th><td>Lief im September stark, im Oktober aber nur 1 Neukunde bei 962 €.</td><td>Gewinner-Ads nach K2 übernehmen, dann auslaufen lassen</td></tr>
+<tr><th>Einzelkampagnen je Creatorin</th><td>Zwei Kampagnen pro Creatorin teilen ein ohnehin kleines Budget.</td><td>Als Anzeigengruppen im Warm-Up bzw. Fix Test neu anlegen</td></tr>
 </tbody></table></div>
 <p class="fine">Neue Ads legen wir als neue Ads an statt bestehende zu bearbeiten. Jede Bearbeitung löst eine neue Prüfung durch Meta aus.</p>
 </section>
 
-<section><h2>Budget: unser Vorschlag zur Aufteilung</h2>
-<p>Im Oktober haben wir bisher rund <strong>200 € pro Tag</strong> ausgegeben. Unser Vorschlag ist, die Summe in den ersten zwei Wochen nicht zu erhöhen, sondern umzuverteilen. Mehr Budget erst, wenn die neuen Ads Käufe im Backend bringen.</p>
-<div class="table-wrap"><table><thead><tr><th>Kampagne</th><th>Anteil am Budget (ohne Eros)</th><th>Logik</th></tr></thead><tbody>
-<tr><th>K2 Scaling</th><td>ca. 55 %</td><td>Stella und bewährte Ads tragen das Volumen.</td></tr>
-<tr><th>K1 Testing</th><td>ca. 35 %</td><td>Genug, damit jede neue Creatorin einige Tage Daten sammelt.</td></tr>
-<tr><th>K4 Brand</th><td>ca. 10 %</td><td>Klein halten, startet später.</td></tr>
-<tr><th>K3 Eros</th><td>eigenes Budget</td><td>Kommt von der Agentur, läuft getrennt.</td></tr>
-</tbody></table></div>
-<p class="fine">Ausgangswert: 2.197 € Spend vom 01. bis 11.10. (2.466 US-Dollar). Die Aufteilung ist ein Vorschlag. Den Gesamtbetrag für Oktober legen wir im Weekly fest.</p>
-</section>
-
 <section><h2>Tracking: was vor dem Start stehen muss</h2>
 <ul class="short-list">
-<li><strong>Ein UTM-Schema für alle Ads</strong>, direkt beim Anlegen gesetzt. So wissen wir im Backend, welche Ad welchen Käufer gebracht hat.</li>
+<li><strong>Ein UTM-Schema für alle Ads</strong>, direkt beim Anlegen gesetzt. Nur so können wir alle 14 Tage nach Backend-Neukunden je Creatorin und Anzeige auswerten.</li>
 <li><strong>Ein Testkauf vor dem Start:</strong> Klick auf die Ad, Registrierung, Kauf, und dann prüfen, ob alles im Export ankommt.</li>
 <li><strong>Abstimmung mit André</strong> zu Pixel und Events. Offen ist vor allem, warum Meta deutlich mehr Käufe meldet als im Backend ankommen.</li>
-<li><strong>Optional: Event „3 Messages sent“ testen.</strong> Liegt zwischen Registrierung und Kauf und liefert mehr Daten als ein Kauf. Nur, wenn das Team von MALOUM es technisch anlegen kann.</li>
 </ul>
 </section>
 """
 page("kampagnen.html", "Kampagnen&shy;struktur.",
-     "Weniger Kampagnen, gemeinsame Budgets, Creatorinnen als Ad Sets. Testing und Scaling getrennt, Eros mit eigener Kampagne.",
+     "Brand Push, Creator Warm-Up, Creator Scaling und Fix Test. Wer gewinnt, wird alle 14 Tage ins Scaling gezogen.",
      kampagnen)
 
 # ---------------------------------------------------------------- Ads
 
 
-def story(cls, user, inner, cta="Mehr ansehen"):
-    return f'<div class="story {cls}"><div class="bar"></div><div class="top"><i></i>{user} · Anzeige</div>{inner}<div class="cta">{cta}</div></div>'
+def story(cls, user, inner, cta="Mehr dazu"):
+    return f'<div class="story {cls}"><div class="bar"></div><div class="top"><i></i>{user} · Gesponsert</div>{inner}<div class="cta">{cta}</div></div>'
 
 
-formats = [
-    ("a", "stella4twenty", '<div class="q"><b>Stelle mir eine Frage</b><span>wie findest du mich so ohne filter?</span></div><div class="ph">Handy-Selfie ohne Filter<br>Gesicht bis Schulter, Alltagslook</div><div class="ans">ehrlich? ich mag mich so am liebsten 🤍</div>',
-     "Fragesticker, neue Fragen", "green", "Hat sich bewährt",
-     "Die Sticker-Optik bleibt. Wir tauschen nur die Fragen: keine Fragen nach Antworten oder Chat, sondern nach Look, Hobby oder Alltag.", "Lucy, Kate"),
-    ("b", "deineeleyla", '<div class="split"><div><b>montag</b>7:40 · vorlesung<br>dutt, hoodie, kaffee</div><div><b>samstag</b>20:15 · shooting<br>styling, licht, outfit</div></div><div class="ans" style="bottom:15%">zwei seiten von mir.<small>die zweite gibts nicht auf insta</small></div>',
-     "Montag gegen Samstag", "blue", "Neu für uns",
-     "Zwei Fotos nebeneinander: Alltag und Shooting. Zeigt, dass es mehr gibt, ohne etwas Anzügliches zu versprechen.", "Kate"),
-    ("c", "samantra", '<div class="coll"><div>jänner</div><div>märz</div><div>mai</div><div>juli</div><div>september</div><div>oktober</div></div><div class="ans" style="bottom:15%">so sieht mein jahr aus. und deins? 💚</div>',
-     "Mein Jahr / meine Woche", "blue", "Neu für uns",
-     "Collage mit 6 Fotos und Monats- oder Tagesnamen. Kate läuft damit, mit klarer Persona: Dorf, Stall, Natur.", "Kate"),
-    ("d", "stella4twenty", '<div class="ph" style="inset:10% 12% 62% 12%">ein Foto</div><div class="letter">hi, ich bin stella 🤍<br>hab lange überlegt, ob ich das mache. auf insta zeig ich nur einen kleinen teil von dem, was ich fotografiere. die ganzen shootings, outfits und behind the scenes landen jetzt auf meinem profil. link ist unten.</div>',
-     "Persönlicher Brief", "green", "Läuft bei uns",
-     "Ein Foto, darunter ein langer, ehrlicher Text in Kleinschrift. Läuft bei Stella seit dem 28.09. Wird auf Leyla und Samantra übertragen.", "Stella (eigene Ad)"),
-    ("e", "deineeleyla", '<div class="play">▶</div><div class="ost">was beim shooting passiert, bevor das foto fertig ist 👀</div><div class="ph" style="inset:58% 12% 18% 12%">6–9 Sek. Clip<br>Licht, Outfit, Lachen</div>',
-     "Behind the Scenes (Video)", "green", "Hat sich bewährt",
-     "Ein kurzer Clip vom Shooting: Licht aufbauen, Outfit wählen, Lachen zwischen den Fotos. Rina läuft damit seit Mai mit bis zu 8 Varianten.", "Rina Photography"),
-    ("f", "gwendo", '<div class="notes"><h4>5 dinge über mich</h4><p>1. ich kann nicht ohne kaffee</p><p>2. ich lache über meine eigenen witze</p><p>3. lieblingsfilm: …</p><p>4. ich hab 3 pflanzen und alle leben</p><p>5. mein profil hat mehr fotos als insta</p></div>',
-     "Notizen-App", "yellow", "Test",
-     "Screenshot aus der Notizen-App mit 5 Dingen über die Creatorin. Sieht nach privatem Post aus, nicht nach Werbung.", "Hypothese"),
-    ("b", "nikoleta", '<div class="ph">Selfie mit Brille</div><div class="poll">brille oder ohne?<div><span>mit 🤓</span><span>ohne ✨</span></div></div>',
-     "Umfrage-Sticker", "yellow", "Test",
-     "Instagram-Umfrage mit zwei Antworten. Funktioniert, weil man sofort eine Meinung hat.", "Lucy"),
-    ("e", "samantra", '<div class="play">▶</div><div class="ost">pov: du findest endlich mein zweites profil</div><div class="ph" style="inset:58% 12% 18% 12%">Reel-Clip, Blick in die Kamera</div>',
-     "POV-Reel", "yellow", "Test",
-     "Typischer Reel-Einstieg mit Texteinblendung oben. Nur Text und Blick, keine Geste.", "Hypothese"),
-    ("a", "tess.sxh", '<div class="q"><b>Stelle mir eine Frage</b><span>was machst du am wochenende?</span></div><div class="ph">Foto vom Spiel / Stadion<br>Trikot normal getragen</div><div class="ans">jeden samstag im block. wer noch? ⚽</div>',
-     "Persona &amp; Hobby", "blue", "Neu für uns",
-     "Jede Creatorin bekommt eine klare Rolle, an der man sie erkennt: Stadion, Gaming, Natur, Uni. Kate ist das Dorfmädchen, Lucy die Gamerin.", "Kate, Lucy, Leni"),
+LINK = '<div class="lnk">🔗 NEUE BILDER</div>'
+six = [
+    ("a", "stella4twenty", '<div class="ph" style="inset:14% 6% 30% 6%">Foto der Creatorin<br>bildfüllend</div><div class="tb" style="top:20%"><span>Hab heute neue Bilder gemacht</span></div>' + LINK,
+     "AD01", "Neue Bilder · Bild", "Bild 9:16 + 4:5", "Hab heute neue Bilder gemacht / Link unten",
+     "Meine neuesten Bilder findest du auf meinem Maloum-Profil. Anschauen kostet nichts.", "Neue Bilder ansehen"),
+    ("c", "deineeleyla", '<div class="ph" style="inset:14% 6% 30% 6%">Foto der Creatorin</div><div class="timer">00:08</div><div class="tb blk" style="top:60%"><span>Meine neuen Bilder sind online</span></div>' + LINK,
+     "AD02", "Neue Bilder · Countdown-GIF", "GIF 9:16, 8 s", "Timer läuft 8 s runter, dann: Meine neuen Bilder sind online",
+     "Meine neuesten Bilder sind online. Klick auf den Link, anschauen kostet nichts.", "Jetzt ansehen"),
+    ("b", "stella4twenty", '<div class="play">▶</div><div class="ph" style="inset:58% 12% 22% 12%">Creatorin spricht<br>in die Kamera</div><div class="tb" style="top:16%"><span>hab heute neue bilder gemacht</span></div>',
+     "AD03", "Neue Bilder · Video", "Video 9:16", "Skript „Neue Bilder“, Untertitel machen wir",
+     "Hab neue Bilder gemacht, schau sie dir an. Anschauen kostet nichts.", "Neue Bilder ansehen"),
+    ("d", "deineeleyla", '<div class="q"><b>Stelle mir eine Frage</b><span>Wo kann ich deine neuen Bilder sehen?</span></div><div class="tb" style="top:auto;bottom:24%"><span>Meine neuesten Bilder findest du hier unten im Link.</span></div>' + LINK.replace('NEUE BILDER', 'MEIN PROFIL'),
+     "AD04", "Fragesticker · Bild", "Bild 9:16", "Frage: „Wo kann ich deine neuen Bilder sehen?“ · Antwort: „Meine neuesten Bilder findest du hier unten im Link.“",
+     "", "Neue Bilder ansehen"),
+    ("a", "stella4twenty", '<div class="q"><b>Stelle mir eine Frage</b><span>Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?</span></div><div class="tb blk" style="top:auto;bottom:24%"><span>Ja, klar. Klick einfach auf den Link, bezahlen geht auch mit PayPal.</span></div>',
+     "AD05", "Fragesticker · Bild", "Bild 9:16", "Frage: „Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?“ · Antwort: „Ja, klar. Klick einfach auf den Link, bezahlen geht auch mit PayPal.“",
+     "", "Geht auch mit PayPal"),
+    ("e", "deineeleyla", '<div class="q"><b>Stelle mir eine Frage</b><span>Wo kann ich deine neuen Bilder sehen?</span></div><div class="play" style="top:58%">▶</div><div class="ph" style="inset:66% 14% 18% 14%">Creatorin antwortet<br>im Video</div>',
+     "AD06", "Fragesticker · Video", "Video 9:16", "Frage: „Wo kann ich deine neuen Bilder sehen?“ · Antwort im Video laut Skript",
+     "", "Neue Bilder ansehen"),
 ]
-
 cards = "".join(
-    f'<figure class="phone">{story(c, u, inner)}<figcaption><span class="tag {tc}">{tl}</span><h3>{t}</h3><p>{d}</p><p class="fine">Vorbild: {v}</p></figcaption></figure>'
-    for c, u, inner, t, tc, tl, d, v in formats
+    f'<figure class="phone">{story(c, u, inner)}<figcaption><span class="tag">{ad}</span><span class="tag {"green" if "Video" in f else ""}">{fmt}</span><h3>{f}</h3><p>{t}</p>{f"<p><strong>Primärtext:</strong> {p}</p>" if p else ""}<p class="fine">Headline: {h}</p></figcaption></figure>'
+    for c, u, inner, ad, f, fmt, t, p, h in six
 )
 
 ads = f"""
-<section><h2>Das Prinzip: Die Ad kommt von der Creatorin</h2>
-<p>Die Ads, die bei der Konkurrenz am längsten laufen, sehen <strong>nicht nach Werbung aus</strong>. Sie wirken wie ein normaler Post der Creatorin: ihr Name oben, ein Handy-Foto, eine echte Story. MALOUM steht nur im Link.</p>
+<section><h2>Zwei Formate, sechs Ads je Creatorin</h2>
+<p>Jedes Format ist eine Vorlage: <strong>ein Foto der Creatorin rein, Name tauschen, fertig.</strong> Zwei Formate mit je drei Ads, also sechs Ads je Creatorin.</p>
+<div class="table-wrap"><table><thead><tr><th>Ad</th><th>Format</th><th>Inhalt</th><th>Datei</th></tr></thead><tbody>
+<tr><th>AD01</th><td>Neue Bilder</td><td>Bild mit Text „Hab heute neue Bilder gemacht“, Link-Sticker</td><td>Bild 9:16 + 4:5</td></tr>
+<tr><th>AD02</th><td>Neue Bilder</td><td>Countdown-Timer, läuft 8 s runter, dann Link-Sticker</td><td>GIF 9:16, 8 s</td></tr>
+<tr><th>AD03</th><td>Neue Bilder</td><td>Creatorin sagt es selbst in die Kamera (Skript)</td><td>Video 9:16</td></tr>
+<tr><th>AD04</th><td>Fragesticker</td><td>„Wo kann ich deine neuen Bilder sehen?“</td><td>Bild 9:16</td></tr>
+<tr><th>AD05</th><td>Fragesticker</td><td>„Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?“</td><td>Bild 9:16</td></tr>
+<tr><th>AD06</th><td>Fragesticker</td><td>Creatorin beantwortet die Frage im Video (Skript)</td><td>Video 9:16</td></tr>
+</tbody></table></div>
 <div class="detail-grid">
-<div class="detail-card"><h3>Absender: die Creatorin</h3><p>Über <strong>Partnership Ads</strong> erscheint ihr Instagram-Name als Absender. Ausgespielt wird aus unserem Konto, also mit unserem Tracking und Budget. Jede Creatorin muss das einmal freigeben.</p></div>
-<div class="detail-card"><h3>Material: Handy statt Shooting</h3><p>Selfies, Story-Screenshots und kurze Clips im Hochformat. Keine gestalteten Kacheln, keine Schriftzüge im MALOUM-Design. Je echter, desto besser.</p></div>
-<div class="detail-card"><h3>Ton: wie sie selbst schreibt</h3><p>Kleinschreibung, Emojis, kurze Sätze. Was zählt, ist eine Persönlichkeit, nicht das Angebot.</p></div>
-<div class="detail-card"><h3>Menge: wenige Formate, viele Varianten</h3><p>Lucy fährt ein Format mit bis zu 14 Varianten. Pro gutem Format testen wir deshalb mehrere Fotos und Texte, statt ständig neue Formate zu bauen.</p></div>
+<div class="detail-card"><h3>Sieht aus wie ihre eigene Story</h3><p>Story-Textstil mit weißem oder schwarzem Balken, echte Sticker-Optik, Foto bildfüllend, <strong>kein MALOUM-Logo</strong>.</p></div>
+<div class="detail-card"><h3>Die Bilder erstellen wir selbst</h3><p>Aus den Fotos der Creatorin. Nur die beiden Videos (AD03, AD06) dreht sie selbst, nach dem Skript.</p></div>
 </div>
 </section>
 
-<section><h2>Neun Formate für den Start</h2>
-<p class="quiet">Skizzen zur Orientierung. Die gestrichelten Flächen sind Platzhalter für die echten Fotos und Clips der Creatorinnen. Alle Texte sind Beispiele und werden mit der Creatorin angepasst.</p>
+<section><h2>So sehen die sechs Ads aus</h2>
+<p class="quiet">Skizzen zur Orientierung. Die gestrichelten Flächen sind Platzhalter für das echte Foto bzw. Video der Creatorin.</p>
 <div class="phone-grid">{cards}</div>
 </section>
 
-<section><h2>Was rein darf und was nicht</h2>
+<section><h2>Format 1: Neue Bilder</h2>
+<p>Die Creatorin sagt einfach, dass sie neue Bilder gemacht hat, so wie sie es auch privat in ihrer Story posten würde.</p>
+<div class="table-wrap"><table><thead><tr><th>Ad</th><th>Text im Bild</th><th>Primärtext</th><th>Headline</th></tr></thead><tbody>
+<tr><th>AD01 Bild</th><td>Hab heute neue Bilder gemacht / Link unten</td><td>Meine neuesten Bilder findest du auf meinem Maloum-Profil. Anschauen kostet nichts.</td><td>Neue Bilder ansehen</td></tr>
+<tr><th>AD02 Countdown-GIF</th><td>Timer läuft 8 s runter, dann: Meine neuen Bilder sind online</td><td>Meine neuesten Bilder sind online. Klick auf den Link, anschauen kostet nichts.</td><td>Jetzt ansehen</td></tr>
+<tr><th>AD03 Video</th><td><a href="skripte.html">Skript Video 1</a></td><td>Hab neue Bilder gemacht, schau sie dir an. Anschauen kostet nichts.</td><td>Neue Bilder ansehen</td></tr>
+</tbody></table></div>
+</section>
+
+<section><h2>Format 2: Fragesticker</h2>
+<p>Die Creatorin teilt eine Frage aus ihrem Fragesticker und antwortet kurz. <strong>Die Fragen drehen sich nur um ihre Bilder und die Plattform, nie um Kontakt.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Ad</th><th>Frage im Sticker</th><th>Antwort im Bild</th><th>Headline</th></tr></thead><tbody>
+<tr><th>AD04 Bild</th><td>Wo kann ich deine neuen Bilder sehen?</td><td>Meine neuesten Bilder findest du hier unten im Link.</td><td>Neue Bilder ansehen</td></tr>
+<tr><th>AD05 Bild</th><td>Ich hab keine Kreditkarte. Kann ich deine Bilder trotzdem sehen?</td><td>Ja, klar. Klick einfach auf den Link, bezahlen geht auch mit PayPal.</td><td>Geht auch mit PayPal</td></tr>
+<tr><th>AD06 Video</th><td>Wo kann ich deine neuen Bilder sehen?</td><td><a href="skripte.html">Skript Video 2</a></td><td>Neue Bilder ansehen</td></tr>
+</tbody></table></div>
+</section>
+
+<section><h2>Varianten</h2>
+<p>Gewinner laufen bei der Konkurrenz mit 8–14 Varianten und oft als Video. Deshalb: je Format drei Ads, eine davon als Video, und je Gewinner-Ad in der zweiten Woche <strong>4–6 Varianten mit anderem Foto oder anderer Frage</strong>.</p>
 <div class="dd">
 <div class="do"><h3>Rein</h3><ul>
-<li>Alltag, Hobby, Persönlichkeit, Shootings, Outfits</li>
-<li>„auf insta zeig ich nur einen kleinen teil meiner fotos“</li>
-<li>Fragen nach Look, Hobby, Wochenende</li>
-<li>Gesicht bis Brust, Alltagskleidung, draußen, Café, Auto</li>
-<li>PayPal und Klarna als neutraler Hinweis im Text</li>
+<li>Neue Bilder, Plattform, Bezahlung („geht auch mit PayPal“, „anschauen kostet nichts“)</li>
+<li>Story-Textstil, echte Sticker-Optik, Foto bildfüllend</li>
+<li>Normale, gut aussehende Fotos: Gesicht bis Brust, Alltagskleidung</li>
 </ul></div>
 <div class="dont"><h3>Nicht rein</h3><ul>
-<li>„schreib mir“, „ich antworte“, „chatten“, „privat“, „heute Abend“</li>
-<li>„nur die Hälfte von mir“, „den Rest gibts im Link“</li>
-<li>Spiegelselfies im Bad, Unterwäsche, hochgezogene Trikots, Po- oder Dekolleté-Fokus</li>
-<li>Alter, Schule oder „schüchtern und neu“ (macht die Konkurrenz, ist für uns tabu)</li>
-<li>Hinweise auf OnlyFans</li>
+<li>Chat- und Antwort-Versprechen: „schreib mir“, „privat“, „heute Abend“, „exklusiv für dich“</li>
+<li>„nur die Hälfte“-Andeutungen</li>
+<li>Altersangaben mit Schulbezug</li>
+<li>Bad, Spiegel-Selfie, Bett, bauchfrei, tiefer Ausschnitt, Unterwäsche, Bademode, hochgezogene Trikots</li>
 </ul></div>
 </div>
-<p class="fine">Grundlage: Eriks Analyse der 24 gesperrten Ads. 23 von 25 Sperrvermerken lauten „Adult Sexual Solicitation“. Auch eine neutral formulierte Ad wird abgelehnt, wenn Profil oder Zielseite das nicht zulassen. Das prüfen wir vor dem Start.</p>
+<p class="fine">Grundlage: Eriks Analyse der 24 gesperrten Ads. 23 von 25 Sperrvermerken lauten „Adult Sexual Solicitation“.</p>
 </section>
 """
-page("ads.html", "So sehen die <em>neuen Ads</em> aus.",
-     "Weg vom FAQ-Format, hin zu Ads, die aussehen, als hätte die Creatorin sie selbst gepostet. Neun Formate, alle ohne Chat- oder Kontaktversprechen.",
+page("ads.html", "So sehen die <em>Ads</em> aus.",
+     "Zwei Formate, sechs Ads je Creatorin. Alle sehen aus wie eine Story, die die Creatorin selbst gepostet hat.",
      ads)
 
 # ---------------------------------------------------------------- Skripte
-
-
-def script(name, meta, rows, caption, note=""):
-    tr = "".join(f"<tr><th>{t}</th><td>{b}</td><td>{o}</td></tr>" for t, b, o in rows)
-    n = f'<p class="fine">{note}</p>' if note else ""
-    return f"""<div class="script"><h3>{name}</h3><div class="meta">{meta}</div><div class="table-wrap"><table><thead><tr><th>Sek.</th><th>Was man sieht</th><th>Text im Bild / gesprochen</th></tr></thead><tbody>{tr}</tbody></table></div><blockquote><p><strong>Ad-Text:</strong> {caption}</p></blockquote>{n}</div>"""
-
-
 skripte = """
-<section><h2>So drehen die Creatorinnen</h2>
+<section><h2>Zwei Videos, ein Take, selbst gefilmt</h2>
+<p>Es soll wirken wie eine ganz normale Story, nicht wie Werbung. Das Briefing unten geht so an jede Creatorin raus.</p>
+<div class="table-wrap"><table><tbody>
+<tr><th>Kunde</th><td>MALOUM</td></tr>
+<tr><th>Creatorinnen</th><td>Stella, Leyla</td></tr>
+<tr><th>Deliverables</th><td>2 kurze Videos: „Neue Bilder“ und „Fragesticker“</td></tr>
+<tr><th>Stil</th><td>ein Take ohne Schnitt, selbst gefilmt, wie eine normale Instagram-Story</td></tr>
+<tr><th>Länge</th><td>10–15 Sekunden</td></tr>
+<tr><th>Format</th><td>Hochformat 9:16, Handykamera, 1080p oder 4K</td></tr>
+<tr><th>Takes</th><td>je Video 2 komplette Takes, wir nehmen den besten</td></tr>
+<tr><th>Abgabe bis</th><td><span class="tag yellow">offen</span> Datum eintragen</td></tr>
+<tr><th>Postproduktion</th><td>Untertitel und Sticker machen wir, du lieferst nur das Rohvideo</td></tr>
+</tbody></table></div>
+<div class="notice"><strong>Das Ziel</strong><p>Deine Follower sollen wissen, wo sie deine neuen Bilder finden, dass Anschauen nichts kostet und dass man keine Kreditkarte braucht. Sag es in deinen eigenen Worten, es muss nicht wörtlich sein.</p></div>
+</section>
+
+<section><h2>Video 1: Neue Bilder</h2>
+<div class="script"><h3>AD03 · Neue Bilder</h3><div class="meta">Video 9:16 · 10–15 Sek. · ein Take</div>
+<blockquote><p>„Hey, ich hab heute neue Bilder gemacht! Meine neuesten Bilder findest du hier unten im Link. Und weil mich das viele fragen: Nein, dafür brauchst du keine Kreditkarte. Einfach draufklicken und anschauen, anschauen kostet nichts. Viel Spaß!“</p></blockquote></div>
+</section>
+
+<section><h2>Video 2: Fragesticker</h2>
+<div class="script"><h3>AD06 · Fragesticker</h3><div class="meta">Video 9:16 · 10–15 Sek. · ein Take · Frage im Sticker setzen wir: „Wo kann ich deine neuen Bilder sehen?“</div>
+<blockquote><p>„Meine neuesten Bilder findest du hier unten im Link. Und weil mich das auch viele fragen: Nein, dafür brauchst du keine Kreditkarte. Einfach draufklicken, anschauen kostet nichts. Viel Spaß!“</p></blockquote>
+<p class="fine">Die Fragen drehen sich nur um die Plattform und deine Bilder, nie um Kontakt. Bitte keine eigenen Fragen wie „Kann ich dir schreiben?“ dazunehmen.</p></div>
+</section>
+
+<section><h2>No-Gos</h2>
+<p>Die Videos laufen als Werbung bei Instagram und Facebook, Meta prüft jede Anzeige. Bitte deshalb nicht:</p>
+<div class="table-wrap"><table><tbody>
+<tr><th>Orte</th><td>kein Bad, kein Spiegel-Selfie, kein Bett oder Schlafzimmer</td></tr>
+<tr><th>Outfit</th><td>nicht bauchfrei, kein tiefer Ausschnitt, keine Unterwäsche oder Bademode</td></tr>
+<tr><th>Gesten</th><td>keine zweideutigen Posen, kein Kussmund, kein Zwinkern</td></tr>
+<tr><th>Wörter</th><td>nicht „schreib mir“, „privat“, „heute Abend“ oder „exklusiv für dich“</td></tr>
+<tr><th>Hintergrund</th><td>keine fremden Gesichter, keine Kennzeichen, keine Musik</td></tr>
+</tbody></table></div>
+</section>
+
+<section><h2>Abgabe</h2>
 <ul class="short-list">
-<li><strong>Handy, Hochformat, Tageslicht.</strong> Kein Profi-Setup nötig, je natürlicher, desto besser.</li>
-<li><strong>Pro Skript 2–3 Takes</strong> mit leicht anderem Einstieg. Daraus bauen wir mehrere Varianten.</li>
-<li><strong>Kein fertiger Schnitt.</strong> Die Creatorin schickt Rohclips, wir schneiden, setzen Text und legen die Ads an.</li>
-<li><strong>Normale Kleidung.</strong> Hoodie, Jeans, Kleid, Trikot normal getragen. Kein Bad, kein Bett.</li>
+<li><strong>2 Takes je Version als Originaldatei</strong> bis [Datum eintragen], per WeTransfer oder Google-Drive-Link. Nicht über WhatsApp oder Instagram, dort wird die Qualität schlechter.</li>
+<li><strong>Dateinamen:</strong> Name_Video_Take, z. B. <code>Stella_NeueBilder_Take1.mov</code> oder <code>Leyla_Fragesticker_Take2.mov</code>.</li>
+<li><strong>Video 1 „Neue Bilder“:</strong> 2 komplette Takes. <strong>Video 2 „Fragesticker“:</strong> 2 komplette Takes.</li>
+<li>Alles im Hochformat, ohne Filter, ohne Musik. Fragen gehen jederzeit an Erik.</li>
 </ul>
 </section>
-
-<section><h2>Stella</h2>
-""" + script("S1 · Behind the Scenes vom Shooting", "Reel 9:16 · 8–12 Sek. · Format: Behind the Scenes", [
-    ("0–2", "Stella hält das Handy, lacht in die Kamera, im Hintergrund Licht oder Stativ", "Text: „was beim shooting passiert, bevor das foto fertig ist 👀“"),
-    ("2–6", "3–4 schnelle Schnitte: Outfit hochhalten, Licht ausrichten, Probe-Pose, Lachen", "Kein Ton nötig, nur Musik"),
-    ("6–9", "Blick auf das Handy-Display mit einem fertigen, normalen Foto", "Text: „das hier schafft es nie auf insta“"),
-    ("9–12", "Stella winkt kurz in die Kamera", "Text: „rest auf meinem profil, link unten 🤍“"),
-], "hab mal mitgefilmt, wie so ein shooting bei mir abläuft 🙈 auf insta landet davon ehrlich gesagt nur ein bruchteil. der rest ist auf meinem profil 🤍") + script("S2 · Persönlicher Brief, Video-Version", "Reel 9:16 · 12–15 Sek. · Format: Persönlicher Brief", [
-    ("0–3", "Stella sitzt im Auto oder Café, spricht direkt in die Kamera", "„hi, ich bin stella. ich wollte kurz was erzählen.“"),
-    ("3–9", "Gleiche Einstellung, ruhig", "„auf insta zeig ich nur einen kleinen teil von dem, was ich fotografiere. die ganzen shootings und outfits sind jetzt auf meinem profil.“"),
-    ("9–15", "Lächeln, kurzer Blick zur Seite, zurück in die Kamera", "„schau gern mal vorbei. link ist unten.“"),
-], "hab lange überlegt, ob ich das mache 🙈 jetzt ist es da. alle shootings, outfits und behind the scenes an einem ort. link ist unten 🤍",
-   "Bestehende Brief-Ad von Stella als Grundlage (läuft seit 28.09.). Neu ist die Video-Version.") + """
-</section>
-
-<section><h2>Leyla</h2>
-""" + script("L1 · Montag gegen Samstag", "Reel oder Story 9:16 · 8–10 Sek. · Format: Montag gegen Samstag", [
-    ("0–3", "Leyla im Hoodie mit Kaffee, Dutt, Uni oder Bahn", "Text: „montag 7:40“"),
-    ("3–4", "Schneller Übergang (Hand vor die Kamera)", "Sound-Effekt"),
-    ("4–8", "Leyla gestylt beim Shooting, Outfit und Licht, normale Pose", "Text: „samstag 20:15“"),
-    ("8–10", "Blick in die Kamera, Augenbraue hoch", "Text: „welche seite kennst du? die zweite gibts nicht auf insta“"),
-], "zwei seiten von mir 🙈 auf insta seht ihr meistens nur montag. der rest ist auf meinem profil, link unten") + script("L2 · Fragesticker mit neuer Frage", "Story 9:16 · statisch oder 6 Sek. · Format: Fragesticker", [
-    ("0–6", "Selfie ohne Filter, Fragesticker oben: „wie findest du mich so ohne filter?“", "Antwort im Bild: „ehrlich? so mag ich mich am liebsten 🤍“"),
-], "hab die frage so oft bekommen 🙈 hier mal ohne filter. mehr fotos gibts auf meinem profil",
-   "Weitere Fragen zum Tauschen: „was machst du am wochenende?“, „lieblingsoutfit?“, „wie lange dauert so ein shooting?“") + """
-</section>
-
-<section><h2>Vorlagen für die anderen Creatorinnen</h2>
-<p>Die Personas sind Vorschläge. Wir stimmen sie mit jeder Creatorin ab, damit es zu ihrem echten Alltag passt.</p>
-""" + script("Samantra · Mein Jahr", "Story 9:16 · statische Collage · Format: Mein Jahr / Persona", [
-    ("–", "6 Fotos aus dem Jahr: Stadion, Urlaub, Café, Shooting, Winter, Freundinnen", "Monatsnamen auf jedem Foto"),
-    ("–", "Text unten", "„so sieht mein jahr aus. und deins? 💚“"),
-], "jänner bis oktober in sechs fotos 🙈 die ganzen shootings dazwischen sind auf meinem profil") + script("Gwendo &amp; Nikoleta · Notizen-App und Umfrage", "Story 9:16 · Screenshot + Selfie · Format: Notizen-App / Umfrage", [
-    ("–", "Notizen-App-Screenshot: „5 dinge über mich“", "Punkt 5 immer: „mein profil hat mehr fotos als insta“"),
-    ("–", "Alternative: Selfie mit Umfrage-Sticker", "„brille oder ohne?“, „blond oder dunkel?“, „sommer oder winter?“"),
-], "kleine fakten über mich, weil ihr immer fragt 🙈 mehr auf meinem profil") + script("Tess &amp; Emma (Eros) · Persona Stadion", "Reel 9:16 · 8–10 Sek. · Format: Persona &amp; Hobby · Ziel-Event: Follow", [
-    ("0–3", "Auf dem Weg ins Stadion oder vor dem Fernseher, Trikot normal getragen", "Text: „jeden samstag im block“"),
-    ("3–7", "Jubeln, Schal, Freundinnen, Snacks", "Musik"),
-    ("7–10", "Selfie-Blick in die Kamera", "Text: „wer noch? ⚽ folg mir für mehr“"),
-], "samstag ist heilig ⚽ wer noch? mehr von meinen spieltagen auf meinem profil",
-   "Wichtig: Trikot nicht hochgezogen oder geknotet. Genau das hat die letzten Emma-Ads sperren lassen. Von Emma brauchen wir dafür neues Material über die Agentur.") + """
-</section>
 """
-page("skripte.html", "Skripte für die <em>Creatorinnen.</em>",
-     "Fertige Drehanleitungen für Stella und Leyla, dazu Vorlagen für Samantra, Gwendo, Nikoleta, Tess und Emma. Jeweils mit Bildfolge, Texteinblendungen und Ad-Text.",
+page("skripte.html", "Video-Skripte für <em>Stella und Leyla.</em>",
+     "Zwei kurze Videos, ein Take, selbst gefilmt. Mit Briefing, Skripten, No-Gos und Abgabe.",
      skripte)
 
 # ---------------------------------------------------------------- Konkurrenz
@@ -363,18 +382,29 @@ konk = f"""
 <p class="fine">Nicht alles kam von uns: „Hab jetzt kein Snap mehr…“ lief bei Kate und Marlene schon ab Januar 2026, vor unserer Snapchat-Variante im Mai.</p>
 </section>
 
+<section><h2>Was die Langläufer für uns bedeuten</h2>
+<p>Die Langläufer (Lucy 183 Tage, Rina 160 Tage, leoo.baut 97 Tage) bestätigen unseren Weg und bringen drei Ergänzungen:</p>
+<div class="table-wrap"><table><thead><tr><th>Befund</th><th>Was wir daraus machen</th></tr></thead><tbody>
+<tr><th>Alle Langläufer laufen über das Profil der Creatorin: eigener Name, Selfie, MALOUM nur als Link</th><td>Genau unser Creator-Ads-Prinzip. Technisch als <strong>Partnership Ad</strong>: Die Creatorin gibt in Instagram die Werbe-Freigabe, wir schalten über ihr Konto.</td></tr>
+<tr><th>Der Fragesticker lief bei der Konkurrenz monatelang, bei MALOUM wurde er gesperrt. Unterschied: dort keine Chat-Versprechen</th><td>Fragesticker bleibt (Format 2). Fragen ohne Kontakt-Bezug.</td></tr>
+<tr><th>Jede Langläuferin hat eine klare Persona (Dorfmädchen, Fitness, Gamerin) und fragt danach („Wer möchte mit mir zocken?“)</th><td>Nicht übernommen: Unsere Formate müssen für jede Creatorin mit einem Foto duplizierbar sein. Interaktion holen wir nur über den Fragesticker, der bei allen gleich funktioniert.</td></tr>
+<tr><th>Gewinner laufen mit 8–14 Varianten und oft als Video</th><td>Je Format drei Ads, eine davon als Video; je Gewinner-Ad in der zweiten Woche 4–6 Varianten mit anderem Foto oder anderer Frage.</td></tr>
+<tr><th>Rinas Langläufer: „exklusive Einblicke hinter den Kulissen“</th><td>Deckt sich mit Format 1 „Neue Bilder“.</td></tr>
+</tbody></table></div>
+</section>
+
 <section><h2>Was wir übernehmen und was nicht</h2>
 <div class="dd">
 <div class="do"><h3>Übernehmen</h3><ul>
 <li>Creatorin als Absender (Partnership Ads)</li>
 <li>Fragesticker mit Fragen zu Look und Alltag</li>
-<li>Klare Persona je Creatorin</li>
-<li>Kurze Behind-the-Scenes-Clips</li>
+<li>Kurze Videos, in denen die Creatorin selbst spricht</li>
 <li>Ein gutes Format, viele Varianten</li>
 </ul></div>
 <div class="dont"><h3>Nicht übernehmen</h3><ul>
 <li>Lucys „18 und geh noch zur Schule“. Bei Adult-Content rechtlich und ethisch tabu.</li>
-<li>„Chatte jetzt mit mir“, „schreib mir zuerst“</li>
+<li>Chat- und Antwort-Versprechen: „Chatte jetzt mit mir“, „schreib mir zuerst“</li>
+<li>„nur die Hälfte“-Andeutungen</li>
 <li>Freizügige Bildausschnitte, wie Lucy sie nutzt</li>
 </ul></div>
 </div>

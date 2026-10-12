@@ -64,6 +64,18 @@
 .timeline div.us:before{background:#3a6ef4}
 .timeline span{font-family:'DM Mono',monospace;font-size:11px;color:#6b7280;display:block}
 .timeline p{margin:2px 0 0;font-size:14px}
+.story .tb{position:absolute;left:8%;right:8%;text-align:center;font-size:5cqw;font-weight:600;line-height:1.55}
+.story .tb span{background:#fff;color:#111;padding:.6cqw 2.4cqw;border-radius:1.6cqw;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.story .tb.blk span{background:#111;color:#fff}
+.story .lnk{position:absolute;left:50%;bottom:15%;transform:translateX(-50%);background:#fff;color:#2f6bff;border-radius:2.4cqw;padding:2.2cqw 3.6cqw;font-size:3.8cqw;font-weight:700;white-space:nowrap;box-shadow:0 1cqw 4cqw #0003}
+.story .timer{position:absolute;left:50%;top:34%;transform:translateX(-50%);background:#fff;color:#111;border-radius:3cqw;padding:2.4cqw 5cqw;font-size:11cqw;font-weight:700;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.story .q span{font-size:4.2cqw}
+.phone .tag{margin-bottom:6px}
+.fig{margin:26px 0;background:#fff;border:1px solid #e4e6ec;border-radius:12px;padding:18px}
+.fig img{width:100%;height:auto;display:block;border-radius:6px}
+.fig figcaption{font-size:12.5px;color:#6b7280;margin-top:10px}
+.steps{padding-left:22px}.steps li{margin:0 0 12px;line-height:1.65}
+.camp-table td,.camp-table th{font-size:13px;vertical-align:top}
 @media(max-width:900px){.camp{grid-template-columns:1fr 1fr}.phone-grid,.shot-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.camp,.phone-grid,.shot-grid,.dd{grid-template-columns:1fr}}
 @media print{.phone,.shot,.script,.camp article{break-inside:avoid}}
