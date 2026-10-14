@@ -61,6 +61,43 @@
 
 
 .brand{display:flex;align-items:center;gap:12px}.brand img{width:100px;height:auto}.brand small{font-size:12px;color:var(--muted);font-weight:400}.guardrails{background:var(--pale);border:1px solid #e9aa90;padding:28px;margin:26px 0 34px;border-radius:8px}.guardrails h3{font-size:24px;margin-bottom:18px}.guardrails ul{padding-left:21px;margin:18px 0}.guardrails li{margin:10px 0;max-width:90ch}.guardrails p+p{margin-top:14px}.contact-placeholder{margin-top:22px;color:var(--muted)}.guide-index a{color:#b52a00}.zoom-top button{background:#b52a00;color:#fff}@media(max-width:430px){.brand{gap:7px}.brand img{width:82px}.brand small{font-size:10px}.guardrails{padding:20px}.guardrails h3{font-size:22px}}
+
+/* Mobile usability: touch targets, readable reference data, image controls. */
+@media screen and (max-width:600px){
+ html{scroll-padding-top:128px}
+ body{font-size:15px;line-height:1.75}
+ .topbar .wrap{flex-wrap:wrap;gap:0;padding-top:10px;padding-bottom:4px}
+ .topbar .brand{min-height:32px}
+ .topbar nav{width:100%;margin:2px 0 0;gap:8px;justify-content:space-between}
+ .topbar nav a{display:flex;align-items:center;justify-content:center;min-height:44px;flex:1;font-size:13px}
+ .hero{padding:32px 0}.hero p{line-height:1.7}.jump{min-height:44px;display:flex;align-items:center;font-size:13px}
+ h1{font-size:clamp(34px,9vw,40px)}h2{font-size:clamp(28px,7.6vw,34px)}
+ .case-result{font-size:clamp(38px,11.8vw,49px)}.case-feature{gap:22px}
+ .case-metrics{gap:16px}.case-metrics b{font-size:20px}.case-metrics span,.case-label{font-size:13px}
+ .case-context p,.format-explain p,.creative-copy p,.guide-intro p,.closing ul{font-size:14px}
+ .case-source{font-size:12px!important;line-height:1.7}.evidence-note,details{font-size:13px}
+ details summary{min-height:44px;padding:10px 0}
+ .case-table{overflow:visible}.case-table table,.case-table tbody,.case-table tr{display:block;width:100%}
+ .case-table caption{display:block;width:100%;font-size:14px!important;text-align:left}
+ .case-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .case-table td{display:flex;flex-direction:column;text-align:left!important;padding:12px 0;font-size:18px;font-weight:500}
+ .case-table td::before{font:400 13px/1.6 Poppins,Arial,sans-serif;color:var(--muted);margin-bottom:3px}
+ .case-table td:nth-child(1)::before{content:'Werbekosten'}
+ .case-table td:nth-child(2)::before{content:'Backend-Umsatz*'}
+ .case-table td:nth-child(3)::before{content:'Umsatz / Kosten'}
+ .case-table td:nth-child(4)::before{content:'Davon Juni-Registrierungen'}
+ .guide-intro{padding:20px 16px}.guide-index{display:grid;grid-template-columns:1fr;gap:4px}
+ .guide-index a{display:flex;align-items:center;min-height:44px;font-size:13px;line-height:1.5;padding:8px 0}
+ .maloum-walkthrough .mw-step{scroll-margin-top:16px}.maloum-walkthrough .mw-step h3{font-size:21px;line-height:1.4;gap:10px}
+ .maloum-walkthrough .mw-step ol{padding-left:20px}.maloum-walkthrough .mw-step li{padding-left:2px;margin:14px 0}
+ .maloum-walkthrough figcaption{font-size:13px;line-height:1.6;padding:8px 0}
+ .maloum-walkthrough figcaption a,.maloum-walkthrough .mw-source a{display:flex;align-items:center;min-height:44px;font-size:13px;padding:8px 0;margin:0}
+ .guardrails{padding:20px 16px}.guardrails h3{font-size:22px;line-height:1.4}.guardrails ul{padding-left:18px}
+ .guardrails li{margin:16px 0;line-height:1.75}.guardrails p{font-size:14px}.guardrails a{overflow-wrap:anywhere}
+ dialog{width:calc(100vw - 16px);max-height:94dvh}.zoom-top{gap:10px;padding:8px 10px;align-items:flex-start}
+ .zoom-top span{font-size:12px;line-height:1.5;min-width:0}.zoom-top button{min-height:44px;padding:10px 12px;flex-shrink:0}
+ .zoom-scroll{padding:10px;max-height:calc(94dvh - 100px);overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+}
 </style></head><body>
 <!-- THESIS: Proof-led Maloum agency paper, then a continuous visual setup manual. OWN-WORLD: Existing Skael report typography, off-white, navy, restrained blue; Meta-native screenshots retain Meta's own system. STORY: See documented historical cases and actual ads, then reproduce the account-to-ad setup. FIRST VIEWPORT: Clear Creator-Push title, compact explanation, direct guide anchor; case evidence immediately beneath. FORM: User-pinned report revision with continuous scroll, no calculator or hidden steps. FINISH: Browser verification, source audit and image provenance; no claim of authentic screenshots for reconstructions. -->
 <a class="skip" href="#main">Zum Inhalt</a><header class="topbar"><div class="wrap"><a aria-label="Maloum × Skael – zum Anfang" class="brand" href="#main"><img alt="MALOUM" height="672" src="assets/maloum-agentur-v3/maloum-wordmark.png" width="2305"/><small>× Skael</small></a><nav aria-label="Inhalt"><a href="#cases">Cases</a><a href="#ads">Ads</a><a href="#setup">Anleitung</a></nav></div></header>
