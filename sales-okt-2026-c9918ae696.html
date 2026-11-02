@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Skael — Sales-Report Oktober 2026 (intern)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fbfcfd;--navy:#0f1b2d;--blue:#3a6ef4;--blue-light:#e8efff;--green:#16a34a;--green-bg:#dcfce7;--amber:#d97706;--amber-bg:#fef3c7;--red:#dc2626;--red-bg:#fee2e2;--gray-100:#f3f4f6;--gray-200:#e5e7eb;--gray-400:#9ca3af;--gray-500:#6b7280;--gray-700:#374151;--radius:16px}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+.container{max-width:1040px;margin:0 auto;padding:40px 24px 80px}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1a2d4a 100%);border-radius:var(--radius);padding:48px 40px 40px;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:var(--blue);opacity:.14;border-radius:50%}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.hero h1{font-size:34px;font-weight:700;margin-bottom:6px;line-height:1.2}
+.hero h1 em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:#8fb0ff}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:22px;max-width:640px}
+.badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 14px;color:rgba(255,255,255,.85)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+.g{background:#22c55e}.a{background:#f59e0b}.r{background:#ef4444}.b{background:var(--blue)}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+nav.toc a{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-700);text-decoration:none;background:#fff;border:1px solid var(--gray-200);border-radius:100px;padding:5px 12px}
+nav.toc a:hover{border-color:var(--blue);color:var(--blue)}
+section{margin-top:52px}
+.label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+h2{font-size:24px;font-weight:600;margin-bottom:8px}
+.lead{font-size:14.5px;color:var(--gray-500);margin-bottom:22px;max-width:760px}
+.card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.kpi .k{font-family:'DM Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:1.2px;color:var(--gray-500)}
+.kpi .v{font-size:30px;font-weight:700;line-height:1.2;margin:4px 0}
+.kpi .v small{font-size:14px;font-weight:500;color:var(--gray-500)}
+.pill{font-family:'DM Mono',monospace;font-size:10.5px;padding:3px 9px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;font-weight:500;white-space:nowrap}
+.p-g{background:var(--green-bg);color:var(--green)}.p-a{background:var(--amber-bg);color:#b45309}.p-r{background:var(--red-bg);color:var(--red)}.p-n{background:var(--gray-100);color:var(--gray-500)}
+.verdict{border-radius:var(--radius);padding:22px 24px;border:1px solid}
+.verdict h3{font-size:15px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.verdict p{font-size:13.5px;color:var(--gray-700)}
+.v-g{background:#f0fdf4;border-color:#bbf7d0}.v-a{background:#fffbeb;border-color:#fde68a}.v-r{background:#fef2f2;border-color:#fecaca}
+/* funnel */
+.funnel{display:flex;flex-direction:column;gap:10px}
+.fstep{display:grid;grid-template-columns:210px 1fr 170px;align-items:center;gap:16px}
+.fstep .fl{font-size:13px;font-weight:500}
+.fstep .fl small{display:block;font-family:'DM Mono',monospace;font-size:10.5px;color:var(--gray-500);font-weight:400}
+.fbar{height:38px;border-radius:10px;background:var(--blue);color:#fff;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:15px;min-width:54px}
+.fconv{font-size:12px;text-align:right}
+@media(max-width:720px){.fstep{grid-template-columns:1fr}.fconv{text-align:left}}
+/* benchmark gauge */
+.bm{display:grid;grid-template-columns:1.2fr 2fr .9fr;gap:20px;align-items:center;padding:18px 0;border-bottom:1px solid var(--gray-200)}
+.bm:last-child{border-bottom:0}
+.bm h4{font-size:14px;font-weight:600}
+.bm .sub{font-size:12px;color:var(--gray-500)}
+.gauge{position:relative;height:14px;border-radius:100px;display:flex;overflow:hidden}
+.gauge span{height:100%}
+.gwrap{position:relative;padding-top:26px}
+.marker{position:absolute;top:0;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:11px;font-weight:600;background:var(--navy);color:#fff;padding:2px 7px;border-radius:6px;white-space:nowrap}
+.marker::after{content:'';position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--navy);border-bottom:0}
+.gscale{display:flex;justify-content:space-between;font-family:'DM Mono',monospace;font-size:10px;color:var(--gray-400);margin-top:4px}
+.bm .why{font-size:12.5px;color:var(--gray-700);grid-column:1/-1;background:var(--gray-100);border-radius:10px;padding:10px 14px}
+@media(max-width:720px){.bm{grid-template-columns:1fr}}
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--gray-200);border-radius:var(--radius);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:var(--navy);color:#fff}
+th{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;padding:12px 14px;text-align:left;white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid var(--gray-200);color:var(--gray-700);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+td .pill{white-space:normal}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td strong{color:var(--navy)}
+.chart{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:20px;height:330px}
+.chart.sm{height:260px}
+.chart h4{font-size:13px;font-weight:600;margin-bottom:8px}
+.note{font-size:12px;color:var(--gray-500);margin-top:10px}
+ul.clean{list-style:none;display:flex;flex-direction:column;gap:12px}
+ul.clean li{font-size:13.5px;color:var(--gray-700);padding-left:22px;position:relative}
+ul.clean li::before{content:'';position:absolute;left:4px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+ul.good li::before{background:#22c55e}ul.bad li::before{background:#ef4444}ul.amber li::before{background:#f59e0b}
+ul.clean li strong{color:var(--navy)}
+.action{border-left:4px solid var(--blue);padding:18px 20px}
+.action h4{font-size:14.5px;font-weight:600;margin-bottom:4px}
+.action p{font-size:13px;color:var(--gray-700)}
+.action .meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);margin-top:8px}
+.quote{font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;line-height:1.4;color:var(--navy);border-left:3px solid var(--blue);padding:4px 0 4px 16px;margin:14px 0}
+.calc{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px}
+.calc .box{background:#fff;border:1px solid var(--gray-200);border-radius:12px;padding:12px 16px;text-align:center;min-width:120px}
+.calc .box b{display:block;font-size:22px}
+.calc .arr{color:var(--gray-400);font-size:18px}
+.fazit{background:linear-gradient(135deg,var(--navy),#1a2d4a);border-radius:var(--radius);padding:34px 38px;color:#fff}
+.fazit h3{font-size:21px;font-weight:600;margin-bottom:12px}
+.fazit p{font-size:14px;color:rgba(255,255,255,.78);line-height:1.75;margin-bottom:10px}
+.fazit strong{color:#fff}
+.footer{margin-top:48px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--gray-400)}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="hero">
+  <div class="eyebrow">Skael · Sales-Report · intern</div>
+  <h1>Oktober 2026: <em>Genug Termine, zu wenig Abschlüsse.</em></h1>
+  <p class="hero-sub">Alle Zahlen live aus Close (Anrufe, Kalendertermine, Ergebnis-Notizen, Deals), Stand 02.11.2026. Jede Kennzahl ist mit einem Richtwert verglichen und bewertet: gut, okay oder Handlungsbedarf.</p>
+  <div class="badges">
+    <span class="badge"><span class="dot b"></span>5.990 Anrufe</span>
+    <span class="badge"><span class="dot b"></span>80 Erstgespräche geplant</span>
+    <span class="badge"><span class="dot g"></span>33 stattgefunden</span>
+    <span class="badge"><span class="dot g"></span>7 Strategiegespräche</span>
+    <span class="badge"><span class="dot r"></span>0 Abschlüsse aus Kaltakquise</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#fazit">1 · Kurzfazit</a><a href="#trichter">2 · Trichter</a><a href="#bewertung">3 · Bewertung je Kennzahl</a><a href="#calls">4 · Anrufe &amp; Caller</a><a href="#shows">5 · No-Shows</a><a href="#sg">6 · Strategiegespräche</a><a href="#lessons">7 · Gut / Schlecht / Besser</a><a href="#plan">8 · Ziele &amp; Plan November</a><a href="#daten">9 · Datenqualität</a>
+</nav>
+
+<!-- 1 -->
+<section id="fazit">
+  <div class="label">01 · Kurzfazit</div>
+  <h2>Das Wichtigste in 30 Sekunden</h2>
+  <p class="lead">Oben im Trichter läuft es gut. Verloren geht es an zwei Stellen: Bei den Erstgesprächen erscheint fast jeder Zweite nicht, und nach dem Strategiegespräch hat noch keiner unterschrieben.</p>
+  <div class="grid g3">
+    <div class="verdict v-g"><h3><span class="dot g"></span>Stark</h3><p><strong>Anrufvolumen und Erstgespräch.</strong> Nicole schafft an jedem Arbeitstag ihr Ziel, und <strong>52 %</strong> der stattgefundenen Erstgespräche führen zu einem Strategiegespräch. Das liegt über dem üblichen Wert.</p></div>
+    <div class="verdict v-r"><h3><span class="dot r"></span>Größtes Leck</h3><p><strong>No-Shows und Absagen.</strong> Von 80 geplanten Erstgesprächen haben nur <strong>33</strong> stattgefunden. 39 % der Leute, die nicht abgesagt haben, sind trotzdem nicht erschienen. Keiner der 39 verlorenen Termine wurde neu gebucht.</p></div>
+    <div class="verdict v-a"><h3><span class="dot a"></span>Noch offen, aber Warnsignal</h3><p><strong>0 von 7 Strategiegesprächen abgeschlossen.</strong> Die meisten fanden erst zwischen dem 22. und 29.10. statt, für ein endgültiges Urteil ist es also früh. Aber 5 von 7 Kunden sind nach dem Angebot still geworden.</p></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="trichter">
+  <div class="label">02 · Trichter</div>
+  <h2>Von 5.990 Anrufen bis zum Abschluss</h2>
+  <p class="lead">Die Balken sind logarithmisch skaliert, damit man alle Stufen sieht. Rechts steht die Quote zur vorherigen Stufe und, ob sie gut ist.</p>
+  <div class="card">
+    <div class="funnel">
+      <div class="fstep"><div class="fl">Ausgehende Anrufe<small>alle Caller</small></div><div><div class="fbar" style="width:100%">5.990</div></div><div class="fconv"><span class="pill p-n">Basis</span></div></div>
+      <div class="fstep"><div class="fl">Gespräche ≥ 60 Sek.<small>echte Gespräche</small></div><div><div class="fbar" style="width:80%">1.125</div></div><div class="fconv">19 % der Anrufe <span class="pill p-g">gut</span></div></div>
+      <div class="fstep"><div class="fl">Erstgespräche gebucht<small>Buchungsdatum Oktober</small></div><div><div class="fbar" style="width:52%">95</div></div><div class="fconv">1,6 pro 100 Anrufe <span class="pill p-g">gut</span></div></div>
+      <div class="fstep"><div class="fl">Erstgespräche geplant<small>Termin im Oktober</small></div><div><div class="fbar" style="width:50%">80</div></div><div class="fconv"><span class="pill p-n">Termine im Monat</span></div></div>
+      <div class="fstep"><div class="fl">Erstgespräche stattgefunden</div><div><div class="fbar" style="width:40%;background:#f59e0b">33</div></div><div class="fconv">41 % der geplanten <span class="pill p-r">schwach</span></div></div>
+      <div class="fstep"><div class="fl">→ Strategiegespräch gebucht</div><div><div class="fbar" style="width:31%">17</div></div><div class="fconv">52 % <span class="pill p-g">stark</span></div></div>
+      <div class="fstep"><div class="fl">Strategiegespräche stattgefunden<small>Termin im Oktober</small></div><div><div class="fbar" style="width:21%">7</div></div><div class="fconv">7 von 11 = 64 % <span class="pill p-a">okay</span></div></div>
+      <div class="fstep"><div class="fl">Abschlüsse aus Strategiegesprächen</div><div><div class="fbar" style="width:6%;background:#ef4444">0</div></div><div class="fconv">0 % <span class="pill p-r">kritisch</span></div></div>
+    </div>
+    <p class="note">Zusätzlich gab es im Oktober 3 Abschlüsse über <strong>17.500 €</strong> (Fischer Digital 10.500 €, 365 Heroes 6.000 €, Dan Berlin 1.000 € Test). Alle drei liefen über David und Bestandskontakte, also nicht über diesen Trichter.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="bewertung">
+  <div class="label">03 · Bewertung</div>
+  <h2>Ist das gut oder schlecht? Jede Kennzahl im Vergleich</h2>
+  <p class="lead">Die Richtwerte sind typische Erfahrungswerte aus dem B2B-Outbound für Agentur-Dienstleistungen im DACH-Raum (Kaltakquise per Telefon, Termin per Video). Sie stammen nicht aus einer einzelnen Studie, sondern sind Orientierungswerte. Rot heißt nicht „katastrophal“, sondern: Hier steckt am meisten Geld.</p>
+  <div class="card">
+
+    <div class="bm">
+      <div><h4>No-Show-Quote Erstgespräch</h4><div class="sub">nicht erschienen, ohne vorher abzusagen</div></div>
+      <div class="gwrap"><div class="marker" style="left:78%">39 %</div><div class="gauge"><span style="width:30%;background:#22c55e"></span><span style="width:30%;background:#f59e0b"></span><span style="width:40%;background:#ef4444"></span></div><div class="gscale"><span>0 %</span><span>15 %</span><span>30 %</span><span>50 %</span></div></div>
+      <div><span class="pill p-r">schlecht</span><div class="sub" style="margin-top:6px">gut &lt; 15 % · normal 20–30 %</div></div>
+      <div class="why"><strong>Muss man daran arbeiten? Ja, und man kann.</strong> Bei kalt gebuchten Terminen sind 20–30 % No-Shows normal, ab 35 % liegt es fast immer am Prozess: fehlende Erinnerungen, zu wenig Zusage im Anruf, kein Kalendereintrag beim Kunden. Rechnet man die Absagen dazu, sind sogar <strong>49 %</strong> der geplanten Termine verloren gegangen. Das ist der größte Hebel im ganzen Trichter (siehe Kapitel 5).</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Absagequote Erstgespräch</h4><div class="sub">vorher abgesagt (18 von 80)</div></div>
+      <div class="gwrap"><div class="marker" style="left:56%">23 %</div><div class="gauge"><span style="width:25%;background:#22c55e"></span><span style="width:25%;background:#f59e0b"></span><span style="width:50%;background:#ef4444"></span></div><div class="gscale"><span>0 %</span><span>10 %</span><span>20 %</span><span>40 %</span></div></div>
+      <div><span class="pill p-r">hoch</span><div class="sub" style="margin-top:6px">normal 10–15 %</div></div>
+      <div class="why"><strong>Eine Absage ist besser als ein No-Show</strong>, weil man sofort einen neuen Termin vorschlagen kann. Das ist im Oktober aber in keinem einzigen Fall passiert. Jede Absage sollte noch am selben Tag einen Rückruf bekommen.</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Gespräche pro Anruf</h4><div class="sub">Gespräche ≥ 60 Sek. / Anrufe</div></div>
+      <div class="gwrap"><div class="marker" style="left:63%">19 %</div><div class="gauge"><span style="width:33%;background:#ef4444"></span><span style="width:27%;background:#f59e0b"></span><span style="width:40%;background:#22c55e"></span></div><div class="gscale"><span>0 %</span><span>10 %</span><span>18 %</span><span>30 %</span></div></div>
+      <div><span class="pill p-g">gut</span><div class="sub" style="margin-top:6px">normal 10–18 %</div></div>
+      <div class="why"><strong>Kein Handlungsbedarf.</strong> Die Listen und die Telefonzeiten passen. Zwischen 10 und 12 Uhr werden die meisten Leute erreicht (22 %), um 9 und um 12 Uhr die wenigsten (16 %).</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Termine pro 100 Anrufe</h4><div class="sub">Nicole 1,6 · Probetag 0,6</div></div>
+      <div class="gwrap"><div class="marker" style="left:53%">1,6</div><div class="gauge"><span style="width:33%;background:#ef4444"></span><span style="width:34%;background:#f59e0b"></span><span style="width:33%;background:#22c55e"></span></div><div class="gscale"><span>0</span><span>1,0</span><span>2,0</span><span>3,0</span></div></div>
+      <div><span class="pill p-a">solide</span><div class="sub" style="margin-top:6px">normal 1–2 · stark &gt; 2</div></div>
+      <div class="why"><strong>Nicole liegt solide im Normalbereich, beim Probetag-Konto ist noch Luft nach oben.</strong> Mehr Termine sind aber gerade nicht das Ziel. Wichtiger ist, dass die Termine stattfinden und qualifiziert sind.</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Unqualifizierte Erstgespräche</h4><div class="sub">9 von 33 stattgefundenen</div></div>
+      <div class="gwrap"><div class="marker" style="left:68%">27 %</div><div class="gauge"><span style="width:37%;background:#22c55e"></span><span style="width:25%;background:#f59e0b"></span><span style="width:38%;background:#ef4444"></span></div><div class="gscale"><span>0 %</span><span>15 %</span><span>25 %</span><span>40 %</span></div></div>
+      <div><span class="pill p-r">zu hoch</span><div class="sub" style="margin-top:6px">gut &lt; 15 %</div></div>
+      <div class="why"><strong>Jedes unqualifizierte Gespräch kostet dich etwa eine Stunde</strong> mit Vorbereitung. Gründe im Oktober: „Broke“ (kein Budget), „thematisch ungeeignet“ und „Andere“. Abhilfe: eine Budget-Frage und eine Frage zum Kundenwert schon am Telefon.</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Erstgespräch → Strategiegespräch</h4><div class="sub">17 von 33</div></div>
+      <div class="gwrap"><div class="marker" style="left:74%">52 %</div><div class="gauge"><span style="width:43%;background:#ef4444"></span><span style="width:21%;background:#f59e0b"></span><span style="width:36%;background:#22c55e"></span></div><div class="gscale"><span>0 %</span><span>30 %</span><span>45 %</span><span>70 %</span></div></div>
+      <div><span class="pill p-g">stark</span><div class="sub" style="margin-top:6px">normal 30–45 %</div></div>
+      <div class="why"><strong>Hier bist du richtig gut.</strong> Dein Erstgespräch überzeugt, und das Strategiegespräch wird im Schnitt innerhalb von 3–4 Tagen gebucht. Nur aufpassen: Die Quote ist auch deshalb so hoch, weil manche Leads ins Strategiegespräch gehen, bei denen das Budget gar nicht geklärt ist (Ines, Marcel, Maik).</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Show-Rate Strategiegespräch</h4><div class="sub">7 von 11</div></div>
+      <div class="gwrap"><div class="marker" style="left:64%">64 %</div><div class="gauge"><span style="width:50%;background:#ef4444"></span><span style="width:25%;background:#f59e0b"></span><span style="width:25%;background:#22c55e"></span></div><div class="gscale"><span>0 %</span><span>50 %</span><span>75 %</span><span>100 %</span></div></div>
+      <div><span class="pill p-a">ausbaufähig</span><div class="sub" style="margin-top:6px">gut &gt; 80 %</div></div>
+      <div class="why"><strong>Beim Strategiegespräch sollten über 80 % erscheinen</strong>, weil der Kunde dich schon kennt. Ausgefallen sind Whitecross, adslab, uniqueweb und Yondive. Abhilfe: Den Termin noch im Erstgespräch gemeinsam in den Kalender legen und am Vortag eine kurze Nachricht mit „Ich habe XY für euch vorbereitet“ schicken.</div>
+    </div>
+
+    <div class="bm">
+      <div><h4>Abschlussquote Strategiegespräch</h4><div class="sub">0 von 7 (5 noch offen)</div></div>
+      <div class="gwrap"><div class="marker" style="left:3%">0 %</div><div class="gauge"><span style="width:40%;background:#ef4444"></span><span style="width:30%;background:#f59e0b"></span><span style="width:30%;background:#22c55e"></span></div><div class="gscale"><span>0 %</span><span>20 %</span><span>35 %</span><span>50 %</span></div></div>
+      <div><span class="pill p-r">kritisch</span><div class="sub" style="margin-top:6px">normal 20–35 %</div></div>
+      <div class="why"><strong>Das ist die wichtigste Zahl, und sie ist noch nicht endgültig.</strong> Ein B2B-Abschluss dauert oft 2 bis 6 Wochen, und 5 der 7 Gespräche sind erst 4 bis 11 Tage her. Bei einer üblichen Quote von 25 % müssten aus 7 Gesprächen aber 1 bis 2 Kunden werden. Bleibt Lunarspark, giinco oder Accelovate bis Mitte November ohne Unterschrift, ist das ein echtes Problem beim Closing und kein Timing-Problem mehr.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="calls">
+  <div class="label">04 · Anrufe &amp; Caller</div>
+  <h2>Wer hat wie viel telefoniert und was kam dabei raus?</h2>
+  <p class="lead">Tagesziel laut Dashboard: 185 Anrufe pro Caller.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Person</th><th>Anrufe</th><th>Tage</th><th>Ø / Tag</th><th>Tage ≥ 185</th><th>Gespräche ≥ 60 s</th><th>Termine gebucht</th><th>pro 100 Anrufe</th><th>Bewertung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nicole</strong></td><td class="n">3.224</td><td class="n">14</td><td class="n"><strong>230</strong></td><td class="n">14 / 14</td><td class="n">521</td><td class="n"><strong>53</strong></td><td class="n">1,6</td><td><span class="pill p-g">Top-Performerin</span></td></tr>
+        <tr><td><strong>Probetag-Konto</strong></td><td class="n">2.187</td><td class="n">12</td><td class="n">182</td><td class="n">5 / 12</td><td class="n">564</td><td class="n">13</td><td class="n">0,6</td><td><span class="pill p-a">wenig Termine, aber beste Leads</span></td></tr>
+        <tr><td><strong>Arthur</strong></td><td class="n">455</td><td class="n">6</td><td class="n">76</td><td class="n">0 / 6</td><td class="n">24</td><td class="n">24*</td><td class="n">–</td><td><span class="pill p-n">nicht deine Rolle</span></td></tr>
+        <tr><td><strong>David</strong></td><td class="n">124</td><td class="n">3</td><td class="n">41</td><td class="n">0 / 3</td><td class="n">16</td><td class="n">3</td><td class="n">–</td><td><span class="pill p-n">nebenbei</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">* Die Termine bei Arthur kommen vor allem über Calendly und eigene Kontakte, nicht aus den 455 Anrufen. Das Probetag-Konto teilen sich mehrere Trial-Caller. Wer an welchem Tag gewählt hat, lässt sich in Close nicht trennen.</p>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="chart"><h4>Anrufe pro Tag und Person</h4><canvas id="cDaily"></canvas></div>
+    <div class="chart"><h4>Wann erreicht man die Leute? (Gespräche ≥ 60 s in % der Anrufe)</h4><canvas id="cHour"></canvas></div>
+  </div>
+
+  <h3 style="font-size:16px;font-weight:600;margin:28px 0 12px">Erstgespräche nach Caller: Wie viele haben stattgefunden?</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Caller</th><th>Termine im Okt.</th><th>stattgefunden</th><th>No-Show</th><th>abgesagt</th><th>Show-Rate*</th><th>→ Strategiegespräch</th><th>Bewertung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Nicole</strong></td><td class="n">44</td><td class="n">20</td><td class="n">13</td><td class="n">9</td><td class="n">61 %</td><td class="n"><strong>9</strong></td><td><span class="pill p-a">Show-Rate verbessern</span></td></tr>
+        <tr><td><strong>Probetag</strong></td><td class="n">12</td><td class="n">3</td><td class="n">5</td><td class="n">3</td><td class="n">38 %</td><td class="n"><strong>3</strong></td><td><span class="pill p-r">viele No-Shows, aber 3 von 3 ins Strategiegespräch</span></td></tr>
+        <tr><td><strong>Arthur</strong> (selbst / ohne Zuordnung)</td><td class="n">19</td><td class="n">8</td><td class="n">0</td><td class="n">6</td><td class="n">–</td><td class="n">4</td><td><span class="pill p-n">4 ohne Ergebnis</span></td></tr>
+        <tr><td><strong>David</strong></td><td class="n">3</td><td class="n">1</td><td class="n">2</td><td class="n">0</td><td class="n">–</td><td class="n">1</td><td><span class="pill p-n">zu wenig Daten</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">* Show-Rate = stattgefunden ÷ (stattgefunden + No-Show), ohne Absagen. Der Testtermin „SKAEL Dashboard Integrationstest“ ist herausgerechnet.</p>
+</section>
+
+<!-- 5 -->
+<section id="shows">
+  <div class="label">05 · No-Shows</div>
+  <h2>Warum erscheint fast jeder Zweite nicht?</h2>
+  <p class="lead">Ich habe die No-Shows nach Vorlaufzeit, Wochentag und Kalenderwoche aufgeteilt. Das Ergebnis ist eindeutig: Es liegt nicht am Abstand zwischen Buchung und Termin, sondern am Wochentag und an fehlender Nachbetreuung.</p>
+  <div class="grid g3">
+    <div class="chart sm"><h4>Show-Rate nach Wochentag</h4><canvas id="cWd"></canvas></div>
+    <div class="chart sm"><h4>Show-Rate nach Vorlaufzeit</h4><canvas id="cLt"></canvas></div>
+    <div class="chart sm"><h4>Show-Rate nach Kalenderwoche</h4><canvas id="cWk"></canvas></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><ul class="clean amber"><li><strong>Mittwoch und Donnerstag: 75–83 %.</strong> Montag, Dienstag und Freitag: 45–53 %. Am Montag sind die Leute im Wochenstart, am Freitag schon im Wochenende.</li></ul></div>
+    <div class="card"><ul class="clean"><li><strong>Die Vorlaufzeit spielt keine Rolle.</strong> Ob der Termin 1 Tag oder 7 Tage nach der Buchung liegt, die Show-Rate bleibt bei rund 60 %. Es fehlt also die Erinnerung, nicht die Nähe zum Anruf.</li></ul></div>
+    <div class="card"><ul class="clean good"><li><strong>Es wird besser:</strong> KW 43 lag bei 52 %, KW 44 schon bei 70 %. Das spricht dafür, dass Nicole mit mehr Erfahrung verbindlicher bucht.</li></ul></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-size:15px;font-weight:600;margin-bottom:10px">Was dich die No-Shows kosten</h3>
+    <div class="calc">
+      <div class="box">Show-Rate heute<b>61 %</b></div><span class="arr">→</span>
+      <div class="box">Ziel<b>75 %</b></div><span class="arr">=</span>
+      <div class="box">mehr Erstgespräche<b>+7–8</b></div><span class="arr">× 52 %</span>
+      <div class="box">mehr Strategiegespräche<b>+4</b></div><span class="arr">× 25 %</span>
+      <div class="box" style="border-color:#22c55e">≈ mehr Kunden / Monat<b style="color:var(--green)">+1</b></div>
+    </div>
+    <p class="note">Ein Kunde bringt etwa 9.500–10.500 € für 3 Monate. Allein die No-Shows kosten also grob <strong>10.000 € pro Monat</strong>, ohne dass ein einziger Anruf mehr nötig wäre. Dazu kommen die 39 verlorenen Termine aus dem Oktober, von denen mit Nachfassen typischerweise 20–30 % neu buchen. Das wären 8 bis 12 Erstgespräche.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="sg">
+  <div class="label">06 · Strategiegespräche</div>
+  <h2>Alle Strategiegespräche im Oktober, und woran sie hängen</h2>
+  <p class="lead">Stattgefunden haben 7, ausgefallen sind 4. Offen ist, was im November noch kippt.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Kunde</th><th>Termin</th><th>Stand 02.11.</th><th>Woran es hängt</th><th>Nächster Schritt</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lunarspark</strong> (Marcel)</td><td>23.10.</td><td><span class="pill p-a">PandaDoc offen</span></td><td>preissensibel, kleine Agentur, 400–500 € pro Kunde</td><td>Telefontermin Fr. 14:00 / 15:30 angeboten</td></tr>
+        <tr><td><strong>giinco</strong> (Norbert)</td><td>28.10.</td><td><span class="pill p-a">wartet</span></td><td>Entscheidung intern</td><td>meldet sich bis 03.11., sonst ab Mi. anrufen</td></tr>
+        <tr><td><strong>Accelovate</strong> (Jan)</td><td>29.10.</td><td><span class="pill p-g">heiß</span></td><td>Partner muss zustimmen</td><td>Folgetermin Mi. 04.11., 14:30, Angebot mitnehmen</td></tr>
+        <tr><td><strong>OTBT</strong> (Stefan)</td><td>22.10.</td><td><span class="pill p-a">still</span></td><td>Folgetermin 29.10. ohne Antwort verstrichen</td><td>Follow-up vom 02.11. läuft, dann anrufen</td></tr>
+        <tr><td><strong>Double-YouMedia</strong> (Maik)</td><td>15.10.</td><td><span class="pill p-a">still</span></td><td>Budget 10k zu hoch, Andrew war nicht dabei</td><td>aufs Handy anrufen</td></tr>
+        <tr><td><strong>PRaffairs</strong> (Ines)</td><td>27.10.</td><td><span class="pill p-r">verloren</span></td><td>12k keine Option, Projekt vertagt</td><td>abgeschlossen</td></tr>
+        <tr><td><strong>doppeldeutlich</strong> (Stefanie)</td><td>22.10.</td><td><span class="pill p-r">abgehakt</span></td><td>seit 22.10. keine Reaktion</td><td>keine Aktion</td></tr>
+        <tr><td>Whitecross · adslab · uniqueweb · Yondive</td><td>12.–23.10.</td><td><span class="pill p-n">ausgefallen</span></td><td>abgesagt oder nicht erschienen</td><td>uniqueweb: Follow-up läuft</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:8px">Das Muster hinter der Stille</h3>
+      <p style="font-size:13.5px;color:var(--gray-700)">Bei drei der sieben (Ines, Maik, Marcel) war das <strong>Budget der eigentliche Grund</strong>. Es kam aber erst im Strategiegespräch oder danach heraus. Kleine Agenturen mit 0,4–2k € pro Kunde müssen für 10–12k über 3 Monate viele Neukunden gewinnen, bevor es sich lohnt. Das Strategiegespräch hat dort Zeit gekostet, die bei den passenden Leads fehlt.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:8px">Was im Gespräch selbst passiert</h3>
+      <p style="font-size:13.5px;color:var(--gray-700)">In den ausgewerteten Aufnahmen lag dein Redeanteil bei <strong>79–87 %</strong>. Bei PRaffairs hat Ines bei Minute 34 selbst nach dem weiteren Vorgehen gefragt, und die Antwort waren Unterlagen und ein Buchungslink statt eines festen Entscheidungstermins.</p>
+      <div class="quote">Wer fragt „Wie geht es weiter?“, will eine Entscheidung. Er will keine Unterlagen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="lessons">
+  <div class="label">07 · Gut / Schlecht / Besser</div>
+  <h2>Was lief gut, was schlecht, und was hätten wir besser machen müssen?</h2>
+  <div class="grid g3">
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:14px;color:var(--green)">Gut gelaufen</h3>
+      <ul class="clean good">
+        <li><strong>Nicole ist sehr konstant:</strong> Sie hat an 14 von 14 Tagen das Tagesziel erreicht, im Schnitt 230 Anrufe, und 53 von 95 Terminen gebucht.</li>
+        <li><strong>Das Erstgespräch funktioniert:</strong> 52 % gehen weiter ins Strategiegespräch, und zwar schnell, meist innerhalb von 3–4 Tagen.</li>
+        <li><strong>Die Ausarbeitungen sind professionell:</strong> Für jeden Kunden gibt es eine eigene Figma-Datei mit Zielmarkt, Mengen und Rechnung.</li>
+        <li><strong>Die Probetag-Leads sind die besten:</strong> Alle 3 sind ins Strategiegespräch gegangen. Mit Lunarspark und giinco kommen die heißesten Deals von dort.</li>
+        <li><strong>Die Show-Rate steigt:</strong> von 52 % in KW 43 auf 70 % in KW 44.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:14px;color:var(--red)">Schlecht gelaufen</h3>
+      <ul class="clean bad">
+        <li><strong>Kein Abschluss aus der Kaltakquise.</strong> Der Oktober-Umsatz kam komplett aus dem Bestand.</li>
+        <li><strong>39 % No-Shows, 23 % Absagen</strong> bei den Erstgesprächen. Keiner dieser 39 Termine wurde zurückgeholt.</li>
+        <li><strong>27 % unqualifizierte Erstgespräche.</strong> Das Budget wird am Telefon nicht abgefragt.</li>
+        <li><strong>Nach dem Angebot werden die Kunden still.</strong> Bei 5 von 7 gab es keine Reaktion, und nachgefasst wurde per Mail statt per Telefon.</li>
+        <li><strong>Du bist der Engpass.</strong> Erstgespräche, Strategiegespräche, Ausarbeitungen und Follow-ups laufen alle über dich. Dazu kamen 455 eigene Anrufe, aus denen 24 echte Gespräche wurden.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:14px;color:#b45309">Besser machen</h3>
+      <ul class="clean amber">
+        <li><strong>Jedes Strategiegespräch mit einem festen Entscheidungstermin beenden</strong>, z. B. „Donnerstag 15 Uhr, 20 Minuten, da sagst du Ja oder Nein“. Den Termin direkt in den Kalender legen.</li>
+        <li><strong>Den Preis im Gespräch nennen</strong> und Einwände sofort klären, nicht erst per Mail. Danach nur noch PandaDoc zum Unterschreiben.</li>
+        <li><strong>Weniger reden, mehr fragen.</strong> Bis zur Lösung solltest du unter 60 % Redeanteil liegen.</li>
+        <li><strong>Bei Stille nach 48 Stunden anrufen, nicht mailen.</strong></li>
+        <li><strong>Für preissensible Kunden ein Einstiegsangebot</strong> (z. B. 1 Monat Test), statt sie mit dem 10k-Paket zu verlieren.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="plan">
+  <div class="label">08 · Ziele &amp; Plan November</div>
+  <h2>Welche Zahlen wir ändern müssen und wie</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Kennzahl</th><th>Oktober</th><th>Ziel November</th><th>Priorität</th><th>Maßnahme</th><th>Wer</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Abschlussquote Strategiegespräch</strong></td><td class="n">0 %</td><td class="n"><strong>25 %</strong></td><td><span class="pill p-r">1</span></td><td>Entscheidungstermin im Gespräch festlegen, Angebot live zeigen, Einstiegspaket für kleine Agenturen</td><td>Arthur</td></tr>
+        <tr><td><strong>Show-Rate Erstgespräch</strong></td><td class="n">61 %</td><td class="n"><strong>75 %</strong></td><td><span class="pill p-r">2</span></td><td>Erinnerung per WhatsApp/SMS 24 Std. und 2 Std. vorher, kurzer Anruf vom Caller am Vortag, klare Agenda in der Einladung, Termine bevorzugt Mi./Do.</td><td>Nicole, Florian</td></tr>
+        <tr><td><strong>Zurückgeholte No-Shows/Absagen</strong></td><td class="n">0 von 39</td><td class="n"><strong>30 %</strong></td><td><span class="pill p-r">2</span></td><td>Anruf am selben Tag plus 2 Nachfass-Versuche, Recovery-Liste im Dashboard jeden Tag abarbeiten</td><td>Caller</td></tr>
+        <tr><td><strong>Unqualifizierte Erstgespräche</strong></td><td class="n">27 %</td><td class="n"><strong>&lt; 15 %</strong></td><td><span class="pill p-a">3</span></td><td>Pflichtfrage am Telefon: „Wäre eine Investition von 8–12k über 3 Monate realistisch, wenn es funktioniert?“ Dazu Kundenwert ≥ 3–5k</td><td>Caller</td></tr>
+        <tr><td><strong>Show-Rate Strategiegespräch</strong></td><td class="n">64 %</td><td class="n"><strong>85 %</strong></td><td><span class="pill p-a">3</span></td><td>Termin noch im Erstgespräch gemeinsam festlegen, am Vortag eine Nachricht mit „Ich habe XY vorbereitet“</td><td>Arthur</td></tr>
+        <tr><td><strong>Termine pro 100 Anrufe (neue Caller)</strong></td><td class="n">0,6</td><td class="n"><strong>1,2</strong></td><td><span class="pill p-n">4</span></td><td>Jeder Caller bekommt einen eigenen Close-Login, damit wir pro Person messen können. Nicoles Skript als Vorlage, 2 Wochen Einarbeitung</td><td>Lio</td></tr>
+        <tr><td><strong>Deal-Wert in Close</strong></td><td class="n">pauschal 12k</td><td class="n">echter Wert</td><td><span class="pill p-n">4</span></td><td>Nach dem Strategiegespräch den echten Betrag eintragen. Heute stehen 21 offene Deals mit 216k drin, real ist deutlich weniger</td><td>Arthur</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3 style="font-size:15px;font-weight:600;margin-bottom:10px">Rückwärts gerechnet: Was für 3 Neukunden pro Monat nötig ist</h3>
+    <div class="calc">
+      <div class="box" style="border-color:#22c55e">Neukunden<b>3</b></div><span class="arr">÷ 30 %</span>
+      <div class="box">Strategiegespräche stattgefunden<b>10</b></div><span class="arr">÷ 50 %</span>
+      <div class="box">Erstgespräche stattgefunden<b>20</b></div><span class="arr">÷ 75 %</span>
+      <div class="box">Erstgespräche gebucht<b>27</b></div><span class="arr">÷ 1,6</span>
+      <div class="box">Anrufe<b>≈ 1.700</b></div>
+    </div>
+    <p class="note"><strong>Die Termine reichen schon:</strong> Im Oktober waren es 33 stattgefundene Erstgespräche und 5.990 Anrufe. Mehr Anrufe brauchst du also nicht. Das Geld steckt in Show-Rate und Abschluss. Dafür sind im November schon 8 Strategiegespräche in der ersten Woche gebucht.</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card action"><h4>Diese Woche · Closing</h4><p>Am Mittwoch Accelovate mit Angebot zur Entscheidung führen. Lunarspark am Freitag anrufen. giinco ab Mittwoch nachfassen. Jedes der 8 Strategiegespräche diese Woche endet mit einem Termin, in dem der Kunde Ja oder Nein sagt.</p><div class="meta">Owner: Arthur</div></div>
+    <div class="card action"><h4>Diese Woche · Recovery</h4><p>Die 39 verlorenen Erstgespräche aus dem Oktober als Liste an Nicole und Florian geben, mit 2 Anrufversuchen pro Lead. Ziel: 8 neue Termine.</p><div class="meta">Owner: Nicole, Florian</div></div>
+    <div class="card action"><h4>Ab sofort · Erinnerungen</h4><p>Automatische Erinnerung 24 Std. und 2 Std. vor jedem Erstgespräch, dazu ein kurzer Anruf vom Caller am Vortag. Neue Termine bevorzugt auf Mittwoch und Donnerstag legen.</p><div class="meta">Owner: Hermes / Lio</div></div>
+    <div class="card action"><h4>Ab November · Entlastung</h4><p>Leo übernimmt Erstgespräche nach dem Notion-Leitfaden. Du konzentrierst dich auf Strategie- und Abschlussgespräche und hörst auf, selbst kalt zu telefonieren.</p><div class="meta">Owner: Arthur, Leo</div></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="daten">
+  <div class="label">09 · Datenqualität</div>
+  <h2>Was die Zahlen unsicher macht</h2>
+  <div class="grid g3">
+    <div class="card"><ul class="clean amber"><li><strong>5 Erstgespräche ohne Ergebnis</strong> in Close: KuppingerCole, SuccessLeads, 360 Grad Studio, Jam Impact und BRAND HEALTH. Bitte im Dashboard nachtragen.</li></ul></div>
+    <div class="card"><ul class="clean amber"><li><strong>9 stattgefundene Erstgespräche stehen noch auf „Erstgespräch vereinbart“</strong>, z. B. BUTTER.People, Silberpuls, MUXOM, JECS, HeiCom, STUDIOHORN und Kemto. Der Status sollte direkt nach dem Gespräch aktualisiert werden.</li></ul></div>
+    <div class="card"><ul class="clean amber"><li><strong>Teilweise abgeleitete Ergebnisse:</strong> Wo im Dashboard kein Ergebnis stand, habe ich es aus Gesprächsnotizen, Folgeterminen und Lead-Status abgeleitet. Die Werte können deshalb um ±2 abweichen. „Arthur“ als Caller ist teils ungenau, weil Close den Gastgeber im Kalender einträgt.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <div class="fazit">
+    <h3>Fazit</h3>
+    <p>Im Oktober hat der Vertrieb <strong>gezeigt, dass er Termine liefert</strong>: knapp 6.000 Anrufe, 95 gebuchte und 33 stattgefundene Erstgespräche, dazu 17 Strategiegespräche. Das reicht rechnerisch für 3 Neukunden im Monat.</p>
+    <p>Verloren geht das Geld an zwei Stellen: <strong>Fast jeder zweite Termin findet nicht statt</strong>, und <strong>nach dem Angebot fehlt der Abschluss</strong>. Beides lässt sich mit Prozess beheben (Erinnerungen, Recovery, Budget-Frage, fester Entscheidungstermin). Mehr Anrufe braucht es dafür nicht.</p>
+    <p>Der Test für November ist einfach: <strong>Werden aus Lunarspark, giinco, Accelovate und den 8 Strategiegesprächen dieser Woche mindestens 2 Kunden?</strong> Dann war der Oktober vor allem eine Frage des Timings. Wenn nicht, liegt das Problem beim Closing.</p>
+  </div>
+</section>
+
+<div class="footer">Skael GmbH · Interner Sales-Report Oktober 2026 · Datenquelle: Close CRM, Stand 02.11.2026 · nicht zur Weitergabe</div>
+</div>
+
+<script>
+Chart.defaults.font.family="'Poppins',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color='#6b7280';
+const days=["02.","05.","07.","08.","09.","13.","14.","15.","16.","19.","20.","21.","22.","23.","26.","27.","28.","29.","30."];
+const D={Nicole:[0,0,0,0,0,202,232,262,256,217,227,204,220,226,224,272,201,238,243],Probetag:[12,181,69,120,0,0,140,410,198,0,0,285,61,132,0,0,186,0,393],Arthur:[0,81,2,0,159,60,152,0,0,1,0,0,0,0,0,0,0,0,0],David:[0,0,0,0,121,0,0,0,0,0,1,2,0,0,0,0,0,0,0]};
+const col={Nicole:'#3a6ef4',Probetag:'#93b4ff',Arthur:'#0f1b2d',David:'#9ca3af'};
+new Chart(cDaily,{type:'bar',data:{labels:days,datasets:Object.keys(D).map(k=>({label:k,data:D[k],backgroundColor:col[k],borderRadius:3}))},options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10}}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'#f3f4f6'}}}}});
+new Chart(cHour,{type:'bar',data:{labels:['8','9','10','11','12','13','14','15'],datasets:[{label:'Erreichbarkeit %',data:[16.3,16.1,22.3,21.7,16.7,18.2,18.2,16.8],backgroundColor:[16.3,16.1,22.3,21.7,16.7,18.2,18.2,16.8].map(v=>v>20?'#22c55e':'#93b4ff'),borderRadius:4,yAxisID:'y'},{label:'Anrufe',type:'line',data:[196,907,1002,915,717,857,897,463],borderColor:'#0f1b2d',pointRadius:2,tension:.3,yAxisID:'y1'}]},options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:10}}},scales:{x:{title:{display:true,text:'Uhrzeit'},grid:{display:false}},y:{min:0,max:25,ticks:{callback:v=>v+' %'},grid:{color:'#f3f4f6'}},y1:{position:'right',grid:{display:false}}}}});
+function rate(el,labels,vals,n){new Chart(el,{type:'bar',data:{labels,datasets:[{data:vals,backgroundColor:vals.map(v=>v>=70?'#22c55e':v>=60?'#f59e0b':'#ef4444'),borderRadius:5}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' % · n='+n[c.dataIndex]}}},scales:{y:{min:0,max:100,ticks:{callback:v=>v+' %'},grid:{color:'#f3f4f6'}},x:{grid:{display:false}}}}})}
+rate(cWd,['Mo','Di','Mi','Do','Fr'],[53,45,83,75,50],[15,11,12,8,8]);
+rate(cLt,['≤ 1 Tag','2–3 Tage','4–7 Tage','> 7 Tage'],[60,64,60,60],[5,14,30,5]);
+rate(cWk,['KW 41','KW 42','KW 43','KW 44'],[33,83,52,70],[3,6,25,20]);
+</script>
+</body>
+</html>
