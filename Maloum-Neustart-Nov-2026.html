@@ -22,8 +22,8 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:200;height:58px;dis
 .nav-logo-text{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:var(--navy);}
 .nav-logo-text span{color:var(--blue);}
 .nav-sep{width:1px;height:18px;background:var(--border2);margin:0 20px;}
-.nav-tabs{display:flex;gap:4px;flex:1;flex-wrap:wrap;}
-.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;padding:5px 12px;border-radius:6px;transition:all .15s;}
+.nav-tabs{display:flex;gap:2px;flex:1;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;min-width:0;}
+.nav-tab{font-family:'Poppins',sans-serif;font-size:12.5px;color:var(--muted);text-decoration:none;white-space:nowrap;padding:5px 10px;border-radius:6px;transition:all .15s;}
 .nav-tab:hover{color:var(--navy);background:rgba(0,0,0,0.05);}
 .nav-pill{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);background:var(--blue-bg);padding:4px 10px;border-radius:20px;margin-left:auto;white-space:nowrap;}
 .container{max-width:1280px;margin:0 auto;padding:0 48px;}
@@ -198,9 +198,23 @@ tr.new td{background:#fafbff;}
 .fazit p strong{color:#fff;font-weight:500;}
 footer{padding:40px 0 60px;border-top:1px solid var(--border);}
 .footer-txt{font-family:'DM Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sub);}
+@media(max-width:1360px){.nav-pill{display:none;}}
 @media(max-width:1100px){.ad-grid{grid-template-columns:repeat(2,1fr);}.rej-grid{grid-template-columns:repeat(3,1fr);}.soft-grid{grid-template-columns:repeat(5,1fr);}}
 @media(max-width:900px){nav{padding:0 16px;}.nav-tabs,.nav-sep{display:none;}.kpi-grid{grid-template-columns:1fr 1fr;}.split-wrap{grid-template-columns:1fr;}.split-row{grid-template-columns:1fr;gap:6px;}.split-right{text-align:left;}.kamp-grid,.rec-grid,.three,.var-grid{grid-template-columns:1fr;}.container{padding:0 16px;}.h-hero{font-size:38px;}.h-section{font-size:28px;}.fazit{padding:30px 24px;}.tl-row{grid-template-columns:1fr;gap:2px;}}
 @media(max-width:560px){.kpi-grid{grid-template-columns:1fr;}.rej-grid{grid-template-columns:repeat(2,1fr);}.soft-grid{grid-template-columns:repeat(3,1fr);}.ad-grid{grid-template-columns:1fr 1fr;gap:10px;}}
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+.rc{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;}
+.rc-shots{display:grid;grid-template-columns:1fr 92px;gap:10px;padding:14px;background:#f3f5f9;border-bottom:1px solid var(--border);align-items:start;}
+.rc-shots img{width:100%;display:block;border-radius:6px;border:1px solid var(--border);}
+.rc-shots img+img{height:200px;object-fit:cover;object-position:top;}
+.rc-b{padding:18px 22px 20px;}
+.rc-b h4{font-size:15px;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.rc-b>a{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);text-decoration:none;}
+.rc-b p{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.6;}
+.rc-b p strong{color:var(--navy);font-weight:500;}
+.rc-steps{margin:10px 0 0 18px;font-size:12.5px;color:var(--navy);line-height:1.8;}
+.rc-b .kamp-row:first-of-type{margin-top:12px;border-top:1px solid var(--border);}
+@media(max-width:900px){.rc-grid{grid-template-columns:1fr;}.rc-shots{grid-template-columns:1fr 80px;}.rc-shots img+img{height:170px;}}
 </style>
 </head>
 <body>
@@ -214,7 +228,8 @@ footer{padding:40px 0 60px;border-top:1px solid var(--border);}
     <a class="nav-tab" href="#top">Top-Ads</a>
     <a class="nav-tab" href="#abgelehnt">Abgelehnt</a>
     <a class="nav-tab" href="#verlauf">Verlauf &amp; Creator</a>
-    <a class="nav-tab" href="#zielseiten">Landingpages &amp; Cupid</a>
+    <a class="nav-tab" href="#zielseiten">LPs &amp; Cupid</a>
+    <a class="nav-tab" href="#recruiting">Recruiting</a>
     <a class="nav-tab" href="#rec">Empfehlungen</a>
   </div>
   <div class="nav-pill">Maloum · Neustart · 25.10.–09.11.</div>
@@ -517,6 +532,75 @@ footer{padding:40px 0 60px;border-top:1px solid var(--border);}
       <div class="cup-links"><a href="https://ya.bio/tess-k1">ya.bio/tess-k1</a><a href="https://ya.bio/tess-k2">ya.bio/tess-k2</a></div></div>
   </div>
   <div class="hint-box gray"><p>Die Chat-Verläufe sind vereinfachte Beispiele für die hinterlegten Antworten, keine echten Gespräche. Der Bot sagt offen, dass er eine KI ist, flirtet nicht, lehnt Treffen ab und schickt den Maloum-Link mit <code>utm_medium=cupid</code>. -k1 = Konto 1, -k2 = Konto 2. Testphase: 7 Tage bzw. 300 Gespräche.</p></div>
+</div>
+</section>
+
+<!-- CREATOR-RECRUITING -->
+<section class="section" id="recruiting">
+<div class="container">
+  <h2 class="h-section">Creator-<em>Recruiting</em></h2>
+  <p class="lead">Neben Fans gewinnen wir jetzt auch <strong>Creatorinnen für Maloum</strong>: Frauen ab 18 in DACH, die anfangen wollen oder schon aktiv sind. Dafür gibt es zwei Ad-Strecken mit je einer eigenen Zielseite. Beide Seiten sind seit <strong>26.11.2026</strong> live.</p>
+
+  <div class="rc-grid">
+    <div class="rc">
+      <div class="rc-shots"><img src="assets/maloum-neustart/recruiting/partner-desktop.jpg" alt="Bewerbungsseite Desktop"><img src="assets/maloum-neustart/recruiting/partner-handy.jpg" alt="Bewerbungsseite Handy"></div>
+      <div class="rc-b">
+        <div class="kamp-sub">1 · Video-Ads</div>
+        <h4>Bewerbungsseite <span class="tag g">Live</span></h4>
+        <a href="https://creatorprofil.de/partner/">creatorprofil.de/partner</a>
+        <p>Für die drei Recruiting-Videos REC AD22 „Anfangen“, AD19 „Fans“ und AD9 „Topmodel“. Gleicher Look wie die Videos: rotes Studio, die Headline von der Endkarte, Standbilder der zwei Interview-Creatorinnen.</p>
+        <ol class="rc-steps">
+          <li>Schon angefangen?</li>
+          <li>Wie lange schon?</li>
+          <li>Verdienst pro Monat?</li>
+          <li>Follower auf Instagram/TikTok?</li>
+          <li>Kontakt: Vorname, Instagram, E-Mail, WhatsApp optional</li>
+        </ol>
+        <p>Eine Frage pro Schritt, zum Antippen. Wer neu startet, überspringt 2 und 3. Danach kommt eine Danke-Box mit dem E-Book und dem Link zur Maloum-Registrierung.</p>
+        <div class="kamp-row"><span class="kamp-lbl">Kampagne</span><span class="kamp-val">MAL | CREATOR RECRUITING | Traffic | Nov 2026</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Budget</span><span class="kamp-val">3 × 10 € / Tag</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Zielgruppe</span><span class="kamp-val">Frauen 18–34 · nur Stories &amp; Reels</span></div>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="rc-shots"><img src="assets/maloum-neustart/recruiting/ebook-desktop.jpg" alt="E-Book-Seite Desktop"><img src="assets/maloum-neustart/recruiting/ebook-handy.jpg" alt="E-Book-Seite Handy"></div>
+      <div class="rc-b">
+        <div class="kamp-sub">2 · E-Book-Ads</div>
+        <h4>Download-Seite <span class="tag g">Live</span></h4>
+        <a href="https://creatorprofil.de/guide/emma/">creatorprofil.de/guide/emma</a>
+        <p>Kostenloser Guide <strong>„Null auf Hundert“</strong> von Emma Spice (@diese.emma.official), 14 Seiten, 10 Kapitel: Positionierung, Profil, Social Media als Traffic, Content-Strategie, Live-Streams, Chat, Community, Monetarisierung, Warum Maloum, Steuern.</p>
+        <p>Gleicher Look wie das E-Book: Creme, Orange, Serifenschrift. Auf der Seite: Cover, Kapitel, Seitenvorschauen, ein Zitat von Emma, FAQ.</p>
+        <p>Formular mit Vorname, E-Mail, Instagram (optional), 18+ und Einwilligung. Danach gibt es das PDF sofort und den Button „Kostenlos bei Maloum starten“.</p>
+        <div class="kamp-row"><span class="kamp-lbl">Anzeigen</span><span class="kamp-val">AD-EMMA-01 / 02 / 05</span></div>
+        <div class="kamp-row"><span class="kamp-lbl">Formate</span><span class="kamp-val">Story + Feed</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-sub">Tracking &amp; Daten</div>
+  <div class="rec-grid">
+    <div class="rec-card"><div class="rec-num">1</div><div class="rec-body"><h4>Pixel nur mit Zustimmung</h4><p>Der Meta-Pixel MALOUM lädt erst, wenn die Besucherin im Cookie-Banner zustimmt. Beim Absenden feuert <strong>Lead</strong>, auf der Bewerbungsseite zusätzlich <strong>BewerbungStart</strong> bei der ersten Antwort.</p></div></div>
+    <div class="rec-card"><div class="rec-num">2</div><div class="rec-body"><h4>Herkunft pro Anzeige</h4><p>Jeder Eintrag speichert die UTM-Parameter. So sehen wir pro Anzeige, woher die Leads kommen.</p></div></div>
+    <div class="rec-card"><div class="rec-num">3</div><div class="rec-body"><h4>Leads geschützt auf dem Server</h4><p>Die Einträge liegen geschützt auf dem Server und lassen sich als CSV exportieren. Die Datenschutzerklärung ist um beide Formulare ergänzt.</p></div></div>
+    <div class="rec-card"><div class="rec-num">4</div><div class="rec-body"><h4>Seiten greifen ineinander</h4><p>Bewerberinnen bekommen das E-Book als Dankeschön, wer den Guide lädt, kommt direkt zur Maloum-Registrierung.</p></div></div>
+  </div>
+
+  <div class="h-sub">Status &amp; was wir berichten</div>
+  <div class="split-wrap">
+    <div class="tl" style="margin-top:0;">
+      <div class="tl-row"><div class="tl-d">26.11.</div><div class="tl-t"><strong>Beide Seiten live und getestet.</strong></div></div>
+      <div class="tl-row"><div class="tl-d">Entwurf</div><div class="tl-t">Video- und E-Book-Ads liegen fertig im Werbekonto.</div></div>
+      <div class="tl-row"><div class="tl-d">Nächster Schritt</div><div class="tl-t">URLs in die Ads eintragen, dann veröffentlicht Erik.</div></div>
+    </div>
+    <div class="side-card">
+      <div class="side-row"><span class="side-row-lbl">Kosten pro Klick</span><span class="side-row-val">ab Start</span></div>
+      <div class="side-row"><span class="side-row-lbl">Kosten pro Lead</span><span class="side-row-val">ab Start</span></div>
+      <div class="side-row"><span class="side-row-lbl">Bewerbungen / Downloads</span><span class="side-row-val">ab Start</span></div>
+      <div class="side-row"><span class="side-row-lbl">Anteil schon aktiv</span><span class="side-row-val">ab Start</span></div>
+      <div class="side-row"><span class="side-row-lbl">Registriert bei Maloum</span><span class="side-row-val">Abgleich mit euch</span></div>
+    </div>
+  </div>
+  <div class="hint-box gray"><p>Noch keine Zahlen, die Ads sind noch nicht gestartet. Bei der Bewerbungsseite sieht das Maloum-Team sofort, wer schon aktiv ist, was sie verdient und wie viel Reichweite sie hat. Ob daraus registrierte Creatorinnen werden, gleichen wir mit euren Daten ab.</p></div>
 </div>
 </section>
 
